@@ -5,3 +5,90 @@ body {
   color: var(--color-foreground);
   font-family: system-ui, sans-serif;
 }
+
+
+/* ============================================
+   GLOBAL DESIGN TOKENS — HEADINGS (REM-based)
+   Typography system using Bebas Neue (Secondary Font)
+   ============================================ */
+
+:root {
+  /* Font Families */
+  --font-secondary: "Bebas Neue", sans-serif;
+  --spotlight-50:  #F7F7F8;
+  --spotlight-100: #EEEEF0;
+  --spotlight-200: #D8D9DF;
+  --spotlight-300: #B6B7C3;
+  --spotlight-400: #8F91A1;
+  --spotlight-500: #717286;
+  --spotlight-600: #5B5D6E;
+  --spotlight-700: #4A4A5A;
+  --spotlight-800: #40414C;
+  --spotlight-900: #383842;
+  --spotlight-950: #0C0C0E;
+
+    /* SPACING SCALE — DESKTOP */
+  --space-xxs: 0.5rem;   /* 8px  */
+  --space-xs: 1rem;      /* 16px */
+  --space-sm: 1.25rem;   /* 20px */
+  --space-lg: 2rem;      /* 32px */
+  --space-xl: 3rem;      /* 48px */
+  --space-xxl: 4rem;     /* 64px */
+
+  /* SECTION MARGINS (Desktop) */
+  --section-margin-x: 7.5rem;  /* 120px */
+  --section-margin-y: 7.5rem;  /* 120px */
+
+  /* ===============================
+     DESKTOP HEADINGS
+     =============================== */
+
+  /* Heading 1 */
+  --h1-size: 12rem;         /* 192px */
+  --h1-line: 100%;
+
+  /* Heading 2 */
+  --h2-size: 9.25rem;       /* 148px */
+  --h2-line: 100%;
+
+  /* Heading 3 */
+  --h3-size: 3.5rem;        /* 56px */
+  --h3-line: 100%;
+
+  /* Heading 4 */
+  --h4-size: 2.5rem;        /* 40px */
+  --h4-line: 120%;
+}
+
+/* ===============================
+   MOBILE HEADINGS (≤ 768px)
+   =============================== */
+@media (max-width: 768px) {
+  :root {
+    --space-xxs: 0.5rem;    /* 8px */
+    --space-xs: 1rem;       /* 16px */
+    --space-sm: 1.25rem;    /* 20px */
+    --space-lg: 1.5rem;     /* 24px */
+    --space-xl: 2rem;       /* 32px */
+    --space-xxl: 3rem;      /* 48px */
+
+    /* Section Margins (Mobile) */
+    --section-margin-x: 1.5rem;  /* 24px */
+    --section-margin-y: 3rem;    /* 48px */
+    /* Heading 1 */
+    --h1-size: 5.75rem;     /* 92px */
+    --h1-line: 100%;
+
+    /* Heading 2 */
+    --h2-size: 4.25rem;     /* 68px */
+    --h2-line: 100%;
+
+    /* Heading 3 */
+    --h3-size: 2rem;        /* 32px */
+    --h3-line: 100%;
+
+    /* Heading 4 */
+    --h4-size: 1.5rem;      /* 24px */
+    --h4-line: 120%;
+  }
+}
