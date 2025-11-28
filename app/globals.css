@@ -14,7 +14,8 @@ body {
 
 :root {
   /* Font Families */
-  --font-secondary: "Bebas Neue", sans-serif;
+  --font-primary: "Bebas Neue", sans-serif;
+  --font-secondary: 'Outfit', sans-serif;
   --spotlight-50:  #F7F7F8;
   --spotlight-100: #EEEEF0;
   --spotlight-200: #D8D9DF;
@@ -26,6 +27,20 @@ body {
   --spotlight-800: #40414C;
   --spotlight-900: #383842;
   --spotlight-950: #0C0C0E;
+
+  --body-large-size: 1.25rem;
+  --body-large-weight: 400;
+  --body-large-line-height: 150%;
+
+  /* Body Medium */
+  --body-medium-size: 1rem;
+  --body-medium-weight: 400;
+  --body-medium-line-height: 150%;
+
+  /* Body Small */
+  --body-small-size: 0.875rem;
+  --body-small-weight: 400;
+  --body-small-line-height: 150%;
 
     /* SPACING SCALE — DESKTOP */
   --space-xxs: 0.5rem;   /* 8px  */
@@ -80,15 +95,27 @@ body {
     --h1-line: 100%;
 
     /* Heading 2 */
-    --h2-size: 4.25rem;     /* 68px */
+    --h2-size: 4.25rem;
     --h2-line: 100%;
 
     /* Heading 3 */
-    --h3-size: 2rem;        /* 32px */
+    --h3-size: 2rem;
     --h3-line: 100%;
 
     /* Heading 4 */
-    --h4-size: 1.5rem;      /* 24px */
+    --h4-size: 1.5rem;
     --h4-line: 120%;
+
+    /* Body Large */
+    --body-large-size: 1.25rem;
+    --body-large-line-height: 150%;
+
+    /* Body Medium */
+    --body-medium-size: 1rem;
+    --body-medium-line-height: 150%;
+
+    /* Body Small */
+    --body-small-size: 0.875rem;
+    --body-small-line-height: 150%;
   }
 }
