@@ -14,7 +14,7 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="w-full bg-gray-500 border-b border-gray-700 shadow-lg"> {/* Removed faulty gradient class for transparent bg; add back if needed */}
+    <header className="w-full z-10"> {/* Removed faulty gradient class for transparent bg; add back if needed */}
       <div className="w-full mx-auto py-4 px-20 flex items-center justify-between"> {/* Applied Figma styles: width:1440px, padding:16px 80px (py-4 px-20), flex, justify-between, items-center */}
         {/* Logo */}
         <Link href="/" className="flex items-center">

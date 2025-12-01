@@ -1,9 +1,13 @@
 import Image from "next/image";
+import Hero from "../components/sections/Hero";
+import { client } from "@/sanity/lib/client";
+import { homePageQuery } from "@/sanity/queries/homePage";
 
-export default function Home() {
+export default async function Home() {
+  const data = await client.fetch(homePageQuery)
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans">
-      <h1 className="flex text-amber-400">Home Page</h1>
+    <div>
+      <Hero videoAsset={data?.heroVideo} title={data?.heroTitle} subtitle={data?.heroSubtitle}/>
     </div>
   );
 }
