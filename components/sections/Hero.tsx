@@ -1,6 +1,5 @@
 'use client';
 import { getVideoUrl } from "@/sanity/lib/videoUrl";
-
 interface HeroProps {
   videoAsset?: any;
   title?: string;
@@ -33,12 +32,15 @@ export default function Hero({ videoAsset, title, subtitle }: HeroProps) {
       )}
 
       {/* Overlay for better text readability */}
-      <div className="absolute inset-0 bg-black/40"></div>
+      {/* <div className="absolute inset-0 bg-black/40"></div> */}
 
       {/* Centered content */}
       <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4">
-        <h1 className="text-white text-6xl md:text-7xl font-extrabold drop-shadow-lg">
-          SHINE <br/> BRIGHT
+        <h1
+          className="text-white font-extrabold drop-shadow-lg opacity-20 leading-(--h1-line)"
+          style={{ fontFamily: "var(--font-primary)", fontSize: "var(--h1-size)" }}
+        >
+          SHINE BRIGHT
         </h1>
       </div>
     </section>
