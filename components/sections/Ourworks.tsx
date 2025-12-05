@@ -97,6 +97,9 @@ export default function Ourworks() {
           />
         </div>
       </div>
+      <button className="border border-white mt-10 px-6 py-3 text-sm uppercase tracking-wide hover:bg-white hover:text-black transition">
+          • Explore Now →
+        </button>
     </section>
   );
 }
