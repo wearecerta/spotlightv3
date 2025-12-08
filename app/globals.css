@@ -14,8 +14,8 @@ body {
 
 :root {
   /* Font Families */
-  --font-primary: "Bebas Neue", sans-serif;
-  --font-secondary: 'Outfit', sans-serif;
+  --font-primary: "Bebas Neue";
+  --font-secondary: 'Outfit';
   --spotlight-50:  #F7F7F8;
   --spotlight-100: #EEEEF0;
   --spotlight-200: #D8D9DF;

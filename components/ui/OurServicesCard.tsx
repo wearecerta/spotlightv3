@@ -28,13 +28,15 @@ export default function OurServicesCard({
     <Link
       href={href}
       className={`
-        block rounded-2xl overflow-hidden
-        bg-[var(--spotlight-900)]
-        border border-[var(--spotlight-800)]
-        hover:border-[var(--spotlight-700)]
+        block overflow-hidden
         transition-all duration-300
         ${className}
       `}
+      style={{
+        borderRadius: '24px',
+        border: '1px solid #F7F7F8',
+        background: 'linear-gradient(180deg, rgba(74, 74, 90, 0.00) 0%, var(--spotlight-950, #0C0C0E) 100%)',
+      }}
     >
       <div className="p-6 md:p-8">
         {/* Header Section */}
