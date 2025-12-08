@@ -9,6 +9,7 @@ import OurServices from "@/components/sections/OurServices";
 import Awards from "@/components/sections/Awards";
 import Industries from "@/components/sections/Industries";
 import OurClients from "@/components/sections/OurClients";
+import OurAgency from "@/components/sections/OurAgency";
 
 export default async function Home() {
   const data = await client.fetch(homePageQuery)
@@ -21,6 +22,7 @@ export default async function Home() {
       <Awards />
       <Industries/>
       <OurClients/>
+      <OurAgency/>
     </div>
   );
 }

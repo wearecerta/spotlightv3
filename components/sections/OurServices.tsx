@@ -116,17 +116,20 @@ export default function OurServices() {
 
   return (
     <section
-      className="relative flex flex-col items-start w-full overflow-hidden"
+      className="relative flex flex-col items-start w-full"
       style={{
         minHeight: '100vh',
         background: 'var(--spotlight-950)',
+        overflow: 'hidden',
       }}
     >
-      {/* Fixed Background SVG - OUR SERVICES Text */}
+      {/* Absolute Background SVG - OUR SERVICES Text (Only visible in this section) */}
       <div 
-        className="fixed inset-0 flex items-center justify-center pointer-events-none"
+        className="absolute inset-0 flex items-center justify-center pointer-events-none"
         style={{
           zIndex: 0,
+          top: '50%',
+          transform: 'translateY(-50%)',
         }}
       >
         <div className="relative w-full h-full opacity-20">
