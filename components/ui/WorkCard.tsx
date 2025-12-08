@@ -4,13 +4,13 @@ import Link from "next/link";
 import Image from "next/image";
 import { useMemo } from "react";
 
-interface ProjectCardProps {
+interface WorkCardProps {
   title: string;
   tags: string[];
   videoSrc?: string; // Optional - for direct video files (.mp4, etc.)
   imageSrc?: string; // Optional - for images
   href: string;
-  className?: string; // <- only customizable sizing
+  className?: string;
 }
 
 // Helper function to check if URL is a YouTube link
@@ -29,14 +29,14 @@ function getYouTubeEmbedUrl(videoId: string): string {
   return `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&modestbranding=1&rel=0&showinfo=0`;
 }
 
-export default function ProjectCard({
+export default function WorkCard({
   title,
   tags,
   videoSrc,
   imageSrc,
   href,
   className = "",
-}: ProjectCardProps) {
+}: WorkCardProps) {
   // Determine what media to show
   const mediaType = useMemo(() => {
     if (imageSrc) return "image";
@@ -59,12 +59,12 @@ export default function ProjectCard({
       href={href}
       className={`
         block rounded-2xl overflow-hidden
-        transition-all duration-300
+        transition-all duration-300 hover:shadow-lg
         ${className}
       `}
       style={{
-        background: '#2C2C34',
-        border: '1px solid rgba(255, 255, 255, 0.1)',
+        background: '#FFFFFF',
+        border: '1px solid rgba(0, 0, 0, 0.1)',
       }}
     >
       {/* TOP CONTENT */}
@@ -74,7 +74,7 @@ export default function ProjectCard({
             className="tracking-wide"
             style={{
               fontFamily: "var(--font-primary)",
-              color: "#FFFFFF",
+              color: "#0C0C0E",
               fontSize: "var(--h3-size)",
             }}
           >
@@ -85,9 +85,8 @@ export default function ProjectCard({
             className="flex items-center gap-3 mt-1"
             style={{
               fontFamily: "var(--font-secondary)",
-              color: "#FFFFFF",
+              color: "#4A4A5A",
               fontSize: "var(--body-medium-size)",
-              opacity: 0.8,
             }}
           >
             {tags.map((tag, index) => (
@@ -105,7 +104,7 @@ export default function ProjectCard({
           height="24"
           viewBox="0 0 24 24"
           className="transition-colors"
-          style={{ color: "#FFFFFF" }}
+          style={{ color: "#0C0C0E" }}
         >
           <path
             d="M7 17L17 7M17 7H9M17 7V15"
@@ -119,7 +118,7 @@ export default function ProjectCard({
       </div>
 
       {/* MEDIA SECTION — auto expands to fit height you give */}
-      <div className="relative w-full aspect-video overflow-hidden rounded-b-2xl" style={{ background: '#1A1A20' }}>
+      <div className="relative w-full aspect-video overflow-hidden rounded-b-2xl" style={{ background: '#F7F7F8' }}>
         {mediaType === "image" && imageSrc && (
           <Image
             src={imageSrc}
@@ -158,12 +157,12 @@ export default function ProjectCard({
         )}
 
         {mediaType === "none" && (
-          <div className="w-full h-full flex items-center justify-center bg-[var(--spotlight-800)]">
+          <div className="w-full h-full flex items-center justify-center bg-[#F7F7F8]">
             <span
-              className="text-[var(--spotlight-400)]"
               style={{
                 fontFamily: "var(--font-secondary)",
                 fontSize: "var(--body-medium-size)",
+                color: "#4A4A5A",
               }}
             >
               No media available
@@ -174,3 +173,4 @@ export default function ProjectCard({
     </Link>
   );
 }
+
