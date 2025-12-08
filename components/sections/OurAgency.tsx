@@ -26,14 +26,14 @@ export default function OurAgency() {
       {/* Title */}
       <h2
         style={{
-          fontSize: 'clamp(3rem, 10vw, var(--h2-size))',
-          fontFamily: 'var(--font-primary)',
-          lineHeight: 'var(--h2-line)',
-          fontWeight: '400',
-          color: '#4A4A5A',
-          textTransform: 'uppercase',
-          letterSpacing: '0.02em',
+          color: '#777',
           textAlign: 'center',
+          fontFamily: 'var(--font-primary, "Bebas Neue")',
+          fontSize: '56px',
+          fontStyle: 'normal',
+          fontWeight: '400',
+          lineHeight: '100%',
+          textTransform: 'uppercase',
         }}
       >
         OUR AGENCY NETWORKS
@@ -42,12 +42,13 @@ export default function OurAgency() {
       {/* Description */}
       <p
         style={{
-          fontFamily: 'var(--font-secondary, Outfit)',
-          fontSize: 'var(--body-large-size, 24px)',
-          lineHeight: '150%',
-          fontWeight: '300',
-          color: '#4A4A5A',
+          color: 'var(--spotlight-950, #0C0C0E)',
           textAlign: 'center',
+          fontFamily: 'var(--font-secondary, Outfit)',
+          fontSize: '20px',
+          fontStyle: 'normal',
+          fontWeight: '400',
+          lineHeight: '150%',
           maxWidth: '900px',
         }}
       >
