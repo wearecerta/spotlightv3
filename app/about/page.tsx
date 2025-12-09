@@ -2,6 +2,7 @@
 import Image from "next/image";
 import { useState, useRef, useEffect } from "react";
 import Leadership from "@/components/sections/Leadership";
+import TeamSection from "@/components/sections/TeamSection";
 
 // Interactive Character Component
 function InteractiveChar({ 
@@ -511,6 +512,81 @@ export default function About() {
 
       {/* Leadership Team Section */}
       <Leadership />
+
+      {/* Team Sections */}
+      <TeamSection
+        title="THE CREATIVES"
+        groupPhoto="/Aboutus/Teams/strategyLab.png"
+        individualPhotos={[
+          { src: "/Aboutus/Teams/sl1.png", hoverSrc: "/Aboutus/Teams/sl1h.png", alt: "Creative Team Member 1" },
+          { src: "/Aboutus/Teams/sl2.png", hoverSrc: "/Aboutus/Teams/sl2h.png", alt: "Creative Team Member 2" },
+          { src: "/Aboutus/Teams/sl3.png", hoverSrc: "/Aboutus/Teams/sl3h.png", alt: "Creative Team Member 3" },
+          { src: "/Aboutus/Teams/sl4.png", hoverSrc: "/Aboutus/Teams/sl4h.png", alt: "Creative Team Member 4" },
+          { src: "/Aboutus/Teams/sl1.png", hoverSrc: "/Aboutus/Teams/sl1h.png", alt: "Creative Team Member 5" },
+          { src: "/Aboutus/Teams/sl2.png", hoverSrc: "/Aboutus/Teams/sl2h.png", alt: "Creative Team Member 6" },
+          { src: "/Aboutus/Teams/sl3.png", hoverSrc: "/Aboutus/Teams/sl3h.png", alt: "Creative Team Member 7" },
+          { src: "/Aboutus/Teams/sl4.png", hoverSrc: "/Aboutus/Teams/sl4h.png", alt: "Creative Team Member 8" },
+          { src: "/Aboutus/Teams/sl1.png", hoverSrc: "/Aboutus/Teams/sl1h.png", alt: "Creative Team Member 9" },
+        ]}
+      />
+
+      <TeamSection
+        title="STRATEGY LAB"
+        groupPhoto="/Aboutus/Teams/strategyLab.png"
+        individualPhotos={[
+          { src: "/Aboutus/Teams/sl1.png", hoverSrc: "/Aboutus/Teams/sl1h.png", alt: "Strategy Team Member 1" },
+          { src: "/Aboutus/Teams/sl2.png", hoverSrc: "/Aboutus/Teams/sl2h.png", alt: "Strategy Team Member 2" },
+          { src: "/Aboutus/Teams/sl3.png", hoverSrc: "/Aboutus/Teams/sl3h.png", alt: "Strategy Team Member 3" },
+          { src: "/Aboutus/Teams/sl4.png", hoverSrc: "/Aboutus/Teams/sl4h.png", alt: "Strategy Team Member 4" },
+        ]}
+      />
+
+      <TeamSection
+        title="DIGITAL SQUAD"
+        groupPhoto="/Aboutus/Teams/strategyLab.png"
+        individualPhotos={[
+          { src: "/Aboutus/Teams/sl1.png", hoverSrc: "/Aboutus/Teams/sl1h.png", alt: "Digital Team Member 1" },
+          { src: "/Aboutus/Teams/sl2.png", hoverSrc: "/Aboutus/Teams/sl2h.png", alt: "Digital Team Member 2" },
+          { src: "/Aboutus/Teams/sl3.png", hoverSrc: "/Aboutus/Teams/sl3h.png", alt: "Digital Team Member 3" },
+          { src: "/Aboutus/Teams/sl4.png", hoverSrc: "/Aboutus/Teams/sl4h.png", alt: "Digital Team Member 4" },
+          { src: "/Aboutus/Teams/sl1.png", hoverSrc: "/Aboutus/Teams/sl1h.png", alt: "Digital Team Member 5" },
+          { src: "/Aboutus/Teams/sl2.png", hoverSrc: "/Aboutus/Teams/sl2h.png", alt: "Digital Team Member 6" },
+          { src: "/Aboutus/Teams/sl3.png", hoverSrc: "/Aboutus/Teams/sl3h.png", alt: "Digital Team Member 7" },
+        ]}
+      />
+
+      <TeamSection
+        title="EVENT EXPERTS"
+        groupPhoto="/Aboutus/Teams/strategyLab.png"
+        individualPhotos={[
+          { src: "/Aboutus/Teams/sl1.png", hoverSrc: "/Aboutus/Teams/sl1h.png", alt: "Event Team Member 1" },
+          { src: "/Aboutus/Teams/sl2.png", hoverSrc: "/Aboutus/Teams/sl2h.png", alt: "Event Team Member 2" },
+        ]}
+      />
+
+      <TeamSection
+        title="ACCOUNT HIVE"
+        groupPhoto="/Aboutus/Teams/strategyLab.png"
+        individualPhotos={[
+          { src: "/Aboutus/Teams/sl1.png", hoverSrc: "/Aboutus/Teams/sl1h.png", alt: "Account Team Member 1" },
+          { src: "/Aboutus/Teams/sl2.png", hoverSrc: "/Aboutus/Teams/sl2h.png", alt: "Account Team Member 2" },
+          { src: "/Aboutus/Teams/sl3.png", hoverSrc: "/Aboutus/Teams/sl3h.png", alt: "Account Team Member 3" },
+          { src: "/Aboutus/Teams/sl4.png", hoverSrc: "/Aboutus/Teams/sl4h.png", alt: "Account Team Member 4" },
+          { src: "/Aboutus/Teams/sl1.png", hoverSrc: "/Aboutus/Teams/sl1h.png", alt: "Account Team Member 5" },
+          { src: "/Aboutus/Teams/sl2.png", hoverSrc: "/Aboutus/Teams/sl2h.png", alt: "Account Team Member 6" },
+          { src: "/Aboutus/Teams/sl3.png", hoverSrc: "/Aboutus/Teams/sl3h.png", alt: "Account Team Member 7" },
+        ]}
+      />
+
+      <TeamSection
+        title="FINANCE CREW"
+        groupPhoto="/Aboutus/Teams/strategyLab.png"
+        individualPhotos={[
+          { src: "/Aboutus/Teams/sl1.png", hoverSrc: "/Aboutus/Teams/sl1h.png", alt: "Finance Team Member 1" },
+          { src: "/Aboutus/Teams/sl2.png", hoverSrc: "/Aboutus/Teams/sl2h.png", alt: "Finance Team Member 2" },
+          { src: "/Aboutus/Teams/sl3.png", hoverSrc: "/Aboutus/Teams/sl3h.png", alt: "Finance Team Member 3" },
+        ]}
+      />
     </main>
   );
 }

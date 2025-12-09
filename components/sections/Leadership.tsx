@@ -8,13 +8,16 @@ function TeamMemberCard({
   position,
   imageSrc,
   imageHoverSrc,
+  priority = false,
 }: {
   name: string;
   position: string;
   imageSrc: string;
   imageHoverSrc: string;
+  priority?: boolean;
 }) {
   const [isHovered, setIsHovered] = useState(false);
+  const [hoverImageLoaded, setHoverImageLoaded] = useState(false);
 
   return (
     <div
@@ -34,7 +37,8 @@ function TeamMemberCard({
           position: 'absolute',
           inset: 0,
           opacity: isHovered ? 0 : 1,
-          transition: 'opacity 0.3s ease',
+          transform: isHovered ? 'translateX(-100%)' : 'translateX(0)',
+          transition: 'opacity 0.3s ease, transform 0.3s ease',
         }}
       >
         <Image
@@ -43,6 +47,8 @@ function TeamMemberCard({
           fill
           className="object-cover"
           sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 20vw"
+          priority={priority}
+          loading={priority ? undefined : "lazy"}
         />
         {/* Gradient Overlay for Default Image */}
         <div
@@ -55,33 +61,37 @@ function TeamMemberCard({
         />
       </div>
 
-      {/* Hover Image */}
-      <div
-        style={{
-          position: 'absolute',
-          inset: 0,
-          opacity: isHovered ? 1 : 0,
-          transform: isHovered ? 'translateX(0)' : 'translateX(100%)',
-          transition: 'opacity 0.3s ease, transform 0.3s ease',
-        }}
-      >
-        <Image
-          src={imageHoverSrc}
-          alt={`${name} - ${position}`}
-          fill
-          className="object-cover"
-          sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 20vw"
-        />
-        {/* Gradient Overlay for Hover Image */}
+      {/* Hover Image - Only load when hovered */}
+      {(isHovered || hoverImageLoaded) && (
         <div
           style={{
             position: 'absolute',
             inset: 0,
-            background: 'linear-gradient(180deg, rgba(12, 12, 14, 0) 0%, var(--color-Spotlight-Color-Spotlight-Black, #0C0C0E) 100%)',
-            pointerEvents: 'none',
+            opacity: isHovered ? 1 : 0,
+            transform: isHovered ? 'translateX(0)' : 'translateX(100%)',
+            transition: 'opacity 0.3s ease, transform 0.3s ease',
           }}
-        />
-      </div>
+        >
+          <Image
+            src={imageHoverSrc}
+            alt={`${name} - ${position}`}
+            fill
+            className="object-cover"
+            sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 20vw"
+            loading="lazy"
+            onLoad={() => setHoverImageLoaded(true)}
+          />
+          {/* Gradient Overlay for Hover Image */}
+          <div
+            style={{
+              position: 'absolute',
+              inset: 0,
+              background: 'linear-gradient(180deg, rgba(12, 12, 14, 0) 0%, var(--color-Spotlight-Color-Spotlight-Black, #0C0C0E) 100%)',
+              pointerEvents: 'none',
+            }}
+          />
+        </div>
+      )}
 
       {/* Name and Position Overlay - Shows on Hover */}
       <div
@@ -91,11 +101,13 @@ function TeamMemberCard({
           left: 0,
           right: 0,
           padding: 'var(--space-md, 24px)',
-          background: 'linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0) 100%)',
+        //   background: 'linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0) 100%)',
           opacity: isHovered ? 1 : 0,
           transform: isHovered ? 'translateY(0)' : 'translateY(10px)',
           transition: 'opacity 0.3s ease, transform 0.3s ease',
           zIndex: 2,
+          alignItems: 'center',
+          justifyContent: 'center',
         }}
       >
         <h3
@@ -193,13 +205,14 @@ export default function Leadership() {
           maxWidth: '1400px',
         }}
       >
-        {teamMembers.map((member) => (
+        {teamMembers.map((member, index) => (
           <TeamMemberCard
             key={member.id}
             name={member.name}
             position={member.position}
             imageSrc={member.imageSrc}
             imageHoverSrc={member.imageHoverSrc}
+            priority={index < 5}
           />
         ))}
       </div>
