@@ -8,9 +8,7 @@ export default function Welcome() {
   const imagesRef = useRef<HTMLDivElement>(null);
   const paragraphRef = useRef<HTMLParagraphElement>(null);
   const [textHeight, setTextHeight] = useState<number | null>(null);
-  const [gradientStops, setGradientStops] = useState<string>("");
-
-  const fullText = "Spotlight communications and Marketing is one of the best advertising and marketing agencies in Addis Ababa, Ethiopia specializing in marketing, advertising, branding & design, production, and PR. Trusted by brands like the European Union, Ethiopian Airlines, and Safaricom Ethiopia, we create bold, youthful, and unforgettable brand experiences that connect, inspire, and drive real impact.";
+  const [scrollProgress, setScrollProgress] = useState(0);
 
   useEffect(() => {
     const updateHeight = () => {
@@ -29,74 +27,23 @@ export default function Welcome() {
       if (paragraphRef.current) {
         const rect = paragraphRef.current.getBoundingClientRect();
         const windowHeight = window.innerHeight;
-        const triggerPoint = windowHeight * 0.7;
-        const paragraphTop = rect.top;
-        const paragraphHeight = rect.height;
+        const elementTop = rect.top;
+        const elementHeight = rect.height;
         
-        // Get the text node
-        const textNode = paragraphRef.current.firstChild;
-        if (!textNode || textNode.nodeType !== Node.TEXT_NODE) return;
+        // Calculate scroll progress (0 to 1)
+        // Starts animating when element enters viewport, completes when it's fully visible
+        const startPoint = windowHeight;
+        const endPoint = windowHeight - elementHeight;
+        const progress = Math.max(0, Math.min(1, (startPoint - elementTop) / (startPoint - endPoint)));
         
-        // Use Range to get actual line positions
-        const range = document.createRange();
-        range.selectNodeContents(paragraphRef.current);
-        const lineRects = range.getClientRects();
-        
-        // Calculate gradient stops for each line
-        const stops: string[] = [];
-        const numLines = lineRects.length;
-        
-        Array.from(lineRects).forEach((lineRect, index) => {
-          const lineTop = lineRect.top;
-          const lineBottom = lineRect.bottom;
-          const lineCenter = (lineTop + lineBottom) / 2;
-          
-          let progress = 0;
-          
-          // Calculate progress based on line position relative to trigger point
-          if (lineCenter <= triggerPoint) {
-            const distance = triggerPoint - lineCenter;
-            const lineHeight = lineRect.height;
-            const maxDistance = lineHeight * 1.5; // Animation range
-            
-            if (distance < maxDistance) {
-              progress = Math.max(0, Math.min(1, 1 - (distance / maxDistance)));
-            } else {
-              progress = 1; // Line has passed - fully animated
-            }
-          }
-          
-          const currentColor = `rgba(${74 + (247 - 74) * progress}, ${74 + (247 - 74) * progress}, ${90 + (248 - 90) * progress}, 1)`;
-          const linePercent = ((lineTop - paragraphTop) / paragraphHeight) * 100;
-          const nextLinePercent = index < numLines - 1 
-            ? ((Array.from(lineRects)[index + 1].top - paragraphTop) / paragraphHeight) * 100
-            : 100;
-          
-          // Add gradient stop at start and end of line
-          stops.push(`${currentColor} ${Math.max(0, linePercent)}%`);
-          if (index < numLines - 1) {
-            stops.push(`${currentColor} ${Math.min(100, nextLinePercent)}%`);
-          }
-        });
-        
-        setGradientStops(stops.join(', '));
+        setScrollProgress(progress);
       }
     };
 
     window.addEventListener("scroll", handleScroll);
-    // Use requestAnimationFrame for smoother updates
-    let rafId: number;
-    const rafHandleScroll = () => {
-      handleScroll();
-      rafId = requestAnimationFrame(rafHandleScroll);
-    };
-    rafId = requestAnimationFrame(rafHandleScroll);
-    
-    return () => {
-      cancelAnimationFrame(rafId);
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [fullText]);
+    handleScroll(); // Initial call
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
   return (
     <section
       className="w-full h-auto text-white"
@@ -149,22 +96,22 @@ export default function Welcome() {
             ref={paragraphRef}
             className="font-secondary"
             style={{
+              color: `rgba(${74 + (247 - 74) * scrollProgress}, ${74 + (247 - 74) * scrollProgress}, ${90 + (248 - 90) * scrollProgress}, 1)`,
               fontFamily: "var(--font-outfit)",
               fontSize: "var(--accent-small-size)",
               fontWeight: 300,
               fontStyle: "normal",
               lineHeight: "120%",
               letterSpacing: "0%",
-              background: gradientStops 
-                ? `linear-gradient(to bottom, ${gradientStops})`
-                : "rgba(74, 74, 90, 1)",
-              WebkitBackgroundClip: "text",
-              backgroundClip: "text",
-              color: "transparent",
-              transition: "background 0.2s ease-out",
+              transition: "color 0.1s ease-out",
             }}
           >
-            {fullText}
+            Spotlight communications and Marketing is one of the best advertising
+            and marketing agencies in Addis Ababa, Ethiopia specializing in marketing,
+            advertising, branding & design, production, and PR. Trusted by brands like
+            the European Union, Ethiopian Airlines, and Safaricom Ethiopia, we create
+            bold, youthful, and unforgettable brand experiences that connect, inspire,
+            and drive real impact.
           </p>
         </div>
 
@@ -185,10 +132,10 @@ export default function Welcome() {
               <Image src="/Home/welcome1.jpg" alt="welcome left" fill className="object-cover" />
             </div>
 
-            {/* bottom-right image overlapping */}
+            {/* top-right image overlapping */}
             <div
-              className="absolute right-0 bottom-0 w-[313px] h-[425px] overflow-hidden shadow-2xl z-20"
-              style={{ transform: "translateX(-8%) translateY(-50%)", minWidth: 260 }}
+              className="absolute right-0 top-0 w-[313px] h-[425px] overflow-hidden shadow-2xl z-20"
+              style={{ transform: "translateX(-5%) translateY(25%)", minWidth: 260 }}
             >
               <Image src="/Home/welcome2.png" alt="welcome right" fill className="object-cover" />
             </div>
