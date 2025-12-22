@@ -149,7 +149,7 @@ export default function Welcome() {
         className="flex justify-center items-center"
         style={{ marginTop: "var(--space-xl)" }}
       >
-        <button className="border border-white px-6 py-3 text-sm uppercase tracking-wide hover:bg-white hover:text-black transition">
+        <button className="border cursor-pointer border-white px-6 py-3 text-sm uppercase tracking-wide hover:bg-white hover:text-black transition">
           • About Us →
         </button>
       </div>

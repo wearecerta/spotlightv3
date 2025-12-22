@@ -28,17 +28,20 @@ export default function OurServicesCard({
     <Link
       href={href}
       className={`
-        block overflow-hidden
+        block rounded-[24px] p-[1px]
         transition-all duration-300
         ${className}
       `}
       style={{
-        borderRadius: '24px',
-        border: '1px solid #F7F7F8',
-        background: 'linear-gradient(180deg, rgba(74, 74, 90, 0.00) 0%, var(--spotlight-950, #0C0C0E) 100%)',
+        background: 'linear-gradient(180deg, var(--spotlight-50, #F7F7F8) 0%, var(--spotlight-950, #0C0C0E) 100%)',
       }}
     >
-      <div className="p-6 md:p-8">
+      <div 
+        className="p-6 md:p-8 rounded-[23px] h-full"
+        style={{
+          background: 'linear-gradient(180deg, rgba(74, 74, 90, 0.00) 0%, var(--spotlight-950, #0C0C0E) 100%)',
+        }}
+      >
         {/* Header Section */}
         <div className="flex items-start justify-between mb-6">
           {/* Left: Number */}

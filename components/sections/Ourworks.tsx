@@ -97,9 +97,15 @@ export default function Ourworks() {
           />
         </div>
       </div>
-      <button className="border border-white mt-10 px-6 py-3 text-sm uppercase tracking-wide hover:bg-white hover:text-black transition">
+
+      <div
+        className="flex justify-center items-center"
+        style={{ marginTop: "var(--space-xl)" }}
+      >
+        <button className="text-(--spotlight-50) cursor-pointer border border-white px-6 py-3 text-sm uppercase tracking-wide hover:bg-white hover:text-black transition">
           • Explore Now →
         </button>
+      </div>
     </section>
   );
 }
