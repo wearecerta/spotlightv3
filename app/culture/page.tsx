@@ -1,5 +1,7 @@
 "use client";
+
 import Image from "next/image";
+import CultureCard from "../../components/ui/CultureCard";
 
 export default function Culture() {
   return (
@@ -128,62 +130,61 @@ export default function Culture() {
             zIndex: 10,
           }}
         >
-          {/* Heading Text */}
+          {/* Heading Text - OUR CULTURE */}
           <h1
             style={{
               color: '#FFF',
-              fontFamily: 'var(--Typograpghy-Heading-H1-font-family, "Bebas Neue")',
-              fontSize: 'var(--Typograpghy-Heading-H1-font-Size, 192px)',
+              fontFamily: 'var(--font-primary, "Bebas Neue")',
+              fontSize: 'var(--h1-size, 192px)',
               fontStyle: 'normal',
               fontWeight: '400',
               lineHeight: '100%',
+              letterSpacing: '0%',
               textTransform: 'uppercase',
               textAlign: 'center',
               width: '100%',
-              position: 'relative',
-              zIndex: 10,
+              margin: 0,
             }}
           >
             OUR CULTURE
           </h1>
 
-          {/* Middle Text */}
+          {/* Middle Text - This is No Ordinary Workplace, It's */}
           <p
             style={{
               color: '#FFF',
-              fontFamily: 'var(--font-secondary, Outfit)',
-              fontSize: 'clamp(24px, 3vw, 40px)',
+              fontFamily: 'var(--font-secondary, "Outfit")',
+              fontSize: 'clamp(20px, 2.5vw, 32px)',
               fontStyle: 'normal',
-              fontWeight: '400',
+              fontWeight: '300',
               lineHeight: '150%',
+              letterSpacing: '0%',
               textAlign: 'center',
               width: '100%',
-              position: 'relative',
-              zIndex: 10,
+              margin: 0,
             }}
           >
             This is No Ordinary Workplace, It's
           </p>
 
-          {/* Foreground Text with Bullet */}
+          {/* Foreground Text with Bullet - A Creative Playground */}
           <div
             style={{
               display: 'flex',
-              padding: 'var(--space-xl, 48px) var(--space-xxl, 64px)',
+              padding: 'var(--space-lg, 32px) var(--space-xxl, 64px)',
               justifyContent: 'center',
               alignItems: 'center',
               gap: 'var(--space-md, 24px)',
-              background: '#F7F7F8',
-              borderRadius: '64px',
+              background: '#FFFFFF',
+              borderRadius: '12px',
               position: 'relative',
-              zIndex: 10,
             }}
           >
             {/* Bullet Point */}
             <div
               style={{
-                width: '32px',
-                height: '32px',
+                width: '10px',
+                height: '10px',
                 borderRadius: '50%',
                 background: '#0C0C0E',
                 flexShrink: 0,
@@ -193,12 +194,15 @@ export default function Culture() {
             {/* Text */}
             <h2
               style={{
-                fontSize: 'clamp(32px, 4vw, 56px)',
+                fontSize: 'var(--h3-size, 56px)',
                 fontFamily: 'var(--font-primary, "Bebas Neue")',
+                fontStyle: 'normal',
                 fontWeight: '400',
                 lineHeight: '100%',
+                letterSpacing: '0%',
                 color: '#0C0C0E',
                 textTransform: 'capitalize',
+                margin: 0,
               }}
             >
               A Creative Playground
@@ -215,6 +219,7 @@ export default function Culture() {
             gap: 'var(--space-lg, 32px)',
             position: 'relative',
             zIndex: 1,
+            flexShrink: 0,
           }}
         >
           {/* Culture 4 */}
@@ -294,6 +299,584 @@ export default function Culture() {
               sizes="500px"
             />
           </div>
+        </div>
+      </section>
+
+      {/* Culture Cards Section */}
+      <section
+        style={{
+          display: 'flex',
+          padding: 'var(--section-margin-y, 120px) var(--section-margin-x, 120px)',
+          flexDirection: 'column',
+          gap: 'var(--space-lg, 24px)',
+          alignSelf: 'stretch',
+          background: '#0C0C0E',
+          position: 'relative',
+        }}
+      >
+        {/* Card 1 - Creative */}
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: 'var(--space-xxl, 64px)',
+            position: 'relative',
+            minHeight: '500px',
+          }}
+        >
+          {/* Left Text */}
+          <p
+            style={{
+              fontFamily: "'Brush Script MT', 'Lucida Handwriting', 'Comic Sans MS', cursive, sans-serif",
+              fontSize: 'clamp(24px, 3vw, 36px)',
+              fontStyle: 'italic',
+              fontWeight: '400',
+              color: '#FFFFFF',
+              margin: 0,
+              letterSpacing: '1px',
+              transform: 'rotate(15deg)',
+              maxWidth: '300px',
+              textAlign: 'left',
+              flexShrink: 0,
+            }}
+          >
+            We don't follow trends- we forecast them
+          </p>
+
+          {/* Card */}
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              flexShrink: 0,
+            }}
+          >
+            <CultureCard
+              imageSrc="/Culture/c1.png"
+              label="Creative"
+              rotation={-6.24}
+              width={383}
+              height={450}
+              labelPosition="right"
+            />
+          </div>
+
+          {/* Right Text */}
+          <p
+            style={{
+              fontFamily: "'Brush Script MT', 'Lucida Handwriting', 'Comic Sans MS', cursive, sans-serif",
+              fontSize: 'clamp(24px, 3vw, 36px)',
+              fontStyle: 'italic',
+              fontWeight: '400',
+              color: '#FFFFFF',
+              margin: 0,
+              letterSpacing: '1px',
+              transform: 'rotate(-15deg)',
+              maxWidth: '300px',
+              textAlign: 'right',
+              flexShrink: 0,
+            }}
+          >
+            We move at the speed of culture.
+          </p>
+        </div>
+
+        {/* Card 2 - Playful */}
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: 'var(--space-xxl, 64px)',
+            position: 'relative',
+            minHeight: '500px',
+          }}
+        >
+          {/* Left Text */}
+          <p
+            style={{
+              fontFamily: "'Brush Script MT', 'Lucida Handwriting', 'Comic Sans MS', cursive, sans-serif",
+              fontSize: 'clamp(24px, 3vw, 36px)',
+              fontStyle: 'italic',
+              fontWeight: '400',
+              color: '#FFFFFF',
+              margin: 0,
+              letterSpacing: '1px',
+              transform: 'rotate(15deg)',
+              maxWidth: '300px',
+              textAlign: 'left',
+              flexShrink: 0,
+            }}
+          >
+            If it's never been done, that's our starting point.
+          </p>
+
+          {/* Card */}
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              flexShrink: 0,
+            }}
+          >
+            <CultureCard
+              imageSrc="/Culture/c2.png"
+              label="Playful"
+              rotation={-17.31}
+              width={383}
+              height={450}
+              labelPosition="left"
+            />
+          </div>
+
+          {/* Right Text */}
+          <p
+            style={{
+              fontFamily: "'Brush Script MT', 'Lucida Handwriting', 'Comic Sans MS', cursive, sans-serif",
+              fontSize: 'clamp(24px, 3vw, 36px)',
+              fontStyle: 'italic',
+              fontWeight: '400',
+              color: '#FFFFFF',
+              margin: 0,
+              letterSpacing: '1px',
+              transform: 'rotate(-15deg)',
+              maxWidth: '300px',
+              textAlign: 'right',
+              flexShrink: 0,
+            }}
+          >
+            We don't just make things- we make statements.
+          </p>
+        </div>
+
+        {/* Card 3 - Vibrant */}
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: 'var(--space-xxl, 64px)',
+            position: 'relative',
+            minHeight: '500px',
+          }}
+        >
+          {/* Left Text */}
+          <p
+            style={{
+              fontFamily: "'Brush Script MT', 'Lucida Handwriting', 'Comic Sans MS', cursive, sans-serif",
+              fontSize: 'clamp(24px, 3vw, 36px)',
+              fontStyle: 'italic',
+              fontWeight: '400',
+              color: '#FFFFFF',
+              margin: 0,
+              letterSpacing: '1px',
+              transform: 'rotate(15deg)',
+              maxWidth: '300px',
+              textAlign: 'left',
+              flexShrink: 0,
+            }}
+          >
+            Innovation flows through every project we touch.
+          </p>
+
+          {/* Card */}
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              flexShrink: 0,
+            }}
+          >
+            <CultureCard
+              imageSrc="/Culture/c3.png"
+              label="Vibrant"
+              rotation={12.01}
+              width={383}
+              height={450}
+              labelPosition="right"
+            />
+          </div>
+
+          {/* Right Text */}
+          <p
+            style={{
+              fontFamily: "'Brush Script MT', 'Lucida Handwriting', 'Comic Sans MS', cursive, sans-serif",
+              fontSize: 'clamp(24px, 3vw, 36px)',
+              fontStyle: 'italic',
+              fontWeight: '400',
+              color: '#FFFFFF',
+              margin: 0,
+              letterSpacing: '1px',
+              transform: 'rotate(-15deg)',
+              maxWidth: '300px',
+              textAlign: 'right',
+              flexShrink: 0,
+            }}
+          >
+            Creativity knows no boundaries here.
+          </p>
+        </div>
+
+        {/* Card 4 - Bold */}
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: 'var(--space-xxl, 64px)',
+            position: 'relative',
+            minHeight: '500px',
+          }}
+        >
+          {/* Left Text */}
+          <p
+            style={{
+              fontFamily: "'Brush Script MT', 'Lucida Handwriting', 'Comic Sans MS', cursive, sans-serif",
+              fontSize: 'clamp(24px, 3vw, 36px)',
+              fontStyle: 'italic',
+              fontWeight: '400',
+              color: '#FFFFFF',
+              margin: 0,
+              letterSpacing: '1px',
+              transform: 'rotate(15deg)',
+              maxWidth: '300px',
+              textAlign: 'left',
+              flexShrink: 0,
+            }}
+          >
+            Bold ideas deserve bold execution.
+          </p>
+
+          {/* Card */}
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              flexShrink: 0,
+            }}
+          >
+            <CultureCard
+              imageSrc="/Culture/c4.png"
+              label="Bold"
+              rotation={-8.09}
+              width={383}
+              height={450}
+              labelPosition="left"
+            />
+          </div>
+
+          {/* Right Text */}
+          <p
+            style={{
+              fontFamily: "'Brush Script MT', 'Lucida Handwriting', 'Comic Sans MS', cursive, sans-serif",
+              fontSize: 'clamp(24px, 3vw, 36px)',
+              fontStyle: 'italic',
+              fontWeight: '400',
+              color: '#FFFFFF',
+              margin: 0,
+              letterSpacing: '1px',
+              transform: 'rotate(-15deg)',
+              maxWidth: '300px',
+              textAlign: 'right',
+              flexShrink: 0,
+            }}
+          >
+            Every story we tell leaves a lasting impact.
+          </p>
+        </div>
+      </section>
+
+      {/* Culture Cards Section - Duplicate */}
+      <section
+        style={{
+          display: 'flex',
+          padding: 'var(--section-margin-y, 120px) var(--section-margin-x, 120px)',
+          flexDirection: 'column',
+          gap: 'var(--space-lg, 32px)',
+          alignSelf: 'stretch',
+          background: '#0C0C0E',
+          position: 'relative',
+        }}
+      >
+        {/* Card 1 - Creative */}
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: 'var(--space-xxl, 64px)',
+            position: 'relative',
+            minHeight: '500px',
+          }}
+        >
+          {/* Left Text */}
+          <p
+            style={{
+              fontFamily: "'Brush Script MT', 'Lucida Handwriting', 'Comic Sans MS', cursive, sans-serif",
+              fontSize: 'clamp(24px, 3vw, 36px)',
+              fontStyle: 'italic',
+              fontWeight: '400',
+              color: '#FFFFFF',
+              margin: 0,
+              letterSpacing: '1px',
+              transform: 'rotate(15deg)',
+              maxWidth: '300px',
+              textAlign: 'left',
+              flexShrink: 0,
+            }}
+          >
+            We don't follow trends- we forecast them
+          </p>
+
+          {/* Card */}
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              flexShrink: 0,
+            }}
+          >
+            <CultureCard
+              imageSrc="/Culture/c1.png"
+              label="Creative"
+              rotation={-6.24}
+              width={383}
+              height={450}
+              labelPosition="right"
+            />
+          </div>
+
+          {/* Right Text */}
+          <p
+            style={{
+              fontFamily: "'Brush Script MT', 'Lucida Handwriting', 'Comic Sans MS', cursive, sans-serif",
+              fontSize: 'clamp(24px, 3vw, 36px)',
+              fontStyle: 'italic',
+              fontWeight: '400',
+              color: '#FFFFFF',
+              margin: 0,
+              letterSpacing: '1px',
+              transform: 'rotate(-15deg)',
+              maxWidth: '300px',
+              textAlign: 'right',
+              flexShrink: 0,
+            }}
+          >
+            We move at the speed of culture.
+          </p>
+        </div>
+
+        {/* Card 2 - Playful */}
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: 'var(--space-xxl, 64px)',
+            position: 'relative',
+            minHeight: '500px',
+          }}
+        >
+          {/* Left Text */}
+          <p
+            style={{
+              fontFamily: "'Brush Script MT', 'Lucida Handwriting', 'Comic Sans MS', cursive, sans-serif",
+              fontSize: 'clamp(24px, 3vw, 36px)',
+              fontStyle: 'italic',
+              fontWeight: '400',
+              color: '#FFFFFF',
+              margin: 0,
+              letterSpacing: '1px',
+              transform: 'rotate(15deg)',
+              maxWidth: '300px',
+              textAlign: 'left',
+              flexShrink: 0,
+            }}
+          >
+            If it's never been done, that's our starting point.
+          </p>
+
+          {/* Card */}
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              flexShrink: 0,
+            }}
+          >
+            <CultureCard
+              imageSrc="/Culture/c2.png"
+              label="Playful"
+              rotation={-17.31}
+              width={383}
+              height={450}
+              labelPosition="left"
+            />
+          </div>
+
+          {/* Right Text */}
+          <p
+            style={{
+              fontFamily: "'Brush Script MT', 'Lucida Handwriting', 'Comic Sans MS', cursive, sans-serif",
+              fontSize: 'clamp(24px, 3vw, 36px)',
+              fontStyle: 'italic',
+              fontWeight: '400',
+              color: '#FFFFFF',
+              margin: 0,
+              letterSpacing: '1px',
+              transform: 'rotate(-15deg)',
+              maxWidth: '300px',
+              textAlign: 'right',
+              flexShrink: 0,
+            }}
+          >
+            We don't just make things- we make statements.
+          </p>
+        </div>
+
+        {/* Card 3 - Vibrant */}
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: 'var(--space-xxl, 64px)',
+            position: 'relative',
+            minHeight: '500px',
+          }}
+        >
+          {/* Left Text */}
+          <p
+            style={{
+              fontFamily: "'Brush Script MT', 'Lucida Handwriting', 'Comic Sans MS', cursive, sans-serif",
+              fontSize: 'clamp(24px, 3vw, 36px)',
+              fontStyle: 'italic',
+              fontWeight: '400',
+              color: '#FFFFFF',
+              margin: 0,
+              letterSpacing: '1px',
+              transform: 'rotate(15deg)',
+              maxWidth: '300px',
+              textAlign: 'left',
+              flexShrink: 0,
+            }}
+          >
+            Innovation flows through every project we touch.
+          </p>
+
+          {/* Card */}
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              flexShrink: 0,
+            }}
+          >
+            <CultureCard
+              imageSrc="/Culture/c3.png"
+              label="Vibrant"
+              rotation={12.01}
+              width={383}
+              height={450}
+              labelPosition="right"
+            />
+          </div>
+
+          {/* Right Text */}
+          <p
+            style={{
+              fontFamily: "'Brush Script MT', 'Lucida Handwriting', 'Comic Sans MS', cursive, sans-serif",
+              fontSize: 'clamp(24px, 3vw, 36px)',
+              fontStyle: 'italic',
+              fontWeight: '400',
+              color: '#FFFFFF',
+              margin: 0,
+              letterSpacing: '1px',
+              transform: 'rotate(-15deg)',
+              maxWidth: '300px',
+              textAlign: 'right',
+              flexShrink: 0,
+            }}
+          >
+            Creativity knows no boundaries here.
+          </p>
+        </div>
+
+        {/* Card 4 - Bold */}
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: 'var(--space-xxl, 64px)',
+            position: 'relative',
+            minHeight: '500px',
+          }}
+        >
+          {/* Left Text */}
+          <p
+            style={{
+              fontFamily: "'Brush Script MT', 'Lucida Handwriting', 'Comic Sans MS', cursive, sans-serif",
+              fontSize: 'clamp(24px, 3vw, 36px)',
+              fontStyle: 'italic',
+              fontWeight: '400',
+              color: '#FFFFFF',
+              margin: 0,
+              letterSpacing: '1px',
+              transform: 'rotate(15deg)',
+              maxWidth: '300px',
+              textAlign: 'left',
+              flexShrink: 0,
+            }}
+          >
+            Bold ideas deserve bold execution.
+          </p>
+
+          {/* Card */}
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              flexShrink: 0,
+            }}
+          >
+            <CultureCard
+              imageSrc="/Culture/c4.png"
+              label="Bold"
+              rotation={-8.09}
+              width={383}
+              height={450}
+              labelPosition="left"
+            />
+          </div>
+
+          {/* Right Text */}
+          <p
+            style={{
+              fontFamily: "'Brush Script MT', 'Lucida Handwriting', 'Comic Sans MS', cursive, sans-serif",
+              fontSize: 'clamp(24px, 3vw, 36px)',
+              fontStyle: 'italic',
+              fontWeight: '400',
+              color: '#FFFFFF',
+              margin: 0,
+              letterSpacing: '1px',
+              transform: 'rotate(-15deg)',
+              maxWidth: '300px',
+              textAlign: 'right',
+              flexShrink: 0,
+            }}
+          >
+            Every story we tell leaves a lasting impact.
+          </p>
         </div>
       </section>
     </main>
