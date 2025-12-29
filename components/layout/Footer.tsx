@@ -1,4 +1,6 @@
-import React from 'react'
+"use client";
+
+import React, { useState, useEffect } from 'react'
 
 export default function Footer() {
   const socialIcons = [
@@ -22,6 +24,12 @@ export default function Footer() {
       <path d="M28.4818 23.9704L21.6748 20.0452V27.8957L28.4818 23.9704Z" fill="#0C0C0E"/>
     </svg>}
   ];
+
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   return ( 
     <footer className="relative flex w-full h-auto aspect-36/23 items-start bg-(--spotlight-950) text-(--spotlight-200) overflow-hidden">
@@ -47,7 +55,7 @@ export default function Footer() {
           </h2>
 
           <p className="mt-(--space-sm) text-sm text-(--spotlight-300) font-secondary lg:text-left">
-            Spotlight Communications and Marketing LTD © 2024
+            Spotlight Communications and Marketing LTD 2024
           </p>
         </div>
 
@@ -109,11 +117,15 @@ export default function Footer() {
             {/* Input */}
             <div className="mt-6">
               <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-5">
-                <input
-                  type="text"
-                  placeholder="Insert Your Name"
-                  className="flex-1 bg-transparent border-b border-(--spotlight-700) placeholder-(--spotlight-500) text-(--spotlight-50) py-2 px-1 focus:outline-none text-center sm:text-left"
-                />
+                {isMounted ? (
+                  <input
+                    type="text"
+                    placeholder="Insert Your Name"
+                    className="flex-1 bg-transparent border-b border-(--spotlight-700) placeholder-(--spotlight-500) text-(--spotlight-50) py-2 px-1 focus:outline-none text-center sm:text-left"
+                  />
+                ) : (
+                  <div className="flex-1 border-b border-(--spotlight-700) py-2 px-1" />
+                )}
                 <button className="bg-(--spotlight-50) text-(--spotlight-950) px-4 py-2 text-sm font-medium shadow-sm w-full sm:w-auto">
                   • NEXT
                 </button>

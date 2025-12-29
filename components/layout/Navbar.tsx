@@ -8,7 +8,7 @@ const navItems = [
   { label: "ABOUT", href: "/about" },
   { label: "WORKS", href: "/work" },
   { label: "CULTURE", href: "/culture" },
-  { label: "BLOGS", href: "/blog" },
+  { label: "BLOGS", href: "/Blog" },
 ];
 
 // Pages that use the white version (light colors)
@@ -79,6 +79,8 @@ export default function Navbar() {
         >
             CONTACT
         </Link>
+
+        
 
           {/* Mobile menu button */}
           <button
