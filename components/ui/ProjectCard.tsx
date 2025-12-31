@@ -75,7 +75,8 @@ export default function ProjectCard({
             style={{
               fontFamily: "var(--font-primary)",
               color: "#FFFFFF",
-              fontSize: "var(--h3-size)",
+              fontSize: "var(--h4-size)",
+              lineHeight: "var(--h4-line)",
             }}
           >
             {title}
@@ -91,7 +92,7 @@ export default function ProjectCard({
             }}
           >
             {tags.map((tag, index) => (
-              <span key={index} className="flex items-center gap-3">
+              <span key={index} className="flex items-center gap-3 ">
                 {tag}
                 {index < tags.length - 1 && <span>•</span>}
               </span>
@@ -100,22 +101,7 @@ export default function ProjectCard({
         </div>
 
         {/* Arrow (SVG, no dependencies) */}
-        <svg
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          className="transition-colors"
-          style={{ color: "#FFFFFF" }}
-        >
-          <path
-            d="M7 17L17 7M17 7H9M17 7V15"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.6"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
+       <Image src="/Icons/arrow.svg" alt="Arrow" width={32} height={32} className="transition-colors" style={{ color: "#FFFFFF" }} />
       </div>
 
       {/* MEDIA SECTION — auto expands to fit height you give */}

@@ -1,3 +1,4 @@
+import Buttons from "../ui/Buttons";
 import ProjectCard from "../ui/ProjectCard";
 
 export default function Ourworks() {
@@ -98,14 +99,9 @@ export default function Ourworks() {
         </div>
       </div>
 
-      <div
-        className="flex justify-center items-center"
-        style={{ marginTop: "var(--space-xl)" }}
-      >
-        <button className="text-(--spotlight-50) cursor-pointer border border-white px-6 py-3 text-sm uppercase tracking-wide hover:bg-white hover:text-black transition">
-          • Explore Now →
-        </button>
-      </div>
+     <Buttons>
+      explore now
+     </Buttons>
     </section>
   );
 }

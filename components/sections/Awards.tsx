@@ -24,7 +24,7 @@ export default function Awards() {
 
   return (
     <section
-      className="flex w-full overflow-hidden"
+      className="flex w-full overflow-hidden "
       style={{
         display: 'flex',
         padding: 'var(--section-margin-y, 120px) var(--section-margin-x, 120px)',
@@ -77,7 +77,7 @@ export default function Awards() {
 
       {/* Awards Container */}
       <div 
-        className="w-full"
+        className="w-full max-w-[1440px] mx-auto"
         style={{
           display: 'flex',
           justifyContent: 'center',

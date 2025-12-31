@@ -10,7 +10,7 @@ export default function Hero({ videoAsset, title, subtitle }: HeroProps) {
   const videoUrl = videoAsset ? getVideoUrl(videoAsset) : null;
 
   return (
-    <section className="relative w-full h-screen -mt-16 md:-mt-24 lg:-mt-26 overflow-hidden z-0">
+    <section className="relative w-full h-screen -mt-16 md:-mt-24 lg:-mt-26 overflow-hidden z-0 bg-(--spotlight-950)">
       {videoUrl && (
         <video
           className="absolute top-0 left-0 w-full h-full object-cover"
@@ -38,7 +38,11 @@ export default function Hero({ videoAsset, title, subtitle }: HeroProps) {
       <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4">
         <h1
           className="text-white font-extrabold drop-shadow-lg opacity-20 leading-(--h1-line)"
-          style={{ fontFamily: "var(--font-primary)", fontSize: "var(--h1-size)" }}
+          style={{ fontFamily: "var(--font-primary)", fontSize: "var(--h1-size)" ,
+            opacity: 0.3,
+            mixBlendMode: "overlay",
+            
+          }}
         >
           SHINE BRIGHT
         </h1>

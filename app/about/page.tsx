@@ -343,7 +343,7 @@ export default function About() {
           ref={textRef}
           style={{
             fontFamily: 'var(--font-secondary, Outfit)',
-            fontSize: 'var(--accent-large-size, 68px)',
+            fontSize: 'var(--accent-medium-size, 68px)',
             fontStyle: 'normal',
             fontWeight: '300',
             lineHeight: '110%',

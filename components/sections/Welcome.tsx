@@ -2,6 +2,8 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+import Buttons from "../ui/Buttons";
+import LeftParagraph from "./LeftParagraph";
 
 export default function Welcome() {
   const textRef = useRef<HTMLDivElement>(null);
@@ -87,72 +89,27 @@ export default function Welcome() {
 
       {/* CONTENT WRAPPER */}
       <div
-        className="flex flex-col lg:flex-row"
-        style={{ marginTop: "var(--space-xl)", gap: "var(--space-xl)", alignItems: "flex-start" }}
+        className="flex flex-col lg:flex-row  max-w-[1440px] mx-auto"
+        style={{ marginTop: "var(--space-xl)", gap: "var(--space-xl)", justifyContent: "center", alignItems: "center" }}
       >
         {/* LEFT PARAGRAPH */}
-        <div ref={textRef} className="max-w-lg">
-          <p
-            ref={paragraphRef}
-            className="font-secondary"
-            style={{
-              color: `rgba(${74 + (247 - 74) * scrollProgress}, ${74 + (247 - 74) * scrollProgress}, ${90 + (248 - 90) * scrollProgress}, 1)`,
-              fontFamily: "var(--font-outfit)",
-              fontSize: "var(--accent-small-size)",
-              fontWeight: 300,
-              fontStyle: "normal",
-              lineHeight: "120%",
-              letterSpacing: "0%",
-              transition: "color 0.1s ease-out",
-            }}
-          >
-            Spotlight communications and Marketing is one of the best advertising
-            and marketing agencies in Addis Ababa, Ethiopia specializing in marketing,
-            advertising, branding & design, production, and PR. Trusted by brands like
-            the European Union, Ethiopian Airlines, and Safaricom Ethiopia, we create
-            bold, youthful, and unforgettable brand experiences that connect, inspire,
-            and drive real impact.
-          </p>
-        </div>
+        <LeftParagraph/>
 
-        {/* RIGHT IMAGES */}
-        <div ref={imagesRef} className="relative w-full flex-1">
-          <div 
-            className="relative w-full" 
-            style={{ 
-              height: textHeight ? `${textHeight}px` : "425px",
-              minHeight: "425px"
-            }}
-          >
-            {/* top-left image */}
-            <div
-              className="absolute left-0 top-0 w-[313px] h-[425px] overflow-hidden shadow-lg z-10"
-              style={{ minWidth: 260 }}
-            >
-              <Image src="/Home/welcome1.jpg" alt="welcome left" fill className="object-cover" />
-            </div>
-
-            {/* top-right image overlapping */}
-            <div
-              className="absolute right-0 top-0 w-[313px] h-[425px] overflow-hidden shadow-2xl z-20"
-              style={{ transform: "translateX(-5%) translateY(25%)", minWidth: 260 }}
-            >
-              <Image src="/Home/welcome2.png" alt="welcome right" fill className="object-cover" />
-            </div>
-          </div>
-        </div>
-        
+        {/* RIGHT IMAGE */}
+        <Image
+          src="/Home/welcome-image.png"
+          alt="Welcome Image"
+          width={600}
+          height={600}
+          className="w-full max-w-md lg:max-w-lg mt-6 lg:mt-0"
+        />        
       </div>
 
       {/* BUTTON */}
-      <div
-        className="flex justify-center items-center"
-        style={{ marginTop: "var(--space-xl)" }}
-      >
-        <button className="border cursor-pointer border-white px-6 py-3 text-sm uppercase tracking-wide hover:bg-white hover:text-black transition">
-          • About Us →
-        </button>
-      </div>
+     <Buttons>
+      ABOUT US
+     </Buttons>
+
     </section>
   );
 }

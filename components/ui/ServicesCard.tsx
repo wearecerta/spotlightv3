@@ -39,7 +39,7 @@ export default function ServicesCard({
           zIndex: 10,
         }}
       >
-        <Link href={href} className="block w-full group" style={{ maxWidth: '1200px', margin: '0 auto' }}>
+        <Link href={href} className="block w-full group " style={{ maxWidth: '1200px', margin: '0 auto' }}>
           {/* Arrow Icon - Top Right */}
           <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 'var(--space-md, 24px)' }}>
             <svg

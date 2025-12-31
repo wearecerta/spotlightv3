@@ -71,10 +71,11 @@ export default function Navbar() {
         <div className="flex items-center">
         <Link
             href="/contact"
-            className="hidden py-4 px-10 justify-center items-center sm:flex text-sm font-semibold uppercase tracking-wide transition-colors duration-200 shadow-sm"
+            className="hidden py-2 px-7 text-xl justify-center items-center sm:flex font-normal uppercase tracking-wide transition-colors duration-200 shadow-sm"
             style={{
               backgroundColor: buttonBgColor,
               color: buttonTextColor,
+              fontFamily: 'Bebas Neue',
             }}
         >
             CONTACT

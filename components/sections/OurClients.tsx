@@ -51,7 +51,7 @@ export default function OurClients() {
         style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(4, 1fr)',
-          gap: 'var(--space-lg, 32px)',
+          gap: 'var(--space-xs, 32px)',
           width: '100%',
           maxWidth: '1400px',
         }}
@@ -64,9 +64,7 @@ export default function OurClients() {
               justifyContent: 'center',
               alignItems: 'center',
               padding: 'var(--space-xl, 48px)',
-              background: 'rgba(74, 74, 90, 0.1)',
-              border: '1px solid rgba(247, 247, 248, 0.1)',
-              borderRadius: '16px',
+              background: '#4A4A5A33',
               aspectRatio: '1 / 1',
               transition: 'all 0.3s ease',
               cursor: 'pointer',
