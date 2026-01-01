@@ -53,6 +53,8 @@ body {
   /* SECTION MARGINS (Desktop) */
   --section-margin-x: 7.5rem;  /* 120px */
   --section-margin-y: 7.5rem;  /* 120px */
+  --section-margin-t:7.5rem;
+  --section-margin-b:7.5rem
 
   /* ===============================
      DESKTOP HEADINGS

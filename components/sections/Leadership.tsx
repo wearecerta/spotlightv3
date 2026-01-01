@@ -176,21 +176,18 @@ export default function Leadership() {
     >
       {/* Title */}
       <h2
-        style={{
-          fontFamily: 'var(--Typograpghy-Heading-H2-font-family, "Bebas Neue")',
-          fontSize: 'var(--Typograpghy-Heading-H2-font-Size, 148px)',
-          fontStyle: 'normal',
-          fontWeight: '400',
-          lineHeight: '100%',
-          letterSpacing: '0%',
-          textAlign: 'center',
-          textTransform: 'uppercase',
-          background: 'linear-gradient(180deg, rgba(182, 183, 195, 1) 0%, rgba(255, 255, 255, 1) 100%)',
+         style={{
+           fontSize: 'clamp(3.5rem, 10vw, var(--h2-size))',
+          fontFamily: 'var(--font-primary)',
+          lineHeight: 'var(--h2-line)',
+          display: 'inline-block',
+          width: '100%',
+          background: 'linear-gradient(180deg, var(--spotlight-50) 0%, var(--spotlight-700) 100%)',
           WebkitBackgroundClip: 'text',
           backgroundClip: 'text',
           WebkitTextFillColor: 'transparent',
-          color: 'transparent',
-        }}
+          textAlign: 'center',
+          }}
       >
         LEADERSHIP TEAM
       </h2>
