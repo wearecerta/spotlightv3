@@ -48,13 +48,7 @@ export default function OurClients() {
 
       {/* Clients Grid */}
       <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(4, 1fr)',
-          gap: 'var(--space-xs, 32px)',
-          width: '100%',
-          maxWidth: '1400px',
-        }}
+        className="grid grid-cols-2 md:grid-cols-4 gap-[var(--space-xs)] w-full max-w-[1440px]"
       >
         {clients.map((client) => (
           <div

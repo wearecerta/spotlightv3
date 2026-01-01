@@ -1,51 +1,12 @@
-"use client";
 
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
 import Buttons from "../ui/Buttons";
 import LeftParagraph from "./LeftParagraph";
 
 export default function Welcome() {
-  const textRef = useRef<HTMLDivElement>(null);
-  const imagesRef = useRef<HTMLDivElement>(null);
-  const paragraphRef = useRef<HTMLParagraphElement>(null);
-  const [textHeight, setTextHeight] = useState<number | null>(null);
-  const [scrollProgress, setScrollProgress] = useState(0);
+ 
+  
 
-  useEffect(() => {
-    const updateHeight = () => {
-      if (textRef.current) {
-        setTextHeight(textRef.current.offsetHeight);
-      }
-    };
-
-    updateHeight();
-    window.addEventListener("resize", updateHeight);
-    return () => window.removeEventListener("resize", updateHeight);
-  }, []);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (paragraphRef.current) {
-        const rect = paragraphRef.current.getBoundingClientRect();
-        const windowHeight = window.innerHeight;
-        const elementTop = rect.top;
-        const elementHeight = rect.height;
-        
-        // Calculate scroll progress (0 to 1)
-        // Starts animating when element enters viewport, completes when it's fully visible
-        const startPoint = windowHeight;
-        const endPoint = windowHeight - elementHeight;
-        const progress = Math.max(0, Math.min(1, (startPoint - elementTop) / (startPoint - endPoint)));
-        
-        setScrollProgress(progress);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    handleScroll(); // Initial call
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
   return (
     <section
       className="w-full h-auto text-white"
@@ -88,6 +49,9 @@ export default function Welcome() {
       </div>
 
       {/* CONTENT WRAPPER */}
+      {/* !!!!!!!!!todo stikcy scroll */}
+      {/* <div className="sticky top-0"> */}
+
       <div
         className="flex flex-col lg:flex-row  max-w-[1440px] mx-auto"
         style={{ marginTop: "var(--space-xl)", gap: "var(--space-xl)", justifyContent: "center", alignItems: "center" }}
@@ -104,12 +68,13 @@ export default function Welcome() {
           className="w-full max-w-md lg:max-w-lg mt-6 lg:mt-0"
         />        
       </div>
-
       {/* BUTTON */}
      <Buttons>
       ABOUT US
      </Buttons>
 
+
+        {/* </div> */}
     </section>
   );
 }

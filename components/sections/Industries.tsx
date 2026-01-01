@@ -13,36 +13,48 @@ export default function Industries() {
     {
       name: "FOOD AND BEVERAGE",
       industrysLogo: [
-        "/Home/unilever.png",
-        "/Home/mastercard.png",
-        "/Home/safaricom.png",
-        "/Home/urban.svg",
-        "/Home/urban.svg",
-        "/Home/safaricom.png",
-        "/Home/mastercard.png",
-        "/Home/ethiopian-airlines.png",
-        
+        "/Industries/food-and-beverage/moye.svg",
+        "/Industries/food-and-beverage/awash.svg",
+        "/Industries/food-and-beverage/cocacola.svg",
+        "/Industries/food-and-beverage/awash.svg",
+        "/Industries/food-and-beverage/senselet.svg",
       ],
     },
     {
       name: "TRANSPORTATION",
       industrysLogo: [
-        "/Home/ethiopian-airlines.png",
-        "/Home/mastercard.png",
-        "/Home/safaricom.png",
+        "/Industries/transportation/et.svg",
+        "/Industries/transportation/yango.svg",
+        "/Industries/transportation/jaguar.svg",
+        
       ],
     },
     {
       name: "FINANCE",
-      industrysLogo: ["/Home/mastercard.png", "/Home/ethiopian-lottery.png" ],
+      industrysLogo: [
+        "/Industries/finance/nationalbank.svg",
+        "/Industries/finance/alibaba.svg",
+        "/Industries/finance/unilever.svg",
+        "/Industries/finance/zayed.svg",
+        "/Industries/finance/the-economist.svg",
+      ],
     },
     {
       name: "NON- PROFIT",
-      industrysLogo: ["/Home/mastercard.png","/Home/unilever.png"],
+      industrysLogo: [
+        "/Industries/non-profit/giz.svg",
+        "/Industries/non-profit/eu.svg",
+        "/Industries/non-profit/abbott.svg",
+      ],
     },
     {
       name: "TELECOM",
-      industrysLogo: ["/Home/safaricom.png", "/Home/unilever.png"],
+      industrysLogo: [
+        "/Industries/telecom/safaricom.svg",
+        "/Industries/telecom/gemcorp.svg",
+        "/Industries/telecom/safaricom.svg",
+        "/Industries/telecom/gemcorp.svg",
+      ],
     },
   ];
 
@@ -86,9 +98,8 @@ export default function Industries() {
       }}
     >
       <div
-        className="max-w-[1440px] mx-auto "
+        className="max-w-[1440px] flex flex-col md:flex-row mx-auto "
         style={{
-          display: "flex",
           gap: "var(--space-xxl, 64px)",
         }}
       >
@@ -164,7 +175,7 @@ export default function Industries() {
                       : "none",
                   backgroundColor: isHovered(index) ? "black" : "transparent",
                   transition: "background-color 0.3s ease",
-                  cursor: "grab"
+                  cursor: "grab",
                 }}
               >
                 {!isHovered(index) && (
@@ -190,12 +201,12 @@ export default function Industries() {
                       overflow: "hidden",
                     }}
                   >
-                    <Marquee speed={100} gradient={false} loop={0} autoFill={true}>
+                    <Marquee speed={100} loop={0}>
                       <div
-                        className="flex gap-10 items-center"
+                        className="flex  items-center"
                         style={{
                           minWidth: "100%",
-                          height: "80%",
+                          height: "70%",
                         }}
                       >
                         {industry.industrysLogo.map((logo, logoIndex) => (
@@ -205,7 +216,7 @@ export default function Industries() {
                             alt={`${industry.name} logo`}
                             width={50}
                             height={50}
-                            className="object-contain w-16 h-16"
+                            className=" h-14 w-fit mr-12"
                           />
                         ))}
                       </div>

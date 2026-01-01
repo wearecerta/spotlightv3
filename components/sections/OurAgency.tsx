@@ -64,12 +64,9 @@ export default function OurAgency() {
       {/* Agencies Grid */}
       <div
         style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(5, 1fr)",
           gap: "var(--space-xs, 32px)",
-          width: "100%",
-          maxWidth: "1400px",
         }}
+        className="grid md:grid-cols-5 grid-cols-1 w-full max-w-[1440px]"
       >
         {agencies.map((agency) => (
           <div

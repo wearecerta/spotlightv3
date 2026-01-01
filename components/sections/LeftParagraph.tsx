@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import gsap from "gsap";
 import { useEffect, useRef } from "react";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
@@ -31,12 +31,12 @@ const LeftParagraph = () => {
         start: "top 70%",
         end: "bottom 10%",
       },
-      color: "rgba(247, 247, 248, 1)", 
-      duration: 5,
+      color: "rgba(247, 247, 248, 1)",
+      duration: 9,
       stagger: 1,
       ease: "power1.inOut",
     });
-    
+
     return () => {
       anim.kill();
     };
@@ -54,15 +54,17 @@ const LeftParagraph = () => {
           fontStyle: "normal",
           lineHeight: "120%",
           letterSpacing: "0%",
-          transition: "color 0.3s ease-out",
         }}
       >
         <div>
           {paragraphText.split("").map((letter, index) => (
-            <span 
-              key={index} 
+            <span
+              key={index}
               ref={addToRefs}
-              style={{ color: "var(--spotlight-700)" }}
+              style={{
+                color: "var(--spotlight-700)",
+                transition: "color 0.2s ease-out",
+              }}
             >
               {letter}
             </span>

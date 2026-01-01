@@ -22,7 +22,7 @@ export default function AwardsCard({
         borderRadius: '24px',
         border: '1px solid rgba(247, 247, 248, 0.2)',
         background: 'linear-gradient(180deg, rgba(74, 74, 90, 0.3) 0%, rgba(12, 12, 14, 0.8) 100%)',
-        padding: 'var(--space-xl)',
+        padding: 'var(--space-lg, 32px)',
         backdropFilter: 'blur(10px)',
       }}
     >
@@ -47,7 +47,7 @@ export default function AwardsCard({
         className="text-center mb-6"
         style={{
           fontFamily: 'var(--font-secondary)',
-          fontSize: 'var(--body-large-size)',
+          fontSize: 'var(--body-medium-size)',
           lineHeight: 'var(--body-large-line-height)',
           fontWeight: '300',
           color: 'var(--spotlight-100)',

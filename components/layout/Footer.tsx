@@ -117,7 +117,7 @@ export default function Footer() {
 
             {/* Input */}
             <div className="mt-6">
-              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-5">
+              <div className="flex flex-col  sm:flex-row items-stretch sm:items-center gap-3 sm:gap-5">
                 {isMounted ? (
                   <input
                     type="text"
@@ -127,8 +127,16 @@ export default function Footer() {
                 ) : (
                   <div className="flex-1 border-b border-(--spotlight-700) py-2 px-1" />
                 )}
-                <button className="bg-(--spotlight-50) text-(--spotlight-950) px-8 py-4 text-xl font-medium shadow-sm w-full sm:w-auto">
-                  • NEXT
+                <button 
+                className="bg-(--spotlight-50) flex items-center justify-center text-(--spotlight-950)  gap-2 px-8 py-4 text-xl font-medium shadow-sm w-26  sm:w-auto"
+                >
+                 <Image
+                    src="/Icons/black-dot.svg"
+                    alt="dot"
+                    width={14}
+                    height={14}
+                  />
+                  <span>NEXT</span> 
                 </button>
               </div>
             </div>
