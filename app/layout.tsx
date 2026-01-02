@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Outfit, Bebas_Neue } from "next/font/google";
 import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
 import "./globals.css";
+import SmoothScroll from "@/components/ui/SmothScroll";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -37,10 +38,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} ${outfit.variable} ${bebasNeue.variable} antialiased`}>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} ${outfit.variable} ${bebasNeue.variable} antialiased`}
+      >
         <div className="min-h-screen flex flex-col">
           <Navbar />
-          <main className="flex-1">{children}</main>
+          <SmoothScroll>
+            <main className="flex-1">{children}</main>
+          </SmoothScroll>
           <Footer />
         </div>
       </body>

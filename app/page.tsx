@@ -14,6 +14,7 @@ import OurAgency from "@/components/sections/OurAgency";
 export default async function Home() {
   const data = await client.fetch(homePageQuery)
   return (
+
     <div>
       <Hero videoAsset={data?.heroVideo} title={data?.heroTitle} subtitle={data?.heroSubtitle}/>
       <Welcome />
