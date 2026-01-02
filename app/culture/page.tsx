@@ -3,13 +3,11 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import PolaroidImages from "./culture";
+import PolaroidImages from "../../components/sections/PolarideImages";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Culture() {
-  const heroImagesRef = useRef<(HTMLDivElement | null)[]>([]);
-  const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
 
   const images = [
     "/Culture/culture-1.png",
@@ -48,8 +46,8 @@ export default function Culture() {
   ];
 
   useEffect(() => {
-    const leftX = [-800, -900, -400];
-    const rightX = [800, 900, 400];
+    const leftX = [-700, -800, -300];
+    const rightX = [700, 800, 300];
     const rotationLeft = [-30, -20, -35];
     const rotationRight = [30, 20, 35];
     const yValues = [100, -150, -400];
@@ -135,7 +133,7 @@ export default function Culture() {
           <p className="text-white font-(--font-secondary) text-xl md:text-2xl lg:text-4xl  mb-8">
             This is No Ordinary Workplace, It's
           </p>
-          <div className="inline-flex rotate-[-3deg]  items-center gap-3 trans bg-white px-30 py-3 rounded-full shadow-lg">
+          <div className="inline-flex rotate-3  items-center gap-3 trans bg-white px-30 py-3 rounded-full shadow-lg">
             <span className="w-3 h-3 rounded-full bg-black" />
             <span className="text-2xl font-bebas text-black">
               A Creative Playground
@@ -168,7 +166,7 @@ export default function Culture() {
                 border: "1px solid rgba(255,255,255,0.1)",
               }}
             >
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+              <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 p-8 flex flex-col gap-2">
                 <h3 className="text-white font-bebas uppercase text-[clamp(32px,4vw,48px)]">{code.title}</h3>
                 <p className="text-white/70 font-outfit uppercase tracking-wider">{code.subtitle}</p>
