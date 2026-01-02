@@ -15,12 +15,16 @@ interface ProjectCardProps {
 
 // Helper function to check if URL is a YouTube link
 function isYouTubeUrl(url: string): boolean {
-  return /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/.test(url);
+  return /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/.test(
+    url
+  );
 }
 
 // Helper function to extract YouTube video ID
 function getYouTubeVideoId(url: string): string | null {
-  const match = url.match(/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/);
+  const match = url.match(
+    /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/
+  );
   return match ? match[1] : null;
 }
 
@@ -63,13 +67,13 @@ export default function ProjectCard({
         ${className}
       `}
       style={{
-        background: '#2C2C34',
-        border: '1px solid rgba(255, 255, 255, 0.1)',
+        background: "#2C2C34",
+        border: "1px solid rgba(255, 255, 255, 0.1)",
       }}
     >
       {/* TOP CONTENT */}
-      <div className="flex items-start justify-between p-6 md:p-8">
-        <div>
+      <div className="flex items-start  justify-between p-6 md:p-8">
+        <div className="flex flex-col gap-4">
           <h2
             className="tracking-wide"
             style={{
@@ -77,13 +81,14 @@ export default function ProjectCard({
               color: "#FFFFFF",
               fontSize: "var(--h4-size)",
               lineHeight: "var(--h4-line)",
+              
             }}
           >
             {title}
           </h2>
 
           <div
-            className="flex items-center gap-3 mt-1"
+            className="flex flex-wrap items-center gap-2 mt-1"
             style={{
               fontFamily: "var(--font-secondary)",
               color: "#FFFFFF",
@@ -92,20 +97,39 @@ export default function ProjectCard({
             }}
           >
             {tags.map((tag, index) => (
-              <span key={index} className="flex items-center gap-3 ">
+              <span key={index} className="flex  items-center gap-3">
                 {tag}
-                {index < tags.length - 1 && <span>•</span>}
+                {index < tags.length + 1 && (
+                  <span>
+                    <Image
+                      src="/Icons/dot.svg"
+                      alt="Separator"
+                      width={10}
+                      height={10}
+                    />
+                  </span>
+                )}
               </span>
             ))}
           </div>
         </div>
 
         {/* Arrow (SVG, no dependencies) */}
-       <Image src="/Icons/arrow.svg" alt="Arrow" width={32} height={32} className="transition-colors" style={{ color: "#FFFFFF" }} />
+        <Image
+          src="/Icons/arrow.svg"
+          alt="Arrow"
+          width={20}
+          height={20}
+          className="transition-colors h-5 w-5 md:h-8 md:w-8  "
+          style={{ color: "#FFFFFF" }}
+        />
       </div>
 
       {/* MEDIA SECTION — auto expands to fit height you give */}
-      <div className="relative w-full aspect-video overflow-hidden rounded-b-2xl" style={{ background: '#1A1A20' }}>
+      <div
+        className="relative w-full aspect-video overflow-hidden rounded-b-2xl"
+        style={{ background: "#1A1A20" }}
+      >
         {mediaType === "image" && imageSrc && (
           <Image
             src={imageSrc}
@@ -138,7 +162,7 @@ export default function ProjectCard({
             className="absolute inset-0 w-full h-full"
             allow="autoplay; encrypted-media"
             allowFullScreen
-            style={{ border: 'none' }}
+            style={{ border: "none" }}
             title={title}
           />
         )}

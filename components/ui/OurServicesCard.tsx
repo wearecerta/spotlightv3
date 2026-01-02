@@ -71,7 +71,7 @@ export default function OurServicesCard({
             alt="Arrow Icon"
             width={32}
             height={32}
-            className="transition-transform group-hover:translate-x-1 group-hover:-translate-y-1"
+            className="transition-transform h-5 w-5 md:h-8 md:w-8 group-hover:translate-x-1 group-hover:-translate-y-1"
           />
         </div>
 
