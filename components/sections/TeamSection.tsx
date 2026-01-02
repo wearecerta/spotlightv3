@@ -9,6 +9,8 @@ interface TeamSectionProps {
     src: string;
     hoverSrc?: string;
     alt: string;
+    position: string;
+    name: string
   }>;
 }
 
@@ -18,12 +20,17 @@ function TeamPhotoCard({
   imageHoverSrc,
   alt,
   priority = false,
+  name,
+  position,
 }: {
   imageSrc: string;
   imageHoverSrc?: string;
   alt: string;
   priority?: boolean;
+  name: string;
+  position: string;
 }) {
+
   const [isHovered, setIsHovered] = useState(false);
   const [hoverImageLoaded, setHoverImageLoaded] = useState(false);
 
@@ -107,6 +114,52 @@ function TeamPhotoCard({
           />
         </div>
       )}
+
+        {/* Name and Position Overlay - Shows on Hover */}
+      <div
+        style={{
+          position: 'absolute',
+          bottom: 0,
+          left: 0,
+          right: 0,
+          padding: 'var(--space-md, 24px)',
+        //   background: 'linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0) 100%)',
+          opacity: isHovered ? 1 : 0,
+          transform: isHovered ? 'translateY(0)' : 'translateY(10px)',
+          transition: 'opacity 0.3s ease, transform 0.3s ease',
+          zIndex: 2,
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <h3
+          style={{
+            color: '#FFF',
+            fontFamily: 'var(--font-primary, "Bebas Neue")',
+            fontSize: 'clamp(10px, 2vw, 28px)',
+            fontStyle: 'normal',
+            fontWeight: '400',
+            lineHeight: '120%',
+            textTransform: 'uppercase',
+            marginBottom: '4px',
+          }}
+        >
+          {name}
+        </h3>
+        <p
+          style={{
+            color: '#FFF',
+            fontFamily: 'var(--font-secondary, Outfit)',
+            fontSize: 'clamp(14px, 1.5vw, 18px)',
+            fontStyle: 'normal',
+            fontWeight: '300',
+            lineHeight: '150%',
+            opacity: 0.9,
+          }}
+        >
+          {position}
+        </p>
+      </div>
     </div>
   );
 }
@@ -115,6 +168,7 @@ export default function TeamSection({
   titleSvgSrc,
   groupPhoto,
   individualPhotos,
+  
 }: TeamSectionProps) {
   return (
     <section
@@ -151,7 +205,8 @@ export default function TeamSection({
           height={240}
           className="
       absolute
-      top-[10%]
+      top-[1%]
+      md:top-[10%]
       w-[80%]
       h-auto
       select-none
@@ -194,10 +249,11 @@ export default function TeamSection({
       {/* Individual Photos Grid */}
       {individualPhotos.length > 0 && (
         <div
+        className="grid grid-cols-3 md:grid-cols-[repeat(auto-fit,minmax(150px,1fr))]"
           style={{
-            display: "grid",
-            gridTemplateColumns: `repeat(auto-fit, minmax(150px, 1fr))`,
-            gap: "var(--space-lg, 32px)",
+            // display: "grid",
+            // gridTemplateColumns: `repeat(auto-fit, minmax(150px, 1fr))`,
+            // gap: "var(--space-lg, 32px)",
             width: "100%",
             maxWidth: "1400px",
             justifyContent: "center",
@@ -205,12 +261,15 @@ export default function TeamSection({
         >
           {individualPhotos.map((photo, index) => (
             <TeamPhotoCard
-              key={index}
-              imageSrc={photo.src}
-              imageHoverSrc={photo.hoverSrc}
-              alt={photo.alt}
-              priority={index < 3}
-            />
+  key={index}
+  imageSrc={photo.src}
+  imageHoverSrc={photo.hoverSrc}
+  alt={photo.alt}
+  priority={index < 3}
+  name={photo.name}
+  position={photo.position}
+/>
+
           ))}
         </div>
       )}

@@ -114,7 +114,7 @@ function TeamMemberCard({
           style={{
             color: '#FFF',
             fontFamily: 'var(--font-primary, "Bebas Neue")',
-            fontSize: 'clamp(20px, 2vw, 28px)',
+            fontSize: 'clamp(10px, 2vw, 28px)',
             fontStyle: 'normal',
             fontWeight: '400',
             lineHeight: '120%',
@@ -194,13 +194,8 @@ export default function Leadership() {
 
       {/* Team Grid - 3 rows, 5 columns */}
       <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(5, 1fr)',
-          gap: 'var(--space-lg, 32px)',
-          width: '100%',
-          maxWidth: '1400px',
-        }}
+      className="grid grid-cols-3 md:grid-cols-5 gap-(--space-lg) w-full max-w-[1400px]"
+        
       >
         {teamMembers.map((member, index) => (
           <TeamMemberCard

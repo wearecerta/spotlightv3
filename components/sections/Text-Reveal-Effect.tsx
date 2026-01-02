@@ -5,10 +5,10 @@ import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 
 const TextRevealEffect = ({
   paragraphText,
-  fontSize,
+  className
 }: {
   paragraphText: string;
-  fontSize: string;
+  className?: string;
 }) => {
   const triggerRef = useRef<HTMLDivElement>(null);
   const lettersRef = useRef<HTMLSpanElement[]>([]);
@@ -45,10 +45,9 @@ const TextRevealEffect = ({
     <div className="">
       <div
         ref={triggerRef}
-        className="font-secondary"
+        className={className}
         style={{
           fontFamily: "var(--font-outfit)",
-          fontSize: fontSize,
           fontWeight: 300,
           fontStyle: "normal",
           lineHeight: "120%",
