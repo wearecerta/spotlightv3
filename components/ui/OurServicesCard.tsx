@@ -110,7 +110,7 @@ export default function OurServicesCard({
             {leftColumn.map((service, index) => (
               <div key={index}>
                 <div
-                  className="py-3 text-center border-b border-[var(--spotlight-800)] "
+                  className="py-3 md:text-center border-b border-[var(--spotlight-800)] "
                   style={{
                     fontFamily: "var(--font-secondary)", 
                     color: "var(--spotlight-50)",
@@ -129,7 +129,7 @@ export default function OurServicesCard({
             {rightColumn.map((service, index) => (
               <div key={index}>
                 <div
-                  className="py-3 text-center border-b border-[var(--spotlight-800)] "
+                  className="py-3 md:text-center border-b border-[var(--spotlight-800)] "
                   style={{
                     fontFamily: "var(--font-secondary)",
                     color: "var(--spotlight-50)",

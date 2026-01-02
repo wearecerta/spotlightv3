@@ -8,7 +8,7 @@ const Buttons = ({ children }: any) => {
     >
       <button
         className="border cursor-pointer border-(--spotlight-50)
- font-medium flex gap-2 items-center px-16 py-5 text-sm uppercase tracking-wide "
+ font-medium flex gap-2 items-center px-12 md:px-16 py-5 text-sm uppercase tracking-wide "
       >
         <Image src="/Icons/dot.svg" alt="arrow" width={8} height={8} />
         <span className="text-(--spotlight-50)">{children}</span>

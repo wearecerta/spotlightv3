@@ -19,7 +19,7 @@ export default function Welcome() {
       }}
     >
       {/* TOP TITLE */}
-      <div className="text-center">
+      <div className="text-center flex flex-col gap-5">
         <h1
           className="uppercase"
           style={{
@@ -53,7 +53,7 @@ export default function Welcome() {
       {/* <div className="sticky top-0"> */}
 
       <div
-        className="flex flex-col lg:flex-row  max-w-[1440px] mx-auto"
+        className="flex flex-col-reverse lg:flex-row  max-w-[1440px] mx-auto"
         style={{ marginTop: "var(--space-xl)", gap: "var(--space-xl)", justifyContent: "center", alignItems: "center" }}
       >
         {/* LEFT PARAGRAPH */}

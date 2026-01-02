@@ -39,9 +39,8 @@ export default function Footer() {
         {/* LEFT SIDE */}
         <div className="flex flex-col w-full lg:w-auto">
           <h2
-            className="font-primary leading-[0.85] tracking-tight text-(--spotlight-50)  lg:text-left"
+            className="font-primary leading-[0.85] text-[5.75rem] md:text-[12rem] tracking-tight text-(--spotlight-50)  lg:text-left"
             style={{
-              fontSize: 'clamp(3.5rem, 10vw, var(--h2-size))',
               fontFamily: 'var(--font-primary)',
               display: 'inline-block',
               background: 'linear-gradient(180deg, var(--color-Spotlight-Color-Spotlight-White, #F7F7F8) 0%, var(--color-Spotlight-Color-Dark-Gray, #4A4A5A) 100%)',
@@ -103,7 +102,7 @@ export default function Footer() {
             </ul>
 
             {/* Social icons */}
-            <div className="mt-6 flex flex-row gap-3 lg:gap-4 justify-center lg:justify-start">
+            <div className="mt-6 flex flex-row gap-3 lg:gap-4  lg:justify-start">
               {socialIcons.map(({id, link}) => (
                 <button key={id} className="flex-none w-8 h-8 lg:w-10 lg:h-10 rounded-full border border-(--spotlight-700) flex items-center justify-center">
                   {React.cloneElement(link, { 
@@ -122,7 +121,7 @@ export default function Footer() {
                   <input
                     type="text"
                     placeholder="Insert Your Name"
-                    className="flex-1 bg-transparent border-b border-(--spotlight-700) placeholder-(--spotlight-500) text-(--spotlight-50) py-2 px-1 focus:outline-none text-center sm:text-left"
+                    className="flex-1 bg-transparent border-b border-(--spotlight-700) placeholder-(--spotlight-500) text-(--spotlight-50) py-2 px-1 focus:outline-none"
                   />
                 ) : (
                   <div className="flex-1 border-b border-(--spotlight-700) py-2 px-1" />
