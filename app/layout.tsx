@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Outfit, Bebas_Neue } from "next/font/google";
+import { Geist, Geist_Mono, Outfit, Bebas_Neue , Shadows_Into_Light} from "next/font/google";
 import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
 import "./globals.css";
@@ -9,6 +9,13 @@ const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
 });
+
+const ShadowsIntoLight = Shadows_Into_Light({
+  variable: "--font-shadow-into-light",
+  subsets:["latin"],
+  weight:"400"
+})
+
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
@@ -39,7 +46,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${outfit.variable} ${bebasNeue.variable} antialiased`}
+        className={`${geistSans.variable} ${ShadowsIntoLight.variable} ${geistMono.variable} ${outfit.variable} ${bebasNeue.variable} antialiased`}
       >
         <div className="min-h-screen flex flex-col">
           <Navbar />

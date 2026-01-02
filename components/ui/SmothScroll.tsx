@@ -8,7 +8,7 @@ interface SmoothScrollProps {
 }
 
 const SmoothScroll = ({ children }: SmoothScrollProps) => {
-  return <ReactLenis root>{children}</ReactLenis>;
+  return <ReactLenis options={{smoothWheel:true , duration:1.5}} root>{children}</ReactLenis>;
 };
 
 export default SmoothScroll;
