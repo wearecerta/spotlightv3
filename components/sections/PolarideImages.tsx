@@ -99,7 +99,7 @@ const QUOTES: QuoteConfig[] = [
   {
     text: "Playing it safe isn’t in our DNA.",
     side: "right",
-    top: "2310px",
+    top: "2280px",
     rotate: "-15deg",
     align: "right",
   },
@@ -113,7 +113,7 @@ const QUOTES: QuoteConfig[] = [
   {
     text: "Playing it safe isn’t in our DNA.",
     side: "right",
-    top: "3150px",
+    top: "3120px",
     rotate: "-15deg",
     align: "right",
   },
@@ -134,7 +134,7 @@ export default function PolaroidImages() {
   return (
     <main className="relative min-h-screen bg-[#0C0C0E] overflow-hidden">
       <section className="relative min-h-screen px-[120px] py-[120px] flex justify-center">
-        <div className="relative w-full max-w-[1200px]">
+        <div className="relative w-full max-w-[900px]">
           {/* Quotes */}
           {QUOTES.map((quote, i) => (
             <Quote key={i} {...quote} />
@@ -167,7 +167,7 @@ function Quote({
 }) {
   return (
     <p
-      className={`hidden lg:block absolute ${side}-[100px] max-w-60 text-white opacity-90 text-[24px] leading-relaxed ${
+      className={`hidden lg:block absolute ${side}-0 max-w-60 text-white opacity-90 text-[24px] leading-relaxed ${
         align === "right" ? "text-right" : ""
       }`}
       style={{
