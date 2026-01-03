@@ -4,11 +4,11 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import PolaroidImages from "../../components/sections/PolarideImages";
+import Image from "next/image";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Culture() {
-
   const images = [
     "/Culture/culture-1.png",
     "/Culture/culture-2.png",
@@ -18,29 +18,36 @@ export default function Culture() {
     "/Culture/culture-6.png",
   ];
 
+  const WeDontStopeVideos = [
+    "/Culture/wedontstop1.mp4",
+    "/Culture/wedontstop2.mp4",
+    "/Culture/wedontstop3.mp4",
+    "/Culture/wedontstop4.mp4",
+    "/Culture/wedontstop5.mp4",
+    "/Culture/wedontstop6.mp4",
+    "/Culture/wedontstop7.mp4",
+    "/Culture/wedontstop8.mp4",
+  ];
+
   const codes = [
     {
       id: 1,
-      title: "FUTURE-FIRST",
-      subtitle: "ENERGY",
+      title: "FUTURE-FIRST ENERGY",
       image: "/Culture/futurefirst.jpg",
     },
     {
       id: 2,
-      title: "CREATIVE",
-      subtitle: "SWAGGER",
+      title: "CREATIVE SWAGGER",
       image: "/Culture/creativeswagger.jpg",
     },
     {
       id: 3,
-      title: "RADICAL",
-      subtitle: "COLLABORATION",
+      title: "RADICAL COLLABORATION",
       image: "/Culture/Radicalcollabration.jpg",
     },
     {
       id: 4,
-      title: "BUILT",
-      subtitle: "DIFFERENT",
+      title: "BUILT DIFFERENT",
       image: "/Culture/Builtdifrent.jpg",
     },
   ];
@@ -97,7 +104,7 @@ export default function Culture() {
                   <img
                     src={src}
                     alt=""
-                    className="w-[433px] h-[325px] object-cover aspect-square"
+                    className="w-[433px] rounded-3xl h-[325px] object-cover aspect-square"
                   />
                 </div>
                 {images[index + 1] && (
@@ -105,7 +112,7 @@ export default function Culture() {
                     <img
                       src={images[index + 1]}
                       alt=""
-                      className="w-[433px] h-[325px] object-cover aspect-square"
+                      className="w-[433px] h-[325px] rounded-3xl object-cover aspect-square"
                     />
                   </div>
                 )}
@@ -144,33 +151,93 @@ export default function Culture() {
 
       <PolaroidImages />
 
-     {/* Sacred Codes Section */}
-       <section className="flex flex-col px-8 md:px-24 py-32 gap-16 bg-[#0C0C0E]">
-        <div className="inline-flex items-center gap-3 bg-white px-6 py-2 rounded-full">
-          <div className="w-2 h-2 rounded-full bg-black" />
-          <span className="text-black text-sm font-medium font-outfit">The Codes we Live By</span>
+      <section className="bg-[#4A4A5A4D] border border-[#4A4A5A4D] flex flex-col gap-(--space-xl) max-w-[1440px] w-[1200px] mx-auto rounded-[48px] p-[120px]">
+        <div className="flex flex-col">
+          <h2
+            style={{
+              color: "#FFF",
+              fontFamily: 'var(--font-primary, "Bebas Neue")',
+              fontSize: "148px",
+              fontStyle: "normal",
+              fontWeight: "400",
+              lineHeight: "100%",
+              letterSpacing: "0%",
+              textTransform: "uppercase",
+              margin: 0,
+            }}
+          >
+            We Don't Stop!
+          </h2>
+
+          <p className="text-white text-lg font-[--font-secondary] w-[653px] l">
+            Good enough” isn’t in our vocabulary. Our fire rages with an
+            insatiable hunger to learn, explore uncharted territories, and dig
+            up fresh truths that’ll blow minds. We never stop questioning,
+            learning and evolving to perpetually push the creative envelope.
+          </p>
         </div>
-        <h2 className="text-white font-bebas uppercase text-[clamp(48px,8vw,96px)] max-w-5xl">
+
+        {/* videos  */}
+        <div className="grid grid-cols-4 gap-(--space-lg)">
+          {WeDontStopeVideos.map((video, index) => (
+            <video
+              key={index}
+              src={video}
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="w-52 h-96 rounded-3xl"
+            />
+          ))}
+        </div>
+      </section>
+
+      {/* Sacred Codes Section */}
+      <section className="flex flex-col mx-auto max-w-[1440px] px-8 md:px-24 py-32 gap-16 bg-[#0C0C0E]">
+        <div className="inline-flex -rotate-3 w-[519px] items-center gap-3 trans bg-white px-30 py-3 rounded-full shadow-lg">
+          <span className="w-3 h-3 rounded-full bg-black" />
+          <span className="text-2xl font-bebas text-black">
+            The Codes we Live By
+          </span>
+        </div>
+        <h2
+          style={{
+            color: "#FFF",
+            fontFamily: 'var(--font-primary, "Bebas Neue")',
+            fontSize: "148px",
+            fontStyle: "normal",
+            fontWeight: "400",
+            lineHeight: "100%",
+            letterSpacing: "0%",
+            textTransform: "uppercase",
+            margin: 0,
+          }}
+          className="text-white font-bebas uppercase text-[clamp(48px,8vw,96px)] max-w-5xl"
+        >
           IN THIS HOUSE, WE LIVE BY THESE SACRED CODES.
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-17">
           {codes.map((code, i) => (
-            <div
-              key={code.id}
-              // ref={(el) => (cardsRef.current[i] = el)}
-              className="relative aspect-square rounded-xl overflow-hidden"
-              style={{
-                backgroundImage: `url(${code.image})`,
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-                border: "1px solid rgba(255,255,255,0.1)",
-              }}
-            >
-              <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent" />
-              <div className="absolute bottom-0 left-0 right-0 p-8 flex flex-col gap-2">
-                <h3 className="text-white font-bebas uppercase text-[clamp(32px,4vw,48px)]">{code.title}</h3>
-                <p className="text-white/70 font-outfit uppercase tracking-wider">{code.subtitle}</p>
-              </div>
+            <div className="relative  w-[568px] h-[624px] " key={i}>
+              <Image
+                alt={code.title + "image"}
+                src={code.image}
+                width={568}
+                height={624}
+                className="w-[568px] h-[624px] rounded-4xl"
+              />
+              <div
+                style={{
+                  background:
+                    "linear-gradient(180deg, #0C0C0E00 0%, #4A4A5A 100%)",
+                }}
+                className=" absolute top-0 flex flex-col justify-end items-center w-full h-full rounded-4xl"
+              >
+                <h3 className="">
+{code.title}
+                </h3>
+                </div>
             </div>
           ))}
         </div>
