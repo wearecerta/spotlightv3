@@ -10,7 +10,7 @@ type QuoteConfig = {
 };
 
 const QUOTES: QuoteConfig[] = [
-  // Left side quotes 
+  // Left side quotes
   {
     text: "We don't follow trends — we forecast them.",
     side: "left",
@@ -41,28 +41,28 @@ const QUOTES: QuoteConfig[] = [
   },
   {
     text: "Innovation is our native language.",
-    side: "left",  
+    side: "left",
     top: "1950px",
     rotate: "15deg",
     align: "left",
   },
   {
     text: "Breaking molds is our daily routine.",
-    side: "left", 
+    side: "left",
     top: "2440px",
     rotate: "15deg",
     align: "left",
   },
   {
     text: "We see possibilities where others see walls.",
-    side: "left", 
+    side: "left",
     top: "2900px",
     rotate: "-15deg",
     align: "left",
   },
   {
     text: "Every challenge is a creative opportunity.",
-    side: "left",  
+    side: "left",
     top: "3400px",
     rotate: "15deg",
     align: "left",
@@ -85,42 +85,42 @@ const QUOTES: QuoteConfig[] = [
   },
   {
     text: "Bold vision requires fearless execution.",
-    side: "right",  
+    side: "right",
     top: "1080px",
     rotate: "15deg",
     align: "right",
   },
   {
     text: "We rewrite the rules of engagement.",
-    side: "right",  
+    side: "right",
     top: "1480px",
     rotate: "-15deg",
     align: "right",
   },
   {
     text: "Culture is our canvas, creativity our brush.",
-    side: "right",  
+    side: "right",
     top: "1950px",
     rotate: "-15deg",
     align: "right",
   },
   {
     text: "The future doesn't wait - we build it.",
-    side: "right", 
+    side: "right",
     top: "2380px",
     rotate: "-15deg",
     align: "right",
   },
   {
     text: "Originality is our only standard.",
-    side: "right",  
+    side: "right",
     top: "2950px",
     rotate: "15deg",
     align: "right",
   },
   {
     text: "We measure impact, not just activity.",
-    side: "right",  
+    side: "right",
     top: "3300px",
     rotate: "-15deg",
     align: "right",
@@ -139,19 +139,42 @@ const POLAROIDS = [
 ];
 
 export default function PolaroidImages() {
+  //group the images in four to overlap one other
+  const GROUP_SIZE = 4;
+  const groupedPolaroids = [];
+  for (let i = 0; i < POLAROIDS.length; i += GROUP_SIZE) {
+    groupedPolaroids.push(POLAROIDS.slice(i, i + GROUP_SIZE));
+  }
+
   return (
-    <main className="relative min-h-screen bg-[#0C0C0E] overflow-hidden">
+    <main className="relative  w-[342px] md:w-[1200px] mx-auto min-h-screen bg-[#0C0C0E] overflow-hidden">
       <section className="relative min-h-screen px-[120px] py-[120px] flex justify-center">
-        <div className="relative w-full max-w-[900px]">
+        <div className="relative w-full ">
           {/* Quotes */}
           {QUOTES.map((quote, i) => (
             <Quote key={i} {...quote} />
           ))}
 
-          {/* Polaroid stack - add z-index to ensure they're above quotes */}
-          <div className="relative z-10 flex flex-col items-center gap-20">
-            {POLAROIDS.map((card, i) => (
-              <PolaroidCard key={i} {...card} />
+          {/* Polaroid images   */}
+          <div className="relative z-10 flex flex-col items-center gap-24">
+            {groupedPolaroids.map((group, groupIndex) => (
+              <div
+                key={groupIndex}
+                className="relative flex flex-col items-center"
+              >
+                {group.map((card, i) => (
+                  <div
+                    key={i}
+                    className="relative"
+                    style={{
+                      marginTop: i === 0 ? 0 : "-10px", // overlap on one another image
+                      zIndex: group.length - i,
+                    }}
+                  >
+                    <PolaroidCard {...card} />
+                  </div>
+                ))}
+              </div>
             ))}
           </div>
         </div>

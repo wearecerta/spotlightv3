@@ -56,14 +56,18 @@ export default function Culture() {
     },
   ];
 
-  useEffect(() => {
+ useEffect(() => {
+  const mm = gsap.matchMedia();
+
+  mm.add("(min-width: 768px)", () => {
+    // DESKTOP
     const leftX = [-700, -800, -300];
     const rightX = [700, 800, 300];
     const rotationLeft = [-30, -20, -35];
     const rotationRight = [30, 20, 35];
     const yValues = [100, -150, -400];
 
-    gsap.utils.toArray(".row").forEach((row: any, i) => {
+    gsap.utils.toArray<HTMLElement>(".row").forEach((row, i) => {
       const left = row.querySelector(".card-left");
       const right = row.querySelector(".card-right");
 
@@ -91,32 +95,73 @@ export default function Culture() {
         },
       });
     });
-  }, []);
+  });
+
+  mm.add("(max-width: 767px)", () => {
+   const leftX = [-100, -200, -110];
+    const rightX = [100, 200, 110];
+    const rotationLeft = [-30, -20, -35];
+    const rotationRight = [30, 20, 35];
+    const yValues = [0, 0, 0];
+
+    gsap.utils.toArray<HTMLElement>(".row").forEach((row, i) => {
+      const left = row.querySelector(".card-left");
+      const right = row.querySelector(".card-right");
+
+      gsap.to(left, {
+        x: leftX[i],
+        y: yValues[i],
+        rotation: rotationLeft[i],
+        scrollTrigger: {
+          trigger: ".main",
+          start: "top center",
+          end: "150% bottom",
+          scrub: true,
+        },
+      });
+
+      gsap.to(right, {
+        x: rightX[i],
+        y: yValues[i],
+        rotation: rotationRight[i],
+        scrollTrigger: {
+          trigger: ".main",
+          start: "top center",
+          end: "150% bottom",
+          scrub: true,
+        },
+      });
+    });
+  });
+
+  return () => mm.revert();
+}, []);
+
 
   return (
-    <main className="relative min-h-screen -mt-16 md:-mt-24 lg:-mt-26 overflow-hidden bg-[#0C0C0E] z-0">
+    <main className="relative min-h-screen -mt-20 md:-mt-24 lg:-mt-26 overflow-hidden bg-[#0C0C0E] z-0">
       {/* Hero Section */}
-      <section className="main mt-56 relative  min-h-screen flex flex-col justify-center items-center gap-16">
+      <section className="main mt-20 md:mt-56 relative  min-h-screen flex flex-col justify-center items-center gap-3 md:gap-16">
         {images.map(
           (src, index) =>
             index % 2 === 0 && (
               <div
                 key={index}
-                className="row flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12"
+                className="row flex ]flex-row items-center justify-center md:gap-12 z-10 md:z-0  h-40 md:h-82"
               >
                 <div className="card-left will-change-transform">
                   <img
                     src={src}
                     alt=""
-                    className="w-[433px] rounded-3xl h-[325px] object-cover aspect-square"
+                    className="md:w-[433px] w-[158px] md:h-[325px] h-[118px] rounded-3xl object-cover aspect-square"
                   />
                 </div>
                 {images[index + 1] && (
-                  <div className="card-right will-change-transform">
+                  <div className="card-right will-change-transform z-10">
                     <img
                       src={images[index + 1]}
                       alt=""
-                      className="w-[433px] h-[325px] rounded-3xl object-cover aspect-square"
+                      className="md:w-[433px] w-[158px] md:h-[325px] h-[118px]  rounded-3xl object-cover aspect-square"
                     />
                   </div>
                 )}
@@ -124,29 +169,35 @@ export default function Culture() {
             )
         )}
 
-        <div className="absolute flex flex-col items-center top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center z-10">
+        <div className="absolute  w-full flex flex-col items-center top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center ">
           <h2
             style={{
               color: "#FFF",
               fontFamily: 'var(--font-primary, "Bebas Neue")',
-              fontSize: "192px",
+              // fontSize: "192px",
               fontStyle: "normal",
               fontWeight: "400",
               lineHeight: "100%",
               letterSpacing: "0%",
               textTransform: "uppercase",
-              textAlign: "center",
               margin: 0,
             }}
+            className="text-[92px] md:text-[192px] flex flex-col items-center "
           >
-            OUR CULTURE
+            <span>OUR</span>
+            <span>CULTURE</span>
           </h2>
-          <p className="text-white font-(--font-secondary) text-xl md:text-2xl lg:text-4xl  mb-8">
+          <p className="text-white font-(--font-secondary) text-xl leading-[120%] md:text-2xl lg:text-4xl  mb-8">
             This is No Ordinary Workplace, It's
           </p>
-          <div className="inline-flex rotate-3  items-center gap-3 trans bg-white px-30 py-3 rounded-full shadow-lg">
-            <span className="w-3 h-3 rounded-full bg-black" />
-            <span className="text-2xl font-bebas text-black">
+          <div className="inline-flex rotate-3 items-center gap-2 md:gap-3  bg-white px-6 md:px-30 py-3 rounded-full shadow-lg">
+            <Image
+              src={"/Icons/black-dot.svg"}
+              width={20}
+              height={20}
+              alt="dot icon"
+            />
+            <span className="text-xl md:text-2xl font-[--font-secondary] text-black">
               A Creative Playground
             </span>
           </div>
@@ -155,13 +206,12 @@ export default function Culture() {
 
       <PolaroidImages />
 
-      <section className="bg-[#4A4A5A4D] border border-[#4A4A5A4D] flex flex-col gap-(--space-xl) max-w-[1440px] w-[1200px] mx-auto rounded-[48px] p-[120px]">
+      <section className="bg-[#4A4A5A4D] border border-[#4A4A5A4D] flex flex-col gap-(--space-xl) max-w-[1440px] w-[342px] md:w-[1200px] mx-auto rounded-[48px] px-6 py-12 md:p-[120px]">
         <div className="flex flex-col">
           <h2
             style={{
               color: "#FFF",
               fontFamily: 'var(--font-primary, "Bebas Neue")',
-              fontSize: "148px",
               fontStyle: "normal",
               fontWeight: "400",
               lineHeight: "100%",
@@ -169,11 +219,12 @@ export default function Culture() {
               textTransform: "uppercase",
               margin: 0,
             }}
+            className="text-[68px] md:text-[148px]"
           >
             We Don't Stop!
           </h2>
 
-          <p className="text-white text-lg font-[--font-secondary] w-[653px] l">
+          <p className="text-white text-lg font-[--font-secondary] w-[294px] md:w-[653px] ">
             Good enough” isn’t in our vocabulary. Our fire rages with an
             insatiable hunger to learn, explore uncharted territories, and dig
             up fresh truths that’ll blow minds. We never stop questioning,
@@ -182,7 +233,7 @@ export default function Culture() {
         </div>
 
         {/* videos  */}
-        <div className="grid grid-cols-4 gap-(--space-lg)">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-(--space-lg)">
           {WeDontStopeVideos.map((video, index) => (
             <video
               key={index}
@@ -191,7 +242,7 @@ export default function Culture() {
               muted
               loop
               playsInline
-              className="w-52 h-96 rounded-3xl"
+              className="rounded-3xl"
             />
           ))}
         </div>
@@ -199,17 +250,21 @@ export default function Culture() {
 
       {/* Sacred Codes Section */}
       <section className="flex flex-col mx-auto max-w-[1440px] px-8 md:px-24 py-32 gap-16 bg-[#0C0C0E]">
-        <div className="inline-flex -rotate-3 w-[519px] items-center gap-3 trans bg-white px-30 py-3 rounded-full shadow-lg">
-          <span className="w-3 h-3 rounded-full bg-black" />
-          <span className="text-2xl font-bebas text-black">
-            The Codes we Live By
-          </span>
-        </div>
+         <div className="inline-flex w-fit -rotate-3  items-center gap-1 md:gap-3  bg-white px-6 md:px-30 py-3 rounded-full shadow-lg">
+            <Image
+              src={"/Icons/black-dot.svg"}
+              width={20}
+              height={20}
+              alt="dot icon"
+            />
+            <span className="text-xl md:text-2xl font-[--font-secondary] text-black">
+              The Codes we Live By
+            </span>
+          </div>
         <h2
           style={{
             color: "#FFF",
             fontFamily: 'var(--font-primary, "Bebas Neue")',
-            fontSize: "148px",
             fontStyle: "normal",
             fontWeight: "400",
             lineHeight: "100%",
@@ -217,14 +272,14 @@ export default function Culture() {
             textTransform: "uppercase",
             margin: 0,
           }}
-          className="text-white font-bebas uppercase text-[clamp(48px,8vw,96px)] max-w-5xl"
+          className="text-white font-bebas uppercase text-[68px] md:text-[148px] max-w-5xl"
         >
           IN THIS HOUSE, WE LIVE BY THESE SACRED CODES.
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-17">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-17">
           {codes.map((code, i) => (
             <div
-              className="relative flex justify-center w-[568px] h-[624px] "
+              className="relative flex justify-center h-[342px] md:h-[624px] w-full md:w-[568px]  "
               key={i}
             >
               <Image
@@ -232,7 +287,7 @@ export default function Culture() {
                 src={code.image}
                 width={568}
                 height={624}
-                className="w-[568px] h-[624px] rounded-4xl"
+                className="rounded-4xl"
               />
               {/* gradient */}
               <div
@@ -247,7 +302,6 @@ export default function Culture() {
                 style={{
                   color: "linear-gradient(180deg, #FFFFFF 0%, #4A4A5A 100%)",
                   fontFamily: 'var(--font-primary, "Bebas Neue")',
-                  fontSize: "58px",
                   fontStyle: "normal",
                   fontWeight: "400",
                   lineHeight: "100%",
@@ -260,6 +314,7 @@ export default function Culture() {
                   position: "absolute",
                   bottom: "26px",
                 }}
+                className="text-[32px] md:text-[58px]"
               >
                 <h3
                   style={{
