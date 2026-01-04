@@ -10,57 +10,65 @@ type QuoteConfig = {
 };
 
 const QUOTES: QuoteConfig[] = [
-  //left cote
+  // Left side quotes 
   {
-    text: "We don’t follow trends — we forecast them.",
+    text: "We don't follow trends — we forecast them.",
     side: "left",
     top: "150px",
     rotate: "15deg",
+    align: "left",
   },
   {
-    text: "If it’s never been done, that’s our starting point.",
+    text: "If it's never been done, that's our starting point.",
     side: "left",
     top: "600px",
     rotate: "15deg",
+    align: "left",
   },
   {
-    text: "Spotlight ideas don’t whisper — they roar.",
+    text: "Spotlight ideas don't whisper — they roar.",
     side: "left",
-    top: "1070px",
+    top: "1090px",
     rotate: "-15deg",
+    align: "left",
   },
   {
     text: "Limits? We call them launchpads.",
     side: "left",
-    top: "1500px",
+    top: "1600px",
     rotate: "15deg",
+    align: "left",
   },
   {
-    text: "We don’t follow trends — we forecast them.",
-    side: "left",
-    top: "1850px",
+    text: "Innovation is our native language.",
+    side: "left",  
+    top: "1950px",
     rotate: "15deg",
+    align: "left",
   },
   {
-    text: "If it’s never been done, that’s our starting point.",
-    side: "left",
-    top: "2340px",
+    text: "Breaking molds is our daily routine.",
+    side: "left", 
+    top: "2440px",
+    rotate: "15deg",
+    align: "left",
+  },
+  {
+    text: "We see possibilities where others see walls.",
+    side: "left", 
+    top: "2900px",
     rotate: "-15deg",
+    align: "left",
   },
   {
-    text: "Spotlight ideas don’t whisper — they roar.",
-    side: "left",
-    top: "2750px",
-    rotate: "-15deg",
-  },
-  {
-    text: "Limits? We call them launchpads.",
-    side: "left",
-    top: "3200px",
+    text: "Every challenge is a creative opportunity.",
+    side: "left",  
+    top: "3400px",
     rotate: "15deg",
+    align: "left",
   },
 
-  // right cote
+  // Right side quotes
   {
     text: "We move at the speed of culture.",
     side: "right",
@@ -69,51 +77,51 @@ const QUOTES: QuoteConfig[] = [
     align: "right",
   },
   {
-    text: "Playing it safe isn’t in our DNA.",
+    text: "Playing it safe isn't in our DNA.",
     side: "right",
     top: "580px",
     rotate: "-15deg",
     align: "right",
   },
   {
-    text: "Playing it safe isn’t in our DNA.",
-    side: "right",
+    text: "Bold vision requires fearless execution.",
+    side: "right",  
     top: "1080px",
     rotate: "15deg",
     align: "right",
   },
   {
-    text: "Playing it safe isn’t in our DNA.",
-    side: "right",
+    text: "We rewrite the rules of engagement.",
+    side: "right",  
     top: "1480px",
     rotate: "-15deg",
     align: "right",
   },
   {
-    text: "We move at the speed of culture.",
-    side: "right",
-    top: "1850px",
+    text: "Culture is our canvas, creativity our brush.",
+    side: "right",  
+    top: "1950px",
     rotate: "-15deg",
     align: "right",
   },
   {
-    text: "Playing it safe isn’t in our DNA.",
-    side: "right",
-    top: "2280px",
+    text: "The future doesn't wait - we build it.",
+    side: "right", 
+    top: "2380px",
     rotate: "-15deg",
     align: "right",
   },
   {
-    text: "Playing it safe isn’t in our DNA.",
-    side: "right",
-    top: "2750px",
+    text: "Originality is our only standard.",
+    side: "right",  
+    top: "2950px",
     rotate: "15deg",
     align: "right",
   },
   {
-    text: "Playing it safe isn’t in our DNA.",
-    side: "right",
-    top: "3120px",
+    text: "We measure impact, not just activity.",
+    side: "right",  
+    top: "3300px",
     rotate: "-15deg",
     align: "right",
   },
@@ -140,8 +148,8 @@ export default function PolaroidImages() {
             <Quote key={i} {...quote} />
           ))}
 
-          {/* Polaroid stack */}
-          <div className="flex flex-col items-center gap-20">
+          {/* Polaroid stack - add z-index to ensure they're above quotes */}
+          <div className="relative z-10 flex flex-col items-center gap-20">
             {POLAROIDS.map((card, i) => (
               <PolaroidCard key={i} {...card} />
             ))}
@@ -166,17 +174,23 @@ function Quote({
   align?: "left" | "right";
 }) {
   return (
-    <p
-      className={`hidden lg:block absolute ${side}-0 max-w-60 text-white opacity-90 text-[24px] leading-relaxed ${
-        align === "right" ? "text-right" : ""
-      }`}
+    <div
+      className={`hidden lg:block absolute ${side === "left" ? "left-0" : "right-0"} z-0 max-w-60`}
       style={{
         top,
         transform: `rotate(${rotate})`,
-        fontFamily: "var(--font-shadow-light)",
       }}
     >
-      {text}
-    </p>
+      <p
+        className={`text-white opacity-90 text-[24px] leading-relaxed ${
+          align === "right" ? "text-right" : ""
+        }`}
+        style={{
+          fontFamily: "var(--font-shadow-light)",
+        }}
+      >
+        {text}
+      </p>
+    </div>
   );
 }

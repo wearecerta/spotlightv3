@@ -32,22 +32,26 @@ export default function Culture() {
   const codes = [
     {
       id: 1,
-      title: "FUTURE-FIRST ENERGY",
+      title: "FUTURE-FIRST",
+      subtitle: "ENERGY",
       image: "/Culture/futurefirst.jpg",
     },
     {
       id: 2,
-      title: "CREATIVE SWAGGER",
+      title: "CREATIVE",
+      subtitle: "SWAGGER",
       image: "/Culture/creativeswagger.jpg",
     },
     {
       id: 3,
-      title: "RADICAL COLLABORATION",
+      title: "RADICAL",
+      subtitle: "COLLABORATION",
       image: "/Culture/Radicalcollabration.jpg",
     },
     {
       id: 4,
-      title: "BUILT DIFFERENT",
+      title: "BUILT",
+      subtitle: "DIFFERENT",
       image: "/Culture/Builtdifrent.jpg",
     },
   ];
@@ -219,7 +223,10 @@ export default function Culture() {
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-17">
           {codes.map((code, i) => (
-            <div className="relative  w-[568px] h-[624px] " key={i}>
+            <div
+              className="relative flex justify-center w-[568px] h-[624px] "
+              key={i}
+            >
               <Image
                 alt={code.title + "image"}
                 src={code.image}
@@ -227,17 +234,48 @@ export default function Culture() {
                 height={624}
                 className="w-[568px] h-[624px] rounded-4xl"
               />
+              {/* gradient */}
               <div
                 style={{
                   background:
                     "linear-gradient(180deg, #0C0C0E00 0%, #4A4A5A 100%)",
                 }}
-                className=" absolute top-0 flex flex-col justify-end items-center w-full h-full rounded-4xl"
+                className=" absolute top-0 flex flex-col justify-end items-center w-full h-full rounded-4xl "
+              />
+
+              <div
+                style={{
+                  color: "linear-gradient(180deg, #FFFFFF 0%, #4A4A5A 100%)",
+                  fontFamily: 'var(--font-primary, "Bebas Neue")',
+                  fontSize: "58px",
+                  fontStyle: "normal",
+                  fontWeight: "400",
+                  lineHeight: "100%",
+                  letterSpacing: "0%",
+                  textTransform: "uppercase",
+                  margin: 0,
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  position: "absolute",
+                  bottom: "26px",
+                }}
               >
-                <h3 className="">
-{code.title}
+                <h3
+                  style={{
+                    background:
+                      "linear-gradient(180deg, #FFFFFF 0%, #4A4A5A 100%)",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                  }}
+                >
+                  <span>{code.title}</span>
+                  <span>{code.subtitle}</span>
                 </h3>
-                </div>
+              </div>
             </div>
           ))}
         </div>
