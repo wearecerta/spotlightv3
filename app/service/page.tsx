@@ -125,14 +125,14 @@ export default function Service() {
         {/* PR & Communications Card */}
         <ServicesCard
           title="PR & COMMUNICATIONS"
-          description="We are storytellers and brand advocates. We craft compelling narratives that grow brands, nurture meaningful connections, and inspire audiences through experiences across the full spectrum of strategy, marketing, advertising, branding, production, and event services."
+          description="As the Best Marketing Agency in Ethiopia and one of the most trusted names in Addis Ababa, we understand that communication is the foundation of every successful brand. Our PR & Communications services ensure that your brand voice is strong, consistent, and impactful. From managing reputation to building meaningful media relations, we specialize in strategies that enhance credibility and trust."
           services={[
             "REPUTATION MANAGEMENT",
             "COMMUNICATIONS STRATEGY",
             "RISK AND CRISIS MANAGEMENT",
             "MEDIA TRAINING",
-            "PUBLIC RELATIONS CAMPAIGNS",
-            "CRISIS COMMUNICATION SUPPORT",
+            "Media Relation",
+            "Public Relations Campaigns",
           ]}
           imageSrc1="/Service/pr_1.png"
           imageSrc2="/Service/pr_2.jpg"
@@ -145,11 +145,11 @@ export default function Service() {
           description="Recognized as the Best Marketing Agency in Addis Ababa, we focus on result-driven marketing strategies that connect businesses with their audiences. Our marketing solutions are backed by research, creativity, and innovation, helping brands to position themselves strongly in the competitive Ethiopian market."
           services={[
             "MARKET RESEARCH",
-            "SHOPPERS MARKETING",
-            "EXPERIENTIAL MARKETING",
-            "MARKETING STRATEGY",
-            "PROMOTIONAL MARKETING",
-            "CONTENT & EMAIL MARKETING",
+            "Marketing Strategy",
+            "Shoppers Marketing",
+            "Promotional Marketing",
+            "Experiential Marketing",
+            "Content & Email Marketing",
           ]}
           imageSrc1="/Service/marketing_1.png"
           imageSrc2="/Service/marketing_2.jpg"
@@ -161,12 +161,12 @@ export default function Service() {
           title="ADVERTISING"
           description="As the Best Advertising Agency in Addis Ababa and Ethiopia, we provide 360° advertising solutions that make brands visible across platforms. Whether it's traditional media or digital advertising, our campaigns are designed to maximize reach, engagement, and conversions."
           services={[
-            "TV ADVERTISING",
+            "Television Advertising",
             "RADIO ADVERTISING",
             "PRINT ADVERTISING",
-            "OUTDOOR ADVERTISING",
-            "DIGITAL ADVERTISING",
-            "CAMPAIGN STRATEGY",
+            "Out-of-home Advertising",
+            "Affiliate & Influencer Marketing",
+            "SEO | SMO | PPC |",
           ]}
           imageSrc1="/Service/adv-1.png"
           imageSrc2="/Service/adv-2.jpg"
@@ -179,11 +179,11 @@ export default function Service() {
           description="Being the Best Marketing Agency in Ethiopia, we believe that branding is more than just a logo — it's about creating an identity that resonates. Our creative team crafts designs and brand strategies that make businesses stand out in Addis Ababa and beyond."
           services={[
             "BRAND IDENTITY",
-            "LOGO DESIGN",
-            "VISUAL DESIGN",
-            "BRAND STRATEGY",
-            "PACKAGING DESIGN",
-            "CREATIVE DIRECTION",
+            "Graphic Design",
+            "UX/UI & Web Design",
+            "Logo & Creative Assets Design",
+            "Corporate Collateral Design",
+            "Packaging Design",
           ]}
           imageSrc1="/Service/brand-1.jpg"
           imageSrc2="/Service/brand-2.jpg"
@@ -195,12 +195,12 @@ export default function Service() {
           title="PRODUCTION"
           description="As one of the leading Best Advertising Agencies in Ethiopia, we offer complete production services to bring your brand story to life. From TV commercials to documentaries and creative shoots, we deliver high-quality content that connects with audiences."
           services={[
-            "VIDEO PRODUCTION",
-            "TV COMMERCIALS",
-            "DOCUMENTARIES",
-            "CREATIVE SHOOTS",
-            "POST-PRODUCTION",
-            "CONTENT CREATION",
+            "TVC",
+            "Talk Shows",
+            "Documentaries",
+            "Photography",
+            "Video Production & Editing",
+            "Creative Campaign Shoots",
           ]}
           imageSrc1="/Service/prod-1.jpg"
           imageSrc2="/Service/prod-2.jpg"
@@ -213,14 +213,49 @@ export default function Service() {
           description="With years of expertise, we are known as the Best Marketing and Advertising Agency in Addis Ababa for organizing impactful events. From planning to execution, we manage every detail to ensure your brand is showcased in the best possible way."
           services={[
             "EVENT PLANNING",
-            "EVENT EXECUTION",
-            "CORPORATE EVENTS",
-            "PRODUCT LAUNCHES",
-            "CONFERENCES",
-            "EXHIBITIONS",
+            "Event Management",
+            "Venue Sourcing",
+            "Event Engagement and Entertainment",
+            "Audio-Visual Support",
+            "Corporate Events & Exhibitions",
           ]}
           imageSrc1="/Service/event-1.jpg"
           imageSrc2="/Service/event-2.png"
+          href="/service/event-management"
+        />
+
+
+        {/* web development Card */}
+        <ServicesCard
+          title="Website Development "
+          description="As a full-service agency, we go beyond advertising and marketing. Being trusted as the Best Marketing Agency in Ethiopia, we also provide innovative web development services tailored to your business goals. Our websites are designed to be responsive, user-friendly, and conversion-focused."
+          services={[
+            "Custom Website",
+            "E-commerce Website",
+            "CMS Development",
+            "Web App Development",
+            "Website Maintenance & Support",
+            "Responsive & Mobile-friendly",
+          ]}
+          imageSrc1="/Service/website-1.jpg"
+          imageSrc2="/Service/website-2.jpg"
+          href="/service/event-management"
+        />
+
+         {/* digital marketing */}
+        <ServicesCard
+          title="Digital Marketing"
+          description="In today’s digital-first world, our expertise as the Best Advertising Agency in Addis Ababa makes us the go-to partner for businesses aiming to grow online. From SEO to influencer marketing, we deliver strategies that ensure visibility, engagement, and measurable growth."
+          services={[
+            "Search Engine Optimization (SEO)",
+            "Search Engine Marketing (SEM/PPC)",
+            "Social Media Marketing (SMM)",
+            "Social Media Optimization (SMO)",
+            "Content Marketing",
+            "Analytics & Reporting",
+          ]}
+          imageSrc1="/Service/digital-1.jpg"
+          imageSrc2="/Service/digital-2.jpg"
           href="/service/event-management"
         />
       </div>
