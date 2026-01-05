@@ -3,7 +3,7 @@ import ProjectCard from "../ui/ProjectCard";
 
 export default function Ourworks() {
   return (
-    <section 
+    <section
       className="w-full min-h-screen py-[var(--space-xxl)]"
       style={{
         background: "var(--spotlight-950)",
@@ -12,19 +12,20 @@ export default function Ourworks() {
       }}
     >
       {/* Title */}
-      <h1 
+      <h1
         className="text-center mb-[var(--space-xxl)]"
         style={{
-          fontSize: 'clamp(3.5rem, 10vw, var(--h2-size))',
-          fontFamily: 'var(--font-primary)',
-          lineHeight: 'var(--h2-line)',
-          display: 'inline-block',
-          width: '100%',
-          background: 'linear-gradient(180deg, var(--spotlight-50) 0%, var(--spotlight-700) 100%)',
-          WebkitBackgroundClip: 'text',
-          backgroundClip: 'text',
-          WebkitTextFillColor: 'transparent',
-          textAlign: 'center',
+          fontSize: "clamp(3.5rem, 10vw, var(--h2-size))",
+          fontFamily: "var(--font-primary)",
+          lineHeight: "var(--h2-line)",
+          display: "inline-block",
+          width: "100%",
+          background:
+            "linear-gradient(180deg, var(--spotlight-50) 0%, var(--spotlight-700) 100%)",
+          WebkitBackgroundClip: "text",
+          backgroundClip: "text",
+          WebkitTextFillColor: "transparent",
+          textAlign: "center",
         }}
       >
         OUR WORKS
@@ -39,6 +40,7 @@ export default function Ourworks() {
           tags={["BRANDING", "MARKETING", "PRODUCTION"]}
           videoSrc="https://www.youtube.com/watch?v=c5iitHD0bNg"
           href="/work/safaricom-ethiopia"
+          dark={true}
         />
 
         {/* Second Row - Two Cards Side by Side */}
@@ -49,6 +51,7 @@ export default function Ourworks() {
             tags={["BRANDING", "MARKETING", "PRODUCTION"]}
             videoSrc="https://www.youtube.com/watch?v=c5iitHD0bNg"
             href="/work/adey-music"
+            dark={true}
           />
 
           <ProjectCard
@@ -57,6 +60,7 @@ export default function Ourworks() {
             tags={["BRANDING", "MARKETING", "PRODUCTION"]}
             videoSrc="https://www.youtube.com/watch?v=c5iitHD0bNg"
             href="/work/st-george"
+            dark={true}
           />
         </div>
 
@@ -68,6 +72,7 @@ export default function Ourworks() {
             tags={["BRANDING", "MARKETING", "PRODUCTION"]}
             videoSrc="https://www.youtube.com/watch?v=c5iitHD0bNg"
             href="/work/grv-summit"
+            dark={true}
           />
 
           <ProjectCard
@@ -76,6 +81,7 @@ export default function Ourworks() {
             tags={["BRANDING", "MARKETING", "PRODUCTION"]}
             videoSrc="https://www.youtube.com/watch?v=c5iitHD0bNg"
             href="/work/eu-africa"
+            dark={true}
           />
         </div>
 
@@ -87,6 +93,7 @@ export default function Ourworks() {
             tags={["BRANDING", "MARKETING", "PRODUCTION"]}
             videoSrc="https://www.youtube.com/watch?v=c5iitHD0bNg"
             href="/work/adey-music-2"
+            dark={true}
           />
 
           <ProjectCard
@@ -95,13 +102,12 @@ export default function Ourworks() {
             tags={["BRANDING", "MARKETING", "PRODUCTION"]}
             videoSrc="https://www.youtube.com/watch?v=c5iitHD0bNg"
             href="/work/st-george-2"
+            dark={true}
           />
         </div>
       </div>
 
-     <Buttons>
-      explore now
-     </Buttons>
+      <Buttons>explore now</Buttons>
     </section>
   );
 }

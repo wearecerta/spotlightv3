@@ -1,202 +1,144 @@
 "use client";
 
-import Ourworks from "@/components/sections/Ourworks";
-import WorkCard from "@/components/ui/WorkCard";
+import ProjectCard from "@/components/ui/ProjectCard";
+
+type WorkItem = {
+  title: string;
+  tags: string[];
+  videoSrc: string;
+  href: string;
+  featured?: boolean;
+};
+
+const WORKS: WorkItem[] = [
+  {
+    title: "SAFARICOM ETHIOPIA",
+    tags: ["BRANDING", "MARKETING", "PRODUCTION"],
+    videoSrc: "https://www.youtube.com/watch?v=c5iitHD0bNg",
+    href: "/work/safaricom-ethiopia",
+    featured: true,
+  },
+  {
+    title: "ADEY MUSIC AND STUDIO",
+    tags: ["BRANDING", "MARKETING", "PRODUCTION"],
+    videoSrc: "https://www.youtube.com/watch?v=c5iitHD0bNg",
+    href: "/work/adey-music",
+  },
+  {
+    title: "ST. GEORGE",
+    tags: ["BRANDING", "MARKETING", "PRODUCTION"],
+    videoSrc: "https://www.youtube.com/watch?v=c5iitHD0bNg",
+    href: "/work/st-george",
+  },
+  {
+    title: "GRV SUMMIT",
+    tags: ["BRANDING", "MARKETING", "PRODUCTION"],
+    videoSrc: "https://www.youtube.com/watch?v=c5iitHD0bNg",
+    href: "/work/grv-summit",
+  },
+  {
+    title: "EU & AFRICA",
+    tags: ["BRANDING", "MARKETING", "PRODUCTION"],
+    videoSrc: "https://www.youtube.com/watch?v=c5iitHD0bNg",
+    href: "/work/eu-africa",
+  },
+  {
+    title: "ADEY MUSIC AND STUDIO",
+    tags: ["BRANDING", "MARKETING", "PRODUCTION"],
+    videoSrc: "https://www.youtube.com/watch?v=c5iitHD0bNg",
+    href: "/work/adey-music-2",
+  },
+  {
+    title: "ST. GEORGE",
+    tags: ["BRANDING", "MARKETING", "PRODUCTION"],
+    videoSrc: "https://www.youtube.com/watch?v=c5iitHD0bNg",
+    href: "/work/st-george-2",
+  },
+];
 
 export default function Work() {
   return (
-    <main
-      style={{
-        minHeight: '100vh',
-        background: '#F7F7F8',
-        position: 'relative',
-      }}
-    >
-      {/* Hero Section */}
-      <section
-        style={{
-          display: 'flex',
-          minHeight: '100vh',
-          padding: 'var(--section-margin-y, 120px) var(--section-margin-x, 120px)',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center',
-          gap: 'var(--space-xl, 48px)',
-          alignSelf: 'stretch',
-          position: 'relative',
-        }}
-      >
-        {/* Hero Heading */}
+    <main className="min-h-screen bg-[#F7F7F8] mx-auto">
+      {/* ================= HERO ================= */}
+      <section className="min-h-screen flex flex-col justify-center items-center px-6 md:px-[120px] gap-12 max-w-[1440px] mx-auto">
         <h1
+          className="text-center uppercase leading-none"
           style={{
             fontFamily: 'var(--font-primary, "Bebas Neue")',
-            fontSize: 'clamp(80px, 12vw, 148px)',
-            fontStyle: 'normal',
-            fontWeight: '400',
-            lineHeight: '100%',
-            textTransform: 'uppercase',
-            textAlign: 'center',
-            alignSelf: 'stretch',
+            fontSize: "var(--h2-size)",
           }}
         >
-          <span style={{ color: '#C7C7CC' }}>WE MAKE </span>
-          <span style={{ color: '#0C0C0E' }}>STANDING</span>
+          <span className="text-[#B6B7C3]">WE MAKE </span>
+          <span className="text-[#0C0C0E]">STANDING</span>
           <br />
-          <span style={{ color: '#0C0C0E' }}>OUT </span>
-          <span style={{ color: '#C7C7CC' }}>SIMPLE</span>
+          <span className="text-[#0C0C0E]">OUT </span>
+          <span className="text-[#B6B7C3]">SIMPLE</span>
         </h1>
       </section>
 
-      {/* Works Section with Filter */}
-      <section
-        style={{
-          display: 'flex',
-          padding: 'var(--section-margin-y, 120px) var(--section-margin-x, 120px)',
-          flexDirection: 'column',
-          alignItems: 'flex-start',
-          gap: 'var(--space-xl, 48px)',
-          alignSelf: 'stretch',
-          background: '#F7F7F8',
-        }}
-      >
-        {/* Works Heading */}
+      {/* ================= WORKS ================= */}
+      <section className="px-6 md:px-[120px] pb-24 flex flex-col gap-12 max-w-[1440px] mx-auto">
+        {/* Heading */}
         <h2
+          className="uppercase leading-none"
           style={{
-            color: 'var(--color-Spotlight-Color-Dark-Gray, #4A4A5A)',
             fontFamily: 'var(--font-primary, "Bebas Neue")',
-            fontSize: 'var(--h2-size, 148px)',
-            fontStyle: 'normal',
-            fontWeight: '400',
-            lineHeight: '100%',
-            textTransform: 'uppercase',
-            alignSelf: 'stretch',
+            fontSize: "var(--h2-size)",
+            color: "#4A4A5A",
           }}
         >
           WORKS
         </h2>
 
-        {/* Filter Tabs */}
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'flex-start',
-            alignItems: 'center',
-            gap: 'var(--space-xl, 48px)',
-            alignSelf: 'stretch',
-          }}
-        >
-          {['ALL', 'ADVERTISING', 'STORYTELLING', 'TVC', 'MARKETING'].map((filter, index) => (
-            <div key={filter} style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-xl, 48px)' }}>
-              <button
-                className="work-filter-button"
-                style={{
-                  padding: '0',
-                  background: 'transparent',
-                  border: 'none',
-                  cursor: 'pointer',
-                  color: 'var(--color-Spotlight-Color-Light-Gray, #B6B7C3)',
-                  fontFamily: 'var(--font-primary, "Bebas Neue")',
-                  fontSize: '24px',
-                  fontStyle: 'normal',
-                  fontWeight: '400',
-                  lineHeight: '120%',
-                  textTransform: 'uppercase',
-                  transition: 'color 0.3s ease',
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.color = '#4A4A5A';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.color = '#B6B7C3';
-                }}
-              >
-                {filter}
-              </button>
-              {index < 4 && (
-                <span
+        {/* Filters */}
+        <div className="flex flex-wrap gap-y-2 items-center gap-4">
+          {["ALL", "ADVERTISING", "STORYTELLING", "TVC", "MARKETING"].map(
+            (filter, index) => (
+              <div key={filter} className="flex items-center gap-4">
+                <button
+                  className="uppercase transition-colors duration-300"
                   style={{
-                    width: '8px',
-                    height: '8px',
-                    borderRadius: '50%',
-                    background: '#B6B7C3',
+                    fontFamily: 'var(--font-primary, "Bebas Neue")',
+                    fontSize: "24px",
+                    color: "#B6B7C3",
                   }}
-                />
-              )}
+                  onMouseEnter={(e) =>
+                    (e.currentTarget.style.color = "#4A4A5A")
+                  }
+                  onMouseLeave={(e) =>
+                    (e.currentTarget.style.color = "#B6B7C3")
+                  }
+                >
+                  {filter}
+                </button>
+
+                {index < 4 && (
+                  <span className="w-2 h-2 rounded-full bg-[#B6B7C3]" />
+                )}
+              </div>
+            )
+          )}
+        </div>
+
+        {/* ================= GRID ================= */}
+        <div
+          className="
+            grid
+            grid-cols-1
+            md:grid-cols-2
+            gap-8
+            auto-rows-auto
+            [grid-auto-flow:dense]
+          "
+        >
+          {WORKS.map((work) => (
+            <div
+              key={work.href}
+              className={work.featured ? "md:col-span-2" : ""}
+            >
+              <ProjectCard dark={false} {...work} />
             </div>
           ))}
-        </div>
-      </section>
-
-      {/* Projects Grid */}
-      <section
-        style={{
-          display: 'flex',
-          padding: '0 var(--section-margin-x, 120px) var(--section-margin-y, 120px)',
-          flexDirection: 'column',
-          gap: 'var(--space-lg, 32px)',
-          alignSelf: 'stretch',
-          background: '#FFFFFF',
-        }}
-      >
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-lg, 32px)' }}>
-        {/* First Card - Full Width */}
-        <WorkCard
-          title="SAFARICOM ETHIOPIA"
-          tags={["BRANDING", "MARKETING", "PRODUCTION"]}
-          videoSrc="https://www.youtube.com/watch?v=c5iitHD0bNg"
-          href="/work/safaricom-ethiopia"
-        />
-
-        {/* Second Row - Two Cards Side by Side */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 'var(--space-lg, 32px)' }}>
-          <WorkCard
-            title="ADEY MUSIC AND STUDIO"
-            tags={["BRANDING", "MARKETING", "PRODUCTION"]}
-            videoSrc="https://www.youtube.com/watch?v=c5iitHD0bNg"
-            href="/work/adey-music"
-          />
-
-          <WorkCard
-            title="ST. GEORGE"
-            tags={["BRANDING", "MARKETING", "PRODUCTION"]}
-            videoSrc="https://www.youtube.com/watch?v=c5iitHD0bNg"
-            href="/work/st-george"
-          />
-        </div>
-
-        {/* Third Row - Two Cards Side by Side */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 'var(--space-lg, 32px)' }}>
-          <WorkCard
-            title="GRV SUMMIT"
-            tags={["BRANDING", "MARKETING", "PRODUCTION"]}
-            videoSrc="https://www.youtube.com/watch?v=c5iitHD0bNg"
-            href="/work/grv-summit"
-          />
-
-          <WorkCard
-            title="EU & AFRICA"
-            tags={["BRANDING", "MARKETING", "PRODUCTION"]}
-            videoSrc="https://www.youtube.com/watch?v=c5iitHD0bNg"
-            href="/work/eu-africa"
-          />
-        </div>
-
-        {/* Fourth Row - Two Cards Side by Side */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 'var(--space-lg, 32px)' }}>
-          <WorkCard
-            title="ADEY MUSIC AND STUDIO"
-            tags={["BRANDING", "MARKETING", "PRODUCTION"]}
-            videoSrc="https://www.youtube.com/watch?v=c5iitHD0bNg"
-            href="/work/adey-music-2"
-          />
-
-          <WorkCard
-            title="ST. GEORGE"
-            tags={["BRANDING", "MARKETING", "PRODUCTION"]}
-            videoSrc="https://www.youtube.com/watch?v=c5iitHD0bNg"
-            href="/work/st-george-2"
-          />
-        </div>
         </div>
       </section>
     </main>

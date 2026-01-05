@@ -10,6 +10,7 @@ interface ProjectCardProps {
   videoSrc?: string; // Optional - for direct video files (.mp4, etc.)
   imageSrc?: string; // Optional - for images
   href: string;
+  dark: boolean;
   className?: string; // <- only customizable sizing
 }
 
@@ -39,6 +40,7 @@ export default function ProjectCard({
   videoSrc,
   imageSrc,
   href,
+  dark,
   className = "",
 }: ProjectCardProps) {
   // Determine what media to show
@@ -67,18 +69,18 @@ export default function ProjectCard({
         ${className}
       `}
       style={{
-        background: "#2C2C34",
+        background:dark? "#2C2C34":"white",
         border: "1px solid rgba(255, 255, 255, 0.1)",
       }}
     >
       {/* TOP CONTENT */}
       <div className="flex items-start  justify-between p-6 md:p-8">
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-2">
           <h2
             className="tracking-wide"
             style={{
               fontFamily: "var(--font-primary)",
-              color: "#FFFFFF",
+              color: dark?"#FFFFFF" : "#0C0C0E",
               fontSize: "var(--h4-size)",
               lineHeight: "var(--h4-line)",
               
@@ -88,24 +90,24 @@ export default function ProjectCard({
           </h2>
 
           <div
-            className="flex flex-wrap items-center gap-2 mt-1"
+            className="flex flex-wrap gap-y-0 gap-2 "
             style={{
               fontFamily: "var(--font-secondary)",
-              color: "#FFFFFF",
+              color: dark?"#FFFFFF" : "#0C0C0E",
               fontSize: "var(--body-medium-size)",
               opacity: 0.8,
             }}
           >
             {tags.map((tag, index) => (
-              <span key={index} className="flex  items-center gap-3">
+              <span key={index} className="flex  text-[12px] items-center gap-2">
                 {tag}
                 {index < tags.length + 1 && (
                   <span>
                     <Image
-                      src="/Icons/dot.svg"
+                      src={dark?"/Icons/dot.svg":"/Icons/black-dot.svg"}
                       alt="Separator"
-                      width={10}
-                      height={10}
+                      width={8}
+                      height={8}
                     />
                   </span>
                 )}
@@ -114,13 +116,14 @@ export default function ProjectCard({
           </div>
         </div>
 
+
         {/* Arrow (SVG, no dependencies) */}
         <Image
-          src="/Icons/arrow.svg"
+          src={dark?"/Icons/arrow.svg":"/Icons/dark-arrow.svg"}
           alt="Arrow"
           width={20}
           height={20}
-          className="transition-colors h-5 w-5 md:h-8 md:w-8  "
+          className="transition-colors h-5 w-5 md:h-6 md:w-6  "
           style={{ color: "#FFFFFF" }}
         />
       </div>
