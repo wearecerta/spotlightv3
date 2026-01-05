@@ -141,7 +141,7 @@ export default function Culture() {
   return (
     <main className="relative min-h-screen -mt-20 md:-mt-24 lg:-mt-26 overflow-hidden bg-[#0C0C0E] z-0">
       {/* Hero Section */}
-      <section className="main mt-20 md:mt-56 relative  min-h-screen flex flex-col justify-center items-center gap-3 md:gap-16">
+      <section className="main md:mt-56 relative  min-h-screen flex flex-col justify-center items-center gap-3 md:gap-16">
         {images.map(
           (src, index) =>
             index % 2 === 0 && (
@@ -190,14 +190,14 @@ export default function Culture() {
           <p className="text-white font-(--font-secondary) text-xl leading-[120%] md:text-2xl lg:text-4xl  mb-8">
             This is No Ordinary Workplace, It's
           </p>
-          <div className="inline-flex rotate-3 items-center gap-2 md:gap-3  bg-white px-6 md:px-30 py-3 rounded-full shadow-lg">
+          <div className="inline-flex -rotate-3 -mt-5 items-center gap-2 md:gap-3  bg-white px-6 md:px-30 py-3 rounded-full shadow-lg">
             <Image
               src={"/Icons/black-dot.svg"}
               width={20}
               height={20}
               alt="dot icon"
             />
-            <span className="text-xl md:text-2xl font-[--font-secondary] text-black">
+            <span className="text-xl md:text-2xl font-[var(--font-outfit, 'Outfit')] text-black">
               A Creative Playground
             </span>
           </div>
@@ -206,7 +206,9 @@ export default function Culture() {
 
       <PolaroidImages />
 
-      <section className="bg-[#4A4A5A4D] border border-[#4A4A5A4D] flex flex-col gap-(--space-xl) max-w-[1440px] w-[342px] md:w-[1200px] mx-auto rounded-[48px] px-6 py-12 md:p-[120px]">
+      <section className="max-w-[1440px] w-full mx-auto p-6 md:p-[120px] ">
+        <div className="bg-[#4A4A5A4D]   border border-[#4A4A5A4D] flex flex-col gap-(--space-xl) rounded-3xl md:rounded-[48px] px-6 py-12 md:p-[120px] ">
+
         <div className="flex flex-col">
           <h2
             style={{
@@ -224,7 +226,7 @@ export default function Culture() {
             We Don't Stop!
           </h2>
 
-          <p className="text-white text-lg font-[--font-secondary] w-[294px] md:w-[653px] ">
+          <p className="text-white text-lg font-(--font-secondary)  ">
             Good enough” isn’t in our vocabulary. Our fire rages with an
             insatiable hunger to learn, explore uncharted territories, and dig
             up fresh truths that’ll blow minds. We never stop questioning,
@@ -246,18 +248,19 @@ export default function Culture() {
             />
           ))}
         </div>
+              </div>
       </section>
 
       {/* Sacred Codes Section */}
       <section className="flex flex-col mx-auto max-w-[1440px] px-8 md:px-24 py-32 gap-16 bg-[#0C0C0E]">
-         <div className="inline-flex w-fit -rotate-3  items-center gap-1 md:gap-3  bg-white px-6 md:px-30 py-3 rounded-full shadow-lg">
+         <div className="inline-flex w-fit -rotate-3 -mb-15  items-center gap-1 md:gap-3  bg-white px-6 md:px-30 py-3 rounded-full shadow-lg">
             <Image
               src={"/Icons/black-dot.svg"}
               width={20}
               height={20}
               alt="dot icon"
             />
-            <span className="text-xl md:text-2xl font-[--font-secondary] text-black">
+            <span className="text-xl md:text-2xl font-[var(--font-outfit, 'Outfit')] text-black">
               The Codes we Live By
             </span>
           </div>
@@ -279,7 +282,7 @@ export default function Culture() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-17">
           {codes.map((code, i) => (
             <div
-              className="relative flex justify-center h-[342px] md:h-[624px] w-full md:w-[568px]  "
+              className="relative flex justify-center aspect-square"
               key={i}
             >
               <Image
@@ -287,7 +290,7 @@ export default function Culture() {
                 src={code.image}
                 width={568}
                 height={624}
-                className="rounded-4xl"
+                className="rounded-4xl object-cover"
               />
               {/* gradient */}
               <div

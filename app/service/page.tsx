@@ -4,71 +4,64 @@ export default function Service() {
   return (
     <main
       style={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'flex-start',
-        justifyContent: 'flex-start',
-        minHeight: '100vh',
-        padding: 'var(--section-margin-y, 120px) var(--section-margin-x, 120px)',
-        background: '#F7F7F8',
-        gap: 'var(--space-xl, 48px)',
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "flex-start",
+        justifyContent: "flex-start",
+        minHeight: "100vh",
+        background: "#F7F7F8",
+        paddingBottom:"160px"
       }}
     >
       {/* Services Heading */}
-      <h1
-        style={{
-          color: 'var(--spotlight-950, #0C0C0E)',
-          fontFamily: 'var(--font-primary, "Bebas Neue")',
-          fontSize: '148px',
-          fontStyle: 'normal',
-          fontWeight: '400',
-          lineHeight: '100%',
-          textTransform: 'uppercase',
-          textAlign: 'left',
-        }}
-      >
-        SERVICES
-      </h1>
+      <div className="max-w-[1440px] flex flex-col gap-2 p-[24px] md:p-(--space-xxl) mx-auto">
+        <h2
+          style={{
+            color: "var(--spotlight-950, #0C0C0E)",
+            fontFamily: 'var(--font-primary, "Bebas Neue")',
+            fontSize: "var(--h2-size)",
+            fontStyle: "normal",
+            fontWeight: "400",
+            lineHeight: "100%",
+            textTransform: "uppercase",
+            textAlign: "left",
+          }}
+        >
+          SERVICES
+        </h2>
 
-      {/* Description Paragraph */}
-      <p
-        style={{
-          color: '#000',
-          fontFamily: 'var(--font-secondary, Outfit)',
-          fontSize: '32px',
-          fontStyle: 'normal',
-          fontWeight: '300',
-          lineHeight: '120%',
-          textAlign: 'left',
-          maxWidth: '1000px',
-        }}
-      >
-        We are storytellers and brand advocates. We craft compelling narratives that grow
-        brands, nurture meaningful connections, and inspire audiences through experiences
-        across the full spectrum of strategy, marketing, advertising, branding, production,
-        and event services.
-      </p>
+        {/* Description Paragraph */}
+        <p
+          style={{
+            color: "#000",
+            fontFamily: "var(--font-secondary, Outfit)",
+            fontSize: "20px",
+            fontStyle: "normal",
+            fontWeight: "300",
+            lineHeight: "120%",
+            textAlign: "left",
+          }}
+        >
+          We are storytellers and brand advocates. We craft compelling
+          narratives that grow brands, nurture meaningful connections, and
+          inspire audiences through experiences across the full spectrum of
+          strategy, marketing, advertising, branding, production, and event
+          services.
+        </p>
+      </div>
 
       {/* Three Videos Side by Side - Full Width, No Gaps */}
       <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(3, 1fr)',
-          gap: '0',
-          width: '100vw', 
-          marginLeft: 'calc(-1 * var(--section-margin-x, 120px))',
-          marginTop: 'var(--space-xxl, 64px)',
-          height: '480px',
-        }}
+        className="grid grid-cols-1 md:grid-cols-3 w-full mt-0 gap-0"
       >
         {/* Video 1 */}
         <div
           style={{
-            position: 'relative',
-            width: '100%',
-            aspectRatio: '16 / 9',
-            overflow: 'hidden',
-            background: '#000',
+            position: "relative",
+            width: "100%",
+            aspectRatio: "16 / 9",
+            overflow: "hidden",
+            background: "#000",
           }}
         >
           <iframe
@@ -76,7 +69,7 @@ export default function Service() {
             className="absolute inset-0 w-full h-full"
             allow="autoplay; encrypted-media"
             allowFullScreen
-            style={{ border: 'none' }}
+            style={{ border: "none" }}
             title="Video 1"
           />
         </div>
@@ -84,11 +77,11 @@ export default function Service() {
         {/* Video 2 */}
         <div
           style={{
-            position: 'relative',
-            width: '100%',
-            aspectRatio: '16 / 9',
-            overflow: 'hidden',
-            background: '#000',
+            position: "relative",
+            width: "100%",
+            aspectRatio: "16 / 9",
+            overflow: "hidden",
+            background: "#000",
           }}
         >
           <iframe
@@ -96,7 +89,7 @@ export default function Service() {
             className="absolute inset-0 w-full h-full"
             allow="autoplay; encrypted-media"
             allowFullScreen
-            style={{ border: 'none' }}
+            style={{ border: "none" }}
             title="Video 2"
           />
         </div>
@@ -104,11 +97,11 @@ export default function Service() {
         {/* Video 3 */}
         <div
           style={{
-            position: 'relative',
-            width: '100%',
-            aspectRatio: '16 / 9',
-            overflow: 'hidden',
-            background: '#000',
+            position: "relative",
+            width: "100%",
+            aspectRatio: "16 / 9",
+            overflow: "hidden",
+            background: "#000",
           }}
         >
           <iframe
@@ -116,7 +109,7 @@ export default function Service() {
             className="absolute inset-0 w-full h-full"
             allow="autoplay; encrypted-media"
             allowFullScreen
-            style={{ border: 'none' }}
+            style={{ border: "none" }}
             title="Video 3"
           />
         </div>
@@ -125,10 +118,8 @@ export default function Service() {
       {/* Service Cards Section */}
       <div
         style={{
-          display: 'flex',
-          flexDirection: 'column',
-          width: '100%',
-          marginTop: 'var(--space-xxl, 120px)',
+          display: "flex",
+          flexDirection: "column",
         }}
       >
         {/* PR & Communications Card */}
@@ -141,7 +132,7 @@ export default function Service() {
             "RISK AND CRISIS MANAGEMENT",
             "MEDIA TRAINING",
             "PUBLIC RELATIONS CAMPAIGNS",
-            "CRISIS COMMUNICATION SUPPORT"
+            "CRISIS COMMUNICATION SUPPORT",
           ]}
           imageSrc1="/Service/pr_1.png"
           imageSrc2="/Service/pr_2.jpg"
@@ -158,7 +149,7 @@ export default function Service() {
             "EXPERIENTIAL MARKETING",
             "MARKETING STRATEGY",
             "PROMOTIONAL MARKETING",
-            "CONTENT & EMAIL MARKETING"
+            "CONTENT & EMAIL MARKETING",
           ]}
           imageSrc1="/Service/marketing_1.png"
           imageSrc2="/Service/marketing_2.jpg"
@@ -175,7 +166,7 @@ export default function Service() {
             "PRINT ADVERTISING",
             "OUTDOOR ADVERTISING",
             "DIGITAL ADVERTISING",
-            "CAMPAIGN STRATEGY"
+            "CAMPAIGN STRATEGY",
           ]}
           imageSrc1="/Service/adv-1.png"
           imageSrc2="/Service/adv-2.jpg"
@@ -192,7 +183,7 @@ export default function Service() {
             "VISUAL DESIGN",
             "BRAND STRATEGY",
             "PACKAGING DESIGN",
-            "CREATIVE DIRECTION"
+            "CREATIVE DIRECTION",
           ]}
           imageSrc1="/Service/brand-1.jpg"
           imageSrc2="/Service/brand-2.jpg"
@@ -209,7 +200,7 @@ export default function Service() {
             "DOCUMENTARIES",
             "CREATIVE SHOOTS",
             "POST-PRODUCTION",
-            "CONTENT CREATION"
+            "CONTENT CREATION",
           ]}
           imageSrc1="/Service/prod-1.jpg"
           imageSrc2="/Service/prod-2.jpg"
@@ -226,7 +217,7 @@ export default function Service() {
             "CORPORATE EVENTS",
             "PRODUCT LAUNCHES",
             "CONFERENCES",
-            "EXHIBITIONS"
+            "EXHIBITIONS",
           ]}
           imageSrc1="/Service/event-1.jpg"
           imageSrc2="/Service/event-2.png"
