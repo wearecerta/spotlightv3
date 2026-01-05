@@ -29,12 +29,11 @@ export default function BlogCard({
       href={href}
       className={`
         block rounded-3xl overflow-hidden
-        transition-all duration-300 hover:shadow-lg
+        transition-all duration-300 
         ${className}
       `}
       style={{
         background: '#FFFFFF',
-        border: '1px solid rgba(0, 0, 0, 0.1)',
       }}
     >
       {/* Image Section */}
@@ -43,7 +42,7 @@ export default function BlogCard({
           src={imageSrc}
           alt={title}
           fill
-          className="object-cover"
+          className="object-cover rounded-3xl"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
       </div>
@@ -54,7 +53,7 @@ export default function BlogCard({
         <div
           style={{
             fontFamily: "var(--font-secondary, Outfit)",
-            fontSize: "var(--body-medium-size, 16px)",
+            fontSize: "14px",
             color: "#4A4A5A",
             marginBottom: "var(--space-md, 24px)",
           }}
@@ -73,6 +72,7 @@ export default function BlogCard({
             textTransform: "uppercase",
             marginBottom: "var(--space-md, 24px)",
           }}
+          className="line-clamp-2"
         >
           {title}
         </h3>
@@ -87,47 +87,47 @@ export default function BlogCard({
             color: "#4A4A5A",
             marginBottom: "var(--space-lg, 32px)",
           }}
+          className="line-clamp-2"
         >
           {excerpt}
         </p>
 
         {/* Tags and Arrow */}
         <div className="flex items-center justify-between">
-          <div
-            className="flex items-center gap-3"
-            style={{
-              fontFamily: "var(--font-secondary, Outfit)",
-              fontSize: "var(--body-medium-size, 16px)",
-              color: "#0C0C0E",
-              fontWeight: "500",
-              textTransform: "uppercase",
-            }}
-          >
-            {tags.map((tag, index) => (
-              <span key={index} className="flex items-center gap-3">
-                {tag}
-                {index < tags.length - 1 && <span>•</span>}
-              </span>
-            ))}
-          </div>
+           <div
+                      className="flex flex-wrap gap-y-0 gap-2 "
+                      style={{
+                        fontFamily: "var(--font-secondary)",
+                        color:  "#0C0C0E",
+                        fontSize: "var(--body-medium-size)",
+                      }}
+                    >
+                      {tags.map((tag, index) => (
+                        <span key={index} className="flex  text-[12px] items-center gap-2">
+                          {tag}
+                          {index < tags.length + 1 && (
+                            <span>
+                              <Image
+                                src={"/Icons/black-dot.svg"}
+                                alt="Separator"
+                                width={8}
+                                height={8}
+                              />
+                            </span>
+                          )}
+                        </span>
+                      ))}
+                    </div>
 
           {/* Arrow Icon */}
-          <svg
-            width="32"
-            height="32"
-            viewBox="0 0 32 32"
-            className="transition-transform group-hover:translate-x-1 group-hover:-translate-y-1"
-            style={{ color: "#0C0C0E" }}
-          >
-            <path
-              d="M8 24L24 8M24 8H12M24 8V20"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
+          <Image
+                   src={"/Icons/dark-arrow.svg"}
+                   alt="Arrow"
+                   width={20}
+                   height={20}
+                   className="transition-colors h-5 w-5 md:h-6 md:w-6  "
+                   style={{ color: "#FFFFFF" }}
+                 />
         </div>
       </div>
     </Link>

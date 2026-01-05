@@ -24,25 +24,21 @@ export default function Blog() {
           alignSelf: 'stretch',
           position: 'relative',
         }}
+        className="max-w-[1440px] mx-auto"
       >
         {/* Hero Heading */}
         <h1
+          className="text-center uppercase leading-none"
           style={{
             fontFamily: 'var(--font-primary, "Bebas Neue")',
-            fontSize: 'clamp(80px, 12vw, 148px)',
-            fontStyle: 'normal',
-            fontWeight: '400',
-            lineHeight: '100%',
-            textTransform: 'uppercase',
-            textAlign: 'center',
-            alignSelf: 'stretch',
+            fontSize: "var(--h2-size)",
           }}
         >
           <span style={{ color: '#0C0C0E' }}>BEHIND EVERY </span>
-          <span style={{ color: '#C7C7CC' }}>AD</span>
+          <span style={{ color: '#B6B7C3' }}>AD,</span>
           <br />
           <span style={{ color: '#0C0C0E' }}>THERE'S </span>
-          <span style={{ color: '#C7C7CC' }}>A STORY</span>
+          <span style={{ color: '#B6B7C3' }}>A STORY</span>
         </h1>
       </section>
 
@@ -53,91 +49,60 @@ export default function Blog() {
           padding: 'var(--section-margin-y, 120px) var(--section-margin-x, 120px)',
           flexDirection: 'column',
           alignItems: 'flex-start',
-          gap: 'var(--space-xl, 48px)',
+          gap: 'var(--space-xxl, 48px)',
           alignSelf: 'stretch',
           background: '#F7F7F8',
         }}
+        className="max-w-[1440px] mx-auto"
       >
         {/* Blogs Heading */}
         <h2
+          className="uppercase leading-none"
           style={{
-            color: 'var(--color-Spotlight-Color-Dark-Gray, #4A4A5A)',
             fontFamily: 'var(--font-primary, "Bebas Neue")',
-            fontSize: 'var(--h2-size, 148px)',
-            fontStyle: 'normal',
-            fontWeight: '400',
-            lineHeight: '100%',
-            textTransform: 'uppercase',
-            alignSelf: 'stretch',
+            fontSize: "var(--h2-size)",
+            color: "#4A4A5A",
           }}
         >
           BLOGS
         </h2>
 
-        {/* Category Filters */}
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'flex-start',
-            alignItems: 'center',
-            gap: 'var(--space-xl, 48px)',
-            alignSelf: 'stretch',
-            paddingLeft: '4px',
-          }}
-        >
-          {['ALL', 'ADVERTISING', 'STORYTELLING', 'TVC', 'MARKETING'].map((filter, index) => (
-            <div key={filter} style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-xl, 48px)' }}>
-              <button
-                className="blog-filter-button"
-                style={{
-                  padding: '0',
-                  background: 'transparent',
-                  border: 'none',
-                  cursor: 'pointer',
-                  color: 'var(--color-Spotlight-Color-Light-Gray, #B6B7C3)',
-                  fontFamily: 'var(--font-primary, "Bebas Neue")',
-                  fontSize: '24px',
-                  fontStyle: 'normal',
-                  fontWeight: '400',
-                  lineHeight: '120%',
-                  textTransform: 'uppercase',
-                  transition: 'color 0.3s ease',
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.color = '#4A4A5A';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.color = '#B6B7C3';
-                }}
-              >
-                {filter}
-              </button>
-              {index < 4 && (
-                <span
+        <div className="flex flex-wrap gap-y-2 items-center gap-4">
+          {['ALL', 'ADVERTISING', 'STORYTELLING', 'TVC', 'MARKETING'].map(
+            (filter, index) => (
+              <div key={filter} className="flex items-center gap-4">
+                <button
+                  className="uppercase transition-colors duration-300"
                   style={{
-                    width: '8px',
-                    height: '8px',
-                    borderRadius: '50%',
-                    background: '#B6B7C3',
+                    fontFamily: 'var(--font-primary, "Bebas Neue")',
+                    fontSize: "24px",
+                    color: "#B6B7C3",
                   }}
-                />
-              )}
-            </div>
-          ))}
+                  onMouseEnter={(e) =>
+                    (e.currentTarget.style.color = "#4A4A5A")
+                  }
+                  onMouseLeave={(e) =>
+                    (e.currentTarget.style.color = "#B6B7C3")
+                  }
+                >
+                  {filter}
+                </button>
+
+                {index < 4 && (
+                  <span className="w-2 h-2 rounded-full bg-[#B6B7C3]" />
+                )}
+              </div>
+            )
+          )}
         </div>
+
 
         {/* Blog Cards Grid */}
         <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(2, 1fr)',
-            gap: 'var(--space-lg, 32px)',
-            alignSelf: 'stretch',
-            marginTop: 'var(--space-xl, 48px)',
-          }}
+          className="grid grid-cols-1 md:grid-cols-2 gap-(--space-lg) self-center"
         >
           <BlogCard
-            title="BRANDING BEYOND LOGOS: BUILDING LASTING CONNECTIONS"
+            title="BRANDING BEYOND LOGOS: BUILDING LASTING CONNECTIONS BRANDING BEYOND LOGOS: BUILDING LASTING CONNECTIONS"
             excerpt="A strong brand isn't just about colors or logos—it's about the emotions, values, and stories ..."
             author="Admin"
             date="August 10, 2025"
@@ -155,17 +120,8 @@ export default function Blog() {
             imageSrc="/Blog/BlogCard-2.jpg"
             href="/blog/script-to-screen"
           />
-        </div>
 
-        {/* Second Row of Blog Cards */}
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(2, 1fr)',
-            gap: 'var(--space-lg, 32px)',
-            alignSelf: 'stretch',
-          }}
-        >
+    
           <BlogCard
             title="BRANDING BEYOND LOGOS: BUILDING LASTING CONNECTIONS"
             excerpt="A strong brand isn't just about colors or logos—it's about the emotions, values, and stories ..."
@@ -174,7 +130,7 @@ export default function Blog() {
             tags={["BRANDING", "MARKETING", "PRODUCTION"]}
             imageSrc="/Blog/BlogCard-1.jpg"
             href="/blog/branding-beyond-logos-2"
-          />
+            />
 
           <BlogCard
             title="FROM SCRIPT TO SCREEN: HOW A GREAT TVC COMES TO LIFE"
@@ -184,8 +140,8 @@ export default function Blog() {
             tags={["BRANDING", "MARKETING", "PRODUCTION"]}
             imageSrc="/Blog/BlogCard-2.jpg"
             href="/blog/script-to-screen-2"
-          />
-        </div>
+            />
+            </div>
       </section>
     </main>
   );
