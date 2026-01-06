@@ -1,12 +1,9 @@
-
 import Image from "next/image";
 import Buttons from "../ui/Buttons";
 import LeftParagraph from "./LeftParagraph";
+import Link from "next/link";
 
 export default function Welcome() {
- 
-  
-
   return (
     <section
       className="w-full h-auto text-white"
@@ -43,7 +40,11 @@ export default function Welcome() {
             textAlign: "center",
           }}
         >
-          The <span style={{ color: "var(--spotlight-100)" }}>Best Advertising Agency</span><br />
+          The{" "}
+          <span style={{ color: "var(--spotlight-100)" }}>
+            Best Advertising Agency
+          </span>
+          <br />
           in Addis Ababa, Ethiopia
         </p>
       </div>
@@ -54,10 +55,15 @@ export default function Welcome() {
 
       <div
         className="flex flex-col-reverse lg:flex-row  max-w-[1440px] mx-auto"
-        style={{ marginTop: "var(--space-xl)", gap: "var(--space-xl)", justifyContent: "center", alignItems: "center" }}
+        style={{
+          marginTop: "var(--space-xl)",
+          gap: "var(--space-xl)",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
       >
         {/* LEFT PARAGRAPH */}
-        <LeftParagraph/>
+        <LeftParagraph />
 
         {/* RIGHT IMAGE */}
         <Image
@@ -66,15 +72,14 @@ export default function Welcome() {
           width={600}
           height={600}
           className="w-full max-w-md lg:max-w-lg mt-6 lg:mt-0"
-        />        
+        />
       </div>
       {/* BUTTON */}
-     <Buttons>
-      ABOUT US
-     </Buttons>
+      <Link href={"/about"}>
+        <Buttons>ABOUT US</Buttons>
+      </Link>
 
-
-        {/* </div> */}
+      {/* </div> */}
     </section>
   );
 }

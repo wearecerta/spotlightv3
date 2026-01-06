@@ -136,7 +136,7 @@ export default function Service() {
           ]}
           imageSrc1="/Service/pr_1.png"
           imageSrc2="/Service/pr_2.jpg"
-          href="/service/pr-communications"
+          href="/services/pr-communications"
         />
 
         {/* Marketing Card */}
@@ -153,7 +153,7 @@ export default function Service() {
           ]}
           imageSrc1="/Service/marketing_1.png"
           imageSrc2="/Service/marketing_2.jpg"
-          href="/service/marketing"
+          href="/services/marketing"
         />
 
         {/* Advertising Card */}
@@ -170,7 +170,7 @@ export default function Service() {
           ]}
           imageSrc1="/Service/adv-1.png"
           imageSrc2="/Service/adv-2.jpg"
-          href="/service/advertising"
+          href="/services/advertising"
         />
 
         {/* Branding & Design Card */}
@@ -187,7 +187,7 @@ export default function Service() {
           ]}
           imageSrc1="/Service/brand-1.jpg"
           imageSrc2="/Service/brand-2.jpg"
-          href="/service/branding-design"
+          href="/services/branding-design"
         />
 
         {/* Production Card */}
@@ -204,7 +204,7 @@ export default function Service() {
           ]}
           imageSrc1="/Service/prod-1.jpg"
           imageSrc2="/Service/prod-2.jpg"
-          href="/service/production"
+          href="/services/production"
         />
 
         {/* Event Management Card */}
@@ -221,7 +221,7 @@ export default function Service() {
           ]}
           imageSrc1="/Service/event-1.jpg"
           imageSrc2="/Service/event-2.png"
-          href="/service/event-management"
+          href="/services/event-management"
         />
 
 
@@ -239,7 +239,7 @@ export default function Service() {
           ]}
           imageSrc1="/Service/website-1.jpg"
           imageSrc2="/Service/website-2.jpg"
-          href="/service/event-management"
+          href="/services/event-management"
         />
 
          {/* digital marketing */}
@@ -256,7 +256,7 @@ export default function Service() {
           ]}
           imageSrc1="/Service/digital-1.jpg"
           imageSrc2="/Service/digital-2.jpg"
-          href="/service/event-management"
+          href="/services/event-management"
         />
       </div>
     </main>

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import OurServicesCard from "../ui/OurServicesCard";
 import Buttons from "../ui/Buttons";
+import Link from "next/link";
 
 export default function OurServices() {
   const services = [
@@ -128,18 +129,17 @@ export default function OurServices() {
 
   return (
     <section
-    className="relative "
+      className="relative "
       style={{
         background: "var(--spotlight-950)",
-      }}>
-
-
-        {/* bg svg */}
-      <div 
+      }}
+    >
+      {/* bg svg */}
+      <div
         className="sticky top-0 h-screen  flex flex-col items-center justify-center"
-        style={{ 
+        style={{
           zIndex: 0,
-          minHeight: '100vh',
+          minHeight: "100vh",
         }}
       >
         <Image
@@ -150,22 +150,22 @@ export default function OurServices() {
         />
       </div>
 
-      <div className="h-screen"/>
+      <div className="h-screen" />
 
       {/* Scrollable Content Container - Scrolls over the red background */}
-      <div 
+      <div
         className="relative z-10"
-        style={{ 
-          marginTop: '-100vh',
-          backgroundColor: 'transparent',
-          pointerEvents: 'none',
+        style={{
+          marginTop: "-100vh",
+          backgroundColor: "transparent",
+          pointerEvents: "none",
         }}
       >
-        <div 
+        <div
           className="max-w-[1440px] mx-auto w-full"
           style={{
             padding: "var(--section-margin-y) var(--section-margin-x)",
-            pointerEvents: 'auto',
+            pointerEvents: "auto",
           }}
         >
           {/* Service Cards Grid - Zig-zag layout */}
@@ -199,9 +199,9 @@ export default function OurServices() {
           </div>
 
           {/* Explore More Button */}
-          <Buttons>
-            explore more
-          </Buttons>
+          <Link href={"/services"}>
+            <Buttons>explore more</Buttons>
+          </Link>
         </div>
       </div>
     </section>

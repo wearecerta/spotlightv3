@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Buttons from "../ui/Buttons";
 import ProjectCard from "../ui/ProjectCard";
 
@@ -39,7 +40,7 @@ export default function Ourworks() {
           title="SAFARICOM ETHIOPIA"
           tags={["BRANDING", "MARKETING", "PRODUCTION"]}
           videoSrc="https://www.youtube.com/watch?v=c5iitHD0bNg"
-          href="/work/safaricom-ethiopia"
+          href="/works/safaricom-ethiopia"
           dark={true}
         />
 
@@ -50,7 +51,7 @@ export default function Ourworks() {
             title="ADEY MUSIC AND STUDIO"
             tags={["BRANDING", "MARKETING", "PRODUCTION"]}
             videoSrc="https://www.youtube.com/watch?v=c5iitHD0bNg"
-            href="/work/adey-music"
+            href="/works/adey-music"
             dark={true}
           />
 
@@ -59,7 +60,7 @@ export default function Ourworks() {
             title="ST. GEORGE"
             tags={["BRANDING", "MARKETING", "PRODUCTION"]}
             videoSrc="https://www.youtube.com/watch?v=c5iitHD0bNg"
-            href="/work/st-george"
+            href="/works/st-george"
             dark={true}
           />
         </div>
@@ -71,7 +72,7 @@ export default function Ourworks() {
             title="GRV SUMMIT"
             tags={["BRANDING", "MARKETING", "PRODUCTION"]}
             videoSrc="https://www.youtube.com/watch?v=c5iitHD0bNg"
-            href="/work/grv-summit"
+            href="/works/grv-summit"
             dark={true}
           />
 
@@ -80,7 +81,7 @@ export default function Ourworks() {
             title="EU & AFRICA"
             tags={["BRANDING", "MARKETING", "PRODUCTION"]}
             videoSrc="https://www.youtube.com/watch?v=c5iitHD0bNg"
-            href="/work/eu-africa"
+            href="/works/eu-africa"
             dark={true}
           />
         </div>
@@ -92,7 +93,7 @@ export default function Ourworks() {
             title="ADEY MUSIC AND STUDIO"
             tags={["BRANDING", "MARKETING", "PRODUCTION"]}
             videoSrc="https://www.youtube.com/watch?v=c5iitHD0bNg"
-            href="/work/adey-music-2"
+            href="/works/adey-music-2"
             dark={true}
           />
 
@@ -101,13 +102,14 @@ export default function Ourworks() {
             title="ST. GEORGE"
             tags={["BRANDING", "MARKETING", "PRODUCTION"]}
             videoSrc="https://www.youtube.com/watch?v=c5iitHD0bNg"
-            href="/work/st-george-2"
+            href="/works/st-george-2"
             dark={true}
           />
         </div>
       </div>
-
-      <Buttons>explore now</Buttons>
+      <Link href={"/works"}>
+        <Buttons>explore now</Buttons>
+      </Link>
     </section>
   );
 }
