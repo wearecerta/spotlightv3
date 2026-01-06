@@ -9,7 +9,7 @@ const navItems = [
   { label: "ABOUT", href: "/about" },
   { label: "WORKS", href: "/works" },
   { label: "CULTURE", href: "/culture" },
-  { label: "BLOGS", href: "/Blog" },
+  { label: "BLOGS", href: "/blog" },
 ];
 
 // Pages that use the white version (light colors)
