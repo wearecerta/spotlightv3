@@ -1,16 +1,21 @@
 "use client";
 
+import Image from "next/image";
 import { useParams } from "next/navigation";
 import { useMemo } from "react";
 
 // Helper function to check if URL is a YouTube link
 function isYouTubeUrl(url: string): boolean {
-  return /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/.test(url);
+  return /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/.test(
+    url
+  );
 }
 
 // Helper function to extract YouTube video ID
 function getYouTubeVideoId(url: string): string | null {
-  const match = url.match(/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/);
+  const match = url.match(
+    /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/
+  );
   return match ? match[1] : null;
 }
 
@@ -30,7 +35,8 @@ export default function WorkDetail() {
     tagline: "#1MoveAway",
     tags: ["BRANDING", "MARKETING", "PRODUCTION"],
     videoSrc: "https://www.youtube.com/watch?v=c5iitHD0bNg", // Same video as in Ourworks component
-    overview: "With the objective of connecting all Ethiopians, Safaricom has launched the MTN campaign during the Ethiopian new year 2017, to serve as a pivotal driver of the digital Ethiopia plan by providing the essential infrastructure and services for various sectors by bringing the possibilities of life to the local population. For this initiative spotlight developed and implemented an integrated campaign by strategically penetrating through various roll outs with an idea that aligns well with the brand promise and the previous campaign",
+    overview:
+      "With the objective of connecting all Ethiopians, Safaricom has launched the MTN campaign during the Ethiopian new year 2017, to serve as a pivotal driver of the digital Ethiopia plan by providing the essential infrastructure and services for various sectors by bringing the possibilities of life to the local population. For this initiative spotlight developed and implemented an integrated campaign by strategically penetrating through various roll outs with an idea that aligns well with the brand promise and the previous campaign",
     details: {
       company: "Safaricom",
       industry: "Telecommunication",
@@ -42,6 +48,13 @@ export default function WorkDetail() {
       image2: "/WorkDetails/I2.jpg",
       image3: "/WorkDetails/I3.jpg",
     },
+    achievements: [
+      { value: "11m+", label: "views" },
+      { value: "850k+", label: "likes" },
+      { value: "58k+", label: "shares" },
+      { value: "64k+", label: "saves" },
+      { value: "64k+", label: "saves" },
+    ],
   };
 
   const youtubeVideoId = useMemo(() => {
@@ -55,42 +68,27 @@ export default function WorkDetail() {
     <main
       style={{
         minHeight: "100vh",
-        background: "#0C0C0E",
         position: "relative",
+        background: "#F7F7F8",
       }}
+      className="px-6 md:px-16"
     >
       {/* Hero Section with Video */}
       <section
         style={{
           position: "relative",
-          width: "100%",
-          height: "100vh",
-          minHeight: "600px",
           overflow: "hidden",
         }}
+        className="max-w-[1440px] mx-auto  pt-48px md:pt-16 md:h-screen"
       >
         {/* Video Background */}
         {youtubeVideoId && (
-          <div
-            style={{
-              position: "absolute",
-              top: 0,
-              left: 0,
-              width: "100%",
-              height: "100%",
-              zIndex: 1,
-            }}
-          >
+          <div>
             <iframe
               src={getYouTubeEmbedUrl(youtubeVideoId)}
               style={{
-                position: "absolute",
-                top: "50%",
-                left: "50%",
-                width: "100vw",
-                height: "100vh",
-                transform: "translate(-50%, -50%)",
                 border: "none",
+                aspectRatio: "16/9",
                 pointerEvents: "none",
               }}
               allow="autoplay; encrypted-media"
@@ -99,28 +97,23 @@ export default function WorkDetail() {
             />
           </div>
         )}
-
       </section>
 
       {/* Project Details Section */}
       <section
         style={{
-          display: "flex",
-          padding: "var(--section-margin-y, 120px) var(--section-margin-x, 120px)",
-          flexDirection: "row",
-          gap: "var(--space-xl, 48px)",
-          alignSelf: "stretch",
-          background: "#F7F7F8",
+          justifyContent: "space-between",
+          gap: "var(--space-lg)",
           position: "relative",
         }}
+        className="max-w-[1440px] mx-auto pt-16 pb-[120px] flex flex-col md:flex-row"
       >
         {/* Left Column - Title and Tagline */}
         <div
           style={{
             display: "flex",
             flexDirection: "column",
-            flex: "0 0 40%",
-            gap: "var(--space-md, 24px)",
+            flex: "0 0 50%",
           }}
         >
           {/* Title */}
@@ -145,12 +138,12 @@ export default function WorkDetail() {
           <p
             style={{
               fontFamily: "var(--font-secondary, 'Outfit')",
-              fontSize: "clamp(18px, 2vw, 28px)",
+              fontSize: "var(--accent-medium-size)",
               fontStyle: "normal",
               fontWeight: "400",
               lineHeight: "150%",
               textAlign: "left",
-              color: "#4F4F4F",
+              color: "#0C0C0E",
               margin: 0,
             }}
           >
@@ -168,44 +161,46 @@ export default function WorkDetail() {
           }}
         >
           {/* Overview Heading */}
-          <h2
-            style={{
-              fontFamily: "var(--font-secondary, 'Outfit')",
-              fontSize: "clamp(16px, 1.5vw, 20px)",
-              fontStyle: "normal",
-              fontWeight: "600",
-              lineHeight: "150%",
-              textTransform: "uppercase",
-              textAlign: "left",
-              color: "#4F4F4F",
-              margin: 0,
-            }}
-          >
-            OVERVIEW
-          </h2>
+          <div className="flex flex-col gap-(--space-xxs)">
+            <h2
+              style={{
+                fontFamily: "var(--font-secondary, 'Outfit')",
+                fontSize: "var(--body-large-size, 20px)",
+                fontStyle: "normal",
+                fontWeight: "400",
+                lineHeight: "150%",
+                textTransform: "uppercase",
+                textAlign: "left",
+                color: "#0C0C0E",
+                margin: 0,
+              }}
+            >
+              OVERVIEW
+            </h2>
 
-          {/* Overview Paragraph */}
-          <p
-            style={{
-              fontFamily: "var(--font-secondary, 'Outfit')",
-              fontSize: "var(--body-large-size, 20px)",
-              fontStyle: "normal",
-              fontWeight: "400",
-              lineHeight: "150%",
-              textAlign: "left",
-              color: "#4F4F4F",
-              margin: 0,
-            }}
-          >
-            {workData.overview}
-          </p>
+            {/* Overview Paragraph */}
+            <p
+              style={{
+                fontFamily: "var(--font-secondary, 'Outfit')",
+                fontSize: "16px",
+                fontStyle: "normal",
+                fontWeight: "400",
+                lineHeight: "150%",
+                textAlign: "left",
+                color: "#4F4F4F",
+                marginTop: 0,
+              }}
+            >
+              {workData.overview}
+            </p>
+          </div>
 
           {/* Details List */}
           <div
             style={{
               display: "flex",
               flexDirection: "column",
-              gap: 0,
+              gap: "var(--space-xs)",
             }}
           >
             {/* Company */}
@@ -214,7 +209,7 @@ export default function WorkDetail() {
                 display: "flex",
                 justifyContent: "space-between",
                 alignItems: "center",
-                padding: "var(--space-md, 24px) 0",
+                padding: "var(--space-xxs) 0",
                 borderBottom: "1px solid rgba(79, 79, 79, 0.2)",
               }}
             >
@@ -252,7 +247,7 @@ export default function WorkDetail() {
                 display: "flex",
                 justifyContent: "space-between",
                 alignItems: "center",
-                padding: "var(--space-md, 24px) 0",
+                padding: "var(--space-xxs) 0",
                 borderBottom: "1px solid rgba(79, 79, 79, 0.2)",
               }}
             >
@@ -290,7 +285,7 @@ export default function WorkDetail() {
                 display: "flex",
                 justifyContent: "space-between",
                 alignItems: "center",
-                padding: "var(--space-md, 24px) 0",
+                padding: "var(--space-xxs) 0",
                 borderBottom: "1px solid rgba(79, 79, 79, 0.2)",
               }}
             >
@@ -328,7 +323,7 @@ export default function WorkDetail() {
                 display: "flex",
                 justifyContent: "space-between",
                 alignItems: "center",
-                padding: "var(--space-md, 24px) 0",
+                padding: "var(--space-xxs) 0",
                 borderBottom: "1px solid rgba(79, 79, 79, 0.2)",
               }}
             >
@@ -367,25 +362,22 @@ export default function WorkDetail() {
       <section
         style={{
           display: "flex",
-          padding: "var(--section-margin-y, 120px) var(--section-margin-x, 120px)",
           flexDirection: "column",
-          gap: "var(--space-xl, 48px)",
           alignSelf: "stretch",
-          background: "#F7F7F8",
           position: "relative",
         }}
+        className="max-w-[1440px] mx-auto gap-(--space-xxs) md:gap-(--space-lg)"
       >
         {/* I1 - Top Image (Full Width) */}
         <div
           style={{
             position: "relative",
-            width: "100%",
-            height: "clamp(400px, 50vh, 600px)",
-            borderRadius: "24px",
-            overflow: "hidden",
+            // width: "100%",
+            // height: "clamp(400px, 50vh, 600px)",
+            // overflow: "hidden",
+            aspectRatio: "16/9",
           }}
         >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={workData.images.image1}
             alt="Work detail image 1"
@@ -405,17 +397,15 @@ export default function WorkDetail() {
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(2, 1fr)",
-            gap: "var(--space-xl, 48px)",
             width: "100%",
           }}
+          className="gap-(--space-xxs) md:gap-(--space-lg)"
         >
           {/* I2 - Left Image */}
           <div
             style={{
               position: "relative",
-              width: "100%",
-              height: "clamp(400px, 50vh, 600px)",
-              overflow: "hidden",
+              aspectRatio: "1/1",
             }}
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -437,9 +427,7 @@ export default function WorkDetail() {
           <div
             style={{
               position: "relative",
-              width: "100%",
-              height: "clamp(400px, 50vh, 600px)",
-              overflow: "hidden",
+              aspectRatio: "1/1",
             }}
           >
             <img
@@ -459,230 +447,182 @@ export default function WorkDetail() {
       </section>
 
       {/* Impact & Highlights Section */}
-      <section
-        style={{
-          display: "flex",
-          padding: "var(--section-margin-y, 120px) var(--section-margin-x, 120px)",
-          flexDirection: "row",
-          gap: "var(--space-xl, 48px)",
-          alignSelf: "stretch",
-          background: "#0C0C0E",
-          position: "relative",
-        }}
-      >
-        {/* Left Column - Promotional Poster */}
-        <div
-          style={{
-            flex: "0 0 50%",
-            position: "relative",
-            borderRadius: "24px",
-            overflow: "hidden",
-            minHeight: "clamp(400px, 60vh, 700px)",
-          }}
-        >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/WorkDetails/I4.png"
-            alt="Campaign promotional poster"
-            style={{
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-              display: "block",
-              position: "absolute",
-              inset: 0,
-            }}
-            sizes="50vw"
-          />
+      <section className="mx-auto max-w-[1440px] w-full py-(--section-margin-y) flex flex-col gap-(--space-xxl)">
+        <div className=" grid grid-cols-1  gap-(--space-lg) md:grid-cols-2">
+          {/* LEFT IMAGE */}
+          <div className="relative w-full h-[500px] lg:h-auto">
+            <Image
+              src="/WorkDetails/I4.png"
+              alt="Campaign promotional poster"
+              fill
+              className="object-cover"
+              priority
+            />
+          </div>
+
+          {/* RIGHT CONTENT */}
+          <div className="flex bg-[#FFFFFF] flex-col gap-(--space-xl) justify-center py-(--space-xxl) px-6 md:px-(--space-xl)">
+            {/* IMPACT */}
+            <div className="flex flex-col gap-(--space-xs)">
+              <h4
+                style={{
+                  fontFamily: "var(--font-primary)",
+                  fontWeight: "400",
+                  fontSize: "var(--h4-size)",
+                  lineHeight: "120%",
+                  letterSpacing: 0,
+                }}
+                className="text-[length:--h4-size] tracking-widest text-black uppercase"
+              >
+                Impact
+              </h4>
+              <p
+                style={{
+                  fontFamily: "var(--font-secondary)",
+                  fontWeight: "400",
+                  fontSize: "20px",
+                  lineHeight: "150%",
+                  letterSpacing: 0,
+                }}
+                className=" text-(--spotlight-700) leading-relaxed max-w-xl"
+              >
+                This campaign successfully bridged digital platforms and
+                mainstream media, fostering cultural relevance, platform-native
+                engagement, and national visibility for both Safaricom Ethiopia
+                and the youth talents who took part.
+              </p>
+            </div>
+
+            {/* KEY HIGHLIGHTS */}
+            <div className=" flex flex-col gap-(--space-xs)">
+              <h3
+                style={{
+                  fontFamily: "var(--font-primary)",
+                  fontWeight: "400",
+                  fontSize: "var(--h4-size)",
+                  lineHeight: "120%",
+                  letterSpacing: 0,
+                  textTransform: "uppercase",
+                }}
+                className=" text-[#0C0C0E]"
+              >
+                Key Highlights
+              </h3>
+
+              {/* high lights */}
+              <div>
+                <div className="p-(--space-lg) border-b border-b-[#B6B7C3] ">
+                  <p
+                    style={{
+                      fontFamily: "var(--font-secondary)",
+                      fontWeight: "400",
+                      fontSize: "20px",
+                      lineHeight: "150%",
+                      letterSpacing: 0,
+                      color: "#4A4A5A",
+                    }}
+                  >
+                    Launched on TikTok as the primary engagement channel
+                  </p>
+                </div>
+
+                <div className="p-(--space-lg) border-b border-b-[#B6B7C3] ">
+                  <p
+                    style={{
+                      fontFamily: "var(--font-secondary)",
+                      fontWeight: "400",
+                      fontSize: "20px",
+                      lineHeight: "150%",
+                      letterSpacing: 0,
+                      color: "#4A4A5A",
+                    }}
+                  >
+                    611 participants created content over a 3.5-month campaign
+                    period
+                  </p>
+                </div>
+
+                <div className="p-(--space-lg) border-b border-b-[#B6B7C3] ">
+                  <p
+                    style={{
+                      fontFamily: "var(--font-secondary)",
+                      fontWeight: "400",
+                      fontSize: "20px",
+                      lineHeight: "150%",
+                      letterSpacing: 0,
+                      color: "#4A4A5A",
+                    }}
+                  >
+                    Culminated in a 10-day bootcamp for the top 10 finalists
+                  </p>
+                </div>
+
+                <div className="p-(--space-lg) border-b border-b-[#B6B7C3] ">
+                  <p
+                    style={{
+                      fontFamily: "var(--font-secondary)",
+                      fontWeight: "400",
+                      fontSize: "20px",
+                      lineHeight: "150%",
+                      letterSpacing: 0,
+                      color: "#4A4A5A",
+                    }}
+                  >
+                    Finalists featured in a nationally televised special
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
-        {/* Right Column - Impact and Highlights */}
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            flex: 1,
-            gap: "var(--space-xl, 48px)",
-            justifyContent: "flex-start",
-            paddingTop: "var(--space-lg, 32px)",
-          }}
-        >
-          {/* IMPACT Section */}
-          <div
+        {/* Achievements */}
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-[var(--space-lg)]">
+          {/* Title */}
+          <h4
             style={{
-              display: "flex",
-              flexDirection: "column",
-              gap: "var(--space-md, 24px)",
+              fontFamily: "var(--font-primary)",
+              fontWeight: "400",
+              fontSize: "var(--h4-size)",
+              lineHeight: "100%",
+              letterSpacing: 0,
+              color: "var(--spotlight-950)",
             }}
           >
-            <h2
-              style={{
-                fontFamily: "var(--font-secondary, 'Outfit')",
-                fontSize: "clamp(18px, 2vw, 24px)",
-                fontStyle: "normal",
-                fontWeight: "700",
-                lineHeight: "150%",
-                textTransform: "uppercase",
-                textAlign: "left",
-                color: "#FFFFFF",
-                margin: 0,
-                letterSpacing: "0.5px",
-              }}
-            >
-              IMPACT
-            </h2>
-            <p
-              style={{
-                fontFamily: "var(--font-secondary, 'Outfit')",
-                fontSize: "var(--body-large-size, 20px)",
-                fontStyle: "normal",
-                fontWeight: "400",
-                lineHeight: "150%",
-                textAlign: "left",
-                color: "#FFFFFF",
-                margin: 0,
-              }}
-            >
-              This campaign successfully bridged digital platforms and mainstream media, fostering cultural relevance, platform-native engagement, and national visibility for both Safaricom Ethiopia and the youth talents who took part.
-            </p>
-          </div>
+            Project <br /> Achievements
+          </h4>
 
-          {/* KEY HIGHLIGHTS Section */}
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              gap: "var(--space-md, 24px)",
-            }}
-          >
-            <h2
-              style={{
-                fontFamily: "var(--font-secondary, 'Outfit')",
-                fontSize: "clamp(18px, 2vw, 24px)",
-                fontStyle: "normal",
-                fontWeight: "700",
-                lineHeight: "150%",
-                textTransform: "uppercase",
-                textAlign: "left",
-                color: "#FFFFFF",
-                margin: 0,
-                letterSpacing: "0.5px",
-              }}
-            >
-              KEY HIGHLIGHTS
-            </h2>
-            <ul
-              style={{
-                listStyle: "none",
-                padding: 0,
-                margin: 0,
-                display: "flex",
-                flexDirection: "column",
-                gap: "var(--space-md, 24px)",
-              }}
-            >
-              <li
+          {/* Stats */}
+          {workData.achievements.map((item, index) => (
+            <div key={index} className="flex flex-col">
+              <span
                 style={{
-                  fontFamily: "var(--font-secondary, 'Outfit')",
-                  fontSize: "var(--body-large-size, 20px)",
-                  fontStyle: "normal",
+                  fontFamily: "var(--font-primary)",
                   fontWeight: "400",
-                  lineHeight: "150%",
-                  color: "#FFFFFF",
-                  paddingLeft: "var(--space-md, 24px)",
-                  position: "relative",
+                  fontSize: "var(--h2-size)",
+                  lineHeight: "100%",
+                  letterSpacing: 0,
+                  color: "var(--spotlight-300)",
+                  textTransform: "uppercase",
                 }}
               >
-                <span
-                  style={{
-                    position: "absolute",
-                    left: 0,
-                    top: "0.6em",
-                    width: "8px",
-                    height: "8px",
-                    borderRadius: "50%",
-                    backgroundColor: "#FFFFFF",
-                  }}
-                />
-                Launched on TikTok as the primary engagement channel
-              </li>
-              <li
+                {item.value}
+              </span>
+              <span
                 style={{
-                  fontFamily: "var(--font-secondary, 'Outfit')",
-                  fontSize: "var(--body-large-size, 20px)",
-                  fontStyle: "normal",
+                  fontFamily: "var(--font-secondary)",
                   fontWeight: "400",
+                  fontSize: "20px",
                   lineHeight: "150%",
-                  color: "#FFFFFF",
-                  paddingLeft: "var(--space-md, 24px)",
-                  position: "relative",
+                  letterSpacing: 0,
+                  color: "var(--spotlight-700)",
+                  textTransform: "uppercase",
                 }}
               >
-                <span
-                  style={{
-                    position: "absolute",
-                    left: 0,
-                    top: "0.6em",
-                    width: "8px",
-                    height: "8px",
-                    borderRadius: "50%",
-                    backgroundColor: "#FFFFFF",
-                  }}
-                />
-                611 participants created content over a 3.5-month campaign period
-              </li>
-              <li
-                style={{
-                  fontFamily: "var(--font-secondary, 'Outfit')",
-                  fontSize: "var(--body-large-size, 20px)",
-                  fontStyle: "normal",
-                  fontWeight: "400",
-                  lineHeight: "150%",
-                  color: "#FFFFFF",
-                  paddingLeft: "var(--space-md, 24px)",
-                  position: "relative",
-                }}
-              >
-                <span
-                  style={{
-                    position: "absolute",
-                    left: 0,
-                    top: "0.6em",
-                    width: "8px",
-                    height: "8px",
-                    borderRadius: "50%",
-                    backgroundColor: "#FFFFFF",
-                  }}
-                />
-                Culminated in a 10-day bootcamp for the top 10 finalists
-              </li>
-              <li
-                style={{
-                  fontFamily: "var(--font-secondary, 'Outfit')",
-                  fontSize: "var(--body-large-size, 20px)",
-                  fontStyle: "normal",
-                  fontWeight: "400",
-                  lineHeight: "150%",
-                  color: "#FFFFFF",
-                  paddingLeft: "var(--space-md, 24px)",
-                  position: "relative",
-                }}
-              >
-                <span
-                  style={{
-                    position: "absolute",
-                    left: 0,
-                    top: "0.6em",
-                    width: "8px",
-                    height: "8px",
-                    borderRadius: "50%",
-                    backgroundColor: "#FFFFFF",
-                  }}
-                />
-                Finalists featured in a nationally televised special
-              </li>
-            </ul>
-          </div>
+                {item.label}
+              </span>
+            </div>
+          ))}
         </div>
       </section>
     </main>
