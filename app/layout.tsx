@@ -5,12 +5,19 @@ import {
   Outfit,
   Bebas_Neue,
   Shadows_Into_Light,
+  Plus_Jakarta_Sans
 } from "next/font/google";
+
 
 import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
 import "./globals.css";
 import SmoothScroll from "@/components/ui/SmothScroll";
+
+const plusJakartaSans = Plus_Jakarta_Sans({
+  subsets: ['latin'], 
+  variable: '--font-plus-jakarta-sans', 
+});
 
 
 const geistSans = Geist({
@@ -60,6 +67,7 @@ export default function RootLayout({
           ${outfit.variable}
           ${bebasNeue.variable}
           ${shadowsIntoLight.variable}
+          ${plusJakartaSans.variable}
           antialiased
         `}
       >

@@ -1,977 +1,866 @@
+"use client";
+
 import Image from "next/image";
+import { useParams } from "next/navigation";
 
-interface ServiceDetailPageProps {
-  params: {
-    id: string;
-  };
-}
-
-export default async function ServiceDetail({ params }: ServiceDetailPageProps) {
-  const { id } = params;
-
-  // TODO: Fetch service data from Sanity based on id
-  // For now, using placeholder data matching the design
-  const serviceData = {
-    title: "SPOTLIGHT PLC",
-    tagline: "Best Marketing Agency in Addis Ababa | Ethiopia",
-    heroImage: "/ServiceDetails/hero.png",
-    image1: "/ServiceDetails/I1.jpg",
-    image2: "/ServiceDetails/I2.png",
-    coreServices: {
-      heading: {
-        part1: "OUR CORE",
-        part2: "MARKETING",
-        part3: "SERVICES",
+const serviceDetail = {
+  serviceTitle:
+    "Best Website Developers in Addis Ababa Web Design & Development Company in Ethiopia",
+  serviceHeroImage: "/ServiceDetails/serviceDetailHero.png",
+  styleOneSection: {
+    styleOneTitle: "Building Digital Excellence with Creativity and Technology",
+    styleOneDescription:
+      "Are you searching for the best marketing agency in Addis Ababa, Ethiopia to elevate your brand and capture your audience’s attention? Look no further than Spotlight! We specialize in helping businesses shine in a competitive marketplace through creative, data-driven, and impactful marketing solutions. From branding and digital marketing to advertising campaigns, social media management, and event promotions, our team is committed to positioning your business for long-term success",
+    styleOneImages: [
+      "/ServiceDetails/serviceDetailImg-1.png",
+      "/ServiceDetails/serviceDetailImg-2.png",
+    ],
+  },
+  styleTwoSection: {
+    styleTwoTitle:
+      "Why Choose Spotlight as Your Web Design Partner in Addis Ababa?",
+    styleTwoDescriptions:
+      "Are you searching for the best marketing agency in Addis Ababa, Ethiopia to elevate your brand and capture your audience’s attention? Look no further than Spotlight!We specialize in helping businesses shine in a competitive marketplace through creative, data-driven, and impactful marketing solutions. From branding and digital marketing to advertising campaigns, social media management, and event promotions, our team is committed to positioning your business for long-term success.",
+    styleTwoServicesList: [
+      {
+        icon: "/ServiceDetails/web-icon.svg",
+        title: "Creative and Professional Design Team",
+        description:
+          "We design websites that reflect your brand’s values, personality, and business goals.",
       },
-      description: "We provide a full spectrum of marketing services in Addis Ababa, ensuring that your business connects with the right audience at the right time.",
-      services: [
-        { id: "01", name: "Branding & Identity Design" },
-        { id: "02", name: "Digital Marketing & SEO" },
-        { id: "03", name: "Social Media Management" },
-        { id: "04", name: "Creative Advertising Campaigns" },
-        { id: "05", name: "Event Marketing & Promotions" },
-        { id: "06", name: "Public Relations & Media Buying" },
-        { id: "07", name: "Content Creation & Video Production" },
+      {
+        icon: "/ServiceDetails/web-icon.svg",
+        title: "Latest Technology Stack",
+        description:
+          "From HTML5 and CSS3 to advanced frameworks like React, Laravel, and WordPress, we use technologies that ensure performance and scalability.",
+      },
+      {
+        icon: "/ServiceDetails/web-icon.svg",
+        title: "SEO-Optimized Websites",
+        description:
+          "Every project we deliver is structured for search engines to help you achieve better visibility and higher rankings.",
+      },
+      {
+        icon: "/ServiceDetails/web-icon.svg",
+        title: "Mobile-First Approach",
+        description:
+          "Our designs are 100% responsive, ensuring your website looks perfect on every device.",
+      },
+      {
+        icon: "/ServiceDetails/web-icon.svg",
+        title: "Dedicated Local Support",
+        description:
+          "We’re based in Ethiopia, so you can always rely on quick communication and on-ground assistance.",
+      },
+      {
+        icon: "/ServiceDetails/web-icon.svg",
+        title: "Comprehensive Digital Solutions",
+        description:
+          "From UI/UX design to development, hosting, and maintenance, we provide end-to-end web solutions under one roof.",
+      },
+    ],
+  },
+  styleThreeSection: {
+    title: "Our Core Marketing Services",
+    description:
+      "We provide a full spectrum of marketing services in Addis Ababa, ensuring that your business connects with the right audience at the right time.",
+    styleThreeServiceList: [
+      {
+        title: "Branding & Identity Design",
+        description:
+          "Professional and elegant designs that establish authority.",
+      },
+      {
+        title: "E-commerce Website Design",
+        description: "User-centric layouts with optimized product displays.",
+      },
+      {
+        title: "Portfolio & Personal Websites",
+        description: "Creative designs for professionals and artists.",
+      },
+      {
+        title: "Landing Page Design",
+        description: "Conversion-driven designs for marketing campaigns.",
+      },
+    ],
+  },
+  styleFourSectionIndustries: {
+    title: "Top Website Development Company in Ethiopia",
+    descriptions:
+      "Our team of website developers in Ethiopia stays updated with the latest trends and technologies to ensure your website is modern, secure, and optimized for the best results.",
+    subTitle: "Your Trusted Partner in Ethiopia",
+    subDescription:
+      "Whether you’re looking to build your brand from the ground up or scale an existing business, Spotlight in Ethiopia has the expertise to make it happen.",
+    styleFourIndustriesList: [
+      {
+        industry: "Education",
+        industryDescription:
+          "Building engaging platforms that enhance learning and accessibility.",
+      },
+      {
+        industry: "Healthcare",
+        industryDescription:
+          "Creating secure, user-friendly websites for clinics and hospitals.",
+      },
+      {
+        industry: "Real Estate",
+        industryDescription:
+          "Showcasing properties with interactive and conversion-focused designs.",
+      },
+      {
+        industry: "E-commerce",
+        industryDescription:
+          "Developing fast, reliable online stores that drive sales.",
+      },
+      {
+        industry: "Travel & Tourism",
+        industryDescription:
+          "Creating secure, user-friendly websites for clinics and hospitals.",
+      },
+      {
+        industry: "NGOs and Government Projects",
+        industryDescription:
+          "Delivering transparent, informative, and impactful web solutions.",
+      },
+    ],
+  },
+
+  styleFiveSectionInfo: {
+    title: "What Makes Our Web Solutions Stand Out.",
+    description:
+      "Our team of website developers in Ethiopia stays updated with the latest trends and technologies to ensure your website is modern, secure, and optimized for the best results.",
+    subTitle: "Your Trusted Partner in Ethiopia",
+    subDescription:
+      "Whether you’re looking to build your brand from the ground up or scale an existing business, Spotlight in Ethiopia has the expertise to make it happen.",
+    info: [
+      {
+        title: "Strategic Planning",
+        description:
+          "We begin by understanding your business goals, target audience, and competition.",
+      },
+      {
+        title: "Design Excellence",
+        description:
+          "Every layout, image, and color scheme is chosen to resonate with your audience.",
+      },
+      {
+        title: "Seamless Functionality",
+        description:
+          "We focus on performance, security, and scalability to ensure your website runs smoothly.",
+      },
+      {
+        title: "Continuous Support",
+        description:
+          "From maintenance to updates, we stand by you even after project delivery.",
+      },
+    ],
+  },
+
+  styleSixCtaSection: {
+    title: "Let’s Spotlight Your Business",
+    slogan: "Where Your Brand Shines Brighter!",
+    cta: "Are you ready to take your business to new heights with the best marketing agency in Addis Ababa?",
+  },
+
+  styleSevenInfo2: [
+    {
+      title: "What Makes Our Web Solutions Stand Out.",
+      paragraphs: [
+        "We take pride in being part of Ethiopia’s growing digital transformation. As one of the top website development companies in Ethiopia, our aim is to help local businesses expand their digital reach — from Addis Ababa to international markets.",
+        "We believe Ethiopian brands deserve global-standard websites that reflect innovation, trust, and professionalism — and that’s exactly what we deliver at Spotlight.",
       ],
     },
-    servicesIncludes: {
-      leftColumn: {
-        heading: {
-          part1: "OUR SERVICES",
-          part2: "INCLUDES",
-        },
-        description: "When it comes to marketing companies in Addis Ababa, Ethiopia, Spotlight is recognized for excellence, creativity, and results-driven strategies.",
-      },
-      rightColumn: {
-        heading: {
-          part1: "YOUR TRUSTED",
-          part2: "MARKETING PARTNER",
-          part3: "IN ETHIOPIA",
-        },
-        description: "Whether you're looking to build your brand from the ground up or scale an existing business, Spotlight in Ethiopia has the expertise to make it happen.",
-      },
-      services: [
-        {
-          title: "Market Research",
-          description: "Whether you're looking to build your brand from the ground up or scale an existing business, Spotlight in Ethiopia has the expertise to make it happen.",
-        },
-        {
-          title: "Marketing Strategy",
-          description: "Whether you're looking to build your brand from the ground up or scale an existing business, Spotlight in Ethiopia has the expertise to make it happen.",
-        },
-        {
-          title: "Shoppers Marketing",
-          description: "Whether you're looking to build your brand from the ground up or scale an existing business, Spotlight in Ethiopia has the expertise to make it happen.",
-        },
+    {
+      title: "What Makes Our Web Solutions Stand Out.",
+      paragraphs: [
+        "We take pride in being part of Ethiopia’s growing digital transformation. As one of the top website development companies in Ethiopia, our aim is to help local businesses expand their digital reach — from Addis Ababa to international markets.",
+        "We believe Ethiopian brands deserve global-standard websites that reflect innovation, trust, and professionalism — and that’s exactly what we deliver at Spotlight.",
       ],
     },
-    spotlightCTA: {
-      leftSide: {
-        title: "SPOTLIGHT",
-        tagline: "Where Your Brand Shines Brighter!",
-      },
-      rightSide: {
-        heading: "LET'S SPOTLIGHT YOUR BUSINESS",
-        description: "Are you ready to take your business to new heights with the best marketing agency in Addis Ababa?",
-      },
-    },
-    faqs: {
-      heading: "FAQS",
-      subheading: {
-        line1: "Any Questions?",
-        line2: "We've Got Answers",
-      },
-      questions: [
+  ],
+  faqsSection: [
+    {
+      question:
         "What makes Spotlight the best marketing agency in Addis Ababa?",
-        "Do we offer digital marketing in Ethiopia?",
-        "Can we help with branding and design?",
-        "Do we work with international clients?",
-        "How do you get started with Spotlight?",
-      ],
+      answer:
+        "We believe Ethiopian brands deserve global-standard websites that reflect innovation, trust, and professionalism — and that’s exactly what we deliver at Spotlight.",
     },
-  };
+    {
+      question: "Do we offer digital marketing in Ethiopia?",
+      answer:
+        "We believe Ethiopian brands deserve global-standard websites that reflect innovation, trust, and professionalism — and that’s exactly what we deliver at Spotlight.",
+    },
+    {
+      question: "Can we help with branding and design?",
+      answer:
+        "We believe Ethiopian brands deserve global-standard websites that reflect innovation, trust, and professionalism — and that’s exactly what we deliver at Spotlight.",
+    },
+    {
+      question: "Do we work with international clients?",
+      answer:
+        "We believe Ethiopian brands deserve global-standard websites that reflect innovation, trust, and professionalism — and that’s exactly what we deliver at Spotlight.",
+    },
+    {
+      question: "How do you get started with Spotlight?",
+      answer:
+        "We believe Ethiopian brands deserve global-standard websites that reflect innovation, trust, and professionalism — and that’s exactly what we deliver at Spotlight.",
+    },
+  ],
+};
+
+export default function ServiceDetailPage() {
+  const params = useParams();
+  const id = params.id as string;
+  if (!serviceDetail) return null;
 
   return (
     <main
       style={{
-        minHeight: "100vh",
-        background: "#FFFFFF",
-        position: "relative",
+        width: "100%",
+        overflow: "hidden",
+        background: "var(--spotlight-50)",
       }}
     >
-      {/* Hero Text Section */}
-      <section
-        style={{
-          display: "flex",
-          padding: "var(--section-margin-y, 120px) var(--section-margin-x, 120px)",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "flex-start",
-          gap: "var(--space-md, 24px)",
-          alignSelf: "stretch",
-          background: "#F7F7F8",
-          position: "relative",
-        }}
-      >
-        {/* Main Heading */}
-        <h1
+      {/* ================= HERO ================= */}
+      {(serviceDetail.serviceTitle || serviceDetail.serviceHeroImage) && (
+        <section
           style={{
-            fontFamily: "var(--font-primary, 'Bebas Neue')",
-            fontSize: "clamp(60px, 10vw, 148px)",
-            fontStyle: "normal",
-            fontWeight: "400",
-            lineHeight: "100%",
-            textTransform: "uppercase",
-            textAlign: "left",
-            color: "#0C0C0E",
-            alignSelf: "stretch",
-            margin: 0,
+            paddingTop: "80px",
+            background: "#F7F7F8",
           }}
+          className="flex flex-col gap-(--space-xxl) max-w-[1440px] mx-auto"
         >
-          {serviceData.title}
-        </h1>
-
-        {/* Subheading/Tagline */}
-        <p
-          style={{
-            fontFamily: "var(--font-secondary, 'Outfit')",
-            fontSize: "clamp(16px, 2vw, 24px)",
-            fontStyle: "normal",
-            fontWeight: "300",
-            lineHeight: "150%",
-            textAlign: "left",
-            color: "#0C0C0E",
-            margin: 0,
-          }}
-        >
-          {serviceData.tagline}
-        </p>
-      </section>
-
-      {/* Hero Image Section */}
-      <section
-        style={{
-          position: "relative",
-          width: "100%",
-          overflow: "hidden",
-        }}
-      >
-        <div
-          style={{
-            position: "relative",
-            width: "100%",
-            height: "clamp(400px, 60vh, 800px)",
-            minHeight: "400px",
-          }}
-        >
-          <Image
-            src={serviceData.heroImage}
-            alt={`${serviceData.title} - Hero Image`}
-            fill
-            className="object-cover"
-            sizes="100vw"
-            priority
-          />
-        </div>
-      </section>
-
-      {/* Two-Column Text Section */}
-      <section
-        style={{
-          display: "flex",
-          padding: "var(--section-margin-y, 120px) var(--section-margin-x, 120px)",
-          flexDirection: "column",
-          gap: "var(--space-xxl, 64px)",
-          alignSelf: "stretch",
-          background: "#F7F7F8",
-          position: "relative",
-        }}
-      >
-        {/* First Content Block */}
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: "var(--space-xl, 48px)",
-            alignItems: "flex-start",
-            width: "100%",
-          }}
-        >
-          {/* Heading */}
-          <h2
-            style={{
-              fontFamily: "var(--font-primary, 'Bebas Neue')",
-              fontSize: "clamp(40px, 5vw, 80px)",
-              fontStyle: "normal",
-              fontWeight: "400",
-              lineHeight: "100%",
-              textTransform: "uppercase",
-              textAlign: "left",
-              color: "#0C0C0E",
-              margin: 0,
-            }}
-          >
-            YOUR TRUSTED{" "}
-            <span style={{ color: "#4A4A5A" }}>MARKETING PARTNER</span> IN ETHIOPIA
-          </h2>
-
-          {/* Paragraph */}
-          <p
-            style={{
-              fontFamily: "var(--font-secondary, 'Outfit')",
-              fontSize: "clamp(16px, 1.5vw, 20px)",
-              fontStyle: "normal",
-              fontWeight: "400",
-              lineHeight: "150%",
-              textAlign: "left",
-              color: "#0C0C0E",
-              margin: 0,
-            }}
-          >
-            Are you searching for the best marketing agency in Addis Ababa, Ethiopia to elevate your brand and capture your audience's attention? Look no further than Spotlight! We specialize in helping businesses shine in a competitive marketplace through creative, data-driven, and impactful marketing solutions. From branding and digital marketing to advertising campaigns, social media management, and event promotions, our team is committed to positioning your business for long-term success.
-          </p>
-        </div>
-
-        {/* Second Content Block */}
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: "var(--space-xl, 48px)",
-            alignItems: "flex-start",
-            width: "100%",
-          }}
-        >
-          {/* Heading */}
-          <h2
-            style={{
-              fontFamily: "var(--font-primary, 'Bebas Neue')",
-              fontSize: "clamp(40px, 5vw, 80px)",
-              fontStyle: "normal",
-              fontWeight: "400",
-              lineHeight: "100%",
-              textTransform: "uppercase",
-              textAlign: "left",
-              color: "#0C0C0E",
-              margin: 0,
-            }}
-          >
-            WHY CHOOSE{" "}
-            <span style={{ color: "#B6B7C3" }}>SPOTLIGHT</span> IN ETHIOPIA?
-          </h2>
-
-          {/* Paragraph */}
-          <p
-            style={{
-              fontFamily: "var(--font-secondary, 'Outfit')",
-              fontSize: "clamp(16px, 1.5vw, 20px)",
-              fontStyle: "normal",
-              fontWeight: "400",
-              lineHeight: "150%",
-              textAlign: "left",
-              color: "#0C0C0E",
-              margin: 0,
-            }}
-          >
-            Whether you're looking to build your brand from the ground up or scale an existing business, Spotlight in Ethiopia has the expertise to make it happen.
-          </p>
-        </div>
-      </section>
-
-      {/* Side-by-Side Images Section */}
-      <section
-        style={{
-          display: "flex",
-          padding: "var(--section-margin-y, 120px) var(--section-margin-x, 120px)",
-          flexDirection: "column",
-          alignSelf: "stretch",
-          background: "#F7F7F8",
-          position: "relative",
-        }}
-      >
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(2, 1fr)",
-            gap: "0",
-            width: "100%",
-            height: "clamp(400px, 50vh, 600px)",
-            minHeight: "400px",
-          }}
-        >
-          {/* Left Image */}
-          <div
-            style={{
-              position: "relative",
-              width: "100%",
-              height: "100%",
-              overflow: "hidden",
-            }}
-          >
-            <Image
-              src={serviceData.image1}
-              alt={`${serviceData.title} - Production Scene`}
-              fill
-              className="object-cover"
-              sizes="50vw"
-            />
-          </div>
-
-          {/* Right Image */}
-          <div
-            style={{
-              position: "relative",
-              width: "100%",
-              height: "100%",
-              overflow: "hidden",
-            }}
-          >
-            <Image
-              src={serviceData.image2}
-              alt={`${serviceData.title} - Client Interaction`}
-              fill
-              className="object-cover"
-              sizes="50vw"
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* Core Marketing Services Section */}
-      <section
-        style={{
-          display: "flex",
-          padding: "var(--section-margin-y, 120px) var(--section-margin-x, 120px)",
-          flexDirection: "column",
-          alignSelf: "stretch",
-          background: "#0C0C0E",
-          position: "relative",
-        }}
-      >
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: "var(--space-xl, 48px)",
-            alignItems: "flex-start",
-            width: "100%",
-          }}
-        >
-          {/* Left Column - Heading and Description */}
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              gap: "var(--space-lg, 32px)",
-            }}
-          >
-            {/* Main Heading */}
-            <h2
+          <div className="flex flex-col gap-4 px-(--space-xxl)">
+            <h1
               style={{
-                fontFamily: "var(--font-primary, 'Bebas Neue')",
-                fontSize: "var(--h2-size, 148px)",
-                fontStyle: "normal",
-                fontWeight: "400",
+                fontFamily: "var(--font-primary)",
+                fontSize: "var(--h2-size)",
+                fontWeight: 400,
                 lineHeight: "100%",
-                letterSpacing: "0%",
+                letterSpacing: 0,
                 textTransform: "uppercase",
-                textAlign: "left",
-                color: "#FFFFFF",
-                margin: 0,
               }}
             >
-              <span style={{ color: "#B6B7C3" }}>{serviceData.coreServices.heading.part1}</span>
-              <br />
-              {serviceData.coreServices.heading.part2}
-              <br />
-              {serviceData.coreServices.heading.part3}
-            </h2>
+              spotlight plc
+            </h1>
 
-            {/* Description Paragraph */}
             <p
               style={{
-                fontFamily: "var(--font-secondary, 'Outfit')",
-                fontSize: "clamp(16px, 1.5vw, 20px)",
-                fontStyle: "normal",
-                fontWeight: "400",
-                lineHeight: "150%",
-                textAlign: "left",
-                color: "#FFFFFF",
-                margin: 0,
+                fontFamily: "var(--font-secondary)",
+                fontSize: "24px",
+                fontWeight: 300,
+                lineHeight: "1.2",
+                width: "50%",
               }}
             >
-              {serviceData.coreServices.description}
+              {serviceDetail.serviceTitle}
             </p>
           </div>
 
-          {/* Right Column - Services List */}
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              width: "100%",
-            }}
-          >
-            {serviceData.coreServices.services.map((service, index) => (
-              <div key={service.id}>
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "var(--space-lg, 32px)",
-                    paddingTop: index > 0 ? "var(--space-lg, 32px)" : "0",
-                    paddingBottom: "var(--space-lg, 32px)",
-                  }}
-                >
-                  {/* Service Number */}
-                  <span
-                    style={{
-                      fontFamily: "var(--font-primary, 'Bebas Neue')",
-                      fontSize: "var(--accent-medium-size, 48px)",
-                      fontStyle: "normal",
-                      fontWeight: "400",
-                      lineHeight: "120%",
-                      color: "#B6B7C3",
-                      minWidth: "60px",
-                    }}
-                  >
-                    {service.id}
-                  </span>
+          {serviceDetail.serviceHeroImage && (
+            <div style={{ position: "relative", width: "100%", height: 420 }}>
+              <Image
+                src={serviceDetail.serviceHeroImage}
+                alt="Service Hero"
+                fill
+                style={{ objectFit: "cover" }}
+              />
+            </div>
+          )}
+        </section>
+      )}
 
-                  {/* Service Name */}
-                  <span
-                    style={{
-                      fontFamily: "var(--font-secondary, 'Outfit')",
-                      fontSize: "var(--accent-small-size, 32px)",
-                      fontStyle: "normal",
-                      fontWeight: "300",
-                      lineHeight: "120%",
-                      letterSpacing: "0%",
-                      color: "#FFFFFF",
-                      flex: 1,
-                    }}
-                  >
-                    {service.name}
-                  </span>
-                </div>
-
-                {/* Horizontal Separator */}
-                {index < serviceData.coreServices.services.length - 1 && (
-                  <div
-                    style={{
-                      width: "100%",
-                      height: "1px",
-                      background: "#B6B7C3",
-                      opacity: 0.3,
-                    }}
-                  />
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Services Includes Section */}
-      <section
-        style={{
-          display: "flex",
-          padding: "var(--section-margin-y, 120px) var(--section-margin-x, 120px)",
-          flexDirection: "column",
-          gap: "var(--space-xxl, 64px)",
-          alignSelf: "stretch",
-          background: "#F7F7F8",
-          position: "relative",
-        }}
-      >
-        {/* Top Two-Column Informational Area */}
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1.5fr 1fr",
-            gap: "var(--space-xl, 48px)",
-            alignItems: "flex-start",
-            width: "100%",
-          }}
-        >
-          {/* Left Column */}
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              gap: "var(--space-lg, 32px)",
-            }}
-          >
-            {/* Heading */}
-            <h2
-              style={{
-                fontFamily: "var(--font-primary, 'Bebas Neue')",
-                fontSize: "var(--accent-medium-size, 48px)",
-                fontStyle: "normal",
-                fontWeight: "300",
-                lineHeight: "120%",
-                letterSpacing: "0%",
-                textTransform: "uppercase",
-                textAlign: "left",
-                color: "#0C0C0E",
-                margin: 0,
-              }}
-            >
-              {serviceData.servicesIncludes.leftColumn.heading.part1}
-              <br />
-              {serviceData.servicesIncludes.leftColumn.heading.part2}
-            </h2>
-
-            {/* Description Paragraph */}
-            <p
-              style={{
-                fontFamily: "var(--font-secondary, 'Outfit')",
-                fontSize: "clamp(16px, 1.5vw, 20px)",
-                fontStyle: "normal",
-                fontWeight: "400",
-                lineHeight: "150%",
-                textAlign: "left",
-                color: "#0C0C0E",
-                margin: 0,
-              }}
-            >
-              {serviceData.servicesIncludes.leftColumn.description}
-            </p>
-          </div>
-
-          {/* Right Column */}
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              gap: "var(--space-lg, 32px)",
-            }}
-          >
-            {/* Heading */}
-            <h3
-              style={{
-                fontFamily: "var(--font-primary, 'Bebas Neue')",
-                fontSize: "var(--h3-size, 56px)",
-                fontStyle: "normal",
-                fontWeight: "400",
-                lineHeight: "100%",
-                letterSpacing: "0%",
-                textTransform: "uppercase",
-                textAlign: "left",
-                color: "#0C0C0E",
-                margin: 0,
-              }}
-            >
-              {serviceData.servicesIncludes.rightColumn.heading.part1}
-              <br />
-              <span style={{ color: "#4A4A5A" }}>
-                {serviceData.servicesIncludes.rightColumn.heading.part2}
-              </span>
-              <br />
-              {serviceData.servicesIncludes.rightColumn.heading.part3}
-            </h3>
-
-            {/* Description Paragraph */}
-            <p
-              style={{
-                fontFamily: "var(--font-secondary, 'Outfit')",
-                fontSize: "clamp(16px, 1.5vw, 20px)",
-                fontStyle: "normal",
-                fontWeight: "400",
-                lineHeight: "150%",
-                textAlign: "left",
-                color: "#0C0C0E",
-                margin: 0,
-              }}
-            >
-              {serviceData.servicesIncludes.rightColumn.description}
-            </p>
-          </div>
-        </div>
-
-        {/* Bottom Three-Column Services Listing */}
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(3, 1fr)",
-            gap: "var(--space-xl, 48px)",
-            alignItems: "flex-start",
-            width: "100%",
-          }}
-        >
-          {serviceData.servicesIncludes.services.map((service, index) => (
-            <div
-              key={index}
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                width: "100%",
-              }}
-            >
-              {/* Service Title */}
-              <h3
+      {/* ================= STYLE ONE ================= */}
+      {serviceDetail.styleOneSection && (
+        <section className="flex flex-col gap-(--space-xxl) max-w-[1440px] mx-auto px-(--space-xxl) py-(--section-margin-y)">
+          {/* title and descriptions */}
+          <div className="flex   gap-(--space-xxl)">
+            {/* left content */}
+            <div className="flex flex-col gap-(--space-xs) flex-1">
+              <h4
                 style={{
-                  fontFamily: "var(--font-primary, 'Bebas Neue')",
-                  fontSize: "var(--accent-small-size, 32px)",
-                  fontStyle: "normal",
-                  fontWeight: "300",
+                  fontFamily: "var(--font-primary)",
+                  fontWeight: "400",
+                  fontSize: "var(--h4-size)",
                   lineHeight: "120%",
-                  letterSpacing: "0%",
-                  textTransform: "uppercase",
-                  textAlign: "left",
-                  color: "#0C0C0E",
-                  margin: 0,
-                  marginBottom: "var(--space-md, 24px)",
+                  letterSpacing: 0,
+                  color: "var(--spotlight-700)",
                 }}
               >
-                {service.title}
-              </h3>
+                spotlight
+              </h4>
 
-              {/* Horizontal Separator */}
-              <div
-                style={{
-                  width: "100%",
-                  height: "1px",
-                  background: "#4A4A5A",
-                  opacity: 0.3,
-                  marginBottom: "var(--space-md, 24px)",
-                }}
-              />
-
-              {/* Service Description */}
+              {serviceDetail.styleOneSection.styleOneTitle && (
+                <h3
+                  style={{
+                    fontFamily: "var(--font-primary)",
+                    fontWeight: "400",
+                    fontSize: "var(--h3-size)",
+                    lineHeight: "100%",
+                    letterSpacing: 0,
+                    color: "var(--spotlight-950)",
+                  }}
+                >
+                  {serviceDetail.styleOneSection.styleOneTitle}
+                </h3>
+              )}
+            </div>
+            {/* right content */}
+            {serviceDetail.styleOneSection.styleOneDescription && (
               <p
                 style={{
-                  fontFamily: "var(--font-secondary, 'Outfit')",
-                  fontSize: "var(--body-medium-size, 16px)",
-                  fontStyle: "normal",
+                  fontFamily: "var(--font-secondary)",
                   fontWeight: "400",
+                  fontSize: "16px",
                   lineHeight: "150%",
-                  letterSpacing: "0%",
-                  textAlign: "left",
-                  color: "#0C0C0E",
-                  margin: 0,
+                  letterSpacing: 0,
+                  color: "#000000",
+                  flex: 1,
                 }}
+                className=""
               >
-                {service.description}
+                {serviceDetail.styleOneSection.styleOneDescription}
               </p>
+            )}
+          </div>
+
+          {/* 2 images */}
+          {serviceDetail.styleOneSection.styleOneImages && (
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "1fr 1fr",
+              }}
+            >
+              {serviceDetail.styleOneSection.styleOneImages.map(
+                (img: string, i: number) => (
+                  <div key={i} style={{ position: "relative", height: 360 }}>
+                    <Image
+                      src={img}
+                      alt="Service image"
+                      fill
+                      style={{ objectFit: "cover" }}
+                    />
+                  </div>
+                )
+              )}
             </div>
-          ))}
-        </div>
-      </section>
+          )}
+        </section>
+      )}
 
-      {/* Spotlight CTA Section */}
-      <section
-        style={{
-          display: "flex",
-          padding: "var(--section-margin-y, 120px) var(--section-margin-x, 120px)",
-          flexDirection: "row",
-          alignItems: "center",
-          justifyContent: "space-between",
-          gap: "var(--space-xl, 48px)",
-          alignSelf: "stretch",
-          background: "#0C0C0E",
-          position: "relative",
-          minHeight: "400px",
-        }}
-      >
-        {/* Left Content Block */}
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "var(--space-md, 24px)",
-            flex: "0 0 auto",
-            zIndex: 2,
-          }}
-        >
-          {/* SPOTLIGHT Title with dot replacing 'I' */}
-          <h2
-            style={{
-              fontFamily: "var(--font-primary, 'Bebas Neue')",
-              fontSize: "clamp(60px, 8vw, 120px)",
-              fontStyle: "normal",
-              fontWeight: "400",
-              lineHeight: "100%",
-              textTransform: "uppercase",
-              textAlign: "left",
-              color: "#FFFFFF",
-              margin: 0,
-              display: "flex",
-              alignItems: "center",
-              gap: "0.05em",
-              position: "relative",
-            }}
-          >
-            SPOT
-            {/* Light Source Dot replacing 'I' */}
-            <span
+      {/* ================= STYLE TWO ================= */}
+      {serviceDetail.styleTwoSection && (
+        <section className="flex flex-col gap-(--space-xxl) max-w-[1440px] mx-auto px-(--space-xxl) py-(--section-margin-y)">
+          {/* title and description */}
+          <div className="flex gap-(--space-xxl) ">
+            <h3
               style={{
-                display: "inline-block",
-                width: "0.12em",
-                height: "0.12em",
-                borderRadius: "50%",
-                background: "#FFFFFF",
-                boxShadow: "0 0 15px rgba(255, 255, 255, 0.9)",
-                flexShrink: 0,
-              }}
-            />
-            LIGHT
-          </h2>
-
-          {/* Tagline */}
-          <p
-            style={{
-              fontFamily: "var(--font-secondary, 'Outfit')",
-              fontSize: "clamp(16px, 1.5vw, 20px)",
-              fontStyle: "normal",
-              fontWeight: "400",
-              lineHeight: "150%",
-              textAlign: "left",
-              color: "#FFFFFF",
-              margin: 0,
-            }}
-          >
-            {serviceData.spotlightCTA.leftSide.tagline}
-          </p>
-        </div>
-
-        {/* Center Spotlight Effect */}
-        <div
-          style={{
-            position: "absolute",
-            left: "35%",
-            top: "0",
-            width: "30%",
-            height: "100%",
-            zIndex: 1,
-            pointerEvents: "none",
-            overflow: "visible",
-          }}
-        >
-          {/* Light Source Dot - positioned in top-left area */}
-          <div
-            style={{
-              position: "absolute",
-              left: "-8px",
-              top: "15%",
-              width: "20px",
-              height: "20px",
-              borderRadius: "50%",
-              background: "#FFFFFF",
-              boxShadow: "0 0 25px rgba(255, 255, 255, 1), 0 0 50px rgba(255, 255, 255, 0.7)",
-              zIndex: 3,
-            }}
-          />
-
-          {/* Conical Light Beam - starts from the dot center, thinner beam with 45-degree angle from bottom */}
-          <div
-            style={{
-              position: "absolute",
-              left: "2px",
-              top: "calc(15% + 10px)",
-              width: "calc(100% - 2px)",
-              height: "calc(100% - 15% - 10px)",
-              background: "linear-gradient(90deg, rgba(255, 255, 255, 0.5) 0%, rgba(220, 220, 220, 0.35) 10%, rgba(180, 180, 180, 0.2) 25%, rgba(120, 120, 120, 0.1) 45%, rgba(60, 60, 60, 0.05) 65%, rgba(20, 20, 20, 0.02) 85%, rgba(0, 0, 0, 0) 100%)",
-              clipPath: "polygon(0 0, 100% 0%, 100% 15%, 0 100%)",
-              transformOrigin: "left top",
-            }}
-          />
-        </div>
-
-        {/* Right Content Block */}
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "var(--space-md, 24px)",
-            flex: "0 0 auto",
-            maxWidth: "500px",
-            zIndex: 2,
-          }}
-        >
-          {/* Heading */}
-          <h3
-            style={{
-              fontFamily: "var(--font-primary, 'Bebas Neue')",
-              fontSize: "clamp(32px, 4vw, 56px)",
-              fontStyle: "normal",
-              fontWeight: "400",
-              lineHeight: "100%",
-              textTransform: "uppercase",
-              textAlign: "left",
-              color: "#FFFFFF",
-              margin: 0,
-            }}
-          >
-            {serviceData.spotlightCTA.rightSide.heading}
-          </h3>
-
-          {/* Description Paragraph */}
-          <p
-            style={{
-              fontFamily: "var(--font-secondary, 'Outfit')",
-              fontSize: "clamp(16px, 1.5vw, 20px)",
-              fontStyle: "normal",
-              fontWeight: "400",
-              lineHeight: "150%",
-              textAlign: "left",
-              color: "#FFFFFF",
-              margin: 0,
-            }}
-          >
-            {serviceData.spotlightCTA.rightSide.description}
-          </p>
-        </div>
-      </section>
-
-      {/* FAQs Section */}
-      <section
-        style={{
-          display: "flex",
-          padding: "var(--section-margin-y, 120px) var(--section-margin-x, 120px)",
-          flexDirection: "row",
-          gap: "var(--space-xl, 48px)",
-          alignSelf: "stretch",
-          background: "#F7F7F8",
-          position: "relative",
-        }}
-      >
-        {/* Left Column - Heading and Subheading */}
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "var(--space-lg, 32px)",
-            flex: "0 0 auto",
-            minWidth: "300px",
-          }}
-        >
-          {/* Main Title */}
-          <h2
-            style={{
-              fontFamily: "var(--font-primary, 'Bebas Neue')",
-              fontSize: "clamp(60px, 8vw, 120px)",
-              fontStyle: "normal",
-              fontWeight: "400",
-              lineHeight: "100%",
-              textTransform: "uppercase",
-              textAlign: "left",
-              color: "#4A4A5A",
-              margin: 0,
-            }}
-          >
-            {serviceData.faqs.heading}
-          </h2>
-
-          {/* Subheading */}
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              gap: "var(--space-xs, 16px)",
-            }}
-          >
-            <p
-              style={{
-                fontFamily: "var(--font-secondary, 'Outfit')",
-                fontSize: "clamp(18px, 2vw, 24px)",
-                fontStyle: "normal",
+                fontFamily: "var(--font-primary)",
                 fontWeight: "400",
-                lineHeight: "150%",
-                textAlign: "left",
-                color: "#4A4A5A",
-                margin: 0,
+                fontSize: "var(--h3-size)",
+                lineHeight: "100%",
+                letterSpacing: 0,
+                color: "var(--spotlight-950)",
+                flex: 1,
               }}
             >
-              {serviceData.faqs.subheading.line1}
-            </p>
+              {serviceDetail.styleTwoSection.styleTwoTitle}
+            </h3>
+
             <p
               style={{
-                fontFamily: "var(--font-secondary, 'Outfit')",
-                fontSize: "clamp(18px, 2vw, 24px)",
-                fontStyle: "normal",
+                fontFamily: "var(--font-secondary)",
                 fontWeight: "400",
+                fontSize: "16px",
                 lineHeight: "150%",
-                textAlign: "left",
-                color: "#4A4A5A",
-                margin: 0,
+                letterSpacing: 0,
+                color: "#000000",
+                flex: 1,
               }}
             >
-              {serviceData.faqs.subheading.line2}
+              {serviceDetail.styleTwoSection.styleTwoDescriptions}
             </p>
           </div>
-        </div>
 
-        {/* Right Column - Questions List */}
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            flex: 1,
-            gap: "var(--space-lg, 32px)",
-          }}
-        >
-          {serviceData.faqs.questions.map((question: string, index: number) => (
-            <div key={index}>
-              {/* Question with Plus Icon */}
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  marginBottom: "var(--space-md, 24px)",
-                }}
-              >
+          <div className="grid grid-cols-3 gap-x-(--space-xl) gap-y-(--space-xxl)">
+            {serviceDetail.styleTwoSection.styleTwoServicesList?.map(
+              (item: any, i: number) => (
+                <div
+                  key={i}
+                  className={`flex flex-col  gap-(--space-sm) ${(i + 1) % 3 !== 0 ? "pr-6 border-r border-[#B6B7C3]" : ""}`}
+                >
+                  <div className="flex  flex-col gap-(--space-xxs) ">
+                    <Image src={item.icon} alt="icon" width={40} height={40} />
+                    <h4
+                      style={{
+                        fontFamily: "var(--font-secondary)",
+                        fontWeight: "300",
+                        fontSize: "24px",
+                        lineHeight: "120%",
+                        letterSpacing: 0,
+                        color: "var(--spotlight-950)",
+                      }}
+                    >
+                      {item.title}
+                    </h4>
+                  </div>
+                  <p
+                    style={{
+                      fontFamily: "var(--font-secondary)",
+                      fontWeight: "400",
+                      fontSize: "16px",
+                      lineHeight: "150%",
+                      letterSpacing: 0,
+                      color: "#000000",
+                    }}
+                  >
+                    {item.description}
+                  </p>
+                </div>
+              )
+            )}
+          </div>
+        </section>
+      )}
+
+      {/* ================= STYLE THREE the black one ================= */}
+      {serviceDetail.styleThreeSection && (
+        <section className="bg-(--spotlight-950)">
+          <div className="max-w-[1440px] mx-auto  px-(--space-xxl) py-(--section-margin-y)">
+            <div className="flex gap-(--section-margin-y)">
+              {/* title and description */}
+              <div className="flex-1 flex flex-col gap-(--space-lg)">
+                {/* title make the first two words of the title gray  */}
+                {(() => {
+                  const words =
+                    serviceDetail.styleThreeSection.title.split(" ");
+                  const firstTwo = words.slice(0, 2).join(" ");
+                  const rest = words.slice(2).join(" ");
+
+                  return (
+                    <h2
+                      style={{
+                        fontFamily: "var(--font-primary)",
+                        fontWeight: "400",
+                        fontSize: "var(--h2-size)",
+                        lineHeight: "100%",
+                        letterSpacing: 0,
+                        textTransform: "uppercase",
+                        color: "var(--spotlight-50)",
+                      }}
+                    >
+                      <span style={{ color: "var(--spotlight-300)" }}>
+                        {firstTwo}{" "}
+                      </span>
+                      {rest}
+                    </h2>
+                  );
+                })()}
+
                 <p
                   style={{
-                    fontFamily: "var(--font-secondary, 'Outfit')",
-                    fontSize: "clamp(18px, 2vw, 24px)",
-                    fontStyle: "normal",
+                    fontFamily: "var(--font-secondary)",
                     fontWeight: "400",
+                    fontSize: "16px",
                     lineHeight: "150%",
-                    textAlign: "left",
-                    color: "#4A4A5A",
-                    margin: 0,
-                    flex: 1,
+                    letterSpacing: 0,
+                    color: "var(--spotlight-50)",
                   }}
                 >
-                  {question}
+                  {serviceDetail.styleThreeSection.description}
                 </p>
-                
-                {/* Plus Icon */}
-                <svg
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  style={{
-                    flexShrink: 0,
-                    marginLeft: "var(--space-md, 24px)",
-                  }}
-                >
-                  <path
-                    d="M12 5V19M5 12H19"
-                    stroke="#0C0C0E"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
               </div>
 
-              {/* Horizontal Separator */}
-              <div
-                style={{
-                  width: "100%",
-                  height: "1px",
-                  background: "#D1D1D6",
-                  opacity: 0.5,
-                }}
-              />
+              {/* right side lists */}
+              <div className=" grid gap-(--space-xl) flex-1">
+                {serviceDetail.styleThreeSection.styleThreeServiceList?.map(
+                  (item: any, i: number) => (
+                    <div
+                      key={i}
+                      className=" border-b border-b-[#4A4A5A] flex gap-(--space-xs) pb-(--space-xl) px-(--space-xl)"
+                    >
+                      {/* Number */}
+                      <div
+                        style={{
+                          fontFamily: "var(--font-secondary)",
+                          fontWeight: "300",
+                          fontSize: "var(--accent-medium-size)",
+                          lineHeight: "120%",
+                          letterSpacing: 0,
+                          color: "var(--spotlight-300)",
+                        }}
+                      >
+                        {(i + 1).toString().padStart(2, "0")}
+                      </div>
+
+                      <div className="flex flex-col gap-(--space-xs)">
+                        {/* title */}
+                        <p
+                          style={{
+                            fontFamily: "var(--font-secondary)",
+                            fontWeight: "300",
+                            fontSize: "24px",
+                            lineHeight: "120%",
+                            letterSpacing: 0,
+                            color: "var(--spotlight-50)",
+                          }}
+                        >
+                          {item.title}
+                        </p>
+                        <p
+                          style={{
+                            fontFamily: "var(--font-secondary)",
+                            fontWeight: "400",
+                            fontSize: "16px",
+                            lineHeight: "150%",
+                            letterSpacing: 0,
+                            color: "var(--spotlight-50)",
+                          }}
+                        >
+                          {item.description}
+                        </p>
+                      </div>
+                    </div>
+                  )
+                )}
+              </div>
             </div>
-          ))}
-        </div>
+          </div>
+        </section>
+      )}
+
+      {/* ================= STYLE FOUR ================= */}
+      {serviceDetail.styleFourSectionIndustries && (
+        <section className="max-w-[1440px] mx-auto flex flex-col gap-(--space-xxl)  px-(--space-xxl) py-(--section-margin-y)">
+          {/* title description sub title and sub descriptions */}
+          <div className="flex gap-(--space-xxl)">
+            {/* title and description */}
+            <div className="flex-1 flex flex-col gap-(--space-xs)">
+              <h3
+                style={{
+                  fontFamily: "var(--font-primary)",
+                  fontWeight: "400",
+                  fontSize: "var(--h3-size)",
+                  lineHeight: "100%",
+                  letterSpacing: 0,
+                  color: "var(--spotlight-950)",
+                }}
+              >
+                {serviceDetail.styleFourSectionIndustries.title}
+              </h3>
+              <p
+                style={{
+                  fontFamily: "var(--font-secondary)",
+                  fontWeight: "400",
+                  fontSize: "16px",
+                  lineHeight: "150%",
+                  letterSpacing: 0,
+                  color: "#000000",
+                }}
+              >
+                {serviceDetail.styleFourSectionIndustries.descriptions}
+              </p>
+            </div>
+
+            {/* sub title and sub description */}
+            <div className="flex-1 flex flex-col gap-(--space-xs)">
+              <h2
+                style={{
+                  fontFamily: "var(--font-secondary)",
+                  fontWeight: "300",
+                  fontSize: "24px",
+                  lineHeight: "120%",
+                  letterSpacing: 0,
+                  color: "var(--spotlight-950)",
+                }}
+              >
+                {serviceDetail.styleFourSectionIndustries.subTitle}
+              </h2>
+              <p
+                style={{
+                  fontFamily: "var(--font-plus-jakarta-sans)",
+                  fontWeight: "400",
+                  fontSize: "16px",
+                  lineHeight: "150%",
+                  letterSpacing: 0,
+                  color: "#000000",
+                }}
+              >
+                {serviceDetail.styleFourSectionIndustries.subDescription}
+              </p>
+            </div>
+          </div>
+
+          {/* industries and their description grid */}
+          <div className="grid grid-cols-3 gap-(--space-xxl)">
+            {serviceDetail.styleFourSectionIndustries.styleFourIndustriesList?.map(
+              (item: any, i: number) => (
+                <div key={i} className=" flex flex-col gap-(--space-lg)">
+                  <p
+                    style={{
+                      fontFamily: "var(--font-secondary)",
+                      fontWeight: "300",
+                      fontSize: "24px",
+                      lineHeight: "120%",
+                      letterSpacing: 0,
+                      color: "var(--spotlight-950)",
+                    }}
+                    className=" pb-(--space-sm) border-b border-b-[#4A4A5A]"
+                  >
+                    {item.industry}
+                  </p>
+                  <p
+                    style={{
+                      fontFamily: "var(--font-secondary)",
+                      fontWeight: "400",
+                      fontSize: "16px",
+                      lineHeight: "150%",
+                      letterSpacing: 0,
+                      color: "#000000",
+                    }}
+                  >
+                    {item.industryDescription}
+                  </p>
+                </div>
+              )
+            )}
+          </div>
+        </section>
+      )}
+
+      {/* ================= STYLE FIVE ================= */}
+      {serviceDetail.styleFiveSectionInfo && (
+        <section className="max-w-[1440px] mx-auto flex flex-col gap-(--space-xxl)  px-(--space-xxl) py-(--section-margin-y)">
+          {/* title description sub title and sub descriptions */}
+          <div className="flex gap-(--space-xxl)">
+            {/* title and description */}
+            <div className="flex-1 flex flex-col gap-(--space-xs)">
+              <h3
+                style={{
+                  fontFamily: "var(--font-primary)",
+                  fontWeight: "400",
+                  fontSize: "var(--h3-size)",
+                  lineHeight: "100%",
+                  letterSpacing: 0,
+                  color: "var(--spotlight-950)",
+                }}
+              >
+                {serviceDetail.styleFiveSectionInfo.title}
+              </h3>
+              <p
+                style={{
+                  fontFamily: "var(--font-secondary)",
+                  fontWeight: "400",
+                  fontSize: "16px",
+                  lineHeight: "150%",
+                  letterSpacing: 0,
+                  color: "#000000",
+                }}
+              >
+                {serviceDetail.styleFiveSectionInfo.description}
+              </p>
+            </div>
+
+            {/* sub title and sub description */}
+            <div className="flex-1 flex flex-col gap-(--space-xs)">
+              <h2
+                style={{
+                  fontFamily: "var(--font-secondary)",
+                  fontWeight: "300",
+                  fontSize: "24px",
+                  lineHeight: "120%",
+                  letterSpacing: 0,
+                  color: "var(--spotlight-950)",
+                }}
+              >
+                {serviceDetail.styleFiveSectionInfo.subTitle}
+              </h2>
+              <p
+                style={{
+                  fontFamily: "var(--font-plus-jakarta-sans)",
+                  fontWeight: "400",
+                  fontSize: "16px",
+                  lineHeight: "150%",
+                  letterSpacing: 0,
+                  color: "#000000",
+                }}
+              >
+                {serviceDetail.styleFiveSectionInfo.subDescription}
+              </p>
+            </div>
+          </div>
+
+          {/* infos and their description grid */}
+          <div className="grid grid-cols-4 gap-(--space-xxl)">
+            {serviceDetail.styleFiveSectionInfo.info?.map(
+              (item: any, i: number) => (
+                <div key={i} className=" flex flex-col gap-(--space-lg)">
+                  <p
+                    style={{
+                      fontFamily: "var(--font-secondary)",
+                      fontWeight: "300",
+                      fontSize: "24px",
+                      lineHeight: "120%",
+                      letterSpacing: 0,
+                      color: "var(--spotlight-950)",
+                    }}
+                    className=" pb-(--space-sm) border-b border-b-[#4A4A5A]"
+                  >
+                    {item.title}
+                  </p>
+                  <p
+                    style={{
+                      fontFamily: "var(--font-secondary)",
+                      fontWeight: "400",
+                      fontSize: "16px",
+                      lineHeight: "150%",
+                      letterSpacing: 0,
+                      color: "#000000",
+                    }}
+                  >
+                    {item.description}
+                  </p>
+                </div>
+              )
+            )}
+          </div>
+        </section>
+      )}
+
+      {/* ================= CTA black one ================= */}
+      {serviceDetail.styleSixCtaSection && (
+        <section className="bg-(--spotlight-950) ">
+          <div className="max-w-[1440px] mx-auto  px-(--space-xxl) py-(--section-margin-y)">
+            <div className="flex gap-28">
+              {/* left side spotlight logo and slogan */}
+              <div className="flex gap-(--space-xxs)">
+                <div className="flex flex-col gap-(--space-xxs)">
+                  <h2
+                    style={{
+                      fontFamily: "var(--font-primary)",
+                      fontWeight: "400",
+                      fontSize: "var(--h2-size)",
+                      lineHeight: "100%",
+                      letterSpacing: 0,
+                      color: "var(--spotlight-50)",
+                      textTransform: "uppercase",
+                    }}
+                  >
+                    spotlight
+                  </h2>
+                  <p
+                    style={{
+                      fontFamily: "var(--font-secondary)",
+                      fontWeight: "300",
+                      fontSize: "24px",
+                      lineHeight: "120%",
+                      letterSpacing: 0,
+                      color: "var(--spotlight-50)",
+                    }}
+                  >
+                    {serviceDetail.styleSixCtaSection.slogan}
+                  </p>
+                </div>
+                <Image
+                  src={"/ServiceDetails/spotlight.svg"}
+                  width={152}
+                  height={152}
+                  alt="spotlight"
+                />
+              </div>
+
+              {/* right side content */}
+
+              <div className="flex flex-col gap-(--space-lg)">
+                <h3
+                  style={{
+                    fontFamily: "var(--font-primary)",
+                    fontWeight: "400",
+                    fontSize: "var(--h3-size)",
+                    lineHeight: "100%",
+                    letterSpacing: 0,
+                    color: "var(--spotlight-300)",
+                  }}
+                >
+                  {serviceDetail.styleSixCtaSection.title}
+                </h3>
+
+                <p
+                  style={{
+                    fontFamily: "var(--font-secondary)",
+                    fontWeight: "300",
+                    fontSize: "24px",
+                    lineHeight: "120%",
+                    letterSpacing: 0,
+                    color: "var(--spotlight-50)",
+                  }}
+                >
+                  {serviceDetail.styleSixCtaSection.cta}
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* style seven */}
+
+      <section className="max-w-[1440px] mx-auto flex  flex-col gap-(--space-xxl)  px-(--space-xxl) py-(--section-margin-y)">
+        {serviceDetail.styleSevenInfo2.map((info, index) => (
+
+          // to doooooooo Add border botttom here 
+          <div key={index} className="flex gap-(--space-xxl) border-b border-b-amber-300 ">
+            <h4
+              style={{
+                fontFamily: "var(--font-primary)",
+                fontWeight: "400",
+                fontSize: "var(--h4-size)",
+                lineHeight: "120%",
+                letterSpacing: 0,
+                color: "var(--spotlight-950)",
+                flex: 1,
+              }}
+            >
+              {info.title}
+            </h4>
+
+            <div className="flex flex-col gap-6 flex-1 ">
+              {info.paragraphs.map((paragraph, i) => (
+                <p
+                  key={i}
+                  style={{
+                    fontFamily: "var(--font-plus-jakarta-sans)",
+                    fontWeight: "400",
+                    fontSize: "16px",
+                    lineHeight: "100%",
+                    color: "#000000",
+                  }}
+                >
+                  {paragraph}
+                </p>
+              ))}
+            </div>
+          </div>
+        ))}
       </section>
+
+      {/* ================= FAQs ================= */}
+      {serviceDetail.faqsSection && (
+        <section
+          style={{ padding: "80px 24px", maxWidth: 1200, margin: "0 auto" }}
+        >
+          <h2 style={{ marginBottom: 32 }}>FAQs</h2>
+          <div style={{ display: "grid", gap: 16 }}>
+            {serviceDetail.faqsSection.map((faq: any, i: number) => (
+              <details key={i}>
+                <summary style={{ fontWeight: 600 }}>{faq.question}</summary>
+                <p style={{ marginTop: 8 }}>{faq.answer}</p>
+              </details>
+            ))}
+          </div>
+        </section>
+      )}
     </main>
   );
 }
