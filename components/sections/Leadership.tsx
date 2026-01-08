@@ -166,13 +166,14 @@ export default function Leadership() {
     <section
       style={{
         display: 'flex',
-        padding: 'var(--section-margin-y, 120px) var(--section-margin-x, 120px)',
+        // padding: 'var(--section-margin-y, 120px) var(--section-margin-x, 120px)',
         flexDirection: 'column',
         alignItems: 'center',
         gap: 'var(--space-xxl, 64px)',
         alignSelf: 'stretch',
         background: 'var(--spotlight-950, #0C0C0E)',
       }}
+      className="p-6 md:p-(--space-xxl) lg:p-(--section-margin-y)"
     >
       {/* Title */}
       <h2

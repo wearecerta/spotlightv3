@@ -174,8 +174,8 @@ export default function TeamSection({
     <section
       style={{
         display: "flex",
-        padding:
-          "var(--section-margin-y, 120px) var(--section-margin-y, 120px)",
+        // padding:
+        //   "var(--section-margin-y, 120px) var(--section-margin-y, 120px)",
         flexDirection: "column",
         alignItems: "center",
         gap: "var(--space-xxl, 64px)",
@@ -183,6 +183,7 @@ export default function TeamSection({
         background: "var(--spotlight-950, #0C0C0E)",
         position: "relative",
       }}
+      className="p-6 md:p-(--space-xxl) lg:p-(--section-margin-y)"
     >
       {/* Title and Group Photo Container */}
       <div
