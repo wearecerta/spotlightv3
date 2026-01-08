@@ -147,8 +147,8 @@ export default function PolaroidImages() {
   }
 
   return (
-    <main className="relative  w-[342px] md:w-[1200px] mx-auto min-h-screen bg-[#0C0C0E] overflow-hidden">
-      <section className="relative min-h-screen px-[120px] py-[120px] flex justify-center">
+    <main className="relative max-w-[1440px] w-[350px] md:w-[700px] lg:w-[1000px] mx-auto min-h-screen bg-[#0C0C0E] overflow-hidden">
+      <section className="relative min-h-screen  py-[120px] flex justify-center">
         <div className="relative w-full ">
           {/* Quotes */}
           {QUOTES.map((quote, i) => (
@@ -156,7 +156,7 @@ export default function PolaroidImages() {
           ))}
 
           {/* Polaroid images   */}
-          <div className="relative z-10 flex flex-col items-center gap-24">
+          <div className="relative z-10 flex flex-col items-center justify-center gap-24">
             {groupedPolaroids.map((group, groupIndex) => (
               <div
                 key={groupIndex}

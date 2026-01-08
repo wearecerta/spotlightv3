@@ -59,8 +59,8 @@ export default function Culture() {
  useEffect(() => {
   const mm = gsap.matchMedia();
 
-  mm.add("(min-width: 768px)", () => {
-    // DESKTOP
+  /* ================= DESKTOP (≥1024px) ================= */
+  mm.add("(min-width: 1024px)", () => {
     const leftX = [-700, -800, -300];
     const rightX = [700, 800, 300];
     const rotationLeft = [-30, -20, -35];
@@ -97,8 +97,47 @@ export default function Culture() {
     });
   });
 
+  /* ================= TABLET (768px – 1023px) ================= */
+  mm.add("(min-width: 768px) and (max-width: 1023px)", () => {
+    const leftX = [-400, -500, -200];
+    const rightX = [400, 500, 200];
+    const rotationLeft = [-20, -15, -25];
+    const rotationRight = [20, 15, 25];
+    const yValues = [50, -80, -150];
+
+    gsap.utils.toArray<HTMLElement>(".row").forEach((row, i) => {
+      const left = row.querySelector(".card-left");
+      const right = row.querySelector(".card-right");
+
+      gsap.to(left, {
+        x: leftX[i],
+        y: yValues[i],
+        rotation: rotationLeft[i],
+        scrollTrigger: {
+          trigger: ".main",
+          start: "top center",
+          end: "150% bottom",
+          scrub: true,
+        },
+      });
+
+      gsap.to(right, {
+        x: rightX[i],
+        y: yValues[i],
+        rotation: rotationRight[i],
+        scrollTrigger: {
+          trigger: ".main",
+          start: "top center",
+          end: "150% bottom",
+          scrub: true,
+        },
+      });
+    });
+  });
+
+  /* ================= MOBILE (<768px) ================= */
   mm.add("(max-width: 767px)", () => {
-   const leftX = [-100, -200, -110];
+    const leftX = [-100, -200, -110];
     const rightX = [100, 200, 110];
     const rotationLeft = [-30, -20, -35];
     const rotationRight = [30, 20, 35];
@@ -138,8 +177,9 @@ export default function Culture() {
 }, []);
 
 
+
   return (
-    <main className="relative min-h-screen -mt-20 md:-mt-24 lg:-mt-26 overflow-hidden bg-[#0C0C0E] z-0">
+    <main className="relative min-h-screen -mt-20 md:-mt-26 overflow-hidden bg-[#0C0C0E] z-0">
       {/* Hero Section */}
       <section className="main md:mt-56 relative  min-h-screen flex flex-col justify-center items-center gap-3 md:gap-16">
         {images.map(
@@ -206,8 +246,8 @@ export default function Culture() {
 
       <PolaroidImages />
 
-      <section className="max-w-[1440px] w-full mx-auto p-6 md:p-[120px] ">
-        <div className="bg-[#4A4A5A4D]   border border-[#4A4A5A4D] flex flex-col gap-(--space-xl) rounded-3xl md:rounded-[48px] px-6 py-12 md:p-[120px] ">
+      <section className="max-w-[1440px] w-full mx-auto p-6 md:p-[64px] lg:p-[120px] ">
+        <div className="bg-[#4A4A5A4D]   border border-[#4A4A5A4D] flex flex-col gap-(--space-xl) rounded-3xl md:rounded-[48px] px-6 py-12 md:p-[64px] lg:[120px] ">
 
         <div className="flex flex-col">
           <h2
@@ -235,7 +275,7 @@ export default function Culture() {
         </div>
 
         {/* videos  */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-(--space-lg)">
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-(--space-lg)">
           {WeDontStopeVideos.map((video, index) => (
             <video
               key={index}
@@ -252,7 +292,7 @@ export default function Culture() {
       </section>
 
       {/* Sacred Codes Section */}
-      <section className="flex flex-col mx-auto max-w-[1440px] px-8 md:px-24 py-32 gap-16 bg-[#0C0C0E]">
+      <section className="flex flex-col mx-auto max-w-[1440px] p-6 md:p-[64px] lg:p-[120px] py-32 gap-16 bg-[#0C0C0E]">
          <div className="inline-flex w-fit -rotate-3 -mb-15  items-center gap-1 md:gap-3  bg-white px-6 md:px-30 py-3 rounded-full shadow-lg">
             <Image
               src={"/Icons/black-dot.svg"}
