@@ -39,7 +39,7 @@ export default function Navbar() {
     <header className="w-full z-10">
       {" "}
       {/* Removed faulty gradient class for transparent bg; add back if needed */}
-      <div className="w-full mx-auto py-4 px-6 md:px-20 flex items-center justify-between">
+      <div className="w-full mx-auto py-4 px-6 md:px-16 lg:px-20 flex items-center justify-between">
         {" "}
         {/* Applied Figma styles: width:1440px, padding:16px 80px (py-4 px-20), flex, justify-between, items-center */}
         {/* Logo */}
@@ -82,7 +82,7 @@ export default function Navbar() {
         {/* Contact button */}
         <div className="flex items-center">
           <Link
-            href="/contact"
+            href="#contact"
             className="hidden py-2 px-7 text-xl justify-center items-center sm:flex font-normal uppercase tracking-wide transition-colors duration-200 shadow-sm"
             style={{
               backgroundColor: buttonBgColor,
