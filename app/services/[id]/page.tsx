@@ -386,8 +386,7 @@ export default function ServiceDetailPage() {
             </p>
           </div>
 
-
-              {/* services list grid */}
+          {/* services list grid */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-x-(--space-xl) gap-y-(--space-xxl)">
             {serviceDetail.styleTwoSection.styleTwoServicesList?.map(
               (item: any, i: number) => (
@@ -906,7 +905,7 @@ export default function ServiceDetailPage() {
                   key={i}
                   className=" p-(--space-xl) border-b border-b-[#B6B7C3]"
                 >
-                  <details>
+                  <details className="group">
                     {/* HEADER ROW */}
                     <summary
                       style={{
@@ -939,6 +938,15 @@ export default function ServiceDetailPage() {
                         alt="plus icon"
                         width={18.67}
                         height={18.67}
+                        className="block group-open:hidden"
+                      />
+                      {/* minus icon */}
+                      <Image
+                        src="/Icons/minus-icon.svg"
+                        alt="minus icon"
+                        width={18.67}
+                        height={18.67}
+                        className="hidden group-open:block"
                       />
                     </summary>
 
