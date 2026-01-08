@@ -387,7 +387,7 @@ export default function ServiceDetailPage() {
           </div>
 
           {/* services list grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-x-(--space-xl) gap-y-(--space-xxl)">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-(--space-xl) gap-y-(--space-xxl)">
             {serviceDetail.styleTwoSection.styleTwoServicesList?.map(
               (item: any, i: number) => (
                 <div
@@ -604,7 +604,7 @@ export default function ServiceDetailPage() {
           </div>
 
           {/* industries and their description grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-(--space-xxl)">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-(--space-xxl)">
             {serviceDetail.styleFourSectionIndustries.styleFourIndustriesList?.map(
               (item: any, i: number) => (
                 <div key={i} className=" flex flex-col gap-(--space-lg)">
@@ -703,7 +703,7 @@ export default function ServiceDetailPage() {
           </div>
 
           {/* infos and their description grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-(--space-xxl)">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-(--space-xxl)">
             {serviceDetail.styleFiveSectionInfo.info?.map(
               (item: any, i: number) => (
                 <div key={i} className=" flex flex-col gap-(--space-lg)">
