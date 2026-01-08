@@ -22,13 +22,14 @@ export default function OurClients() {
     <section
       style={{
         display: 'flex',
-        padding: 'var(--section-margin-y, 120px) var(--section-margin-x, 120px)',
+        // padding: 'var(--section-margin-y, 120px) var(--section-margin-x, 120px)',
         flexDirection: 'column',
         alignItems: 'center',
         gap: 'var(--space-xxl, 64px)',
         alignSelf: 'stretch',
         background: '#000000',
       }}
+      className=" px-(--section-margin-x) md:px-(--space-xxl) lg:px-(--section-margin-x) py-(--section-margin-y)"
     >
       {/* Title */}
       <h2
@@ -48,7 +49,7 @@ export default function OurClients() {
 
       {/* Clients Grid */}
       <div
-        className="grid grid-cols-2 md:grid-cols-4 gap-[var(--space-xs)] w-full max-w-[1440px]"
+        className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[var(--space-xs)] w-full max-w-[1440px]"
       >
         {clients.map((client) => (
           <div

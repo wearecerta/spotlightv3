@@ -34,7 +34,7 @@ export default function Footer() {
 
   return ( 
     <footer id='contact' className="relative flex w-full h-screen aspect-36/23 items-start bg-(--spotlight-950) text-(--spotlight-200) overflow-hidden">
-      <div className="flex flex-col lg:flex-row gap-8 lg:gap-24 items-start justify-between relative z-10 w-full max-w-7xl mx-auto px-(--section-margin-x) py-(--space-xxl)">
+      <div className="flex flex-col lg:flex-row gap-8 lg:gap-24 items-start justify-between relative z-10 w-full max-w-7xl mx-auto px-(--section-margin-x) md:px-(--space-xxl) lg:px-(--section-margin-x) py-(--space-xxl)">
         
         {/* LEFT SIDE */}
         <div className="flex flex-col w-full lg:w-auto">

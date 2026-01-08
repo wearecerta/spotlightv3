@@ -3,7 +3,7 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import Marquee from "react-fast-marquee";
 
-export default function Industries() {
+const Industries=()=> {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [isAnimating, setIsAnimating] = useState(false);
   const timeoutRefs = useRef<NodeJS.Timeout[]>([]);
@@ -90,12 +90,7 @@ export default function Industries() {
 
   return (
     <section
-      style={{
-        padding:
-          "var(--section-margin-y, 120px) var(--section-margin-x, 120px)",
-
-        background: "#F7F7F8",
-      }}
+      className="bg-[#F7F7F8] px-(--section-margin-x) md:px-(--space-xxl) lg:px-(--section-margin-x) py-(--section-margin-y)"
     >
       <div
         className="max-w-[1440px] flex flex-col md:flex-row mx-auto "
@@ -231,3 +226,6 @@ export default function Industries() {
     </section>
   );
 }
+
+
+export default Industries

@@ -14,14 +14,15 @@ export default function OurAgency() {
   return (
     <section
       style={{
-        padding:
-          "var(--section-margin-y, 120px) var(--section-margin-x, 120px)",
+        // padding:
+        //   "var(--section-margin-y, 120px) var(--section-margin-x, 120px)",
         flexDirection: "column",
         alignItems: "center",
         background: "#ffffff",
         display: "flex",
         gap: "48px",
       }}
+      className=" px-(--section-margin-x) md:px-(--space-xxl) lg:px-(--section-margin-x) py-(--section-margin-y)"
     >
       <div className=" flex flex-col items-center gap-2">
 

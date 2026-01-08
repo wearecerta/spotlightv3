@@ -5,12 +5,7 @@ import ProjectCard from "../ui/ProjectCard";
 export default function Ourworks() {
   return (
     <section
-      className="w-full min-h-screen py-[var(--space-xxl)]"
-      style={{
-        background: "var(--spotlight-950)",
-        paddingLeft: "var(--section-margin-x)",
-        paddingRight: "var(--section-margin-x)",
-      }}
+      className="w-full bg-(--spotlight-950) min-h-screen py-(--space-xxl) px-(--section-margin-x) md:px-(--space-xxl) lg:py-(--space-xxl) lg:px-(--section-margin-x)"
     >
       {/* Title */}
       <h1

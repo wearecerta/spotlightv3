@@ -10,7 +10,7 @@ export default function Hero({ videoAsset, title, subtitle }: HeroProps) {
   const videoUrl = videoAsset ? getVideoUrl(videoAsset) : null;
 
   return (
-    <section className="relative w-full h-screen -mt-20 md:-mt-24 lg:-mt-26 overflow-hidden z-0 bg-(--spotlight-950)">
+    <section className="relative w-full h-screen -mt-20 md:-mt-26 lg:-mt-26 overflow-hidden z-0 bg-(--spotlight-950)">
       {videoUrl && (
         <video
           className="absolute top-0 left-0 w-full h-full object-cover"

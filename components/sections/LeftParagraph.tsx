@@ -43,7 +43,7 @@ const LeftParagraph = () => {
   }, []);
 
   return (
-    <div className="max-w-lg">
+    <div className="flex-1">
       <div
         ref={triggerRef}
         className="font-secondary"

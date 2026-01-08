@@ -162,11 +162,12 @@ export default function OurServices() {
         }}
       >
         <div
-          className="max-w-[1440px] mx-auto w-full"
+          className="max-w-[1440px] mx-auto w-full px-(--section-margin-x) md:px-(--space-xxl) lg:px-(--section-margin-x) py-(--section-margin-y)"
           style={{
-            padding: "var(--section-margin-y) var(--section-margin-x)",
+            // padding: "var(--section-margin-y) var(--section-margin-x)",
             pointerEvents: "auto",
           }}
+          
         >
           {/* Service Cards Grid - Zig-zag layout */}
           <div className="w-full">

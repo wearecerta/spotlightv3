@@ -6,15 +6,18 @@ import Link from "next/link";
 export default function Welcome() {
   return (
     <section
-      className="w-full h-auto text-white"
-      style={{
-        background: "var(--spotlight-950)",
-        paddingLeft: "var(--section-margin-x)",
-        paddingRight: "var(--section-margin-x)",
-        paddingTop: "var(--section-margin-y)",
-        paddingBottom: "var(--section-margin-y)",
-      }}
+      className="w-full  h-auto  bg-(--spotlight-950) "
+      // style={{
+      //   background: "var()",
+      //   paddingLeft: "var(--section-margin-x)",
+      //   paddingRight: "var(--section-margin-x)",
+      //   paddingTop: "var(--section-margin-y)",
+      //   paddingBottom: "var(--section-margin-y)",
+      // }}
+
     >
+      <div className="max-w-[1440px] mx-auto px-(--section-margin-x) md:px-(--space-xxl) lg:px-(--section-margin-x) py-(--section-margin-y) text-white">
+
       {/* TOP TITLE */}
       <div className="text-center flex flex-col gap-5">
         <h1
@@ -54,7 +57,7 @@ export default function Welcome() {
       {/* <div className="sticky top-0"> */}
 
       <div
-        className="flex flex-col-reverse lg:flex-row  max-w-[1440px] mx-auto"
+        className="flex flex-col-reverse lg:flex-row  "
         style={{
           marginTop: "var(--space-xl)",
           gap: "var(--space-xl)",
@@ -71,7 +74,7 @@ export default function Welcome() {
           alt="Welcome Image"
           width={600}
           height={600}
-          className="w-full max-w-md lg:max-w-lg mt-6 lg:mt-0"
+          className="w-full flex-1 lg:max-w-lg mt-6 lg:mt-0"
         />
       </div>
       {/* BUTTON */}
@@ -80,6 +83,7 @@ export default function Welcome() {
       </Link>
 
       {/* </div> */}
+          </div>
     </section>
   );
 }
