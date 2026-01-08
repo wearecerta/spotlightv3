@@ -1,5 +1,6 @@
 "use client";
 
+import OurAgency from "@/components/sections/OurAgency";
 import Image from "next/image";
 import { useParams } from "next/navigation";
 
@@ -230,7 +231,7 @@ export default function ServiceDetailPage() {
           }}
           className="flex flex-col gap-(--space-xxl) max-w-[1440px] mx-auto"
         >
-          <div className="flex flex-col gap-4 px-(--space-xxl)">
+          <div className="flex flex-col gap-4 px-(--space-lg) lg:px-(--space-xxl)">
             <h1
               style={{
                 fontFamily: "var(--font-primary)",
@@ -250,8 +251,8 @@ export default function ServiceDetailPage() {
                 fontSize: "24px",
                 fontWeight: 300,
                 lineHeight: "1.2",
-                width: "50%",
               }}
+              className=" lg:w-[50%]"
             >
               {serviceDetail.serviceTitle}
             </p>
@@ -272,9 +273,9 @@ export default function ServiceDetailPage() {
 
       {/* ================= STYLE ONE ================= */}
       {serviceDetail.styleOneSection && (
-        <section className="flex flex-col gap-(--space-xxl) max-w-[1440px] mx-auto px-(--space-xxl) py-(--section-margin-y)">
+        <section className="flex flex-col gap-(--space-xxl) max-w-[1440px] mx-auto px-(--section-margin-x) lg:px-(--space-xxl) py-(--section-margin-y)">
           {/* title and descriptions */}
-          <div className="flex   gap-(--space-xxl)">
+          <div className="flex flex-col lg:flex-row  gap-(--space-xs) lg:gap-(--space-xxl)">
             {/* left content */}
             <div className="flex flex-col gap-(--space-xs) flex-1">
               <h4
@@ -326,18 +327,20 @@ export default function ServiceDetailPage() {
 
           {/* 2 images */}
           {serviceDetail.styleOneSection.styleOneImages && (
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "1fr 1fr",
-              }}
-            >
+            <div className="flex flex-col md:flex-row">
               {serviceDetail.styleOneSection.styleOneImages.map(
                 (img: string, i: number) => (
-                  <div key={i} style={{ position: "relative", height: 360 }}>
+                  <div
+                    key={i}
+                    style={{
+                      position: "relative",
+                      height: 360,
+                    }}
+                    className="md:flex-1"
+                  >
                     <Image
                       src={img}
-                      alt="Service image"
+                      alt={`Service image ${i + 1}`}
                       fill
                       style={{ objectFit: "cover" }}
                     />
@@ -351,9 +354,9 @@ export default function ServiceDetailPage() {
 
       {/* ================= STYLE TWO ================= */}
       {serviceDetail.styleTwoSection && (
-        <section className="flex flex-col gap-(--space-xxl) max-w-[1440px] mx-auto px-(--space-xxl) py-(--section-margin-y)">
+        <section className="flex flex-col gap-(--space-xxl) max-w-[1440px] mx-auto px-(--section-margin-x) lg:px-(--space-xxl) py-(--section-margin-y)">
           {/* title and description */}
-          <div className="flex gap-(--space-xxl) ">
+          <div className="flex flex-col lg:flex-row gap-(--space-xs) md:gap-(--space-xxl)">
             <h3
               style={{
                 fontFamily: "var(--font-primary)",
@@ -383,15 +386,24 @@ export default function ServiceDetailPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-3 gap-x-(--space-xl) gap-y-(--space-xxl)">
+
+              {/* services list grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-x-(--space-xl) gap-y-(--space-xxl)">
             {serviceDetail.styleTwoSection.styleTwoServicesList?.map(
               (item: any, i: number) => (
                 <div
                   key={i}
-                  className={`flex flex-col  gap-(--space-sm) ${(i + 1) % 3 !== 0 ? "pr-6 border-r border-[#B6B7C3]" : ""}`}
+                  className={`flex flex-col  gap-(--space-sm) ${(i + 1) % 3 !== 0 ? "pr-6 lg:border-r border-[#B6B7C3]" : ""}`}
                 >
                   <div className="flex  flex-col gap-(--space-xxs) ">
-                    <Image src={item.icon} alt="icon" width={40} height={40} />
+                    <div className="bg-[#B6B7C3] w-10 h-10 rounded-sm flex justify-center items-center">
+                      <Image
+                        src={item.icon}
+                        alt="service icon"
+                        width={24}
+                        height={24}
+                      />
+                    </div>
                     <h4
                       style={{
                         fontFamily: "var(--font-secondary)",
@@ -427,8 +439,8 @@ export default function ServiceDetailPage() {
       {/* ================= STYLE THREE the black one ================= */}
       {serviceDetail.styleThreeSection && (
         <section className="bg-(--spotlight-950)">
-          <div className="max-w-[1440px] mx-auto  px-(--space-xxl) py-(--section-margin-y)">
-            <div className="flex gap-(--section-margin-y)">
+          <div className="max-w-[1440px] mx-auto  px-(--section-margin-x) lg:px-(--space-xxl) py-(--section-margin-y)">
+            <div className="flex flex-col lg:flex-row gap-(--section-margin-y)">
               {/* title and description */}
               <div className="flex-1 flex flex-col gap-(--space-lg)">
                 {/* title make the first two words of the title gray  */}
@@ -532,9 +544,9 @@ export default function ServiceDetailPage() {
 
       {/* ================= STYLE FOUR ================= */}
       {serviceDetail.styleFourSectionIndustries && (
-        <section className="max-w-[1440px] mx-auto flex flex-col gap-(--space-xxl)  px-(--space-xxl) py-(--section-margin-y)">
+        <section className="max-w-[1440px] mx-auto flex flex-col gap-(--space-xxl)  px-(--section-margin-x) lg:px-(--space-xxl) py-(--section-margin-y)">
           {/* title description sub title and sub descriptions */}
-          <div className="flex gap-(--space-xxl)">
+          <div className="flex flex-col lg:flex-row gap-(--space-lg) lg:gap-(--space-xxl)">
             {/* title and description */}
             <div className="flex-1 flex flex-col gap-(--space-xs)">
               <h3
@@ -593,7 +605,7 @@ export default function ServiceDetailPage() {
           </div>
 
           {/* industries and their description grid */}
-          <div className="grid grid-cols-3 gap-(--space-xxl)">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-(--space-xxl)">
             {serviceDetail.styleFourSectionIndustries.styleFourIndustriesList?.map(
               (item: any, i: number) => (
                 <div key={i} className=" flex flex-col gap-(--space-lg)">
@@ -631,9 +643,9 @@ export default function ServiceDetailPage() {
 
       {/* ================= STYLE FIVE ================= */}
       {serviceDetail.styleFiveSectionInfo && (
-        <section className="max-w-[1440px] mx-auto flex flex-col gap-(--space-xxl)  px-(--space-xxl) py-(--section-margin-y)">
+        <section className="max-w-[1440px] mx-auto flex flex-col gap-(--space-xxl)  px-(--section-margin-x) lg:px-(--space-xxl) py-(--section-margin-y)">
           {/* title description sub title and sub descriptions */}
-          <div className="flex gap-(--space-xxl)">
+          <div className="flex flex-col lg:flex-row gap-(--space-xxl)">
             {/* title and description */}
             <div className="flex-1 flex flex-col gap-(--space-xs)">
               <h3
@@ -692,7 +704,7 @@ export default function ServiceDetailPage() {
           </div>
 
           {/* infos and their description grid */}
-          <div className="grid grid-cols-4 gap-(--space-xxl)">
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-(--space-xxl)">
             {serviceDetail.styleFiveSectionInfo.info?.map(
               (item: any, i: number) => (
                 <div key={i} className=" flex flex-col gap-(--space-lg)">
@@ -731,10 +743,10 @@ export default function ServiceDetailPage() {
       {/* ================= CTA black one ================= */}
       {serviceDetail.styleSixCtaSection && (
         <section className="bg-(--spotlight-950) ">
-          <div className="max-w-[1440px] mx-auto  px-(--space-xxl) py-(--section-margin-y)">
-            <div className="flex gap-28">
+          <div className="max-w-[1440px] mx-auto  px-(--section-margin-x) lg:px-(--space-xxl) py-(--section-margin-y)">
+            <div className="flex flex-col lg:flex-row gap-(--space-xxl) lg:gap-28">
               {/* left side spotlight logo and slogan */}
-              <div className="flex gap-(--space-xxs)">
+              <div className="flex flex-col-reverse lg:flex-row gap-(--space-xxs)">
                 <div className="flex flex-col gap-(--space-xxs)">
                   <h2
                     style={{
@@ -806,11 +818,17 @@ export default function ServiceDetailPage() {
 
       {/* style seven */}
 
-      <section className="max-w-[1440px] mx-auto flex  flex-col gap-(--space-xxl)  px-(--space-xxl) py-(--section-margin-y)">
+      <section className="max-w-[1440px] mx-auto flex  flex-col gap-(--space-xxl)  px-(--section-margin-x) lg:px-(--space-xxl) py-(--section-margin-y)">
         {serviceDetail.styleSevenInfo2.map((info, index) => (
-
-          // to doooooooo Add border botttom here 
-          <div key={index} className="flex gap-(--space-xxl) border-b border-b-amber-300 ">
+          // infos and descriptions
+          <div
+            key={index}
+            className={`flex flex-col lg:flex-row gap-(--space-xs) lg:gap-(--space-xxl) ${
+              index !== serviceDetail.styleSevenInfo2.length - 1
+                ? "pb-16 border-b border-b-[#B6B7C3]"
+                : ""
+            }`}
+          >
             <h4
               style={{
                 fontFamily: "var(--font-primary)",
@@ -847,20 +865,107 @@ export default function ServiceDetailPage() {
 
       {/* ================= FAQs ================= */}
       {serviceDetail.faqsSection && (
-        <section
-          style={{ padding: "80px 24px", maxWidth: 1200, margin: "0 auto" }}
-        >
-          <h2 style={{ marginBottom: 32 }}>FAQs</h2>
-          <div style={{ display: "grid", gap: 16 }}>
-            {serviceDetail.faqsSection.map((faq: any, i: number) => (
-              <details key={i}>
-                <summary style={{ fontWeight: 600 }}>{faq.question}</summary>
-                <p style={{ marginTop: 8 }}>{faq.answer}</p>
-              </details>
-            ))}
+        <section className="max-w-[1440px] mx-auto flex flex-col gap-(--space-xxl)  px-(--section-margin-x) lg:px-(--space-xxl) py-(--section-margin-y)">
+          <div className="flex flex-col lg:flex-row gap-16 lg:gap-20    ">
+            {/* LEFT SIDE */}
+            <div className="flex-1 flex flex-col gap-(--space-lg) ">
+              <h2
+                style={{
+                  fontFamily: "var(--font-primary)",
+                  fontWeight: "400",
+                  fontSize: "var(--h2-size)",
+                  lineHeight: "100%",
+                  color: "var(--spotlight-700)",
+                  textTransform: "uppercase",
+                  letterSpacing: 0,
+                }}
+              >
+                FAQs
+              </h2>
+
+              <p
+                style={{
+                  fontFamily: "var(--font-secondary)",
+                  fontWeight: "300",
+                  fontSize: "24px",
+                  lineHeight: "120%",
+                  color: "var(--spotlight-950)",
+                  letterSpacing: 0,
+                }}
+              >
+                Any Questions?
+                <br />
+                We’ve Got Answers
+              </p>
+            </div>
+
+            {/* RIGHT SIDE */}
+            <div className="flex-1">
+              {serviceDetail.faqsSection.map((faq: any, i: number) => (
+                <div
+                  key={i}
+                  className=" p-(--space-xl) border-b border-b-[#B6B7C3]"
+                >
+                  <details>
+                    {/* HEADER ROW */}
+                    <summary
+                      style={{
+                        listStyle: "none",
+                        display: "grid",
+                        gridTemplateColumns: "1fr 32px",
+                        alignItems: "center",
+                        columnGap: "24px",
+                        cursor: "pointer",
+                      }}
+                    >
+                      {/* QUESTION */}
+                      <span
+                        style={{
+                          fontFamily: "var(--font-secondary)",
+                          fontWeight: "400",
+                          fontSize: "20px",
+                          lineHeight: "150%",
+                          color: "var(--spotlight-950)",
+                          letterSpacing: 0,
+                        }}
+                        className="text-wrap"
+                      >
+                        {faq.question}
+                      </span>
+
+                      {/* PLUS ICON */}
+                      <Image
+                        src={"/Icons/plus-icon.svg"}
+                        alt="plus icon"
+                        width={18.67}
+                        height={18.67}
+                      />
+                    </summary>
+
+                    {/* ANSWER */}
+                    <p
+                      style={{
+                        marginTop: "16px",
+
+                        fontFamily: "var(--font-plus-jakarta-sans)",
+                        fontWeight: "400",
+                        fontSize: "14px",
+                        lineHeight: "100%",
+                        color: "#4A4A5A",
+                        maxWidth: "90%",
+                      }}
+                    >
+                      {faq.answer}
+                    </p>
+                  </details>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
       )}
+
+      <OurAgency />
     </main>
   );
 }
