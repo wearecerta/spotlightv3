@@ -16,7 +16,7 @@ export default function Blog() {
         style={{
           display: 'flex',
           minHeight: '100vh',
-          padding: 'var(--section-margin-y, 120px) var(--section-margin-x, 120px)',
+          // padding: 'var(--section-margin-y, 120px) var(--section-margin-x, 120px)',
           flexDirection: 'column',
           justifyContent: 'center',
           alignItems: 'center',
@@ -24,7 +24,7 @@ export default function Blog() {
           alignSelf: 'stretch',
           position: 'relative',
         }}
-        className="max-w-[1440px] mx-auto"
+        className="max-w-[1440px] mx-auto px-(--section-margin-x) md:px-(--space-xxl) lg:px-(--section-margin-x) py-(--section-margin-y)"
       >
         {/* Hero Heading */}
         <h1
@@ -46,14 +46,14 @@ export default function Blog() {
       <section
         style={{
           display: 'flex',
-          padding: 'var(--section-margin-y, 120px) var(--section-margin-x, 120px)',
+          // padding: 'var(--section-margin-y, 120px) var(--section-margin-x, 120px)',
           flexDirection: 'column',
           alignItems: 'flex-start',
           gap: 'var(--space-xxl, 48px)',
           alignSelf: 'stretch',
           background: '#F7F7F8',
         }}
-        className="max-w-[1440px] mx-auto"
+        className="max-w-[1440px] mx-auto px-(--section-margin-x) md:px-(--space-xxl) lg:px-(--section-margin-x) py-(--section-margin-y)"
       >
         {/* Blogs Heading */}
         <h2

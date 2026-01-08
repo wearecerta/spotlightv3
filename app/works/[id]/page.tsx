@@ -79,7 +79,7 @@ export default function WorkDetail() {
           position: "relative",
           overflow: "hidden",
         }}
-        className="max-w-[1440px] mx-auto  pt-48px md:pt-16 md:h-screen"
+        className="max-w-[1440px] mx-auto  pt-48px md:pt-16 lg:h-screen"
       >
         {/* Video Background */}
         {youtubeVideoId && (
