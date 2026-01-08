@@ -106,7 +106,7 @@ export default function WorkDetail() {
           gap: "var(--space-lg)",
           position: "relative",
         }}
-        className="max-w-[1440px] mx-auto pt-16 pb-[120px] flex flex-col md:flex-row"
+        className="max-w-[1440px] mx-auto pt-16 pb-[120px] flex flex-col lg:flex-row"
       >
         {/* Left Column - Title and Tagline */}
         <div
@@ -448,7 +448,7 @@ export default function WorkDetail() {
 
       {/* Impact & Highlights Section */}
       <section className="mx-auto max-w-[1440px] w-full py-(--section-margin-y) flex flex-col gap-(--space-xxl)">
-        <div className=" grid grid-cols-1  gap-(--space-lg) md:grid-cols-2">
+        <div className=" grid grid-cols-1  gap-(--space-lg) lg:grid-cols-2">
           {/* LEFT IMAGE */}
           <div className="relative w-full h-[500px] lg:h-auto">
             <Image
@@ -577,7 +577,7 @@ export default function WorkDetail() {
         </div>
 
         {/* Achievements */}
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-[var(--space-lg)]">
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-[var(--space-lg)]">
           {/* Title */}
           <h4
             style={{
