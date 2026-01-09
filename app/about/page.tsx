@@ -221,6 +221,7 @@ export default function About() {
       {/* Leadership Team Section */}
       <Leadership />
 
+
       {/* Team Sections */}
       <TeamSection
         titleSvgSrc="/Aboutus/strategy-lab-team-title.svg"
@@ -254,103 +255,82 @@ export default function About() {
             position: "Position 1",
             name: "Name 1",
           },
-          {
-            src: "/Aboutus/Teams/sl1.png",
-            hoverSrc: "/Aboutus/Teams/sl1h.png",
-            alt: "Creative Team Member 5",
-            position: "Position 1",
-            name: "Name 1",
-          },
-          {
-            src: "/Aboutus/Teams/sl2.png",
-            hoverSrc: "/Aboutus/Teams/sl2h.png",
-            alt: "Creative Team Member 6",
-            position: "Position 1",
-            name: "Name 1",
-          },
-          {
-            src: "/Aboutus/Teams/sl3.png",
-            hoverSrc: "/Aboutus/Teams/sl3h.png",
-            alt: "Creative Team Member 7",
-            position: "Position 1",
-            name: "Name 1",
-          },
-          {
-            src: "/Aboutus/Teams/sl4.png",
-            hoverSrc: "/Aboutus/Teams/sl4h.png",
-            alt: "Creative Team Member 8",
-            position: "Position 1",
-            name: "Name 1",
-          },
-          {
-            src: "/Aboutus/Teams/sl1.png",
-            hoverSrc: "/Aboutus/Teams/sl1h.png",
-            alt: "Creative Team Member 9",
-            position: "Position 1",
-            name: "Name 1",
-          },
         ]}
       />
 
       <TeamSection
         titleSvgSrc="/Aboutus/creatives-team-title.svg"
-        groupPhoto="/Aboutus/Teams/strategyLab.png"
+        groupPhoto="/Aboutus/Teams/creatives-team.png"
         individualPhotos={[
           {
-            src: "/Aboutus/Teams/sl1.png",
-            hoverSrc: "/Aboutus/Teams/sl1h.png",
-            alt: "Strategy Team Member 1",
-            position: "Position 1",
-            name: "Name 1",
+            src: "/Aboutus/Teams/kidus1.png",
+            hoverSrc: "/Aboutus/Teams/kidus2.png",
+            alt: "creatives",
+            position: "Creative team",
+            name: "Kidus Ashenafi",
           },
           {
-            src: "/Aboutus/Teams/sl2.png",
-            hoverSrc: "/Aboutus/Teams/sl2h.png",
-            alt: "Strategy Team Member 2",
-            position: "Position 1",
-            name: "Name 1",
+            src: "/Aboutus/Teams/israel1.png",
+            hoverSrc: "/Aboutus/Teams/israel2.png",
+            alt: "creative Team Member 2",
+            position: "Creative",
+            name: "Israel Abebe",
           },
           {
-            src: "/Aboutus/Teams/sl3.png",
-            hoverSrc: "/Aboutus/Teams/sl3h.png",
-            alt: "Strategy Team Member 3",
-            position: "Position 1",
-            name: "Name 1",
+            src: "/Aboutus/Teams/kibreab1.png",
+            hoverSrc: "/Aboutus/Teams/kibreab2.png",
+            alt: "Creative Team Member 3",
+            position: "Creative",
+            name: "Kibreab Getachew",
           },
           {
-            src: "/Aboutus/Teams/sl4.png",
-            hoverSrc: "/Aboutus/Teams/sl4h.png",
-            alt: "Strategy Team Member 4",
-            position: "Position 1",
-            name: "Name 1",
+            src: "/Aboutus/Teams/beza1.png",
+            hoverSrc: "/Aboutus/Teams/beza2.png",
+            alt: "creative Team Member 4",
+            position: "creative",
+            name: "Bezawit Tsegaye",
+          },
+           {
+            src: "/Aboutus/Teams/erget2.png",
+            hoverSrc: "/Aboutus/Teams/erget1.png",
+            alt: "Creative Team Member 4",
+            position: "Creative",
+            name: "Erget Mekbib",
+          },
+           {
+            src: "/Aboutus/Teams/yared1.png",
+            hoverSrc: "/Aboutus/Teams/yared2.png",
+            alt: "Creative Team Member 4",
+            position: "Creative",
+            name: "Yared Teku",
           },
         ]}
       />
 
       <TeamSection
         titleSvgSrc="/Aboutus/digital-squad-team-title.svg"
-        groupPhoto="/Aboutus/Teams/strategyLab.png"
+        groupPhoto="/Aboutus/Teams/digitalSquad-team.png"
         individualPhotos={[
           {
-            src: "/Aboutus/Teams/sl1.png",
-            hoverSrc: "/Aboutus/Teams/sl1h.png",
+            src: "/Aboutus/Teams/marlen1.png",
+            hoverSrc: "/Aboutus/Teams/marlen2.png",
             alt: "Digital Team Member 1",
-            position: "Position 1",
-            name: "Name 1",
+            position: "Digital team member",
+            name: "Marlen Assefa",
           },
           {
-            src: "/Aboutus/Teams/sl2.png",
-            hoverSrc: "/Aboutus/Teams/sl2h.png",
+            src: "/Aboutus/Teams/miki1.png",
+            hoverSrc: "/Aboutus/Teams/miki2.png",
             alt: "Digital Team Member 2",
-            position: "Position 1",
-            name: "Name 1",
+            position: "Digital Team member",
+            name: "Michael Shewangizaw",
           },
           {
-            src: "/Aboutus/Teams/sl3.png",
-            hoverSrc: "/Aboutus/Teams/sl3h.png",
+            src: "/Aboutus/Teams/debo1.png",
+            hoverSrc: "/Aboutus/Teams/debo2.png",
             alt: "Digital Team Member 3",
-            position: "Position 1",
-            name: "Name 1",
+            position: "Digital Team member",
+            name: "Deborah Munyaneza",
           },
           {
             src: "/Aboutus/Teams/sl4.png",
@@ -385,7 +365,7 @@ export default function About() {
 
       <TeamSection
         titleSvgSrc="/Aboutus/event-experts.team.svg"
-        groupPhoto="/Aboutus/Teams/strategyLab.png"
+        groupPhoto="/Aboutus/Teams/event-experts.png"
         individualPhotos={[
           {
             src: "/Aboutus/Teams/sl1.png",
@@ -401,82 +381,61 @@ export default function About() {
             position: "Position 1",
             name: "Name 1",
           },
+           {
+            src: "/Aboutus/Teams/sl2.png",
+            hoverSrc: "/Aboutus/Teams/sl2h.png",
+            alt: "Event Team Member 2",
+            position: "Position 1",
+            name: "Name 1",
+          },
         ]}
       />
 
       <TeamSection
         titleSvgSrc="/Aboutus/account-hive-team-title.svg"
-        groupPhoto="/Aboutus/Teams/strategyLab.png"
+        groupPhoto="/Aboutus/Teams/acount-hives-team.png"
         individualPhotos={[
           {
-            src: "/Aboutus/Teams/sl1.png",
-            hoverSrc: "/Aboutus/Teams/sl1h.png",
+            src: "/Aboutus/Teams/marsilas1.png",
+            hoverSrc: "/Aboutus/Teams/marsilas2.png",
             alt: "Account Team Member 1",
-            position: "Position 1",
-            name: "Name 1",
+            position: "Senior Account",
+            name: "Marsilas Mengistu",
           },
           {
-            src: "/Aboutus/Teams/sl2.png",
-            hoverSrc: "/Aboutus/Teams/sl2h.png",
+            src: "/Aboutus/Teams/kalkidan1.png",
+            hoverSrc: "/Aboutus/Teams/kalkidan2.png",
             alt: "Account Team Member 2",
-            position: "Position 1",
-            name: "Name 1",
+            position: "Senior Account",
+            name: "kalkidan Samson",
           },
           {
-            src: "/Aboutus/Teams/sl3.png",
-            hoverSrc: "/Aboutus/Teams/sl3h.png",
+            src: "/Aboutus/Teams/bezawit1.png",
+            hoverSrc: "/Aboutus/Teams/bezawit2.png",
             alt: "Account Team Member 3",
-            position: "Position 1",
-            name: "Name 1",
-          },
-          {
-            src: "/Aboutus/Teams/sl4.png",
-            hoverSrc: "/Aboutus/Teams/sl4h.png",
-            alt: "Account Team Member 4",
-            position: "Position 1",
-            name: "Name 1",
-          },
-          {
-            src: "/Aboutus/Teams/sl1.png",
-            hoverSrc: "/Aboutus/Teams/sl1h.png",
-            alt: "Account Team Member 5",
-            position: "Position 1",
-            name: "Name 1",
-          },
-          {
-            src: "/Aboutus/Teams/sl2.png",
-            hoverSrc: "/Aboutus/Teams/sl2h.png",
-            alt: "Account Team Member 6",
-            position: "Position 1",
-            name: "Name 1",
-          },
-          {
-            src: "/Aboutus/Teams/sl3.png",
-            hoverSrc: "/Aboutus/Teams/sl3h.png",
-            alt: "Account Team Member 7",
-            position: "Position 1",
-            name: "Name 1",
-          },
+            position: "Senior Account",
+            name: "Bezawit Tefera",
+          }
         ]}
       />
 
       <TeamSection
         titleSvgSrc="/Aboutus/finance-crew-team-title.svg"
-        groupPhoto="/Aboutus/Teams/strategyLab.png"
+        groupPhoto="/Aboutus/Teams/finance-crew.png"
         individualPhotos={[
           {
-            src: "/Aboutus/Teams/sl1.png",
-            hoverSrc: "/Aboutus/Teams/sl1h.png",
+            src: "/Aboutus/Teams/mekdes1.png",
+            hoverSrc: "/Aboutus/Teams/mekdes2.png",
             alt: "Finance Team Member 1",
-            position: "Position 1",
-            name: "Name 1",
+            position: "Finance team leader",
+            name: "Mekdes Tadesse",
           },
           {
-            src: "/Aboutus/Teams/sl2.png",
-            hoverSrc: "/Aboutus/Teams/sl2h.png",
+            src: "/Aboutus/Teams/helen1.png",
+            hoverSrc: "/Aboutus/Teams/helen2.png",
             alt: "Finance Team Member 2",
-            position: "Position 1",
-            name: "Name 1",
+            position: "Finance team member",
+            name: "Helen Kalkidan",
           },
           {
             src: "/Aboutus/Teams/sl3.png",

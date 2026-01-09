@@ -14,6 +14,8 @@ interface TeamSectionProps {
   }>;
 }
 
+
+
 // Individual Photo Card Component with Hover Effect (same as Leadership)
 function TeamPhotoCard({
   imageSrc,
@@ -33,6 +35,8 @@ function TeamPhotoCard({
 
   const [isHovered, setIsHovered] = useState(false);
   const [hoverImageLoaded, setHoverImageLoaded] = useState(false);
+
+
 
   return (
     <div
@@ -178,6 +182,7 @@ export default function TeamSection({
         //   "var(--section-margin-y, 120px) var(--section-margin-y, 120px)",
         flexDirection: "column",
         alignItems: "center",
+        justifyContent:"center",
         gap: "var(--space-xxl, 64px)",
         alignSelf: "stretch",
         background: "var(--spotlight-950, #0C0C0E)",
@@ -196,6 +201,7 @@ export default function TeamSection({
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
+          
         }}
       >
         {/* Title SVG */}
@@ -247,17 +253,30 @@ export default function TeamSection({
         </div>
       </div>
 
+
+      
+
       {/* Individual Photos Grid */}
       {individualPhotos.length > 0 && (
         <div
-        className="grid grid-cols-3 md:grid-cols-[repeat(auto-fit,minmax(150px,1fr))]"
+className={`
+    grid place-items-center grid-cols-3 justify-center gap-4
+    ${
+      individualPhotos.length >= 5
+        ? "md:grid-cols-5"
+        : individualPhotos.length === 4
+        ? "md:grid-cols-4"
+        : "md:grid-cols-3"
+    }
+  `}
           style={{
+  
+    
             // display: "grid",
             // gridTemplateColumns: `repeat(auto-fit, minmax(150px, 1fr))`,
             // gap: "var(--space-lg, 32px)",
             width: "100%",
             maxWidth: "1400px",
-            justifyContent: "center",
           }}
         >
           {individualPhotos.map((photo, index) => (

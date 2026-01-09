@@ -3,6 +3,8 @@
 import Image from "next/image";
 import { useParams } from "next/navigation";
 import { useMemo } from "react";
+import { works } from "@/data/work";
+
 
 // Helper function to check if URL is a YouTube link
 function isYouTubeUrl(url: string): boolean {
@@ -26,36 +28,49 @@ function getYouTubeEmbedUrl(videoId: string): string {
 
 export default function WorkDetail() {
   const params = useParams();
-  const id = params.id as string;
+  const slug = params.id as string;
+
+  const workData = useMemo(() => {
+  return works.find((work) => work.slug === slug);
+}, [slug]);
+
+
+if (!workData) {
+  return (
+    <main className="min-h-screen flex items-center justify-center">
+      <p>Work not found</p>
+    </main>
+  );
+}
 
   // TODO: Fetch work data from Sanity based on id
   // For now, using placeholder data matching the design
-  const workData = {
-    title: "SAFARICOM ETHIOPIA",
-    tagline: "#1MoveAway",
-    tags: ["BRANDING", "MARKETING", "PRODUCTION"],
-    videoSrc: "https://www.youtube.com/watch?v=c5iitHD0bNg", // Same video as in Ourworks component
-    overview:
-      "With the objective of connecting all Ethiopians, Safaricom has launched the MTN campaign during the Ethiopian new year 2017, to serve as a pivotal driver of the digital Ethiopia plan by providing the essential infrastructure and services for various sectors by bringing the possibilities of life to the local population. For this initiative spotlight developed and implemented an integrated campaign by strategically penetrating through various roll outs with an idea that aligns well with the brand promise and the previous campaign",
-    details: {
-      company: "Safaricom",
-      industry: "Telecommunication",
-      service: "Advertising, Marketing, Production",
-      duration: "Ongoing",
-    },
-    images: {
-      image1: "/WorkDetails/I1.jpg",
-      image2: "/WorkDetails/I2.jpg",
-      image3: "/WorkDetails/I3.jpg",
-    },
-    achievements: [
-      { value: "11m+", label: "views" },
-      { value: "850k+", label: "likes" },
-      { value: "58k+", label: "shares" },
-      { value: "64k+", label: "saves" },
-      { value: "64k+", label: "saves" },
-    ],
-  };
+  // const workData = {
+  //   title: "SAFARICOM ETHIOPIA",
+  //   tagline: "#1MoveAway",
+  //   tags: ["BRANDING", "MARKETING", "PRODUCTION"],
+  //   videoSrc: "https://www.youtube.com/watch?v=c5iitHD0bNg", // Same video as in Ourworks component
+  //   overview:
+  //     "With the objective of connecting all Ethiopians, Safaricom has launched the MTN campaign during the Ethiopian new year 2017, to serve as a pivotal driver of the digital Ethiopia plan by providing the essential infrastructure and services for various sectors by bringing the possibilities of life to the local population. For this initiative spotlight developed and implemented an integrated campaign by strategically penetrating through various roll outs with an idea that aligns well with the brand promise and the previous campaign",
+  //   details: {
+  //     company: "Safaricom",
+  //     industry: "Telecommunication",
+  //     service: "Advertising, Marketing, Production",
+  //     duration: "Ongoing",
+  //   },
+  //   images: {
+  //     image1: "/WorkDetails/I1.jpg",
+  //     image2: "/WorkDetails/I2.jpg",
+  //     image3: "/WorkDetails/I3.jpg",
+  //   },
+  //   achievements: [
+  //     { value: "11m+", label: "views" },
+  //     { value: "850k+", label: "likes" },
+  //     { value: "58k+", label: "shares" },
+  //     { value: "64k+", label: "saves" },
+  //     { value: "64k+", label: "saves" },
+  //   ],
+  // };
 
   const youtubeVideoId = useMemo(() => {
     if (workData.videoSrc && isYouTubeUrl(workData.videoSrc)) {
@@ -486,10 +501,7 @@ export default function WorkDetail() {
                 }}
                 className=" text-(--spotlight-700) leading-relaxed max-w-xl"
               >
-                This campaign successfully bridged digital platforms and
-                mainstream media, fostering cultural relevance, platform-native
-                engagement, and national visibility for both Safaricom Ethiopia
-                and the youth talents who took part.
+                {workData.impact?.description}
               </p>
             </div>
 
@@ -510,8 +522,11 @@ export default function WorkDetail() {
               </h3>
 
               {/* high lights */}
-              <div>
-                <div className="p-(--space-lg) border-b border-b-[#B6B7C3] ">
+                  <div>
+
+              {workData.impact?.impacts.map((impact ,index)=>(
+
+                <div key={index} className="p-(--space-lg) border-b border-b-[#B6B7C3] ">
                   <p
                     style={{
                       fontFamily: "var(--font-secondary)",
@@ -522,11 +537,12 @@ export default function WorkDetail() {
                       color: "#4A4A5A",
                     }}
                   >
-                    Launched on TikTok as the primary engagement channel
+                   {impact}
                   </p>
                 </div>
+              ))}
 
-                <div className="p-(--space-lg) border-b border-b-[#B6B7C3] ">
+                {/* <div className="p-(--space-lg) border-b border-b-[#B6B7C3] ">
                   <p
                     style={{
                       fontFamily: "var(--font-secondary)",
@@ -540,9 +556,9 @@ export default function WorkDetail() {
                     611 participants created content over a 3.5-month campaign
                     period
                   </p>
-                </div>
+                </div> */}
 
-                <div className="p-(--space-lg) border-b border-b-[#B6B7C3] ">
+                {/* <div className="p-(--space-lg) border-b border-b-[#B6B7C3] ">
                   <p
                     style={{
                       fontFamily: "var(--font-secondary)",
@@ -555,9 +571,9 @@ export default function WorkDetail() {
                   >
                     Culminated in a 10-day bootcamp for the top 10 finalists
                   </p>
-                </div>
+                </div> */}
 
-                <div className="p-(--space-lg) border-b border-b-[#B6B7C3] ">
+                {/* <div className="p-(--space-lg) border-b border-b-[#B6B7C3] ">
                   <p
                     style={{
                       fontFamily: "var(--font-secondary)",
@@ -570,7 +586,7 @@ export default function WorkDetail() {
                   >
                     Finalists featured in a nationally televised special
                   </p>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>

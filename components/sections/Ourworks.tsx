@@ -1,6 +1,53 @@
 import Link from "next/link";
 import Buttons from "../ui/Buttons";
 import ProjectCard from "../ui/ProjectCard";
+import { works } from "@/data/work";
+
+// const works = [
+//   {
+//     title: "SAFARICOM ETHIOPIA",
+//     tags: ["BRANDING", "MARKETING", "PRODUCTION"],
+//     videoSrc: "https://www.youtube.com/watch?v=c5iitHD0bNg",
+//     href: "/works/safaricom-ethiopia",
+//   },
+//   {
+//     title: "ADEY MUSIC AND STUDIO",
+//     tags: ["BRANDING", "MARKETING", "PRODUCTION"],
+//     videoSrc: "https://www.youtube.com/watch?v=c5iitHD0bNg",
+//     href: "/works/adey-music",
+//   },
+//   {
+//     title: "ST. GEORGE",
+//     tags: ["BRANDING", "MARKETING", "PRODUCTION"],
+//     videoSrc: "https://www.youtube.com/watch?v=c5iitHD0bNg",
+//     href: "/works/st-george",
+//   },
+//   {
+//     title: "GRV SUMMIT",
+//     tags: ["BRANDING", "MARKETING", "PRODUCTION"],
+//     videoSrc: "https://www.youtube.com/watch?v=c5iitHD0bNg",
+//     href: "/works/grv-summit",
+//   },
+//   {
+//     title: "EU & AFRICA",
+//     tags: ["BRANDING", "MARKETING", "PRODUCTION"],
+//     videoSrc: "https://www.youtube.com/watch?v=c5iitHD0bNg",
+//     href: "/works/eu-africa",
+//   },
+//   {
+//     title: "ADEY MUSIC AND STUDIO",
+//     tags: ["BRANDING", "MARKETING", "PRODUCTION"],
+//     videoSrc: "https://www.youtube.com/watch?v=c5iitHD0bNg",
+//     href: "/works/adey-music-2",
+//   },
+//   {
+//     title: "ST. GEORGE",
+//     tags: ["BRANDING", "MARKETING", "PRODUCTION"],
+//     videoSrc: "https://www.youtube.com/watch?v=c5iitHD0bNg",
+//     href: "/works/st-george-2",
+//   },
+// ];
+
 
 export default function Ourworks() {
   return (
@@ -28,80 +75,33 @@ export default function Ourworks() {
       </h1>
 
       {/* Project Cards Grid */}
-      <div className="w-full max-w-7xl mx-auto space-y-6">
-        {/* First Card - Full Width */}
-        <ProjectCard
-          className="w-full"
-          title="SAFARICOM ETHIOPIA"
-          tags={["BRANDING", "MARKETING", "PRODUCTION"]}
-          videoSrc="https://www.youtube.com/watch?v=c5iitHD0bNg"
-          href="/works/safaricom-ethiopia"
-          dark={true}
-        />
+     <div className="w-full max-w-7xl mx-auto space-y-6">
+  {/* First card – full width */}
+  <ProjectCard
+    className="w-full"
+    title={works[0].title}
+    tags={works[0].tags}
+    videoSrc={works[0].videoSrc}
+    href={"works/"+works[0].slug}
+    dark
+  />
 
-        {/* Second Row - Two Cards Side by Side */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <ProjectCard
-            className="w-full"
-            title="ADEY MUSIC AND STUDIO"
-            tags={["BRANDING", "MARKETING", "PRODUCTION"]}
-            videoSrc="https://www.youtube.com/watch?v=c5iitHD0bNg"
-            href="/works/adey-music"
-            dark={true}
-          />
+  {/* Remaining cards */}
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+    {works.slice(1).map((work, index) => (
+      <ProjectCard
+        key={index}
+        className="w-full"
+        title={work.title}
+        tags={work.tags}
+        videoSrc={work.videoSrc}
+        href={"works/"+work.slug}
+        dark
+      />
+    ))}
+  </div>
+</div>
 
-          <ProjectCard
-            className="w-full"
-            title="ST. GEORGE"
-            tags={["BRANDING", "MARKETING", "PRODUCTION"]}
-            videoSrc="https://www.youtube.com/watch?v=c5iitHD0bNg"
-            href="/works/st-george"
-            dark={true}
-          />
-        </div>
-
-        {/* Third Row - Two Cards Side by Side */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <ProjectCard
-            className="w-full"
-            title="GRV SUMMIT"
-            tags={["BRANDING", "MARKETING", "PRODUCTION"]}
-            videoSrc="https://www.youtube.com/watch?v=c5iitHD0bNg"
-            href="/works/grv-summit"
-            dark={true}
-          />
-
-          <ProjectCard
-            className="w-full"
-            title="EU & AFRICA"
-            tags={["BRANDING", "MARKETING", "PRODUCTION"]}
-            videoSrc="https://www.youtube.com/watch?v=c5iitHD0bNg"
-            href="/works/eu-africa"
-            dark={true}
-          />
-        </div>
-
-        {/* Fourth Row - Two Cards Side by Side */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <ProjectCard
-            className="w-full"
-            title="ADEY MUSIC AND STUDIO"
-            tags={["BRANDING", "MARKETING", "PRODUCTION"]}
-            videoSrc="https://www.youtube.com/watch?v=c5iitHD0bNg"
-            href="/works/adey-music-2"
-            dark={true}
-          />
-
-          <ProjectCard
-            className="w-full"
-            title="ST. GEORGE"
-            tags={["BRANDING", "MARKETING", "PRODUCTION"]}
-            videoSrc="https://www.youtube.com/watch?v=c5iitHD0bNg"
-            href="/works/st-george-2"
-            dark={true}
-          />
-        </div>
-      </div>
       <Link href={"/works"}>
         <Buttons>explore now</Buttons>
       </Link>

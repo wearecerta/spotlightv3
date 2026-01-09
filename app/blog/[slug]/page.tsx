@@ -69,7 +69,7 @@ export default async function BlogDetail({ params }: BlogDetailPageProps) {
           background: "#F7F7F8",
           position: "relative",
         }}
-        className="flex max-w-[1440px] mx-auto "
+        className="flex max-w-[1440px] mx-auto"
       >
         <div className="flex flex-col gap-(--space-xs) ">
           {/* Blog Title */}

@@ -10,13 +10,14 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function Culture() {
   const images = [
-    "/Culture/culture-1.png",
-    "/Culture/culture-2.png",
-    "/Culture/culture-3.png",
-    "/Culture/culture-4.png",
-    "/Culture/culture-5.jpg",
-    "/Culture/culture-6.png",
-  ];
+    "/Culture/cultures/c1.JPG",
+    "/Culture/cultures/c2.jpg",
+    "/Culture/cultures/c3.jpg",
+    "/Culture/cultures/c4.JPG",
+    "/Culture/cultures/c5.JPG",
+    "/Culture/cultures/c6.JPG",
+    
+    ];
 
   const WeDontStopeVideos = [
     "/Culture/wedontstop1.mp4",
@@ -56,127 +57,125 @@ export default function Culture() {
     },
   ];
 
- useEffect(() => {
-  const mm = gsap.matchMedia();
+  useEffect(() => {
+    const mm = gsap.matchMedia();
 
-  /* ================= DESKTOP (≥1024px) ================= */
-  mm.add("(min-width: 1024px)", () => {
-    const leftX = [-700, -800, -300];
-    const rightX = [700, 800, 300];
-    const rotationLeft = [-30, -20, -35];
-    const rotationRight = [30, 20, 35];
-    const yValues = [100, -150, -400];
+    /* ================= DESKTOP (≥1024px) ================= */
+    mm.add("(min-width: 1024px)", () => {
+      const leftX = [-700, -800, -300];
+      const rightX = [700, 800, 300];
+      const rotationLeft = [-30, -20, -35];
+      const rotationRight = [30, 20, 35];
+      const yValues = [100, -150, -400];
 
-    gsap.utils.toArray<HTMLElement>(".row").forEach((row, i) => {
-      const left = row.querySelector(".card-left");
-      const right = row.querySelector(".card-right");
+      gsap.utils.toArray<HTMLElement>(".row").forEach((row, i) => {
+        const left = row.querySelector(".card-left");
+        const right = row.querySelector(".card-right");
 
-      gsap.to(left, {
-        x: leftX[i],
-        y: yValues[i],
-        rotation: rotationLeft[i],
-        scrollTrigger: {
-          trigger: ".main",
-          start: "top center",
-          end: "150% bottom",
-          scrub: true,
-        },
-      });
+        gsap.to(left, {
+          x: leftX[i],
+          y: yValues[i],
+          rotation: rotationLeft[i],
+          scrollTrigger: {
+            trigger: ".main",
+            start: "top center",
+            end: "150% bottom",
+            scrub: true,
+          },
+        });
 
-      gsap.to(right, {
-        x: rightX[i],
-        y: yValues[i],
-        rotation: rotationRight[i],
-        scrollTrigger: {
-          trigger: ".main",
-          start: "top center",
-          end: "150% bottom",
-          scrub: true,
-        },
-      });
-    });
-  });
-
-  /* ================= TABLET (768px – 1023px) ================= */
-  mm.add("(min-width: 768px) and (max-width: 1023px)", () => {
-    const leftX = [-400, -500, -200];
-    const rightX = [400, 500, 200];
-    const rotationLeft = [-20, -15, -25];
-    const rotationRight = [20, 15, 25];
-    const yValues = [50, -80, -150];
-
-    gsap.utils.toArray<HTMLElement>(".row").forEach((row, i) => {
-      const left = row.querySelector(".card-left");
-      const right = row.querySelector(".card-right");
-
-      gsap.to(left, {
-        x: leftX[i],
-        y: yValues[i],
-        rotation: rotationLeft[i],
-        scrollTrigger: {
-          trigger: ".main",
-          start: "top center",
-          end: "150% bottom",
-          scrub: true,
-        },
-      });
-
-      gsap.to(right, {
-        x: rightX[i],
-        y: yValues[i],
-        rotation: rotationRight[i],
-        scrollTrigger: {
-          trigger: ".main",
-          start: "top center",
-          end: "150% bottom",
-          scrub: true,
-        },
+        gsap.to(right, {
+          x: rightX[i],
+          y: yValues[i],
+          rotation: rotationRight[i],
+          scrollTrigger: {
+            trigger: ".main",
+            start: "top center",
+            end: "150% bottom",
+            scrub: true,
+          },
+        });
       });
     });
-  });
 
-  /* ================= MOBILE (<768px) ================= */
-  mm.add("(max-width: 767px)", () => {
-    const leftX = [-100, -200, -110];
-    const rightX = [100, 200, 110];
-    const rotationLeft = [-30, -20, -35];
-    const rotationRight = [30, 20, 35];
-    const yValues = [0, 0, 0];
+    /* ================= TABLET (768px – 1023px) ================= */
+    mm.add("(min-width: 768px) and (max-width: 1023px)", () => {
+      const leftX = [-400, -500, -200];
+      const rightX = [400, 500, 200];
+      const rotationLeft = [-20, -15, -25];
+      const rotationRight = [20, 15, 25];
+      const yValues = [50, -80, -150];
 
-    gsap.utils.toArray<HTMLElement>(".row").forEach((row, i) => {
-      const left = row.querySelector(".card-left");
-      const right = row.querySelector(".card-right");
+      gsap.utils.toArray<HTMLElement>(".row").forEach((row, i) => {
+        const left = row.querySelector(".card-left");
+        const right = row.querySelector(".card-right");
 
-      gsap.to(left, {
-        x: leftX[i],
-        y: yValues[i],
-        rotation: rotationLeft[i],
-        scrollTrigger: {
-          trigger: ".main",
-          start: "top center",
-          end: "150% bottom",
-          scrub: true,
-        },
-      });
+        gsap.to(left, {
+          x: leftX[i],
+          y: yValues[i],
+          rotation: rotationLeft[i],
+          scrollTrigger: {
+            trigger: ".main",
+            start: "top center",
+            end: "150% bottom",
+            scrub: true,
+          },
+        });
 
-      gsap.to(right, {
-        x: rightX[i],
-        y: yValues[i],
-        rotation: rotationRight[i],
-        scrollTrigger: {
-          trigger: ".main",
-          start: "top center",
-          end: "150% bottom",
-          scrub: true,
-        },
+        gsap.to(right, {
+          x: rightX[i],
+          y: yValues[i],
+          rotation: rotationRight[i],
+          scrollTrigger: {
+            trigger: ".main",
+            start: "top center",
+            end: "150% bottom",
+            scrub: true,
+          },
+        });
       });
     });
-  });
 
-  return () => mm.revert();
-}, []);
+    /* ================= MOBILE (<768px) ================= */
+    mm.add("(max-width: 767px)", () => {
+      const leftX = [-100, -200, -110];
+      const rightX = [100, 200, 110];
+      const rotationLeft = [-30, -20, -35];
+      const rotationRight = [30, 20, 35];
+      const yValues = [0, 0, 0];
 
+      gsap.utils.toArray<HTMLElement>(".row").forEach((row, i) => {
+        const left = row.querySelector(".card-left");
+        const right = row.querySelector(".card-right");
 
+        gsap.to(left, {
+          x: leftX[i],
+          y: yValues[i],
+          rotation: rotationLeft[i],
+          scrollTrigger: {
+            trigger: ".main",
+            start: "top center",
+            end: "150% bottom",
+            scrub: true,
+          },
+        });
+
+        gsap.to(right, {
+          x: rightX[i],
+          y: yValues[i],
+          rotation: rotationRight[i],
+          scrollTrigger: {
+            trigger: ".main",
+            start: "top center",
+            end: "150% bottom",
+            scrub: true,
+          },
+        });
+      });
+    });
+
+    return () => mm.revert();
+  }, []);
 
   return (
     <main className="relative min-h-screen -mt-20 md:-mt-26 overflow-hidden bg-[#0C0C0E] z-0">
@@ -248,62 +247,61 @@ export default function Culture() {
 
       <section className="max-w-[1440px] w-full mx-auto p-6 md:p-[64px] lg:p-[120px] ">
         <div className="bg-[#4A4A5A4D]   border border-[#4A4A5A4D] flex flex-col gap-(--space-xl) rounded-3xl md:rounded-[48px] px-6 py-12 md:p-[64px] lg:[120px] ">
+          <div className="flex flex-col">
+            <h2
+              style={{
+                color: "#FFF",
+                fontFamily: 'var(--font-primary, "Bebas Neue")',
+                fontStyle: "normal",
+                fontWeight: "400",
+                lineHeight: "100%",
+                letterSpacing: "0%",
+                textTransform: "uppercase",
+                margin: 0,
+              }}
+              className="text-[68px] md:text-[148px]"
+            >
+              We Don't Stop!
+            </h2>
 
-        <div className="flex flex-col">
-          <h2
-            style={{
-              color: "#FFF",
-              fontFamily: 'var(--font-primary, "Bebas Neue")',
-              fontStyle: "normal",
-              fontWeight: "400",
-              lineHeight: "100%",
-              letterSpacing: "0%",
-              textTransform: "uppercase",
-              margin: 0,
-            }}
-            className="text-[68px] md:text-[148px]"
-          >
-            We Don't Stop!
-          </h2>
+            <p className="text-white text-lg font-(--font-secondary)  ">
+              Good enough” isn’t in our vocabulary. Our fire rages with an
+              insatiable hunger to learn, explore uncharted territories, and dig
+              up fresh truths that’ll blow minds. We never stop questioning,
+              learning and evolving to perpetually push the creative envelope.
+            </p>
+          </div>
 
-          <p className="text-white text-lg font-(--font-secondary)  ">
-            Good enough” isn’t in our vocabulary. Our fire rages with an
-            insatiable hunger to learn, explore uncharted territories, and dig
-            up fresh truths that’ll blow minds. We never stop questioning,
-            learning and evolving to perpetually push the creative envelope.
-          </p>
+          {/* videos  */}
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-(--space-lg)">
+            {WeDontStopeVideos.map((video, index) => (
+              <video
+                key={index}
+                src={video}
+                autoPlay
+                muted
+                loop
+                playsInline
+                className="rounded-3xl"
+              />
+            ))}
+          </div>
         </div>
-
-        {/* videos  */}
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-(--space-lg)">
-          {WeDontStopeVideos.map((video, index) => (
-            <video
-              key={index}
-              src={video}
-              autoPlay
-              muted
-              loop
-              playsInline
-              className="rounded-3xl"
-            />
-          ))}
-        </div>
-              </div>
       </section>
 
       {/* Sacred Codes Section */}
       <section className="flex flex-col mx-auto max-w-[1440px] p-6 md:p-[64px] lg:p-[120px] py-32 gap-16 bg-[#0C0C0E]">
-         <div className="inline-flex w-fit -rotate-3 -mb-15  items-center gap-1 md:gap-3  bg-white px-6 md:px-30 py-3 rounded-full shadow-lg">
-            <Image
-              src={"/Icons/black-dot.svg"}
-              width={20}
-              height={20}
-              alt="dot icon"
-            />
-            <span className="text-xl md:text-2xl font-[var(--font-outfit, 'Outfit')] text-black">
-              The Codes we Live By
-            </span>
-          </div>
+        <div className="inline-flex w-fit -rotate-3 -mb-15  items-center gap-1 md:gap-3  bg-white px-6 md:px-30 py-3 rounded-full shadow-lg">
+          <Image
+            src={"/Icons/black-dot.svg"}
+            width={20}
+            height={20}
+            alt="dot icon"
+          />
+          <span className="text-xl md:text-2xl font-[var(--font-outfit, 'Outfit')] text-black">
+            The Codes we Live By
+          </span>
+        </div>
         <h2
           style={{
             color: "#FFF",
@@ -321,10 +319,7 @@ export default function Culture() {
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-17">
           {codes.map((code, i) => (
-            <div
-              className="relative flex justify-center aspect-square"
-              key={i}
-            >
+            <div className="relative flex justify-center aspect-square" key={i}>
               <Image
                 alt={code.title + "image"}
                 src={code.image}

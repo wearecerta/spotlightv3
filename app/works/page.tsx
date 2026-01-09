@@ -1,6 +1,7 @@
 "use client";
 
 import ProjectCard from "@/components/ui/ProjectCard";
+import { works } from "@/data/work";
 
 type WorkItem = {
   title: string;
@@ -10,51 +11,51 @@ type WorkItem = {
   featured?: boolean;
 };
 
-const WORKS: WorkItem[] = [
-  {
-    title: "SAFARICOM ETHIOPIA",
-    tags: ["BRANDING", "MARKETING", "PRODUCTION"],
-    videoSrc: "https://www.youtube.com/watch?v=c5iitHD0bNg",
-    href: "/works/safaricom-ethiopia",
-    featured: true,
-  },
-  {
-    title: "ADEY MUSIC AND STUDIO",
-    tags: ["BRANDING", "MARKETING", "PRODUCTION"],
-    videoSrc: "https://www.youtube.com/watch?v=c5iitHD0bNg",
-    href: "/works/adey-music",
-  },
-  {
-    title: "ST. GEORGE",
-    tags: ["BRANDING", "MARKETING", "PRODUCTION"],
-    videoSrc: "https://www.youtube.com/watch?v=c5iitHD0bNg",
-    href: "/works/st-george",
-  },
-  {
-    title: "GRV SUMMIT",
-    tags: ["BRANDING", "MARKETING", "PRODUCTION"],
-    videoSrc: "https://www.youtube.com/watch?v=c5iitHD0bNg",
-    href: "/works/grv-summit",
-  },
-  {
-    title: "EU & AFRICA",
-    tags: ["BRANDING", "MARKETING", "PRODUCTION"],
-    videoSrc: "https://www.youtube.com/watch?v=c5iitHD0bNg",
-    href: "/works/eu-africa",
-  },
-  {
-    title: "ADEY MUSIC AND STUDIO",
-    tags: ["BRANDING", "MARKETING", "PRODUCTION"],
-    videoSrc: "https://www.youtube.com/watch?v=c5iitHD0bNg",
-    href: "/works/adey-music-2",
-  },
-  {
-    title: "ST. GEORGE",
-    tags: ["BRANDING", "MARKETING", "PRODUCTION"],
-    videoSrc: "https://www.youtube.com/watch?v=c5iitHD0bNg",
-    href: "/works/st-george-2",
-  },
-];
+// const WORKS: WorkItem[] = [
+//   {
+//     title: "SAFARICOM ETHIOPIA",
+//     tags: ["BRANDING", "MARKETING", "PRODUCTION"],
+//     videoSrc: "https://www.youtube.com/watch?v=c5iitHD0bNg",
+//     href: "/works/safaricom-ethiopia",
+//     featured: true,
+//   },
+//   {
+//     title: "ADEY MUSIC AND STUDIO",
+//     tags: ["BRANDING", "MARKETING", "PRODUCTION"],
+//     videoSrc: "https://www.youtube.com/watch?v=c5iitHD0bNg",
+//     href: "/works/adey-music",
+//   },
+//   {
+//     title: "ST. GEORGE",
+//     tags: ["BRANDING", "MARKETING", "PRODUCTION"],
+//     videoSrc: "https://www.youtube.com/watch?v=c5iitHD0bNg",
+//     href: "/works/st-george",
+//   },
+//   {
+//     title: "GRV SUMMIT",
+//     tags: ["BRANDING", "MARKETING", "PRODUCTION"],
+//     videoSrc: "https://www.youtube.com/watch?v=c5iitHD0bNg",
+//     href: "/works/grv-summit",
+//   },
+//   {
+//     title: "EU & AFRICA",
+//     tags: ["BRANDING", "MARKETING", "PRODUCTION"],
+//     videoSrc: "https://www.youtube.com/watch?v=c5iitHD0bNg",
+//     href: "/works/eu-africa",
+//   },
+//   {
+//     title: "ADEY MUSIC AND STUDIO",
+//     tags: ["BRANDING", "MARKETING", "PRODUCTION"],
+//     videoSrc: "https://www.youtube.com/watch?v=c5iitHD0bNg",
+//     href: "/works/adey-music-2",
+//   },
+//   {
+//     title: "ST. GEORGE",
+//     tags: ["BRANDING", "MARKETING", "PRODUCTION"],
+//     videoSrc: "https://www.youtube.com/watch?v=c5iitHD0bNg",
+//     href: "/works/st-george-2",
+//   },
+// ];
 
 export default function Work() {
   return (
@@ -131,14 +132,21 @@ export default function Work() {
             [grid-auto-flow:dense]
           "
         >
-          {WORKS.map((work) => (
-            <div
-              key={work.href}
-              className={work.featured ? "md:col-span-2" : ""}
-            >
-              <ProjectCard dark={false} {...work} />
-            </div>
-          ))}
+        {works.map((work, index) => (
+  <div
+    key={work.slug}
+    className={index === 0 ? "md:col-span-2" : ""}
+  >
+    <ProjectCard
+      dark={false}
+      className="w-full"
+      title={work.title}
+      tags={work.tags}
+      videoSrc={work.videoSrc}
+      href={`/works/${work.slug}`}
+    />
+  </div>
+))}
         </div>
       </section>
     </main>
