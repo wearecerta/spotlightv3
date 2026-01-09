@@ -5,7 +5,6 @@ import { useParams } from "next/navigation";
 import { useMemo } from "react";
 import { works } from "@/data/work";
 
-
 // Helper function to check if URL is a YouTube link
 function isYouTubeUrl(url: string): boolean {
   return /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/.test(
@@ -31,17 +30,16 @@ export default function WorkDetail() {
   const slug = params.id as string;
 
   const workData = useMemo(() => {
-  return works.find((work) => work.slug === slug);
-}, [slug]);
+    return works.find((work) => work.slug === slug);
+  }, [slug]);
 
-
-if (!workData) {
-  return (
-    <main className="min-h-screen flex items-center justify-center">
-      <p>Work not found</p>
-    </main>
-  );
-}
+  if (!workData) {
+    return (
+      <main className="min-h-screen flex items-center justify-center">
+        <p>Work not found</p>
+      </main>
+    );
+  }
 
   // TODO: Fetch work data from Sanity based on id
   // For now, using placeholder data matching the design
@@ -467,7 +465,7 @@ if (!workData) {
           {/* LEFT IMAGE */}
           <div className="relative w-full h-[500px] lg:h-auto">
             <Image
-              src="/WorkDetails/I4.png"
+              src={workData.impact.image || ""}
               alt="Campaign promotional poster"
               fill
               className="object-cover"
@@ -522,25 +520,26 @@ if (!workData) {
               </h3>
 
               {/* high lights */}
-                  <div>
-
-              {workData.impact?.impacts.map((impact ,index)=>(
-
-                <div key={index} className="p-(--space-lg) border-b border-b-[#B6B7C3] ">
-                  <p
-                    style={{
-                      fontFamily: "var(--font-secondary)",
-                      fontWeight: "400",
-                      fontSize: "20px",
-                      lineHeight: "150%",
-                      letterSpacing: 0,
-                      color: "#4A4A5A",
-                    }}
+              <div>
+                {workData.impact?.impacts.map((impact, index) => (
+                  <div
+                    key={index}
+                    className="p-(--space-lg) border-b border-b-[#B6B7C3] "
                   >
-                   {impact}
-                  </p>
-                </div>
-              ))}
+                    <p
+                      style={{
+                        fontFamily: "var(--font-secondary)",
+                        fontWeight: "400",
+                        fontSize: "20px",
+                        lineHeight: "150%",
+                        letterSpacing: 0,
+                        color: "#4A4A5A",
+                      }}
+                    >
+                      {impact}
+                    </p>
+                  </div>
+                ))}
 
                 {/* <div className="p-(--space-lg) border-b border-b-[#B6B7C3] ">
                   <p

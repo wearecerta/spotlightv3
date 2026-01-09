@@ -368,11 +368,11 @@ export default function About() {
         groupPhoto="/Aboutus/Teams/event-experts.png"
         individualPhotos={[
           {
-            src: "/Aboutus/Teams/sl1.png",
-            hoverSrc: "/Aboutus/Teams/sl1h.png",
+            src: "/Aboutus/Teams/yoni1.png",
+            hoverSrc: "/Aboutus/Teams/yoni2.png",
             alt: "Event Team Member 1",
-            position: "Position 1",
-            name: "Name 1",
+            position: "Event Expert",
+            name: "Yonathan Ekubemichale",
           },
           {
             src: "/Aboutus/Teams/sl2.png",
