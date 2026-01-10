@@ -5,9 +5,9 @@ export default function Awards() {
   const awards = [
     {
       id: 1,
-      organization: "AFRICAN MARKETING CONFEDERATION",
-      award: "Most Effective Campaign of the year",
-      imageSrc: "/Home/award-1.png",
+      organization: "SAFARICOM",
+      award: "Excellence in Design",
+      imageSrc: "/Home/award1.png",
     },
     {
       id: 2,
@@ -17,9 +17,9 @@ export default function Awards() {
     },
     {
       id: 3,
-      organization: "AFRICAN MARKETING CONFEDERATION",
-      award: "Not-for-Profit/Public Sector Campaign of the Year",
-      imageSrc: "/Home/award-3.png",
+      organization: "ABBOTT LABORATORIES",
+      award: "Story telling mastery award",
+      imageSrc: "/Home/award3.png",
     },
   ];
 
