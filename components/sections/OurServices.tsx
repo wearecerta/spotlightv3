@@ -18,7 +18,7 @@ export default function OurServices() {
         "Media Training",
         "Public Relations Campaigns",
       ],
-      href: "/service/pr-communications",
+      href: "/services/pr-communications",
     },
     {
       number: "02",
@@ -33,7 +33,7 @@ export default function OurServices() {
         "Promotional Marketing",
         "Content & Email Marketing",
       ],
-      href: "/service/marketing",
+      href: "/services/marketing",
     },
     {
       number: "03",
@@ -48,7 +48,7 @@ export default function OurServices() {
         "Out-of-home Advertising",
         "SEO | SMO | PPC |",
       ],
-      href: "/service/advertising",
+      href: "/services/advertising",
     },
     {
       number: "04",
@@ -63,7 +63,7 @@ export default function OurServices() {
         "Logo & Creative Assets Design",
         "Packaging Design",
       ],
-      href: "/service/branding-design",
+      href: "/services/branding-design",
     },
     {
       number: "05",
@@ -78,7 +78,7 @@ export default function OurServices() {
         "Photography",
         "Creative Campaign Shoots",
       ],
-      href: "/service/production",
+      href: "/services/production",
     },
     {
       number: "06",
@@ -93,7 +93,7 @@ export default function OurServices() {
         "Event Engagement and Entertainment",
         "Corporate Events & Exhibitions",
       ],
-      href: "/service/event-management",
+      href: "/services/event-management",
     },
     {
       number: "07",
@@ -108,7 +108,7 @@ export default function OurServices() {
         "Web App Development",
         "Responsive & Mobile-friendly",
       ],
-      href: "/service/website-development",
+      href: "/services/website-development",
     },
     {
       number: "08",
@@ -123,7 +123,7 @@ export default function OurServices() {
         "Social Media Optimization (SMO)",
         "Analytics & Reporting",
       ],
-      href: "/service/digital-marketing",
+      href: "/services/digital-marketing",
     },
   ];
 
