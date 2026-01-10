@@ -14,9 +14,9 @@ export const caseStudy = {
       type: "slug",
     },
     {
-      name: "tagline",
+      name: "campaign",
       type: "string",
-      title: "Tag Line",
+      title: "Campaign",
       description: 'example "#1moveaway"',
     },
      {
@@ -26,13 +26,9 @@ export const caseStudy = {
     },
     {
       name: "service",
-      type: "array",
+      type: "reference",
       title: "Service",
-      of: [
-        {
-          type: "string",
-        },
-      ],
+      to:[{type:"service"}]
     },
     {
       name: "duration",
