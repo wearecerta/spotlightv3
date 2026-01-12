@@ -4,7 +4,7 @@ export const clients = {
   title: "Clients",
   fields: [
     {
-      name: "client-name",
+      name: "clientName",
       type: "string",
       title: "Name of the client",
     },

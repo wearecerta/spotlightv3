@@ -1,6 +1,6 @@
 
 export const IntroductionSection = {
-  name: "introduction-section",
+  name: "introductionSection",
   title: "Intro Section content",
   type: "object",
   fields: [
@@ -41,7 +41,7 @@ export const IntroductionSection = {
 
 
 export const WhyChooseUsSection1 = {
-  name: "why-choose-us-section-one",
+  name: "whyChooseUsSectionOne",
   title: "Why Choose Us section 1",
   type: "object",
   fields: [
@@ -89,7 +89,7 @@ export const WhyChooseUsSection1 = {
 
 
 export const coreServicesSection = {
-  name: "core-service-section",
+  name: "coreServiceSection",
   title: "Core Services section",
   type: "object",
   fields: [
@@ -125,7 +125,7 @@ export const coreServicesSection = {
 
 
 export const NicheIndustries = {
-  name: "industries-section",
+  name: "industriesSection",
   title: "Niche Industries section",
   type: "object",
   fields: [
@@ -170,7 +170,7 @@ export const NicheIndustries = {
 
 
 export const WhyChooseUsSection2 = {
-  name: "why-choose-us-section-two",
+  name: "whyChooseUsSectionTwo",
   title: "Why choose us section 2",
   type: "object",
   fields: [
@@ -244,7 +244,7 @@ export const CtaSection = {
 
 
 export const AdditionalInformation = {
-  name: "additional-information",
+  name: "additionalInformation",
   title: "Additional Info Block",
   type: "object",
   fields: [
@@ -266,7 +266,7 @@ export const AdditionalInformation = {
 
 
 export const faq = {
-  name: "faq",
+  name: "frequentlyAskedQuestions",
   title: "FAQ",
   type: "object",
   fields: [

@@ -14,7 +14,7 @@ export const services = {
       title: "Service Description",
     },
     {
-      name: "sub-services",
+      name: "subServices",
       type: "array",
     },
     {
@@ -39,14 +39,15 @@ export const services = {
       ],
     },
     {
-      name: "service-detail",
+      name: "serviceDetail",
       type: "array",
       title: "Service Detail",
       fields: [
         {
-          name: "hero-image",
+          name: "heroImage",
           type: "image",
           title: "Hero section Image",
+          description:"landscape image",
           options: {
             hotspot: true,
           },
@@ -59,36 +60,36 @@ export const services = {
           ],
         },
         {
-          name: "introduction-section",  //firsts section
-          type: "introduction-section",
+          name: "introductionSection",  //firsts section
+          type: "introductionSection",
         },
         {
-          name: "why-choose-us-section-one", //second section
-          type: "why-choose-us-section-one",
+          name: "whyChooseUsSectionOne", //second section
+          type: "whyChooseUsSectionOne",
         },
         {
-          name: "core-service-section", //third section
-          type: "core-service-section",
+          name: "coreServiceSection", //third section
+          type: "corServiceSection",
         },
         {
-          name: "industries-section", //forth section
-          type: "industries-section",
+          name: "industriesSection", //forth section
+          type: "industriesSection",
         },
         {
-          name: "why-choose-us-section-two", //fifth section
-          type: "why-choose-us-section-two",
+          name: "whyChooseUsSectionTwo", //fifth section
+          type: "whyChooseUsSectionTwo",
         },
         {
           name: "cta", //cta section
           type: "cta",
         },
         {
-          name: "additional-information", //additional information section
-          type: "additional-information",
+          name: "additionalInformation", //additional information section
+          type: "additionalInformation",
         },
         {
-          name: "frequently-asked-questions", //faq section
-          type: "frequently-asked-questions",
+          name: "frequentlyAskedQuestions", //faq section
+          type: "frequentlyAskedQuestions",
         },
       ],
     },

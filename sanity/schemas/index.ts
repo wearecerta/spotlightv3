@@ -15,6 +15,7 @@ import {
   WhyChooseUsSection2,
 } from "./serviceDetail";
 import { blog } from "./blog";
+import { Team, TeamMembers } from "./teams";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -24,6 +25,8 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     caseStudy,
     blog,
     services,
+    Team,
+    TeamMembers,
     //this is for the service detail page sections 
     IntroductionSection,
     WhyChooseUsSection1,

@@ -4,7 +4,7 @@ export const industries = {
   title: 'Industries',
   fields: [
     {
-      name: "industry-name",
+      name: "industryName",
       type: "string",
       title: "Industry Name",
     },

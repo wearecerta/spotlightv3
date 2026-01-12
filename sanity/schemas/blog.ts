@@ -10,7 +10,7 @@ export const blog = {
     },
     {
       name: "slug",
-      type: "string",
+      type: "slug",
       title: "Slug",
     },
     {

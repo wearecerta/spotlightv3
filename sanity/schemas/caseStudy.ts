@@ -1,5 +1,5 @@
 export const caseStudy = {
-  name: "case-study",
+  name: "caseStudy",
   type: "document",
   title: "CaseStudy",
   fields: [
@@ -20,7 +20,7 @@ export const caseStudy = {
       description: 'example "#1moveaway"',
     },
      {
-      name: "hero-video",
+      name: "heroVideo",
       type: "string",
       title: "Hero section video url",
     },
@@ -39,6 +39,7 @@ export const caseStudy = {
       name: "gallery",
       type: "array",
       title: "Gallery",
+      description:"three images one landscape and two portrait ",
       of: [
         {
           type: "image",
@@ -56,9 +57,10 @@ export const caseStudy = {
       ],
     },
     {
-        name:"impacts-image",
+        name:"impactsImage",
         title:"Impacts section Image",
         type:"image",
+        description:"Portrait image",
         option:{
             hotspot:true
         }
@@ -69,7 +71,7 @@ export const caseStudy = {
       type: "string",
     },
     {
-      name: "key-highlights",
+      name: "keyHighlights",
       title: "Key Highlights",
       type: "array",
       of: [
@@ -79,7 +81,7 @@ export const caseStudy = {
       ],
     },
     {
-      name: "project-achievements",
+      name: "projectAchievements",
       title: "Project Achievements",
       type: "object",
       fields: [
