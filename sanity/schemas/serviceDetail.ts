@@ -1,284 +1,166 @@
+import { defineType, defineField } from "sanity";
 
-export const IntroductionSection = {
+export const IntroductionSection = defineType({
   name: "introductionSection",
   title: "Intro Section content",
   type: "object",
   fields: [
-    {
-      name: "title",
-      title: "Section Title",
-      type: "string",
-    },
-    {
-      name: "description",
-      title: "Section Description",
-      type: "text",
-    },
-    {
+    defineField({ name: "title", title: "Section Title", type: "string" }),
+    defineField({ name: "description", title: "Section Description", type: "text" }),
+    defineField({
       name: "images",
       title: "Images",
+      description: "two images for first section",
       type: "array",
-      description:"two images for first section",
       of: [
-        {
+        defineField({
+          name: "image",
           type: "image",
           options: { hotspot: true },
-           fields: [
-            {
-              name: "alt",
-              title: "Alt Text",
-              type: "string",
-            },
-          ],
-        },
+          fields: [defineField({ name: "alt", title: "Alt Text", type: "string" })],
+        }),
       ],
-    },
+    }),
   ],
-};
+});
 
-
-
-
-
-export const WhyChooseUsSection1 = {
+export const WhyChooseUsSection1 = defineType({
   name: "whyChooseUsSectionOne",
   title: "Why Choose Us section 1",
   type: "object",
   fields: [
-    {
-      name: "title",
-      title: "Section Title",
-      type: "string",
-    },
-    {
-      name: "description",
-      title: "Section Description",
-      type: "text",
-    },
-    {
+    defineField({ name: "title", title: "Section Title", type: "string" }),
+    defineField({ name: "description", title: "Section Description", type: "text" }),
+    defineField({
       name: "services",
       title: "Service Points",
       type: "array",
       of: [
-        {
+        defineField({
           type: "object",
+          name:"servicePoints",
           fields: [
-            {
-              name: "icon",
-              title: "Icon",
-              type: "image",
-            },
-            {
-              name: "title",
-              title: "Title",
-              type: "string",
-            },
-            {
-              name: "description",
-              title: "Description",
-              type: "text",
-            },
+            defineField({ name: "icon", title: "Icon", type: "image" }),
+            defineField({ name: "title", title: "Title", type: "string" }),
+            defineField({ name: "description", title: "Description", type: "text" }),
           ],
-        },
+        }),
       ],
-    },
+    }),
   ],
-};
+});
 
-
-
-
-export const coreServicesSection = {
+export const coreServicesSection = defineType({
   name: "coreServiceSection",
   title: "Core Services section",
   type: "object",
   fields: [
-    {
-      name: "title",
-      title: "Section Title",
-      type: "string",
-    },
-    {
-      name: "description",
-      title: "Section Description",
-      type: "text",
-    },
-    {
+    defineField({ name: "title", title: "Section Title", type: "string" }),
+    defineField({ name: "description", title: "Section Description", type: "text" }),
+    defineField({
       name: "services",
       title: "Services List",
       type: "array",
       of: [
-        {
+        defineField({
           type: "object",
+          name:"serviceLists",
           fields: [
-            { name: "title", type: "string" },
-            { name: "description", type: "text" },
+            defineField({ name: "title", type: "string" }),
+            defineField({ name: "description", type: "text" }),
           ],
-        },
+        }),
       ],
-    },
+    }),
   ],
-};
+});
 
-
-
-
-
-export const NicheIndustries = {
+export const NicheIndustries = defineType({
   name: "industriesSection",
   title: "Niche Industries section",
   type: "object",
   fields: [
-    {
-      name: "title",
-      title: "Section Title",
-      type: "string",
-    },
-    {
-      name: "description",
-      title: "Description",
-      type: "text",
-    },
-    {
-      name: "subTitle",
-      title: "Sub Title",
-      type: "string",
-    },
-    {
-      name: "subDescription",
-      title: "Sub Description",
-      type: "text",
-    },
-    {
+    defineField({ name: "title", title: "Section Title", type: "string" }),
+    defineField({ name: "description", title: "Description", type: "text" }),
+    defineField({ name: "subTitle", title: "Sub Title", type: "string" }),
+    defineField({ name: "subDescription", title: "Sub Description", type: "text" }),
+    defineField({
       name: "industries",
       title: "Industries List",
       type: "array",
       of: [
-        {
+        defineField({
           type: "object",
+          name:"industriesList",
           fields: [
-            { name: "industry", type: "string" },
-            { name: "industryDescription", type: "text" },
+            defineField({ name: "industry", type: "string" }),
+            defineField({ name: "industryDescription", type: "text" }),
           ],
-        },
+        }),
       ],
-    },
+    }),
   ],
-};
+});
 
-
-
-
-export const WhyChooseUsSection2 = {
+export const WhyChooseUsSection2 = defineType({
   name: "whyChooseUsSectionTwo",
   title: "Why choose us section 2",
   type: "object",
   fields: [
-    {
-      name: "title",
-      title: "Section Title",
-      type: "string",
-    },
-    {
-      name: "description",
-      title: "Description",
-      type: "text",
-    },
-    {
-      name: "subTitle",
-      title: "Sub Title",
-      type: "string",
-    },
-    {
-      name: "subDescription",
-      title: "Sub Description",
-      type: "text",
-    },
-    {
+    defineField({ name: "title", title: "Section Title", type: "string" }),
+    defineField({ name: "description", title: "Description", type: "text" }),
+    defineField({ name: "subTitle", title: "Sub Title", type: "string" }),
+    defineField({ name: "subDescription", title: "Sub Description", type: "text" }),
+    defineField({
       name: "features",
       title: "Key Features",
       type: "array",
       of: [
-        {
+        defineField({
           type: "object",
+          name:"keyFeatures",
           fields: [
-            { name: "title", type: "string" },
-            { name: "description", type: "text" },
+            defineField({ name: "title", type: "string" }),
+            defineField({ name: "description", type: "text" }),
           ],
-        },
+        }),
       ],
-    },
+    }),
   ],
-};
+});
 
-
-
-
-
-export const CtaSection = {
+export const CtaSection = defineType({
   name: "cta",
   title: "Call To Action Section",
   type: "object",
   fields: [
-    {
-      name: "title",
-      title: "CTA Title",
-      type: "string",
-    },
-    {
-      name: "slogan",
-      title: "Slogan",
-      type: "string",
-    },
-    {
-      name: "ctaText",
-      title: "CTA Text",
-      type: "string",
-    },
+    defineField({ name: "title", title: "CTA Title", type: "string" }),
+    defineField({ name: "slogan", title: "Slogan", type: "string" }),
+    defineField({ name: "ctaText", title: "CTA Text", type: "string" }),
   ],
-};
+});
 
-
-
-
-
-
-export const AdditionalInformation = {
+export const AdditionalInformation = defineType({
   name: "additionalInformation",
   title: "Additional Info Block",
   type: "object",
   fields: [
-    {
-      name: "title",
-      title: "Block Title",
-      type: "string",
-    },
-    {
+    defineField({ name: "title", title: "Block Title", type: "string" }),
+    defineField({
       name: "paragraphs",
       title: "Paragraphs",
       type: "array",
       of: [{ type: "text" }],
-    },
+    }),
   ],
-};
+});
 
-
-
-
-export const faq = {
+export const faq = defineType({
   name: "frequentlyAskedQuestions",
   title: "FAQ",
   type: "object",
   fields: [
-    {
-      name: "question",
-      title: "Question",
-      type: "string",
-    },
-    {
-      name: "answer",
-      title: "Answer",
-      type: "text",
-    },
+    defineField({ name: "question", title: "Question", type: "string" }),
+    defineField({ name: "answer", title: "Answer", type: "text" }),
   ],
-};
+});

@@ -1,73 +1,54 @@
-export const Team = {
+import { defineType, defineField } from "sanity";
+
+export const TeamMembers = defineType({
+  name: "teamMembers",
+  type: "object",
+  title: "Team Member",
+  fields: [
+    defineField({ name: "name", type: "string", title: "Name" }),
+    defineField({ name: "position", type: "string", title: "Position" }),
+    defineField({
+      name: "mainImage",
+      title: "Main Image",
+      type: "image",
+      fields: [
+        defineField({ name: "alt", title: "Alternative Text", type: "string" }),
+      ],
+    }),
+    defineField({
+      name: "secondaryImage",
+      title: "Secondary Image",
+      type: "image",
+      fields: [
+        defineField({ name: "alt", title: "Alternative Text", type: "string" }),
+      ],
+    }),
+  ],
+});
+
+export const Team = defineType({
   name: "teams",
   type: "document",
   title: "Teams",
   fields: [
-    {
+    defineField({
       name: "titleSvg",
       type: "image",
       title: "Team Title SVG image",
-    },
-    {
+    }),
+    defineField({
       name: "teamsGroupImage",
       title: "Teams Group Image",
       type: "image",
-       fields: [
-        {
-          name: "alt",
-          title: "Alternative Text",
-          type: "string",
-        },
+      fields: [
+        defineField({ name: "alt", title: "Alternative Text", type: "string" }),
       ],
-    },
-   {
-    name:"teamMembers",
-    type:"teamMembers"
-   }
+    }),
+    defineField({
+      name: "teamMembers",
+      title: "Team Members",
+      type: "array",
+      of: [{ type: "teamMembers" }],
+    }),
   ],
-};
-
-
-
-
-export const TeamMembers = {
-  name: "teamMembers",
-  type: "object",
-  title: "Teams",
-  fields: [
-    {
-      name: "name",
-      type: "string",
-      title: "Name",
-    },
-    {
-      name: "position",
-      type: "string",
-      title: "Position",
-    },
-    {
-      name: "mainImage",
-      title: "Main Image",
-      type: "image",
-       fields: [
-        {
-          name: "alt",
-          title: "Alternative Text",
-          type: "string",
-        },
-      ],
-    },
-   {
-      name: "secondaryImage",
-      title: "Secondary Image",
-      type: "image",
-       fields: [
-        {
-          name: "alt",
-          title: "Alternative Text",
-          type: "string",
-        },
-      ],
-    },
-  ],
-};
+});

@@ -1,99 +1,104 @@
-export const services = {
+import { defineType, defineField } from "sanity";
+
+export const services = defineType({
   name: "services",
   type: "document",
   title: "Services",
   fields: [
-    {
+    defineField({
       name: "title",
       type: "string",
       title: "Service Title",
-    },
-    {
+    }),
+    defineField({
       name: "description",
       type: "string",
       title: "Service Description",
-    },
-    {
+    }),
+    defineField({
       name: "subServices",
       type: "array",
-    },
-    {
+      of: [{ type: "string" }],
+    }),
+    defineField({
       name: "images",
       type: "array",
       title: "Service Images",
       description: "two images related to this service",
       of: [
-        {
+        defineField({
+          name: "image",
           type: "image",
-          options: {
-            hotspot: true,
-          },
+          options: { hotspot: true },
           fields: [
-            {
+            defineField({
               name: "alt",
               title: "Alt text for the image",
               type: "string",
-            },
+            }),
           ],
-        },
+        }),
       ],
-    },
-    {
+    }),
+    defineField({
       name: "serviceDetail",
       type: "array",
       title: "Service Detail",
-      fields: [
-        {
-          name: "heroImage",
-          type: "image",
-          title: "Hero section Image",
-          description:"landscape image",
-          options: {
-            hotspot: true,
-          },
-           fields: [
-            {
-              name: "alt",
-              title: "Alt Text",
-              type: "string",
-            },
+      of: [
+        defineField({
+          name: "heroImageItem",
+          type: "object",
+          title: "Hero Section",
+          fields: [
+            defineField({
+              name: "heroImage",
+              type: "image",
+              title: "Hero section Image",
+              description: "landscape image",
+              options: { hotspot: true },
+              fields: [
+                defineField({
+                  name: "alt",
+                  title: "Alt Text",
+                  type: "string",
+                }),
+              ],
+            }),
           ],
-        },
-        {
-          name: "introductionSection",  //firsts section
+        }),
+        defineField({
+          name: "introductionSectionItem",
           type: "introductionSection",
-        },
-        {
-          name: "whyChooseUsSectionOne", //second section
+        }),
+        defineField({
+          name: "whyChooseUsSectionOneItem",
           type: "whyChooseUsSectionOne",
-        },
-        {
-          name: "coreServiceSection", //third section
-          type: "corServiceSection",
-        },
-        {
-          name: "industriesSection", //forth section
+        }),
+        defineField({
+          name: "coreServiceSectionItem",
+          type: "coreServiceSection",
+        }),
+        defineField({
+          name: "industriesSectionItem",
           type: "industriesSection",
-        },
-        {
-          name: "whyChooseUsSectionTwo", //fifth section
+        }),
+        defineField({
+          name: "whyChooseUsSectionTwoItem",
           type: "whyChooseUsSectionTwo",
-        },
-        {
-          name: "cta", //cta section
+        }),
+        defineField({
+          name: "ctaItem",
           type: "cta",
-        },
-        {
-          name: "additionalInformation", //additional information section
+        }),
+        defineField({
+          name: "additionalInformationItem",
           type: "additionalInformation",
-        },
-        {
-          name: "frequentlyAskedQuestions", //faq section
+        }),
+        defineField({
+          name: "frequentlyAskedQuestionsItem",
           type: "frequentlyAskedQuestions",
-        },
+        }),
       ],
-    },
+    }),
   ],
-};
-
-
+});

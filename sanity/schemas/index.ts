@@ -27,7 +27,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     services,
     Team,
     TeamMembers,
-    //this is for the service detail page sections 
+    // this is for the service detail page sections 
     IntroductionSection,
     WhyChooseUsSection1,
     coreServicesSection,
