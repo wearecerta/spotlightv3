@@ -231,29 +231,29 @@ export default function About() {
             src: "/Aboutus/Teams/sl1.png",
             hoverSrc: "/Aboutus/Teams/sl1h.png",
             alt: "Creative Team Member 1",
-            position: "Position 1",
-            name: "Name 1",
+            position: "head strategist",
+            name: "Ammanuel Bizuayehu",
           },
           {
             src: "/Aboutus/Teams/sl2.png",
             hoverSrc: "/Aboutus/Teams/sl2h.png",
             alt: "Creative Team Member 2",
-            position: "Position 1",
-            name: "Name 1",
+            position: "Strategist",
+            name: " Samuel Mulugeta",
           },
           {
             src: "/Aboutus/Teams/sl3.png",
             hoverSrc: "/Aboutus/Teams/sl3h.png",
             alt: "Creative Team Member 3",
-            position: "Position 1",
-            name: "Name 1",
+            position: "senior Strategist",
+            name: " Abenezer Elias",
           },
           {
             src: "/Aboutus/Teams/sl4.png",
             hoverSrc: "/Aboutus/Teams/sl4h.png",
             alt: "Creative Team Member 4",
-            position: "Position 1",
-            name: "Name 1",
+            position: "Strategist",
+            name: "Simon Jobo",
           },
         ]}
       />
@@ -319,6 +319,14 @@ export default function About() {
             name: "Marlen Assefa",
           },
           {
+            src: "/Aboutus/Leadership/I8.png",
+            hoverSrc: "/Aboutus/Leadership/I8h.png",
+            alt:"Ditital team member ",
+            position:"head of digital",
+            name: "Zelalem Temesgen",
+          },
+
+          {
             src: "/Aboutus/Teams/miki1.png",
             hoverSrc: "/Aboutus/Teams/miki2.png",
             alt: "Digital Team Member 2",
@@ -331,35 +339,8 @@ export default function About() {
             alt: "Digital Team Member 3",
             position: "Digital Team member",
             name: "Deborah Munyaneza",
-          },
-          {
-            src: "/Aboutus/Teams/sl4.png",
-            hoverSrc: "/Aboutus/Teams/sl4h.png",
-            alt: "Digital Team Member 4",
-            position: "Position 1",
-            name: "Name 1",
-          },
-          {
-            src: "/Aboutus/Teams/sl1.png",
-            hoverSrc: "/Aboutus/Teams/sl1h.png",
-            alt: "Digital Team Member 5",
-            position: "Position 1",
-            name: "Name 1",
-          },
-          {
-            src: "/Aboutus/Teams/sl2.png",
-            hoverSrc: "/Aboutus/Teams/sl2h.png",
-            alt: "Digital Team Member 6",
-            position: "Position 1",
-            name: "Name 1",
-          },
-          {
-            src: "/Aboutus/Teams/sl3.png",
-            hoverSrc: "/Aboutus/Teams/sl3h.png",
-            alt: "Digital Team Member 7",
-            position: "Position 1",
-            name: "Name 1",
-          },
+          }
+         
         ]}
       />
 
@@ -375,18 +356,18 @@ export default function About() {
             name: "Yonathan Ekubemichale",
           },
           {
-            src: "/Aboutus/Teams/sl2.png",
-            hoverSrc: "/Aboutus/Teams/sl2h.png",
+            src: "/Aboutus/Teams/bire1.png",
+            hoverSrc: "/Aboutus/Teams/bire2.png",
             alt: "Event Team Member 2",
-            position: "Position 1",
-            name: "Name 1",
+            position: "Team leader",
+            name: "Birhanu Hailu",
           },
            {
-            src: "/Aboutus/Teams/sl2.png",
-            hoverSrc: "/Aboutus/Teams/sl2h.png",
+            src: "/Aboutus/Teams/bereket1.png",
+            hoverSrc: "/Aboutus/Teams/bereket2.png",
             alt: "Event Team Member 2",
-            position: "Position 1",
-            name: "Name 1",
+            position: "Event Expert",
+            name: "Bereket Tamiru",
           },
         ]}
       />
@@ -408,6 +389,13 @@ export default function About() {
             alt: "Account Team Member 2",
             position: "Senior Account",
             name: "kalkidan Samson",
+          },
+              {
+            src: "/Aboutus/Teams/gelila1.png",
+            hoverSrc: "/Aboutus/Teams/gelila2.png",
+            alt: "Account Team Member 2",
+            position: "Senior Account",
+            name: "Gelila  Haile",
           },
           {
             src: "/Aboutus/Teams/bezawit1.png",
@@ -438,11 +426,11 @@ export default function About() {
             name: "Helen Kalkidan",
           },
           {
-            src: "/Aboutus/Teams/sl3.png",
-            hoverSrc: "/Aboutus/Teams/sl3h.png",
+            src: "/Aboutus/Leadership/I14.png",
+            hoverSrc: "/Aboutus/Leadership/I14h.png",
             alt: "Finance Team Member 3",
-            position: "Position 1",
-            name: "Name 1",
+            position: "Head of HR",
+            name: "Hiwot Webante",
           },
         ]}
       />
