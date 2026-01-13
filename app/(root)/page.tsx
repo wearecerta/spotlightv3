@@ -1,9 +1,8 @@
-import Image from "next/image";
-import Hero from "../components/sections/Hero";
+import Hero from "../../components/sections/Hero";
 import { client } from "@/sanity/lib/client";
 import { homePageQuery } from "@/sanity/queries/homePage";
 import Welcome from "@/components/sections/Welcome";
-import "./globals.css";
+import "../globals.css";
 import Ourworks from "@/components/sections/Ourworks";
 import OurServices from "@/components/sections/OurServices";
 import Awards from "@/components/sections/Awards";
@@ -16,7 +15,7 @@ export default async function Home() {
   return (
 
     <div>
-      <Hero videoAsset={data?.heroVideo} title={data?.heroTitle} subtitle={data?.heroSubtitle}/>
+      <Hero videoAsset={data?.heroVideo}/>
       <Welcome />
       <Ourworks />
       <OurServices />

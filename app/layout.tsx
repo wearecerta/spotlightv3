@@ -7,12 +7,8 @@ import {
   Shadows_Into_Light,
   Plus_Jakarta_Sans
 } from "next/font/google";
-
-
-import Navbar from "../components/layout/Navbar";
-import Footer from "../components/layout/Footer";
 import "./globals.css";
-import SmoothScroll from "@/components/ui/SmothScroll";
+
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ['latin'], 
@@ -71,13 +67,7 @@ export default function RootLayout({
           antialiased
         `}
       >
-        <div className="min-h-screen flex flex-col">
-          <Navbar />
-          <SmoothScroll>
-            <main className="flex-1">{children}</main>
-          </SmoothScroll>
-          <Footer />
-        </div>
+        {children}
       </body>
     </html>
   );
