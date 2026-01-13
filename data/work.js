@@ -50,7 +50,7 @@ export const works = [
       company: "Saint George Beer",
       industry: "Food And Beverage",
       service: "Marketing",
-      duration: "",
+      duration: "on-going",
     },
     impact: {
       description:
@@ -60,12 +60,12 @@ export const works = [
         " Built around 3 interconnected pillars: Adey Studio, Adey Chewata, and Adey Music Fest ‣ Positioned as Ethiopia’s flagship cultural platform for music, storytelling, and modern youth celebration",
         "Transformed a 120-year-old heritage beer brand into a bold, youth-driven movement Project Achievement",
       ],
-      image: "/WorkDetails/stgeorge5.jpg",
+      image: "/WorkDetails/adey4.jpg",
     },
     images: {
-      image1: "/WorkDetails/stgeorge.jpg",
-      image2: "/WorkDetails/stgeorge2.jpg",
-      image3: "/WorkDetails/stgeorge3.jpg",
+      image1: "/WorkDetails/adey1.jpg",
+      image2: "/WorkDetails/adey2.jpg",
+      image3: "/WorkDetails/adey3.jpg",
     },
     achievements: [
       { value: "5M+", label: "total reach" },
