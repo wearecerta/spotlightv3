@@ -36,7 +36,7 @@ export const blog = defineType({
       fields: [
         defineField({
           name: "alt",
-          title: "Alternative Text",
+          title: "Alternative Text (ALT)",
           type: "string",
         }),
       ],

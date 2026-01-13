@@ -24,7 +24,7 @@ export const clients = defineType({
       fields: [
         defineField({
           name: "alt",
-          title: "Alt Text",
+          title: "Alternative Text (Alt)",
           type: "string",
           description: "Alt text for SEO and accessibility.",
         }),

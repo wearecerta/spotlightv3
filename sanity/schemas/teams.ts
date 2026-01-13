@@ -20,7 +20,7 @@ export const TeamMembers = defineType({
       title: "Secondary Image",
       type: "image",
       fields: [
-        defineField({ name: "alt", title: "Alternative Text", type: "string" }),
+        defineField({ name: "alt", title: "Alternative Text (Alt)", type: "string" }),
       ],
     }),
   ],

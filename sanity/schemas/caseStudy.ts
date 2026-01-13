@@ -61,7 +61,7 @@ export const caseStudy = defineType({
           fields: [
             defineField({
               name: "alt",
-              title: "Alternative Text",
+              title: "Alternative Text (Alt)",
               type: "string",
             }),
           ],
@@ -90,22 +90,30 @@ export const caseStudy = defineType({
       of: [{ type: "string" }],
     }),
 
+   defineField({
+  name: "projectAchievements",
+  title: "Project Achievements",
+  type: "array",
+  of: [
     defineField({
-      name: "projectAchievements",
-      title: "Project Achievements",
+      name: "achievement",
+      title: "Achievement",
       type: "object",
       fields: [
         defineField({
           name: "label",
-          title: "label (eg likes, views, shares)",
+          title: "Label (e.g. likes, views, shares)",
           type: "string",
         }),
         defineField({
           name: "value",
-          title: "Value (e.g., 100k, 25k)",
+          title: "Value (e.g. 100k, 25k)",
           type: "string",
         }),
       ],
     }),
+  ],
+}),
+
   ],
 });

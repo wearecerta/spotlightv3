@@ -11,15 +11,5 @@ export const homePage = defineType({
       type: "file",
       options: { accept: "video/*" },
     }),
-    defineField({
-      name: "heroTitle",
-      title: "Hero Title",
-      type: "string",
-    }),
-    defineField({
-      name: "heroSubtitle",
-      title: "Hero Subtitle",
-      type: "string",
-    }),
   ]
 });
