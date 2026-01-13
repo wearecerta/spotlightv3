@@ -39,26 +39,26 @@ export const works = [
   },
 
   {
-    slug: "st-george",
-    title: "Saint George",
+    slug: "st.george-adey-music-studio",
+    title: "Saint George - Adey Music Studio",
     tags: ["BRANDING", "MARKETING", "PRODUCTION"],
-    tagline: "#Bemela Enfika",
-    videoSrc: "",
+    tagline: "",
+    videoSrc: "https://youtu.be/m3EE-AoMtQc",
     overview:
-      "To mark Ethiopia’s New Year, we partnered with Saint George Beer to launch #BeMelaEnifka—a bold digital campaign that celebrated individuality, cultural pride, and self-expression. The campaign invited young Ethiopians to show up in their most vibrant, unapologetic looks and embrace the MELA spirit, a mindset of confidence and originality. Through fashion, music, and satire, we built a movement that turned a national moment into a cultural statement.",
+      "In 2017, St. George Beer, Ethiopia’s flagship heritage brand, began a bold cultural transformation to remain relevant with a new generation of Ethiopians. The nationwide campaign #BeMelaEnifka, launched during the Ethiopian New Year and led by Spotlighting Marketing, introduced a message of confidence, individuality, and cultural pride. By activating three main influencers and ten supporting creators nationwide, the campaign sparked youth-led conversations across the country and repositioned St. George as a symbol of celebration and boldness. The success of #BeMelaEnifka became the foundation for something larger: Adey Media – a long-term cultural platform that blends music, storytelling, and modern expression.",
     details: {
-      company: "Saint George",
+      company: "Saint George Beer",
       industry: "Food And Beverage",
       service: "Marketing",
-      duration: "3 Months",
+      duration: "",
     },
     impact: {
       description:
-        "This campaign successfully bridged digital platforms and mainstream media, fostering cultural relevance, platform-native engagement, and national visibility for both Safaricom Ethiopia and the youth talents who took part.",
+        "Adey Media proved that a brand-led cultural ecosystem can deliver both scale and storytelling even without access to traditional ATL tools. By embedding itself in music, content, and cultural experiences, St. George Beer redefined how a legacy brand connects with the next generation",
       impacts: [
-        "4.6M+ views in under 2 months",
-        "23+ influencers activated across fashion, music, lifestyle, and comedy",
-        "Elevated Saint George Beer as a symbol of youthful boldness and cultural pride",
+        "Born out of the success of #BeMelaEnifka, expanding St. George’s youth engagement into a long-term cultural platform",
+        " Built around 3 interconnected pillars: Adey Studio, Adey Chewata, and Adey Music Fest ‣ Positioned as Ethiopia’s flagship cultural platform for music, storytelling, and modern youth celebration",
+        "Transformed a 120-year-old heritage beer brand into a bold, youth-driven movement Project Achievement",
       ],
       image: "/WorkDetails/stgeorge5.jpg",
     },
@@ -68,10 +68,9 @@ export const works = [
       image3: "/WorkDetails/stgeorge3.jpg",
     },
     achievements: [
-      { value: "205K+", label: "Likes" },
-      { value: "17K+", label: "shares" },
-      { value: "28K+", label: "Saves" },
-      { value: "1.7K+", label: "comments" },
+      { value: "5M+", label: "total reach" },
+      { value: "16K+", label: "ATTENDEES" },
+      { value: "14M+", label: "views" },
     ],
   },
 

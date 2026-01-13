@@ -98,6 +98,10 @@ export const services = defineType({
           name: "frequentlyAskedQuestionsItem",
           type: "frequentlyAskedQuestions",
         }),
+         defineField({
+          name: "onPageSeo",
+          type: "onPageSeo",
+        }),
       ],
     }),
   ],

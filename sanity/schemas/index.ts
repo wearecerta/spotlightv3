@@ -11,6 +11,7 @@ import {
   faq,
   IntroductionSection,
   NicheIndustries,
+  onPageSeo,
   WhyChooseUsSection1,
   WhyChooseUsSection2,
 } from "./serviceDetail";
@@ -36,5 +37,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     CtaSection,
     AdditionalInformation,
     faq,
+    onPageSeo
   ],
 };
