@@ -31,6 +31,11 @@ export const Team = defineType({
   type: "document",
   title: "Teams",
   fields: [
+     defineField({
+      name: "title",
+      type: "string",
+      title: "Team Title",
+    }),
     defineField({
       name: "titleSvg",
       type: "image",
