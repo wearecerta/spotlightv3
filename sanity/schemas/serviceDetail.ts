@@ -3,6 +3,13 @@ import { defineType, defineField } from "sanity";
 export const IntroductionSection = defineType({
   name: "introductionSection",
   title: "Intro Section content",
+  preview: {
+  prepare() {
+    return {
+      title: "Intro Section",
+    };
+  },
+},
   type: "object",
   fields: [
     defineField({ name: "title", title: "Section Title", type: "string" }),
@@ -33,6 +40,13 @@ export const IntroductionSection = defineType({
 export const WhyChooseUsSection1 = defineType({
   name: "whyChooseUsSectionOne",
   title: "Why Choose Us section 1",
+  preview: {
+  prepare() {
+    return {
+      title: "Why choose us Section",
+    };
+  },
+},
   type: "object",
   fields: [
     defineField({ name: "title", title: "Section Title", type: "string" }),
@@ -67,6 +81,13 @@ export const WhyChooseUsSection1 = defineType({
 export const coreServicesSection = defineType({
   name: "coreServiceSection",
   title: "Core Services section",
+  preview: {
+  prepare() {
+    return {
+      title: "core services list Section",
+    };
+  },
+},
   type: "object",
   fields: [
     defineField({ name: "title", title: "Section Title", type: "string" }),
@@ -96,6 +117,13 @@ export const coreServicesSection = defineType({
 export const NicheIndustries = defineType({
   name: "industriesSection",
   title: "Niche Industries section",
+  preview: {
+  prepare() {
+    return {
+      title: "Niche Industries list Section",
+    };
+  },
+},
   type: "object",
   fields: [
     defineField({ name: "title", title: "Section Title", type: "string" }),
@@ -128,6 +156,13 @@ export const WhyChooseUsSection2 = defineType({
   name: "whyChooseUsSectionTwo",
   title: "Why choose us section 2",
   type: "object",
+  preview: {
+  prepare() {
+    return {
+      title: "Why choose us one Section",
+    };
+  },
+},
   fields: [
     defineField({ name: "title", title: "Section Title", type: "string" }),
     defineField({ name: "description", title: "Description", type: "text" }),
@@ -159,16 +194,30 @@ export const CtaSection = defineType({
   name: "cta",
   title: "Call To Action Section",
   type: "object",
+  preview: {
+  prepare() {
+    return {
+      title: "Call to action Section",
+    };
+  },
+},
   fields: [
     defineField({ name: "title", title: "CTA Title", type: "string" }),
     defineField({ name: "slogan", title: "Slogan", type: "string" }),
-    defineField({ name: "ctaText", title: "CTA Text", type: "string" }),
+    defineField({ name: "ctaText", title: "CTA Text", type: "text" }),
   ],
 });
 
 export const AdditionalInformation = defineType({
   name: "additionalInformation",
   title: "Additional Info Block",
+  preview: {
+  prepare() {
+    return {
+      title: "Additional Information Section",
+    };
+  },
+},
   type: "object",
   fields: [
     defineField({ name: "title", title: "Block Title", type: "string" }),
@@ -183,6 +232,13 @@ export const AdditionalInformation = defineType({
 
 export const faq = defineType({
   name: "frequentlyAskedQuestions",
+  preview: {
+  prepare() {
+    return {
+      title: "FAQ Section",
+    };
+  },
+},
   title: "FAQ",
   type: "object",
   fields: [
@@ -194,6 +250,13 @@ export const faq = defineType({
 export const onPageSeo = defineType({
   name: "onPageSeo",
   title: "On Page Seo",
+  preview: {
+  prepare() {
+    return {
+      title: "on page seo",
+    };
+  },
+},
   type: "object",
   fields: [
     defineField({ name: "pageTitle", title: "Page Title", type: "string" }),
