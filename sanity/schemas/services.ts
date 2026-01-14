@@ -12,7 +12,7 @@ export const services = defineType({
     }),
     defineField({
       name: "description",
-      type: "string",
+      type: "text",
       title: "Service Description",
     }),
     defineField({
