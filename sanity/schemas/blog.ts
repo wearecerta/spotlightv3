@@ -1,9 +1,9 @@
 import { defineType, defineField } from "sanity";
 
 export const blog = defineType({
-  name: "blogs",
+  name: "blog",
   type: "document",
-  title: "Blogs",
+  title: "Blog",
   fields: [
     defineField({
       name: "title",
@@ -25,19 +25,20 @@ export const blog = defineType({
       name: "excerpt",
       title: "Excerpt",
       type: "text",
-      description: "A short description for SEO and post listings",
+      description: "Short description for SEO and blog listings",
     }),
 
     defineField({
       name: "mainImage",
-      title: "Main image",
+      title: "Main Image",
       type: "image",
       options: { hotspot: true },
       fields: [
         defineField({
           name: "alt",
-          title: "Alternative Text (ALT)",
+          title: "Alt Text",
           type: "string",
+          
         }),
       ],
     }),
@@ -68,7 +69,50 @@ export const blog = defineType({
       name: "body",
       title: "Body",
       type: "array",
-      of: [{ type: "block" }],
+      of: [
+        {
+          type: "block",
+          styles: [
+            { title: "Normal", value: "normal" },
+            { title: "H1", value: "h1" },
+            { title: "H2", value: "h2" },
+            { title: "H3", value: "h3" },
+            { title: "H4", value: "h4" },
+          ],
+          marks: {
+            decorators: [
+              { title: "Strong", value: "strong" },
+              { title: "Emphasis", value: "em" },
+            ],
+            annotations: [
+              {
+                name: "link",
+                type: "object",
+                title: "External Link",
+                fields: [
+                  defineField({
+                    name: "href",
+                    type: "url",
+                    title: "URL",
+                  }),
+                ],
+              },
+            ],
+          },
+        },
+        {
+          type: "image",
+          options: { hotspot: true },
+        },
+      ],
     }),
   ],
+
+  preview: {
+    select: {
+      title: "title",
+      media: "mainImage",
+      subtitle: "author",
+    },
+  },
 });

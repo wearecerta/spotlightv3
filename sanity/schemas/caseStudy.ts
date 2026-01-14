@@ -28,18 +28,30 @@ export const caseStudy = defineType({
       description: 'example "#1moveaway"',
     }),
 
+       defineField({
+      name: "overview",
+      type: "text",
+      title: "Overview",
+    }),
+
     defineField({
       name: "heroVideo",
       type: "string",
       title: "Hero section video url",
     }),
 
-    defineField({
-      name: "service",
+   defineField({
+  name: "service",
+  type: "array",
+  title: "Service",
+  of: [
+    {
       type: "reference",
-      title: "Service",
-      to: [{ type: "services" }],
-    }),   
+      to: [{ type: "services" }] 
+    }
+  ],
+}),
+
 
     defineField({
       name: "duration",
@@ -79,7 +91,7 @@ export const caseStudy = defineType({
     defineField({
       name: "impacts",
       title: "Impacts",
-      type: "string",
+      type: "text",
     }),
 
     defineField({

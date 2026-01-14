@@ -68,7 +68,6 @@ export const services = defineType({
           name: "onPageSeo",
           type: "onPageSeo",
         }),
-
         defineField({
           name: "heroImage",
           type: "image",
