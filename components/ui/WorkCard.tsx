@@ -7,7 +7,7 @@ import { useMemo } from "react";
 interface WorkCardProps {
   title: string;
   tags: string[];
-  videoSrc?: string; // Optional - for direct video files (.mp4, etc.)
+  videoSrc?: string; 
   imageSrc?: string; // Optional - for images
   href: string;
   className?: string;
@@ -58,7 +58,7 @@ export default function WorkCard({
     <Link
       href={href}
       className={`
-        block rounded-2xl overflow-hidden
+        block rounded-3xl overflow-hidden
         transition-all duration-300 hover:shadow-lg
         ${className}
       `}
@@ -69,24 +69,25 @@ export default function WorkCard({
     >
       {/* TOP CONTENT */}
       <div className="flex items-start justify-between p-6 md:p-8">
-        <div>
+        <div className="flex flex-col gap-2 " >
           <h2
             className="tracking-wide"
             style={{
               fontFamily: "var(--font-primary)",
-              color: "#0C0C0E",
-              fontSize: "var(--h3-size)",
+              color: "var(--spotlight-950)",
+              fontSize: "var(--h4-size)",
             }}
           >
             {title}
           </h2>
 
           <div
-            className="flex items-center gap-3 mt-1"
+            className="flex flex-wrap items-center gap-3 mt-1"
             style={{
               fontFamily: "var(--font-secondary)",
-              color: "#4A4A5A",
+              color: "var(--spotlight-950)",
               fontSize: "var(--body-medium-size)",
+              fontWeight:"400"
             }}
           >
             {tags.map((tag, index) => (
@@ -98,27 +99,12 @@ export default function WorkCard({
           </div>
         </div>
 
-        {/* Arrow (SVG, no dependencies) */}
-        <svg
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          className="transition-colors"
-          style={{ color: "#0C0C0E" }}
-        >
-          <path
-            d="M7 17L17 7M17 7H9M17 7V15"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.6"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
+        {/* Arrow  */}
+        <Image src={'/Icons/dark-arrow.svg'} width={32} height={32} alt="arrow"/>
       </div>
 
       {/* MEDIA SECTION — auto expands to fit height you give */}
-      <div className="relative w-full aspect-video overflow-hidden rounded-b-2xl" style={{ background: '#F7F7F8' }}>
+      <div className="relative w-full aspect-video overflow-hidden rounded-2xl" style={{ background: '#F7F7F8' }}>
         {mediaType === "image" && imageSrc && (
           <Image
             src={imageSrc}

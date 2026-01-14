@@ -23,80 +23,96 @@ export default function ServicesCard({
   className = "",
 }: ServicesCardProps) {
   return (
-    <div className={`relative ${className}`} style={{ minHeight: '100vh' }}>
+    <div className={`relative ${className}`} >
       {/* Sticky Content Section */}
       <div
         style={{
-          position: 'sticky',
-          top: '0',
-          paddingTop: '10px',
-          paddingBottom: 'var(--space-xxl, 64px)',
-          paddingLeft: 'var(--space-xl, 48px)',
-          paddingRight: 'var(--space-xl, 48px)',
-          background: '#F7F7F8',
-          width: '100vw',
-          marginLeft: 'calc(-1 * var(--section-margin-x, 120px))',
+          position: "sticky",
+          top: "0",
+          // paddingTop: "16px",
+          // paddingBottom: "var(--space-xl, 48px)",
+          // paddingLeft: "var(--space-xxl, 64px)",
+          // paddingRight: "var(--space-xxl, 64px)",
+          background: "#F7F7F8",
+          width: "100vw",
           zIndex: 10,
         }}
+        className="p-(--space-sm) md:px-(--space-xxl) md:py-6"
       >
-        <Link href={href} className="block w-full group" style={{ maxWidth: '1200px', margin: '0 auto' }}>
+        <Link
+          href={href}
+          className="block w-full group "
+          style={{ maxWidth: "1200px", margin: "0 auto" }}
+        >
           {/* Arrow Icon - Top Right */}
-          <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 'var(--space-md, 24px)' }}>
-            <svg
-              width="32"
-              height="32"
-              viewBox="0 0 32 32"
-              fill="none"
-              className="transition-transform group-hover:translate-x-1 group-hover:-translate-y-1"
-            >
-              <path
-                d="M8 24L24 8M24 8H12M24 8V20"
-                stroke="#0C0C0E"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </div>
-
-          {/* Title and Description - Aligned Horizontally */}
           <div
             style={{
-              display: 'flex',
-              alignItems: 'flex-start',
-              justifyContent: 'space-between',
-              gap: 'var(--space-xl, 48px)',
-              marginBottom: 'var(--space-lg, 32px)',
+              display: "flex",
+              justifyContent: "flex-end",
+              marginBottom: "var(--space-md, 24px)",
             }}
           >
+            {/* Right: Arrow Icon */}
+            <Image
+              src="/Icons/dark-arrow.svg"
+              alt="Arrow Icon"
+              width={24}
+              height={24}
+              className="transition-transform hidden md:block h-6 w-6"
+            />
+          </div>
+
+          {/* Title and Description */}
+          <div
+            // style={{
+            //   display: "flex",
+            //   alignItems: "flex-start",
+            //   justifyContent: "space-between",
+            //   gap: "var(--space-xl, 48px)",
+            //   marginBottom: "var(--space-lg, 32px)",
+            // }}
+            className="flex flex-col md:flex-row md:items-center justify-between gap-(--space-xs) mb-(--space-lg)"
+          >
             {/* Left: Title */}
+            <div className="flex justify-between ">
             <h2
               style={{
-                color: '#0C0C0E',
+                color: "#0C0C0E",
                 fontFamily: 'var(--font-primary, "Bebas Neue")',
-                fontSize: '56px',
-                fontStyle: 'normal',
-                fontWeight: '400',
-                lineHeight: '100%',
-                textTransform: 'uppercase',
-                flex: '0 0 auto',
-                maxWidth: '400px',
+                fontStyle: "normal",
+                fontWeight: "400",
+                lineHeight: "100%",
+                textTransform: "uppercase",
+                flex: "0 0 auto",
+                maxWidth: "400px",
               }}
+              className="text-[#0C0C0E] text-[32px] md:text-[56px]"
             >
               {title}
             </h2>
 
+            <Image
+              src="/Icons/dark-arrow.svg"
+              alt="Arrow Icon"
+              width={24}
+              height={24}
+              className="transition-transform md:hidden h-6 w-6"
+            />
+
+            </div>
+
             {/* Right: Description */}
             <p
               style={{
-                color: '#0C0C0E',
-                fontFamily: 'var(--font-secondary, Outfit)',
-                fontSize: '16px',
-                fontStyle: 'normal',
-                fontWeight: '400',
-                lineHeight: '150%',
-                flex: '1',
+                color: "#0C0C0E",
+                fontFamily: "var(--font-secondary, Outfit)",
+                fontSize: "14px",
+                fontStyle: "normal",
+                fontWeight: "400",
+                lineHeight: "150%",
+                // flex: "1",
               }}
+              className="md:w-1/2"
             >
               {description}
             </p>
@@ -104,31 +120,26 @@ export default function ServicesCard({
 
           {/* Services List */}
           <div
-            style={{
-              display: 'flex',
-              flexWrap: 'wrap',
-              alignItems: 'center',
-              gap: 'var(--space-sm, 16px)',
-            }}
+            className="md:flex flex-wrap items-center hidden gap-(--space-sm)"
           >
             {services.map((service, index) => (
               <div
                 key={index}
                 style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: 'var(--space-sm, 16px)',
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "var(--space-sm, 16px)",
                 }}
               >
                 <span
                   style={{
-                    color: '#4A4A5A',
-                    fontFamily: 'var(--font-secondary, Outfit)',
-                    fontSize: '14px',
-                    fontStyle: 'normal',
-                    fontWeight: '400',
-                    lineHeight: '150%',
-                    textTransform: 'uppercase',
+                    color: "#4A4A5A",
+                    fontFamily: "var(--font-secondary, Outfit)",
+                    fontSize: "14px",
+                    fontStyle: "normal",
+                    fontWeight: "400",
+                    lineHeight: "150%",
+                    textTransform: "uppercase",
                   }}
                 >
                   {service}
@@ -136,10 +147,10 @@ export default function ServicesCard({
                 {index < services.length - 1 && (
                   <span
                     style={{
-                      width: '6px',
-                      height: '6px',
-                      borderRadius: '50%',
-                      background: '#D1D1D6',
+                      width: "12px",
+                      height: "12px",
+                      borderRadius: "50%",
+                      background: "#B6B7C3",
                     }}
                   />
                 )}
@@ -152,22 +163,22 @@ export default function ServicesCard({
       {/* Two Images Side by Side - No Gap (Scrolls Normally) */}
       <Link href={href} className="block group">
         <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(2, 1fr)',
-            gap: '0',
-            width: '100vw',
-            marginLeft: 'calc(-1 * var(--section-margin-x, 120px))',
-            height: '480px',
-          }}
+          // style={{
+          //   display: "grid",
+          //   gridTemplateColumns: "repeat(2, 1fr)",
+          //   gap: "0",
+          //   width: "100vw",
+          //   height: "600px",
+          // }}
+          className="grid grid-cols-1 md:grid-cols-2 gap-0  w-full h-[600px]"
         >
           {/* Image 1 */}
           <div
             style={{
-              position: 'relative',
-              width: '100%',
-              height: '100%',
-              overflow: 'hidden',
+              position: "relative",
+              width: "100%",
+              height: "100%",
+              overflow: "hidden",
             }}
           >
             <Image
@@ -182,10 +193,10 @@ export default function ServicesCard({
           {/* Image 2 */}
           <div
             style={{
-              position: 'relative',
-              width: '100%',
-              height: '100%',
-              overflow: 'hidden',
+              position: "relative",
+              width: "100%",
+              height: "100%",
+              overflow: "hidden",
             }}
           >
             <Image
@@ -201,4 +212,3 @@ export default function ServicesCard({
     </div>
   );
 }
-

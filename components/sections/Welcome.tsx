@@ -1,62 +1,25 @@
-"use client";
-
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import Buttons from "../ui/Buttons";
+import LeftParagraph from "./LeftParagraph";
+import Link from "next/link";
 
 export default function Welcome() {
-  const textRef = useRef<HTMLDivElement>(null);
-  const imagesRef = useRef<HTMLDivElement>(null);
-  const paragraphRef = useRef<HTMLParagraphElement>(null);
-  const [textHeight, setTextHeight] = useState<number | null>(null);
-  const [scrollProgress, setScrollProgress] = useState(0);
-
-  useEffect(() => {
-    const updateHeight = () => {
-      if (textRef.current) {
-        setTextHeight(textRef.current.offsetHeight);
-      }
-    };
-
-    updateHeight();
-    window.addEventListener("resize", updateHeight);
-    return () => window.removeEventListener("resize", updateHeight);
-  }, []);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (paragraphRef.current) {
-        const rect = paragraphRef.current.getBoundingClientRect();
-        const windowHeight = window.innerHeight;
-        const elementTop = rect.top;
-        const elementHeight = rect.height;
-        
-        // Calculate scroll progress (0 to 1)
-        // Starts animating when element enters viewport, completes when it's fully visible
-        const startPoint = windowHeight;
-        const endPoint = windowHeight - elementHeight;
-        const progress = Math.max(0, Math.min(1, (startPoint - elementTop) / (startPoint - endPoint)));
-        
-        setScrollProgress(progress);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    handleScroll(); // Initial call
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
   return (
     <section
-      className="w-full h-auto text-white"
-      style={{
-        background: "var(--spotlight-950)",
-        paddingLeft: "var(--section-margin-x)",
-        paddingRight: "var(--section-margin-x)",
-        paddingTop: "var(--section-margin-y)",
-        paddingBottom: "var(--section-margin-y)",
-      }}
+      className="w-full  h-auto  bg-(--spotlight-950) "
+      // style={{
+      //   background: "var()",
+      //   paddingLeft: "var(--section-margin-x)",
+      //   paddingRight: "var(--section-margin-x)",
+      //   paddingTop: "var(--section-margin-y)",
+      //   paddingBottom: "var(--section-margin-y)",
+      // }}
+
     >
+      <div className="max-w-[1440px] mx-auto px-(--section-margin-x) md:px-(--space-xxl) lg:px-(--section-margin-x) py-(--section-margin-y) text-white">
+
       {/* TOP TITLE */}
-      <div className="text-center">
+      <div className="text-center flex flex-col gap-5">
         <h1
           className="uppercase"
           style={{
@@ -80,79 +43,47 @@ export default function Welcome() {
             textAlign: "center",
           }}
         >
-          The <span style={{ color: "var(--spotlight-100)" }}>Best Advertising Agency</span><br />
+          The{" "}
+          <span style={{ color: "var(--spotlight-100)" }}>
+            Best Advertising Agency
+          </span>
+          <br />
           in Addis Ababa, Ethiopia
         </p>
       </div>
 
       {/* CONTENT WRAPPER */}
+      {/* !!!!!!!!!todo stikcy scroll */}
+      {/* <div className="sticky top-0"> */}
+
       <div
-        className="flex flex-col lg:flex-row"
-        style={{ marginTop: "var(--space-xl)", gap: "var(--space-xl)", alignItems: "flex-start" }}
+        className="flex flex-col-reverse lg:flex-row  "
+        style={{
+          marginTop: "var(--space-xl)",
+          gap: "var(--space-xl)",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
       >
         {/* LEFT PARAGRAPH */}
-        <div ref={textRef} className="max-w-lg">
-          <p
-            ref={paragraphRef}
-            className="font-secondary"
-            style={{
-              color: `rgba(${74 + (247 - 74) * scrollProgress}, ${74 + (247 - 74) * scrollProgress}, ${90 + (248 - 90) * scrollProgress}, 1)`,
-              fontFamily: "var(--font-outfit)",
-              fontSize: "var(--accent-small-size)",
-              fontWeight: 300,
-              fontStyle: "normal",
-              lineHeight: "120%",
-              letterSpacing: "0%",
-              transition: "color 0.1s ease-out",
-            }}
-          >
-            Spotlight communications and Marketing is one of the best advertising
-            and marketing agencies in Addis Ababa, Ethiopia specializing in marketing,
-            advertising, branding & design, production, and PR. Trusted by brands like
-            the European Union, Ethiopian Airlines, and Safaricom Ethiopia, we create
-            bold, youthful, and unforgettable brand experiences that connect, inspire,
-            and drive real impact.
-          </p>
-        </div>
+        <LeftParagraph />
 
-        {/* RIGHT IMAGES */}
-        <div ref={imagesRef} className="relative w-full flex-1">
-          <div 
-            className="relative w-full" 
-            style={{ 
-              height: textHeight ? `${textHeight}px` : "425px",
-              minHeight: "425px"
-            }}
-          >
-            {/* top-left image */}
-            <div
-              className="absolute left-0 top-0 w-[313px] h-[425px] overflow-hidden shadow-lg z-10"
-              style={{ minWidth: 260 }}
-            >
-              <Image src="/Home/welcome1.jpg" alt="welcome left" fill className="object-cover" />
-            </div>
-
-            {/* top-right image overlapping */}
-            <div
-              className="absolute right-0 top-0 w-[313px] h-[425px] overflow-hidden shadow-2xl z-20"
-              style={{ transform: "translateX(-5%) translateY(25%)", minWidth: 260 }}
-            >
-              <Image src="/Home/welcome2.png" alt="welcome right" fill className="object-cover" />
-            </div>
-          </div>
-        </div>
-        
+        {/* RIGHT IMAGE */}
+        <Image
+          src="/Home/welcome-image.png"
+          alt="Welcome Image"
+          width={600}
+          height={600}
+          className="w-full flex-1 lg:max-w-lg mt-6 lg:mt-0"
+        />
       </div>
-
       {/* BUTTON */}
-      <div
-        className="flex justify-center items-center"
-        style={{ marginTop: "var(--space-xl)" }}
-      >
-        <button className="border cursor-pointer border-white px-6 py-3 text-sm uppercase tracking-wide hover:bg-white hover:text-black transition">
-          • About Us →
-        </button>
-      </div>
+      <Link href={"/about"}>
+        <Buttons>ABOUT US</Buttons>
+      </Link>
+
+      {/* </div> */}
+          </div>
     </section>
   );
 }

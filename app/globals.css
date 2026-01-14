@@ -15,6 +15,7 @@ body {
 :root {
   /* Font Families */
   --font-primary: var(--font-bebas-neue, "Bebas Neue");
+  --font-shadow-light:var(--font-shadow-into-light, "ShadowsIntoLight");
   --font-secondary: var(--font-outfit, 'Outfit');
   --spotlight-50:  #F7F7F8;
   --spotlight-100: #EEEEF0;
@@ -53,6 +54,8 @@ body {
   /* SECTION MARGINS (Desktop) */
   --section-margin-x: 7.5rem;  /* 120px */
   --section-margin-y: 7.5rem;  /* 120px */
+  --section-margin-t:7.5rem;
+  --section-margin-b:7.5rem
 
   /* ===============================
      DESKTOP HEADINGS
@@ -159,3 +162,6 @@ body {
     --accent-small-line-height: 120%;
   }
 }
+
+
+

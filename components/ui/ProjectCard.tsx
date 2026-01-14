@@ -10,17 +10,22 @@ interface ProjectCardProps {
   videoSrc?: string; // Optional - for direct video files (.mp4, etc.)
   imageSrc?: string; // Optional - for images
   href: string;
+  dark: boolean;
   className?: string; // <- only customizable sizing
 }
 
 // Helper function to check if URL is a YouTube link
 function isYouTubeUrl(url: string): boolean {
-  return /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/.test(url);
+  return /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/.test(
+    url
+  );
 }
 
 // Helper function to extract YouTube video ID
 function getYouTubeVideoId(url: string): string | null {
-  const match = url.match(/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/);
+  const match = url.match(
+    /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/
+  );
   return match ? match[1] : null;
 }
 
@@ -35,6 +40,7 @@ export default function ProjectCard({
   videoSrc,
   imageSrc,
   href,
+  dark,
   className = "",
 }: ProjectCardProps) {
   // Determine what media to show
@@ -63,63 +69,70 @@ export default function ProjectCard({
         ${className}
       `}
       style={{
-        background: '#2C2C34',
-        border: '1px solid rgba(255, 255, 255, 0.1)',
+        background:dark? "#2C2C34":"white",
+        border: "1px solid rgba(255, 255, 255, 0.1)",
       }}
     >
       {/* TOP CONTENT */}
-      <div className="flex items-start justify-between p-6 md:p-8">
-        <div>
+      <div className="flex items-start  justify-between p-6 md:p-8">
+        <div className="flex flex-col gap-2">
           <h2
             className="tracking-wide"
             style={{
               fontFamily: "var(--font-primary)",
-              color: "#FFFFFF",
-              fontSize: "var(--h3-size)",
+              color: dark?"#FFFFFF" : "#0C0C0E",
+              fontSize: "var(--h4-size)",
+              lineHeight: "var(--h4-line)",
+              
             }}
           >
             {title}
           </h2>
 
           <div
-            className="flex items-center gap-3 mt-1"
+            className="flex flex-wrap gap-y-0 gap-2 "
             style={{
               fontFamily: "var(--font-secondary)",
-              color: "#FFFFFF",
+              color: dark?"#FFFFFF" : "#0C0C0E",
               fontSize: "var(--body-medium-size)",
               opacity: 0.8,
             }}
           >
             {tags.map((tag, index) => (
-              <span key={index} className="flex items-center gap-3">
+              <span key={index} className="flex  text-[12px] items-center gap-2">
                 {tag}
-                {index < tags.length - 1 && <span>•</span>}
+                {index < tags.length + 1 && (
+                  <span>
+                    <Image
+                      src={dark?"/Icons/dot.svg":"/Icons/black-dot.svg"}
+                      alt="Separator"
+                      width={8}
+                      height={8}
+                    />
+                  </span>
+                )}
               </span>
             ))}
           </div>
         </div>
 
+
         {/* Arrow (SVG, no dependencies) */}
-        <svg
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          className="transition-colors"
+        <Image
+          src={dark?"/Icons/arrow.svg":"/Icons/dark-arrow.svg"}
+          alt="Arrow"
+          width={20}
+          height={20}
+          className="transition-colors h-5 w-5 md:h-6 md:w-6  "
           style={{ color: "#FFFFFF" }}
-        >
-          <path
-            d="M7 17L17 7M17 7H9M17 7V15"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.6"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
+        />
       </div>
 
       {/* MEDIA SECTION — auto expands to fit height you give */}
-      <div className="relative w-full aspect-video overflow-hidden rounded-b-2xl" style={{ background: '#1A1A20' }}>
+      <div
+        className="relative w-full aspect-video overflow-hidden rounded-b-2xl"
+        style={{ background: "#1A1A20" }}
+      >
         {mediaType === "image" && imageSrc && (
           <Image
             src={imageSrc}
@@ -152,7 +165,7 @@ export default function ProjectCard({
             className="absolute inset-0 w-full h-full"
             allow="autoplay; encrypted-media"
             allowFullScreen
-            style={{ border: 'none' }}
+            style={{ border: "none" }}
             title={title}
           />
         )}
