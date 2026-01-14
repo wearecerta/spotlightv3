@@ -211,39 +211,78 @@ export const CtaSection = defineType({
 export const AdditionalInformation = defineType({
   name: "additionalInformation",
   title: "Additional Info Block",
-  preview: {
-  prepare() {
-    return {
-      title: "Additional Information Section",
-    };
-  },
-},
   type: "object",
+  preview: {
+    prepare() {
+      return {
+        title: "Additional Information Section",
+      };
+    },
+  },
   fields: [
-    defineField({ name: "title", title: "Block Title", type: "string" }),
     defineField({
-      name: "paragraphs",
-      title: "Paragraphs",
+      name: "blocks",
+      title: "Information Blocks",
       type: "array",
-      of: [{ type: "text" }],
+      of: [
+        {
+          type: "object",
+          name: "infoBlock",
+          fields: [
+            defineField({
+              name: "title",
+              title: "Block Title",
+              type: "string",
+            }),
+            defineField({
+              name: "paragraphs",
+              title: "Paragraphs",
+              type: "array",
+              of: [{ type: "text" }],
+            }),
+          ],
+        },
+      ],
     }),
   ],
 });
 
+
 export const faq = defineType({
   name: "frequentlyAskedQuestions",
-  preview: {
-  prepare() {
-    return {
-      title: "FAQ Section",
-    };
-  },
-},
-  title: "FAQ",
+  title: "FAQ Section",
   type: "object",
+  preview: {
+    prepare() {
+      return {
+        title: "FAQ Section",
+      };
+    },
+  },
   fields: [
-    defineField({ name: "question", title: "Question", type: "string" }),
-    defineField({ name: "answer", title: "Answer", type: "text" }),
+    defineField({
+      name: "items",
+      title: "FAQs",
+      type: "array",
+      of: [
+        {
+          type: "object",
+          name: "faqItem",
+          fields: [
+            defineField({
+              name: "question",
+              title: "Question",
+              type: "string",
+            }),
+            defineField({
+              name: "answer",
+              title: "Answer",
+              type: "text",
+            }),
+          ],
+        },
+      ],
+    }),
   ],
 });
 
