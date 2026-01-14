@@ -17,7 +17,6 @@ export const caseStudy = defineType({
       type: "slug",
       title: "Slug",
       options: {
-        source: "campaign",
         maxLength: 96,
       },
     }),
