@@ -465,7 +465,7 @@ export default function WorkDetail() {
           {/* LEFT IMAGE */}
           <div className="relative w-full h-[500px] lg:h-auto">
             <Image
-              src={workData.impact.image || ""}
+              src={workData?.impact?.image||""}
               alt="Campaign promotional poster"
               fill
               className="object-cover"

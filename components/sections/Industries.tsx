@@ -1,62 +1,81 @@
 "use client";
+import { client } from "@/sanity/lib/client";
+import { INDUSTRIES_WITH_CLIENTS_QUERY } from "@/sanity/queries/homePage";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import Marquee from "react-fast-marquee";
 
-const Industries=()=> {
+const Industries = () => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [isAnimating, setIsAnimating] = useState(false);
   const timeoutRefs = useRef<NodeJS.Timeout[]>([]);
   const isHovered = (index: number) => hoveredIndex === index;
 
-  const industriesList = [
-    {
-      name: "FOOD AND BEVERAGE",
-      industrysLogo: [
-        "/Industries/food-and-beverage/moye.svg",
-        "/Industries/food-and-beverage/awash.svg",
-        "/Industries/food-and-beverage/cocacola.svg",
-        "/Industries/food-and-beverage/awash.svg",
-        "/Industries/food-and-beverage/senselet.svg",
-      ],
-    },
-    {
-      name: "TRANSPORTATION",
-      industrysLogo: [
-        "/Industries/transportation/et.svg",
-        "/Industries/transportation/yango.svg",
-        "/Industries/transportation/jaguar.svg",
-        
-      ],
-    },
-    {
-      name: "FINANCE",
-      industrysLogo: [
-        "/Industries/finance/nationalbank.svg",
-        "/Industries/finance/alibaba.svg",
-        "/Industries/finance/unilever.svg",
-        "/Industries/finance/zayed.svg",
-        "/Industries/finance/the-economist.svg",
-      ],
-    },
-    {
-      name: "NON- PROFIT",
-      industrysLogo: [
-        "/Industries/non-profit/giz.svg",
-        "/Industries/non-profit/eu.svg",
-        "/Industries/non-profit/abbott.svg",
-      ],
-    },
-    {
-      name: "TELECOM",
-      industrysLogo: [
-        "/Industries/telecom/safaricom.svg",
-        "/Industries/telecom/gemcorp.svg",
-        "/Industries/telecom/safaricom.svg",
-        "/Industries/telecom/gemcorp.svg",
-      ],
-    },
-  ];
+  const [industriesList, setIndustriesList] = useState([]);
+
+  useEffect(() => {
+    const fetchClients = async () => {
+      try {
+        const data = await client.fetch(INDUSTRIES_WITH_CLIENTS_QUERY);
+        setIndustriesList(data.reverse() || []);
+      } catch (error) {
+        console.error("Failed to fetch clients:", error);
+        setIndustriesList([]);
+      }
+    };
+
+    fetchClients();
+  }, []);
+  console.log(industriesList);
+
+  // const industriesList = [
+  //   {
+  //     name: "FOOD AND BEVERAGE",
+  //     industrysLogo: [
+  //       "/Industries/food-and-beverage/moye.svg",
+  //       "/Industries/food-and-beverage/awash.svg",
+  //       "/Industries/food-and-beverage/cocacola.svg",
+  //       "/Industries/food-and-beverage/awash.svg",
+  //       "/Industries/food-and-beverage/senselet.svg",
+  //     ],
+  //   },
+  //   {
+  //     name: "TRANSPORTATION",
+  //     industrysLogo: [
+  //       "/Industries/transportation/et.svg",
+  //       "/Industries/transportation/yango.svg",
+  //       "/Industries/transportation/jaguar.svg",
+
+  //     ],
+  //   },
+  //   {
+  //     name: "FINANCE",
+  //     industrysLogo: [
+  //       "/Industries/finance/nationalbank.svg",
+  //       "/Industries/finance/alibaba.svg",
+  //       "/Industries/finance/unilever.svg",
+  //       "/Industries/finance/zayed.svg",
+  //       "/Industries/finance/the-economist.svg",
+  //     ],
+  //   },
+  //   {
+  //     name: "NON- PROFIT",
+  //     industrysLogo: [
+  //       "/Industries/non-profit/giz.svg",
+  //       "/Industries/non-profit/eu.svg",
+  //       "/Industries/non-profit/abbott.svg",
+  //     ],
+  //   },
+  //   {
+  //     name: "TELECOM",
+  //     industrysLogo: [
+  //       "/Industries/telecom/safaricom.svg",
+  //       "/Industries/telecom/gemcorp.svg",
+  //       "/Industries/telecom/safaricom.svg",
+  //       "/Industries/telecom/gemcorp.svg",
+  //     ],
+  //   },
+  // ];
 
   useEffect(() => {
     return () => {
@@ -89,9 +108,7 @@ const Industries=()=> {
   };
 
   return (
-    <section
-      className="bg-[#F7F7F8] px-(--section-margin-x) md:px-(--space-xxl) lg:px-(--section-margin-x) py-(--section-margin-y)"
-    >
+    <section className="bg-[#F7F7F8] px-(--section-margin-x) md:px-(--space-xxl) lg:px-(--section-margin-x) py-(--section-margin-y)">
       <div
         className="max-w-[1440px] flex flex-col md:flex-row mx-auto "
         style={{
@@ -154,9 +171,9 @@ const Industries=()=> {
             minWidth: 0,
           }}
         >
-          {industriesList.map((industry, index) => (
+          {industriesList?.map((industry: any, index: number) => (
             <div
-              key={industry.name}
+              key={industry._id}
               style={{ width: "100%" }}
               onMouseLeave={handleMouseLeave}
               onMouseEnter={() => handleMouseEnter(index)}
@@ -165,7 +182,7 @@ const Industries=()=> {
                 style={{
                   padding: "var(--space-lg, 32px) 0",
                   borderBottom:
-                    index < industriesList.length - 1
+                    index < industriesList?.length - 1
                       ? "1px solid rgba(74, 74, 90, 0.2)"
                       : "none",
                   backgroundColor: isHovered(index) ? "black" : "transparent",
@@ -185,7 +202,7 @@ const Industries=()=> {
                       letterSpacing: "0.02em",
                     }}
                   >
-                    {industry.name}
+                    {industry?.industryName}
                   </h3>
                 )}
 
@@ -204,16 +221,21 @@ const Industries=()=> {
                           height: "70%",
                         }}
                       >
-                        {industry.industrysLogo.map((logo, logoIndex) => (
-                          <Image
-                            key={logoIndex}
-                            src={logo}
-                            alt={`${industry.name} logo`}
-                            width={50}
-                            height={50}
-                            className=" h-14 w-fit mr-12"
-                          />
-                        ))}
+                        {industry?.clients?.map(
+                          (client: any, clientIndex: number) => (
+                            <Image
+                              key={client?._id || clientIndex}
+                              src={client?.logo?.asset?.url}
+                              alt={
+                                client?.logo?.alt ||
+                                `${industry?.industryName} logo`
+                              }
+                              width={50}
+                              height={50}
+                              className="h-14 w-fit mr-12"
+                            />
+                          )
+                        )}
                       </div>
                     </Marquee>
                   </div>
@@ -225,7 +247,6 @@ const Industries=()=> {
       </div>
     </section>
   );
-}
+};
 
-
-export default Industries
+export default Industries;

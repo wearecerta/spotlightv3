@@ -17,3 +17,43 @@ export const AGENCIES_QUERY = `
   },
 }
 `
+
+
+
+
+export const CLIENTS_QUERY = `
+*[_type == "client" && viewOnHomePage == true]{
+  _id,
+  clientName,
+  logo{
+    asset->{
+      _id,
+      url
+    }
+  }
+}
+`
+
+
+
+
+export const INDUSTRIES_WITH_CLIENTS_QUERY = `
+*[_type == "industries"]{
+  _id,
+  industryName,
+  "clients": *[
+    _type == "client" &&
+    references(^._id) 
+  ]{
+    _id,
+    clientName,
+    logo{
+      asset->{
+        _id,
+        url
+      },
+      alt
+    }
+  }
+}
+`;

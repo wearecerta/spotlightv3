@@ -37,5 +37,13 @@ export const clients = defineType({
       type: "reference",
       to: [{ type: "industries" }],
     }),
+   defineField({
+  name: "viewOnHomePage",
+  title: "View On Home Page",
+  description: "Switch on to list under our clients section",
+  type: "boolean",
+  initialValue: false,
+}),
+
   ],
 });
