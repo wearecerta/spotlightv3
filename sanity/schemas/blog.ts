@@ -25,6 +25,7 @@ export const blog = defineType({
       name: "excerpt",
       title: "Excerpt",
       type: "text",
+      rows: 3,
       description: "Short description for SEO and blog listings",
     }),
 
@@ -38,71 +39,71 @@ export const blog = defineType({
           name: "alt",
           title: "Alt Text",
           type: "string",
-          
         }),
       ],
     }),
 
     defineField({
       name: "author",
-      type: "string",
       title: "Author",
+      type: "string",
     }),
 
     defineField({
       name: "publishedDate",
       title: "Published Date",
       type: "date",
-      options: {
-        dateFormat: "MMMM d, yyyy",
-      },
     }),
 
     defineField({
       name: "categories",
       title: "Categories",
       type: "array",
-      of: [{ type: "string" }],
+      of: [
+        {
+          type: "string",
+        },
+      ],
     }),
 
     defineField({
       name: "body",
-      title: "Body",
+      title: "Body Content",
       type: "array",
       of: [
+        // Heading block
         {
-          type: "block",
-          styles: [
-            { title: "Normal", value: "normal" },
-            { title: "H1", value: "h1" },
-            { title: "H2", value: "h2" },
-            { title: "H3", value: "h3" },
-            { title: "H4", value: "h4" },
-          ],
-          marks: {
-            decorators: [
-              { title: "Strong", value: "strong" },
-              { title: "Emphasis", value: "em" },
-            ],
-            annotations: [
-              {
-                name: "link",
-                type: "object",
-                title: "External Link",
-                fields: [
-                  defineField({
-                    name: "href",
-                    type: "url",
-                    title: "URL",
-                  }),
-                ],
+          name: "heading",
+          title: "Heading",
+          type: "object",
+          fields: [
+            {
+              name: "text",
+              title: "Heading Text",
+              type: "string",
+            },
+            {
+              name: "paragraphGroup",
+              title: "Paragraphs",
+              type: "object",
+              fields: [
+                {
+                  name: "contentArray",
+                  title: "Paragraphs",
+                  type: "array",
+                  of: [{ type: "text" }],
+                },
+              ],
+              preview: {
+                prepare() {
+                  return { title: "Paragraph Block" };
+                },
               },
-            ],
+            },
+          ],
+          preview: {
+            select: { title: "text" },
           },
-        },
-        {
-          type: "image",
-          options: { hotspot: true },
         },
       ],
     }),
@@ -112,7 +113,6 @@ export const blog = defineType({
     select: {
       title: "title",
       media: "mainImage",
-      subtitle: "author",
     },
   },
 });

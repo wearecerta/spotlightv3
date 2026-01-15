@@ -11,6 +11,8 @@ interface ServicesCardProps {
   imageSrc2: string;
   href: string;
   className?: string;
+  alt1?:string
+  alt2?:string
 }
 
 export default function ServicesCard({
@@ -19,6 +21,8 @@ export default function ServicesCard({
   services,
   imageSrc1,
   imageSrc2,
+  alt1,
+  alt2,
   href,
   className = "",
 }: ServicesCardProps) {
@@ -122,7 +126,7 @@ export default function ServicesCard({
           <div
             className="md:flex flex-wrap items-center hidden gap-(--space-sm)"
           >
-            {services.map((service, index) => (
+            {services?.map((service, index) => (
               <div
                 key={index}
                 style={{
@@ -183,7 +187,7 @@ export default function ServicesCard({
           >
             <Image
               src={imageSrc1}
-              alt={`${title} - Image 1`}
+              alt={alt1 || `${title} - Image 1`}
               fill
               className="object-cover transition-transform duration-500 group-hover:scale-105"
               sizes="50vw"
@@ -201,7 +205,7 @@ export default function ServicesCard({
           >
             <Image
               src={imageSrc2}
-              alt={`${title} - Image 2`}
+              alt={alt2 ||`${title} - Image 2`}
               fill
               className="object-cover transition-transform duration-500 group-hover:scale-105"
               sizes="50vw"

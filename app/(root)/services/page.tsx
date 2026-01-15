@@ -1,6 +1,9 @@
 import ServicesCard from "@/components/ui/ServicesCard";
+import { client } from "@/sanity/lib/client";
+import { SERVICES_QUERY } from "@/sanity/queries/serviceQuery";
 
-export default function Service() {
+export default async function Service() {
+  const services = await client.fetch(SERVICES_QUERY) || [];
   return (
     <main
       style={{
@@ -10,7 +13,7 @@ export default function Service() {
         justifyContent: "flex-start",
         minHeight: "100vh",
         background: "#F7F7F8",
-        paddingBottom:"160px"
+        paddingBottom: "160px",
       }}
     >
       {/* Services Heading */}
@@ -51,9 +54,7 @@ export default function Service() {
       </div>
 
       {/* Three Videos Side by Side - Full Width, No Gaps */}
-      <div
-        className="grid grid-cols-1 md:grid-cols-3 w-full mt-0 gap-0"
-      >
+      <div className="grid grid-cols-1 md:grid-cols-3 w-full mt-0 gap-0">
         {/* Video 1 */}
         <div
           style={{
@@ -65,7 +66,7 @@ export default function Service() {
           }}
         >
           <iframe
-            src="https://www.youtube.com/embed/c5iitHD0bNg?autoplay=1&mute=1&loop=1&playlist=c5iitHD0bNg&controls=0&modestbranding=1&rel=0&showinfo=0"
+            src="https://www.youtube.com/embed/3tr8ydUIH9M?autoplay=1&mute=1&loop=1&playlist=3tr8ydUIH9M&controls=0&modestbranding=1&rel=0&showinfo=0"
             className="absolute inset-0 w-full h-full"
             allow="autoplay; encrypted-media"
             allowFullScreen
@@ -85,7 +86,7 @@ export default function Service() {
           }}
         >
           <iframe
-            src="https://www.youtube.com/embed/c5iitHD0bNg?autoplay=1&mute=1&loop=1&playlist=c5iitHD0bNg&controls=0&modestbranding=1&rel=0&showinfo=0"
+            src="https://www.youtube.com/embed/m3EE-AoMtQc?autoplay=1&mute=1&loop=1&playlist=m3EE-AoMtQc&controls=0&modestbranding=1&rel=0&showinfo=0"
             className="absolute inset-0 w-full h-full"
             allow="autoplay; encrypted-media"
             allowFullScreen
@@ -105,7 +106,7 @@ export default function Service() {
           }}
         >
           <iframe
-            src="https://www.youtube.com/embed/c5iitHD0bNg?autoplay=1&mute=1&loop=1&playlist=c5iitHD0bNg&controls=0&modestbranding=1&rel=0&showinfo=0"
+            src="https://www.youtube.com/embed/04wFmHXiC8k?autoplay=1&mute=1&loop=1&playlist=04wFmHXiC8k&controls=0&modestbranding=1&rel=0&showinfo=0"
             className="absolute inset-0 w-full h-full"
             allow="autoplay; encrypted-media"
             allowFullScreen
@@ -116,148 +117,20 @@ export default function Service() {
       </div>
 
       {/* Service Cards Section */}
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-        }}
-      >
-        {/* PR & Communications Card */}
-        <ServicesCard
-          title="PR & COMMUNICATIONS"
-          description="As the Best Marketing Agency in Ethiopia and one of the most trusted names in Addis Ababa, we understand that communication is the foundation of every successful brand. Our PR & Communications services ensure that your brand voice is strong, consistent, and impactful. From managing reputation to building meaningful media relations, we specialize in strategies that enhance credibility and trust."
-          services={[
-            "REPUTATION MANAGEMENT",
-            "COMMUNICATIONS STRATEGY",
-            "RISK AND CRISIS MANAGEMENT",
-            "MEDIA TRAINING",
-            "Media Relation",
-            "Public Relations Campaigns",
-          ]}
-          imageSrc1="/Service/pr_1.png"
-          imageSrc2="/Service/pr_2.jpg"
-          href="/services/pr-communications"
-        />
-
-        {/* Marketing Card */}
-        <ServicesCard
-          title="MARKETING"
-          description="Recognized as the Best Marketing Agency in Addis Ababa, we focus on result-driven marketing strategies that connect businesses with their audiences. Our marketing solutions are backed by research, creativity, and innovation, helping brands to position themselves strongly in the competitive Ethiopian market."
-          services={[
-            "MARKET RESEARCH",
-            "Marketing Strategy",
-            "Shoppers Marketing",
-            "Promotional Marketing",
-            "Experiential Marketing",
-            "Content & Email Marketing",
-          ]}
-          imageSrc1="/Service/marketing_1.png"
-          imageSrc2="/Service/marketing_2.jpg"
-          href="/services/marketing"
-        />
-
-        {/* Advertising Card */}
-        <ServicesCard
-          title="ADVERTISING"
-          description="As the Best Advertising Agency in Addis Ababa and Ethiopia, we provide 360° advertising solutions that make brands visible across platforms. Whether it's traditional media or digital advertising, our campaigns are designed to maximize reach, engagement, and conversions."
-          services={[
-            "Television Advertising",
-            "RADIO ADVERTISING",
-            "PRINT ADVERTISING",
-            "Out-of-home Advertising",
-            "Affiliate & Influencer Marketing",
-            "SEO | SMO | PPC |",
-          ]}
-          imageSrc1="/Service/adv-1.png"
-          imageSrc2="/Service/adv-2.jpg"
-          href="/services/advertising"
-        />
-
-        {/* Branding & Design Card */}
-        <ServicesCard
-          title="BRANDING & DESIGN"
-          description="Being the Best Marketing Agency in Ethiopia, we believe that branding is more than just a logo — it's about creating an identity that resonates. Our creative team crafts designs and brand strategies that make businesses stand out in Addis Ababa and beyond."
-          services={[
-            "BRAND IDENTITY",
-            "Graphic Design",
-            "UX/UI & Web Design",
-            "Logo & Creative Assets Design",
-            "Corporate Collateral Design",
-            "Packaging Design",
-          ]}
-          imageSrc1="/Service/brand-1.jpg"
-          imageSrc2="/Service/brand-2.jpg"
-          href="/services/branding-design"
-        />
-
-        {/* Production Card */}
-        <ServicesCard
-          title="PRODUCTION"
-          description="As one of the leading Best Advertising Agencies in Ethiopia, we offer complete production services to bring your brand story to life. From TV commercials to documentaries and creative shoots, we deliver high-quality content that connects with audiences."
-          services={[
-            "TVC",
-            "Talk Shows",
-            "Documentaries",
-            "Photography",
-            "Video Production & Editing",
-            "Creative Campaign Shoots",
-          ]}
-          imageSrc1="/Service/prod-1.jpg"
-          imageSrc2="/Service/prod-2.jpg"
-          href="/services/production"
-        />
-
-        {/* Event Management Card */}
-        <ServicesCard
-          title="EVENT MANAGEMENT"
-          description="With years of expertise, we are known as the Best Marketing and Advertising Agency in Addis Ababa for organizing impactful events. From planning to execution, we manage every detail to ensure your brand is showcased in the best possible way."
-          services={[
-            "EVENT PLANNING",
-            "Event Management",
-            "Venue Sourcing",
-            "Event Engagement and Entertainment",
-            "Audio-Visual Support",
-            "Corporate Events & Exhibitions",
-          ]}
-          imageSrc1="/Service/event-1.jpg"
-          imageSrc2="/Service/event-2.png"
-          href="/services/event-management"
-        />
-
-
-        {/* web development Card */}
-        <ServicesCard
-          title="Website Development "
-          description="As a full-service agency, we go beyond advertising and marketing. Being trusted as the Best Marketing Agency in Ethiopia, we also provide innovative web development services tailored to your business goals. Our websites are designed to be responsive, user-friendly, and conversion-focused."
-          services={[
-            "Custom Website",
-            "E-commerce Website",
-            "CMS Development",
-            "Web App Development",
-            "Website Maintenance & Support",
-            "Responsive & Mobile-friendly",
-          ]}
-          imageSrc1="/Service/website-1.jpg"
-          imageSrc2="/Service/website-2.jpg"
-          href="/services/event-management"
-        />
-
-         {/* digital marketing */}
-        <ServicesCard
-          title="Digital Marketing"
-          description="In today’s digital-first world, our expertise as the Best Advertising Agency in Addis Ababa makes us the go-to partner for businesses aiming to grow online. From SEO to influencer marketing, we deliver strategies that ensure visibility, engagement, and measurable growth."
-          services={[
-            "Search Engine Optimization (SEO)",
-            "Search Engine Marketing (SEM/PPC)",
-            "Social Media Marketing (SMM)",
-            "Social Media Optimization (SMO)",
-            "Content Marketing",
-            "Analytics & Reporting",
-          ]}
-          imageSrc1="/Service/digital-1.jpg"
-          imageSrc2="/Service/digital-2.jpg"
-          href="/services/event-management"
-        />
+      <div className="flex flex-col">
+        {services?.map((service: any) => (
+          <ServicesCard
+            key={service._id}
+            title={service.title}
+            description={service.description}
+            services={service.subServices}
+            imageSrc1={service.images?.[0]?.asset?.url}
+            alt1={service.images?.[0]?.alt}
+            imageSrc2={service.images?.[1]?.asset?.url}
+            alt2={service.images?.[1]?.alt}
+            href={`/services/${service.slug?.current}`||"#"}
+          />
+        ))}
       </div>
     </main>
   );
