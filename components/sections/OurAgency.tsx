@@ -1,15 +1,19 @@
-"use client";
 
+import { client } from "@/sanity/lib/client";
+import { AGENCIES_QUERY } from "@/sanity/queries/homePage";
 import Image from "next/image";
 
-export default function OurAgency() {
-  const agencies = [
-    { id: 1, name: "Urban", logo: "/Home/urban.svg" },
-    { id: 2, name: "Domino Marketing Solutions", logo: "/Home/domino.png" },
-    { id: 3, name: "Certa", logo: "/Home/certa.svg" },
-    { id: 4, name: "Making Events", logo: "/Home/maxima.png" },
-    { id: 5, name: "On A Rebel", logo: "/Home/onarebel.svg" },
-  ];
+export default async function OurAgency() {
+
+    const agencies= await client.fetch(AGENCIES_QUERY)||[]
+  
+  // const agencies = [
+  //   { id: 1, name: "Urban", logo: "/Home/urban.svg" },
+  //   { id: 2, name: "Domino Marketing Solutions", logo: "/Home/domino.png" },
+  //   { id: 3, name: "Certa", logo: "/Home/certa.svg" },
+  //   { id: 4, name: "Making Events", logo: "/Home/maxima.png" },
+  //   { id: 5, name: "On A Rebel", logo: "/Home/onarebel.svg" },
+  // ];
 
   return (
     <section
@@ -69,9 +73,9 @@ export default function OurAgency() {
         }}
         className="grid md:grid-cols-5 grid-cols-2 w-full max-w-[1440px]"
       >
-        {agencies.map((agency) => (
+        {agencies.reverse()?.map((agency:any) => (
           <div
-            key={agency.id}
+            key={agency?._id}
             style={{
               display: "flex",
               justifyContent: "center",
@@ -95,8 +99,8 @@ export default function OurAgency() {
               }}
             >
               <Image
-                src={agency.logo}
-                alt={agency.name}
+                src={agency?.agencyLogo?.asset?.url}
+                alt={agency?.agencyName}
                 fill
                 className="object-contain"
                 sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 20vw"
@@ -105,8 +109,6 @@ export default function OurAgency() {
           </div>
         ))}
       </div>
-
-     
     </section>
   );
 }

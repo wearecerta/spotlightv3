@@ -32,7 +32,6 @@ export async function generateMetadata({ params }: Props) {
 export default async function ServiceDetailPage({ params }: Props) {
   const param = await params;
   const slug = param.id;
-  console.log(slug);
   let serviceDetail: any = null;
   try {
     serviceDetail = await client.fetch(SERVICE_BY_SLUG_QUERY, { slug });
@@ -42,7 +41,6 @@ export default async function ServiceDetailPage({ params }: Props) {
   }
 
   if (!serviceDetail) return null;
-  console.log(serviceDetail);
 
   const {
     heroTitle,

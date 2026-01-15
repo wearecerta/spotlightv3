@@ -3,3 +3,17 @@ export const homePageQuery = `
     heroVideo,
   }
 `;
+
+
+export const AGENCIES_QUERY = `
+*[_type == "agencies" ]{
+  _id,
+  agencyName,
+  agencyLogo{
+    asset->{
+      _id,
+      url
+    }
+  },
+}
+`
