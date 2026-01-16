@@ -1,18 +1,16 @@
-"use client";
-
 import Image from "next/image";
-import { useParams } from "next/navigation";
-import { useMemo } from "react";
-import { works } from "@/data/work";
+// import { works } from "@/data/work";
+import { CASE_STUDIES_DETAIL } from "@/sanity/queries/caseStudyQuery";
+import { client } from "@/sanity/lib/client";
 
-// Helper function to check if URL is a YouTube link
+//check if URL is a YouTube link
 function isYouTubeUrl(url: string): boolean {
   return /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/.test(
     url
   );
 }
 
-// Helper function to extract YouTube video ID
+//  extract YouTube video ID
 function getYouTubeVideoId(url: string): string | null {
   const match = url.match(
     /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/
@@ -20,18 +18,20 @@ function getYouTubeVideoId(url: string): string | null {
   return match ? match[1] : null;
 }
 
-// Helper function to get YouTube embed URL with autoplay
+//YouTube embed URL with autoplay
 function getYouTubeEmbedUrl(videoId: string): string {
   return `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&modestbranding=1&rel=0&showinfo=0`;
 }
 
-export default function WorkDetail() {
-  const params = useParams();
-  const slug = params.id as string;
+interface Props {
+  params: { id: string };
+}
+export default async function WorkDetail({ params }: Props) {
+  const param = await params;
+  const slug = param.id;
 
-  const workData = useMemo(() => {
-    return works.find((work) => work.slug === slug);
-  }, [slug]);
+  const workData = await client.fetch(CASE_STUDIES_DETAIL, { slug });
+
 
   if (!workData) {
     return (
@@ -41,41 +41,10 @@ export default function WorkDetail() {
     );
   }
 
-  // TODO: Fetch work data from Sanity based on id
-  // For now, using placeholder data matching the design
-  // const workData = {
-  //   title: "SAFARICOM ETHIOPIA",
-  //   tagline: "#1MoveAway",
-  //   tags: ["BRANDING", "MARKETING", "PRODUCTION"],
-  //   videoSrc: "https://www.youtube.com/watch?v=c5iitHD0bNg", // Same video as in Ourworks component
-  //   overview:
-  //     "With the objective of connecting all Ethiopians, Safaricom has launched the MTN campaign during the Ethiopian new year 2017, to serve as a pivotal driver of the digital Ethiopia plan by providing the essential infrastructure and services for various sectors by bringing the possibilities of life to the local population. For this initiative spotlight developed and implemented an integrated campaign by strategically penetrating through various roll outs with an idea that aligns well with the brand promise and the previous campaign",
-  //   details: {
-  //     company: "Safaricom",
-  //     industry: "Telecommunication",
-  //     service: "Advertising, Marketing, Production",
-  //     duration: "Ongoing",
-  //   },
-  //   images: {
-  //     image1: "/WorkDetails/I1.jpg",
-  //     image2: "/WorkDetails/I2.jpg",
-  //     image3: "/WorkDetails/I3.jpg",
-  //   },
-  //   achievements: [
-  //     { value: "11m+", label: "views" },
-  //     { value: "850k+", label: "likes" },
-  //     { value: "58k+", label: "shares" },
-  //     { value: "64k+", label: "saves" },
-  //     { value: "64k+", label: "saves" },
-  //   ],
-  // };
-
-  const youtubeVideoId = useMemo(() => {
-    if (workData.videoSrc && isYouTubeUrl(workData.videoSrc)) {
-      return getYouTubeVideoId(workData.videoSrc);
-    }
-    return null;
-  }, [workData.videoSrc]);
+  const youtubeVideoId =
+    workData?.heroVideo && isYouTubeUrl(workData?.heroVideo)
+      ? getYouTubeVideoId(workData?.heroVideo)
+      : null;
 
   return (
     <main
@@ -106,7 +75,7 @@ export default function WorkDetail() {
               }}
               allow="autoplay; encrypted-media"
               allowFullScreen
-              title={workData.title}
+              title={workData?.title}
             />
           </div>
         )}
@@ -144,7 +113,7 @@ export default function WorkDetail() {
               margin: 0,
             }}
           >
-            {workData.title}
+            {workData?.title}
           </h1>
 
           {/* Tagline */}
@@ -160,7 +129,7 @@ export default function WorkDetail() {
               margin: 0,
             }}
           >
-            {workData.tagline}
+            {workData?.campaign}
           </p>
         </div>
 
@@ -204,7 +173,7 @@ export default function WorkDetail() {
                 marginTop: 0,
               }}
             >
-              {workData.overview}
+              {workData?.overview}
             </p>
           </div>
 
@@ -250,7 +219,7 @@ export default function WorkDetail() {
                   color: "#4A4A5A",
                 }}
               >
-                {workData.details.company}
+                {workData?.client?.clientName || ""}
               </span>
             </div>
 
@@ -288,7 +257,7 @@ export default function WorkDetail() {
                   color: "#4A4A5A",
                 }}
               >
-                {workData.details.industry}
+                {workData?.client?.industry?.industryName || ""}
               </span>
             </div>
 
@@ -326,7 +295,9 @@ export default function WorkDetail() {
                   color: "#4A4A5A",
                 }}
               >
-                {workData.details.service}
+                {(workData.service || [])
+                  .map((service: any) => service.title)
+                  .join(", ")}
               </span>
             </div>
 
@@ -364,7 +335,7 @@ export default function WorkDetail() {
                   color: "#4A4A5A",
                 }}
               >
-                {workData.details.duration}
+                {workData?.duration || ""}
               </span>
             </div>
           </div>
@@ -373,89 +344,57 @@ export default function WorkDetail() {
 
       {/* Images Section */}
       <section
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignSelf: "stretch",
-          position: "relative",
-        }}
-        className="max-w-[1440px] mx-auto gap-(--space-xxs) md:gap-(--space-lg)"
+        className="max-w-[1440px] mx-auto flex flex-col gap-(--space-xxs) md:gap-(--space-lg)"
+        style={{ position: "relative", alignSelf: "stretch" }}
       >
-        {/* I1 - Top Image (Full Width) */}
-        <div
-          style={{
-            position: "relative",
-            // width: "100%",
-            // height: "clamp(400px, 50vh, 600px)",
-            // overflow: "hidden",
-            aspectRatio: "16/9",
-          }}
-        >
-          <img
-            src={workData.images.image1}
-            alt="Work detail image 1"
-            style={{
-              objectFit: "cover",
-              width: "100%",
-              height: "100%",
-              position: "absolute",
-              inset: 0,
-            }}
-            sizes="100vw"
-          />
-        </div>
+        {/* Top Image (Full Width) */}
+        {workData?.gallery && workData?.gallery[0] && (
+          <div style={{ position: "relative", aspectRatio: "16/9" }}>
+            <img
+              src={workData.gallery[0].asset.url}
+              alt={workData.gallery[0].alt || "Work detail image 1"}
+              style={{
+                objectFit: "cover",
+                width: "100%",
+                height: "100%",
+                position: "absolute",
+                inset: 0,
+              }}
+              sizes="100vw"
+            />
+          </div>
+        )}
 
-        {/* I2 and I3 - Side by Side Images */}
+        {/* Bottom Images (Side by Side) */}
         <div
+          className="gap-(--space-xxs) md:gap-(--space-lg)"
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(2, 1fr)",
             width: "100%",
           }}
-          className="gap-(--space-xxs) md:gap-(--space-lg)"
         >
-          {/* I2 - Left Image */}
-          <div
-            style={{
-              position: "relative",
-              aspectRatio: "1/1",
-            }}
-          >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={workData.images.image2}
-              alt="Work detail image 2"
-              style={{
-                objectFit: "cover",
-                width: "100%",
-                height: "100%",
-                position: "absolute",
-                inset: 0,
-              }}
-              sizes="50vw"
-            />
-          </div>
-
-          {/* I3 - Right Image */}
-          <div
-            style={{
-              position: "relative",
-              aspectRatio: "1/1",
-            }}
-          >
-            <img
-              src={workData.images.image3}
-              alt="Work detail image 3"
-              style={{
-                objectFit: "cover",
-                width: "100%",
-                height: "100%",
-                position: "absolute",
-                inset: 0,
-              }}
-              sizes="50vw"
-            />
-          </div>
+          {(workData?.gallery || [])
+            .slice(1, 3)
+            .map((img: any, index: number) => (
+              <div
+                key={index}
+                style={{ position: "relative", aspectRatio: "1/1" }}
+              >
+                <img
+                  src={img.asset.url}
+                  alt={img.alt || `Work detail image ${index + 2}`}
+                  style={{
+                    objectFit: "cover",
+                    width: "100%",
+                    height: "100%",
+                    position: "absolute",
+                    inset: 0,
+                  }}
+                  sizes="50vw"
+                />
+              </div>
+            ))}
         </div>
       </section>
 
@@ -465,7 +404,7 @@ export default function WorkDetail() {
           {/* LEFT IMAGE */}
           <div className="relative w-full h-[500px] lg:h-auto">
             <Image
-              src={workData?.impact?.image||""}
+              src={workData?.impactsImage?.asset?.url || "https://placehold.co/400"}
               alt="Campaign promotional poster"
               fill
               className="object-cover"
@@ -499,7 +438,7 @@ export default function WorkDetail() {
                 }}
                 className=" text-(--spotlight-700) leading-relaxed max-w-xl"
               >
-                {workData.impact?.description}
+                {workData?.impact}
               </p>
             </div>
 
@@ -521,7 +460,7 @@ export default function WorkDetail() {
 
               {/* high lights */}
               <div>
-                {workData.impact?.impacts.map((impact, index) => (
+                {(workData?.keyHighlights || []).map((impact: any, index: number) => (
                   <div
                     key={index}
                     className="p-(--space-lg) border-b border-b-[#B6B7C3] "
@@ -608,7 +547,7 @@ export default function WorkDetail() {
           </h4>
 
           {/* Stats */}
-          {workData.achievements.map((item, index) => (
+          {(workData?.projectAchievements || [])?.map((item: any, index: number) => (
             <div key={index} className="flex flex-col">
               <span
                 style={{

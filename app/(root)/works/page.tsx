@@ -1,63 +1,11 @@
-"use client";
-
 import ProjectCard from "@/components/ui/ProjectCard";
-import { works } from "@/data/work";
+// import { works } from "@/data/work";
+import { CASE_STUDIES } from "@/sanity/queries/caseStudyQuery";
+import { client } from "@/sanity/lib/client";
 
-type WorkItem = {
-  title: string;
-  tags: string[];
-  videoSrc: string;
-  href: string;
-  featured?: boolean;
-};
+export default async function Work() {
+  const works = await client.fetch(CASE_STUDIES);
 
-// const WORKS: WorkItem[] = [
-//   {
-//     title: "SAFARICOM ETHIOPIA",
-//     tags: ["BRANDING", "MARKETING", "PRODUCTION"],
-//     videoSrc: "https://www.youtube.com/watch?v=c5iitHD0bNg",
-//     href: "/works/safaricom-ethiopia",
-//     featured: true,
-//   },
-//   {
-//     title: "ADEY MUSIC AND STUDIO",
-//     tags: ["BRANDING", "MARKETING", "PRODUCTION"],
-//     videoSrc: "https://www.youtube.com/watch?v=c5iitHD0bNg",
-//     href: "/works/adey-music",
-//   },
-//   {
-//     title: "ST. GEORGE",
-//     tags: ["BRANDING", "MARKETING", "PRODUCTION"],
-//     videoSrc: "https://www.youtube.com/watch?v=c5iitHD0bNg",
-//     href: "/works/st-george",
-//   },
-//   {
-//     title: "GRV SUMMIT",
-//     tags: ["BRANDING", "MARKETING", "PRODUCTION"],
-//     videoSrc: "https://www.youtube.com/watch?v=c5iitHD0bNg",
-//     href: "/works/grv-summit",
-//   },
-//   {
-//     title: "EU & AFRICA",
-//     tags: ["BRANDING", "MARKETING", "PRODUCTION"],
-//     videoSrc: "https://www.youtube.com/watch?v=c5iitHD0bNg",
-//     href: "/works/eu-africa",
-//   },
-//   {
-//     title: "ADEY MUSIC AND STUDIO",
-//     tags: ["BRANDING", "MARKETING", "PRODUCTION"],
-//     videoSrc: "https://www.youtube.com/watch?v=c5iitHD0bNg",
-//     href: "/works/adey-music-2",
-//   },
-//   {
-//     title: "ST. GEORGE",
-//     tags: ["BRANDING", "MARKETING", "PRODUCTION"],
-//     videoSrc: "https://www.youtube.com/watch?v=c5iitHD0bNg",
-//     href: "/works/st-george-2",
-//   },
-// ];
-
-export default function Work() {
   return (
     <main className="min-h-screen bg-[#F7F7F8] mx-auto">
       {/* ================= HERO ================= */}
@@ -103,12 +51,6 @@ export default function Work() {
                     fontSize: "24px",
                     color: "#B6B7C3",
                   }}
-                  onMouseEnter={(e) =>
-                    (e.currentTarget.style.color = "#4A4A5A")
-                  }
-                  onMouseLeave={(e) =>
-                    (e.currentTarget.style.color = "#B6B7C3")
-                  }
                 >
                   {filter}
                 </button>
@@ -132,21 +74,18 @@ export default function Work() {
             [grid-auto-flow:dense]
           "
         >
-        {works.map((work, index) => (
-  <div
-    key={work.slug}
-    className={index === 0 ? "md:col-span-2" : ""}
-  >
-    <ProjectCard
-      dark={false}
-      className="w-full"
-      title={work.title}
-      tags={work.tags}
-      videoSrc={work.videoSrc}
-      href={`/works/${work.slug}`}
-    />
-  </div>
-))}
+          {works.map((work: any, index: number) => (
+            <div key={index} className={index === 0 ? "md:col-span-2" : ""}>
+              <ProjectCard
+                dark={false}
+                className="w-full"
+                title={work?.title}
+                tags={work?.service.map((s: any) => s.title)}
+                videoSrc={work?.heroVideo}
+                href={"works/" + work?.slug.current}
+              />
+            </div>
+          ))}
         </div>
       </section>
     </main>
