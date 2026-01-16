@@ -2,6 +2,7 @@ import ProjectCard from "@/components/ui/ProjectCard";
 // import { works } from "@/data/work";
 import { CASE_STUDIES } from "@/sanity/queries/caseStudyQuery";
 import { client } from "@/sanity/lib/client";
+import FilteredWorks from "@/components/sections/FilterdWorks";
 
 export default async function Work() {
   const works = await client.fetch(CASE_STUDIES);
@@ -40,7 +41,7 @@ export default async function Work() {
         </h2>
 
         {/* Filters */}
-        <div className="flex flex-wrap gap-y-2 items-center gap-4">
+        {/* <div className="flex flex-wrap gap-y-2 items-center gap-4">
           {["ALL", "ADVERTISING", "STORYTELLING", "TVC", "MARKETING"].map(
             (filter, index) => (
               <div key={filter} className="flex items-center gap-4">
@@ -61,10 +62,10 @@ export default async function Work() {
               </div>
             )
           )}
-        </div>
+        </div> */}
 
         {/* ================= GRID ================= */}
-        <div
+        {/* <div
           className="
             grid
             grid-cols-1
@@ -86,7 +87,10 @@ export default async function Work() {
               />
             </div>
           ))}
-        </div>
+        </div> */}
+
+         {/* Filters + Grid */}
+        <FilteredWorks works={works} />
       </section>
     </main>
   );
