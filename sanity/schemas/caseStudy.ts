@@ -11,6 +11,11 @@ export const caseStudy = defineType({
       title: "Client",
       to: [{ type: "client" }],
     }),
+    defineField({
+      name: "title",
+      type: "string",
+      title: "Title",
+    }),
 
     defineField({
       name: "slug",
@@ -28,7 +33,7 @@ export const caseStudy = defineType({
       description: 'example "#1moveaway"',
     }),
 
-       defineField({
+    defineField({
       name: "overview",
       type: "text",
       title: "Overview",
@@ -40,18 +45,17 @@ export const caseStudy = defineType({
       title: "Hero section video url",
     }),
 
-   defineField({
-  name: "service",
-  type: "array",
-  title: "Service",
-  of: [
-    {
-      type: "reference",
-      to: [{ type: "services" }] 
-    }
-  ],
-}),
-
+    defineField({
+      name: "service",
+      type: "array",
+      title: "Service",
+      of: [
+        {
+          type: "reference",
+          to: [{ type: "services" }],
+        },
+      ],
+    }),
 
     defineField({
       name: "duration",
@@ -101,30 +105,29 @@ export const caseStudy = defineType({
       of: [{ type: "string" }],
     }),
 
-   defineField({
-  name: "projectAchievements",
-  title: "Project Achievements",
-  type: "array",
-  of: [
     defineField({
-      name: "achievement",
-      title: "Achievement",
-      type: "object",
-      fields: [
+      name: "projectAchievements",
+      title: "Project Achievements",
+      type: "array",
+      of: [
         defineField({
-          name: "label",
-          title: "Label (e.g. likes, views, shares)",
-          type: "string",
-        }),
-        defineField({
-          name: "value",
-          title: "Value (e.g. 100k, 25k)",
-          type: "string",
+          name: "achievement",
+          title: "Achievement",
+          type: "object",
+          fields: [
+            defineField({
+              name: "label",
+              title: "Label (e.g. likes, views, shares)",
+              type: "string",
+            }),
+            defineField({
+              name: "value",
+              title: "Value (e.g. 100k, 25k)",
+              type: "string",
+            }),
+          ],
         }),
       ],
     }),
-  ],
-}),
-
   ],
 });

@@ -1,59 +1,16 @@
 import Link from "next/link";
 import Buttons from "../ui/Buttons";
 import ProjectCard from "../ui/ProjectCard";
-import { works } from "@/data/work";
+// import { works } from "@/data/work";
+import { CASE_STUDIES } from "@/sanity/queries/caseStudyQuery";
+import { client } from "@/sanity/lib/client";
 
-// const works = [
-//   {
-//     title: "SAFARICOM ETHIOPIA",
-//     tags: ["BRANDING", "MARKETING", "PRODUCTION"],
-//     videoSrc: "https://www.youtube.com/watch?v=c5iitHD0bNg",
-//     href: "/works/safaricom-ethiopia",
-//   },
-//   {
-//     title: "ADEY MUSIC AND STUDIO",
-//     tags: ["BRANDING", "MARKETING", "PRODUCTION"],
-//     videoSrc: "https://www.youtube.com/watch?v=c5iitHD0bNg",
-//     href: "/works/adey-music",
-//   },
-//   {
-//     title: "ST. GEORGE",
-//     tags: ["BRANDING", "MARKETING", "PRODUCTION"],
-//     videoSrc: "https://www.youtube.com/watch?v=c5iitHD0bNg",
-//     href: "/works/st-george",
-//   },
-//   {
-//     title: "GRV SUMMIT",
-//     tags: ["BRANDING", "MARKETING", "PRODUCTION"],
-//     videoSrc: "https://www.youtube.com/watch?v=c5iitHD0bNg",
-//     href: "/works/grv-summit",
-//   },
-//   {
-//     title: "EU & AFRICA",
-//     tags: ["BRANDING", "MARKETING", "PRODUCTION"],
-//     videoSrc: "https://www.youtube.com/watch?v=c5iitHD0bNg",
-//     href: "/works/eu-africa",
-//   },
-//   {
-//     title: "ADEY MUSIC AND STUDIO",
-//     tags: ["BRANDING", "MARKETING", "PRODUCTION"],
-//     videoSrc: "https://www.youtube.com/watch?v=c5iitHD0bNg",
-//     href: "/works/adey-music-2",
-//   },
-//   {
-//     title: "ST. GEORGE",
-//     tags: ["BRANDING", "MARKETING", "PRODUCTION"],
-//     videoSrc: "https://www.youtube.com/watch?v=c5iitHD0bNg",
-//     href: "/works/st-george-2",
-//   },
-// ];
+export default async function Ourworks() {
+  const data = await client.fetch(CASE_STUDIES);
+  const works = data?.slice(0, 5);
 
-
-export default function Ourworks() {
   return (
-    <section
-      className="w-full bg-(--spotlight-950) min-h-screen py-(--space-xxl) px-(--section-margin-x) md:px-(--space-xxl) lg:py-(--space-xxl) lg:px-(--section-margin-x)"
-    >
+    <section className="w-full bg-(--spotlight-950) min-h-screen py-(--space-xxl) px-(--section-margin-x) md:px-(--space-xxl) lg:py-(--space-xxl) lg:px-(--section-margin-x)">
       {/* Title */}
       <h1
         className="text-center mb-[var(--space-xxl)]"
@@ -75,32 +32,32 @@ export default function Ourworks() {
       </h1>
 
       {/* Project Cards Grid */}
-     <div className="w-full max-w-7xl mx-auto space-y-6">
-  {/* First card – full width */}
-  <ProjectCard
-    className="w-full"
-    title={works[0].title}
-    tags={works[0].tags}
-    videoSrc={works[0].videoSrc}
-    href={"works/"+works[0].slug}
-    dark
-  />
+      <div className="w-full max-w-7xl mx-auto space-y-6">
+        {/* First card – full width */}
+        <ProjectCard
+          className="w-full"
+          title={works[0]?.title}
+          tags={works[0]?.service.map((s: any) => s.title)}
+          videoSrc={works[0]?.heroVideo}
+          href={"works/" + works[0]?.slug.current}
+          dark
+        />
 
-  {/* Remaining cards */}
-  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-    {works.slice(1).map((work, index) => (
-      <ProjectCard
-        key={index}
-        className="w-full"
-        title={work.title}
-        tags={work.tags}
-        videoSrc={work.videoSrc}
-        href={"works/"+work.slug}
-        dark
-      />
-    ))}
-  </div>
-</div>
+        {/* Remaining cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {works?.slice(1).map((work: any, index: number) => (
+            <ProjectCard
+              key={index}
+              className="w-full"
+              title={work?.title}
+              tags={work?.service.map((s: any) => s.title)}
+              videoSrc={work?.heroVideo}
+              href={"works/" + work?.slug.current}
+              dark
+            />
+          ))}
+        </div>
+      </div>
 
       <Link href={"/works"}>
         <Buttons>explore now</Buttons>
