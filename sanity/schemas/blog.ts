@@ -59,11 +59,7 @@ export const blog = defineType({
       name: "categories",
       title: "Categories",
       type: "array",
-      of: [
-        {
-          type: "string",
-        },
-      ],
+      of: [{ type: "string" }],
     }),
 
     defineField({
@@ -71,41 +67,127 @@ export const blog = defineType({
       title: "Body Content",
       type: "array",
       of: [
-        // Heading block
         {
-          name: "heading",
-          title: "Heading",
+          name: "headingBlock",
+          title: "Heading Block",
           type: "object",
           fields: [
-            {
+            defineField({
               name: "text",
               title: "Heading Text",
               type: "string",
-            },
-            {
+            }),
+
+            defineField({
               name: "paragraphGroup",
               title: "Paragraphs",
               type: "object",
               fields: [
-                {
+                defineField({
                   name: "contentArray",
                   title: "Paragraphs",
                   type: "array",
                   of: [{ type: "text" }],
-                },
+                }),
               ],
               preview: {
                 prepare() {
                   return { title: "Paragraph Block" };
                 },
               },
-            },
+            }),
+
+            // ✅ Ordered List
+            defineField({
+              name: "orderedList",
+              title: "Ordered List",
+              description: "Numbered list items",
+              type: "array",
+              of: [
+                {
+                  name: "listItem",
+                  title: "List Item",
+                  type: "object",
+                  fields: [
+                    defineField({
+                      name: "list",
+                      title: "List Text",
+                      type: "string",
+                    }),
+                    defineField({
+                      name: "listDescription",
+                      title: "List Description (optional)",
+                      type: "text",
+                    }),
+                  ],
+                },
+              ],
+            }),
+
+            // ✅ Unordered List
+            defineField({
+              name: "unorderedList",
+              title: "Unordered List",
+              description: "Bullet point list",
+              type: "array",
+              of: [
+                {
+                  name: "listItem",
+                  title: "List Item",
+                  type: "object",
+                  fields: [
+                    defineField({
+                      name: "list",
+                      title: "List Text",
+                      type: "string",
+                    }),
+                    defineField({
+                      name: "listDescription",
+                      title: "List Description (optional)",
+                      type: "text",
+                    }),
+                  ],
+                },
+              ],
+            }),
           ],
           preview: {
             select: { title: "text" },
           },
         },
       ],
+    }),
+
+    defineField({
+      name: "onPageSeo",
+      title: "On Page SEO",
+      type: "object",
+      fields: [
+        defineField({
+          name: "pageTitle",
+          title: "Page Title",
+          type: "string",
+          description: "SEO title (60 characters max)",
+        }),
+        defineField({
+          name: "metaDescription",
+          title: "Meta Description",
+          type: "text",
+          rows: 3,
+          description: "SEO description (150–160 characters)",
+        }),
+        defineField({
+          name: "targetKeywords",
+          title: "Target Keywords",
+          type: "array",
+          of: [{ type: "string" }],
+        }),
+      ],
+      preview: {
+        prepare() {
+          return { title: "On Page SEO" };
+        },
+      },
     }),
   ],
 

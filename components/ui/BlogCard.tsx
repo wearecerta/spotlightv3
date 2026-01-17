@@ -103,7 +103,7 @@ export default function BlogCard({
                       }}
                     >
                       {tags.map((tag, index) => (
-                        <span key={index} className="flex  text-[12px] items-center gap-2">
+                        <span key={index} className="flex uppercase text-[12px] items-center gap-2">
                           {tag}
                           {index < tags.length + 1 && (
                             <span>
