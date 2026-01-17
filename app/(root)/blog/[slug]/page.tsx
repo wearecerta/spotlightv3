@@ -1,6 +1,31 @@
 import { client } from "@/sanity/lib/client";
-import { BLOG_DETAIL_QUERY } from "@/sanity/queries/blogQuery";
+import { BLOG_DETAIL_QUERY, BLOG_SEO_QUERY } from "@/sanity/queries/blogQuery";
 import Image from "next/image";
+
+
+
+import { Metadata } from 'next';
+
+export async function generateMetadata({ params }: BlogDetailPageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const blogData = await client.fetch(BLOG_SEO_QUERY, { slug });
+  
+  if (!blogData) {
+    return {
+      title: 'Blog Post Not Found',
+    };
+  }
+
+  return {
+    title: blogData?.onPageSeo?.pageTitle || blogData?.title || "Spotlight | Ethiopia",
+    description: blogData?.excerpt,
+    openGraph: {
+      title: blogData?.title,
+      description: blogData?.onPageSeo?.metaDescription || blogData?.excerpt,
+      images: [blogData?.mainImage?.asset?.url || ''],
+    },
+  };
+}
 
 interface BlogDetailPageProps {
   params: Promise<{

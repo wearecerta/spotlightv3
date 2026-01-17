@@ -17,8 +17,6 @@ export const BLOG_LIST_QUERY = `
 }
 `;
 
-
-
 export const BLOG_DETAIL_QUERY = `
 *[_type == "blog" && slug.current == $slug][0]{
   _id,
@@ -53,6 +51,15 @@ export const BLOG_DETAIL_QUERY = `
 
 export const BLOG_SEO_QUERY = `
 *[_type == "blog" && slug.current == $slug][0]{
+excerpt,
+title,
+mainImage{
+    alt,
+    asset->{
+      _id,
+      url
+    }
+  },
   onPageSeo{
     pageTitle,
     metaDescription,
