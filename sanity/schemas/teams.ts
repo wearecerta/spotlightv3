@@ -5,22 +5,44 @@ export const TeamMembers = defineType({
   type: "object",
   title: "Team Member",
   fields: [
-    defineField({ name: "name", type: "string", title: "Name" }),
-    defineField({ name: "position", type: "string", title: "Position" }),
+    defineField({
+      name: "name",
+      type: "string",
+      title: "Name",
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: "position",
+      type: "string",
+      title: "Position",
+      validation: (Rule) => Rule.required(),
+    }),
     defineField({
       name: "mainImage",
       title: "Main Image",
       type: "image",
+      validation: (Rule) => Rule.required(),
+
       fields: [
-        defineField({ name: "alt", title: "Alternative Text", type: "string" }),
+        defineField({
+          name: "alt",
+          title: "Alternative Text",
+          type: "string",
+        }),
       ],
     }),
     defineField({
       name: "secondaryImage",
       title: "Secondary Image",
       type: "image",
+      validation: (Rule) => Rule.required(),
+
       fields: [
-        defineField({ name: "alt", title: "Alternative Text (Alt)", type: "string" }),
+        defineField({
+          name: "alt",
+          title: "Alternative Text (Alt)",
+          type: "string",
+        }),
       ],
     }),
   ],
@@ -31,7 +53,7 @@ export const Team = defineType({
   type: "document",
   title: "Teams",
   fields: [
-     defineField({
+    defineField({
       name: "title",
       type: "string",
       title: "Team Title",

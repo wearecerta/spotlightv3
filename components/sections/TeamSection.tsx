@@ -61,13 +61,11 @@ function TeamPhotoCard({
           transition: "opacity 0.3s ease, transform 0.3s ease",
         }}
       >
-        <Image
+        <img
           src={imageSrc}
           alt={alt}
-          fill
           className="object-cover"
           sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 20vw"
-          priority={priority}
           loading={priority ? undefined : "lazy"}
           style={{
             filter: "grayscale(100%)",
@@ -97,10 +95,9 @@ function TeamPhotoCard({
             transition: "opacity 0.3s ease, transform 0.3s ease",
           }}
         >
-          <Image
+          <img
             src={imageHoverSrc}
             alt={`${alt} - Hover`}
-            fill
             className="object-cover"
             sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 20vw"
             loading="lazy"
@@ -205,7 +202,7 @@ export default function TeamSection({
         }}
       >
         {/* Title SVG */}
-        <Image
+        <img
           src={titleSvgSrc}
           alt="Team Title"
           width={1620}
@@ -233,10 +230,10 @@ export default function TeamSection({
             zIndex: 1,
           }}
         >
-          <Image
+          <img
             src={groupPhoto}
             alt={`Group Photo`}
-            fill
+            
             className="object-cover"
             sizes="(max-width: 1400px) 100vw, 1400px"
           />
@@ -257,7 +254,7 @@ export default function TeamSection({
       
 
       {/* Individual Photos Grid */}
-      {individualPhotos.length > 0 && (
+      {individualPhotos?.length > 0 && (
         <div
 className={`
     grid place-items-center grid-cols-3 justify-center gap-4

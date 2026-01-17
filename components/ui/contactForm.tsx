@@ -1,12 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 type Step = "name" | "email" | "phone" | "message" | "done";
 
 export default function ContactInput() {
-  const [isMounted, setIsMounted] = useState(false);
   const [step, setStep] = useState<Step>("name");
 
   const [name, setName] = useState("");
@@ -16,8 +15,6 @@ export default function ContactInput() {
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-
-  useEffect(() => setIsMounted(true), []);
 
   function handleNext() {
     setError("");
@@ -85,7 +82,7 @@ export default function ContactInput() {
         body: JSON.stringify({
           name,
           email,
-          phoneNumber: phone, // Send phone number
+          phoneNumber: phone,
           message,
         }),
       });
@@ -105,13 +102,8 @@ export default function ContactInput() {
   }
 
   function renderInput() {
-    if (!isMounted) {
-      return (
-        <div className="flex-1 border-b border-(--spotlight-700) py-2 px-1" />
-      );
-    }
-
-    const commonClasses = "flex-1 bg-transparent border-b border-(--spotlight-700) placeholder-(--spotlight-500) text-(--spotlight-50) py-2 px-1 focus:outline-none";
+    const commonClasses =
+      "flex-1 bg-transparent border-b border-(--spotlight-700) placeholder-(--spotlight-500) text-(--spotlight-50) py-2 px-1 focus:outline-none";
 
     switch (step) {
       case "name":
@@ -123,9 +115,9 @@ export default function ContactInput() {
             onChange={(e) => setName(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && handleNext()}
             className={commonClasses}
-            autoFocus
           />
         );
+
       case "email":
         return (
           <input
@@ -135,9 +127,9 @@ export default function ContactInput() {
             onChange={(e) => setEmail(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && handleNext()}
             className={commonClasses}
-            autoFocus
           />
         );
+
       case "phone":
         return (
           <input
@@ -147,9 +139,9 @@ export default function ContactInput() {
             onChange={(e) => setPhone(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && handleNext()}
             className={commonClasses}
-            autoFocus
           />
         );
+
       case "message":
         return (
           <textarea
@@ -161,9 +153,9 @@ export default function ContactInput() {
             }}
             rows={3}
             className={`${commonClasses} resize-none`}
-            autoFocus
           />
         );
+
       default:
         return null;
     }
@@ -171,11 +163,10 @@ export default function ContactInput() {
 
   if (step === "done") {
     return (
-      <div className="mt-6 p-4 ">
-        <div className="text-(--spotlight-50) text-lg flex items-center gap-2">
-          <span>Thank you! We'll get back to you shortly.</span>
-        </div>
-       
+      <div className="mt-6 p-4">
+        <p className="text-(--spotlight-50) text-lg">
+          Thank you! We'll get back to you shortly.
+        </p>
       </div>
     );
   }
@@ -185,6 +176,7 @@ export default function ContactInput() {
       <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-5">
         <div className="flex-1">
           {renderInput()}
+
           <div className="flex gap-2 mt-2 text-sm text-(--spotlight-400)">
             {step !== "name" && (
               <button
@@ -195,7 +187,6 @@ export default function ContactInput() {
                 ← Back
               </button>
             )}
-           
           </div>
         </div>
 
@@ -215,11 +206,7 @@ export default function ContactInput() {
         </button>
       </div>
 
-      {error && (
-        <p className="mt-2 text-red-400 text-sm">{error}</p>
-      )}
+      {error && <p className="mt-2 text-red-400 text-sm">{error}</p>}
     </div>
   );
 }
-
-const stepOrder: Step[] = ["name", "email", "phone", "message"];
