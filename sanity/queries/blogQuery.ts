@@ -19,15 +19,14 @@ export const BLOG_LIST_QUERY = `
 
 
 
-
 export const BLOG_DETAIL_QUERY = `
 *[_type == "blog" && slug.current == $slug][0]{
   _id,
   title,
-  excerpt,
+  excerpt, 
   publishedDate,
   categories,
-
+  author,
   mainImage{
     alt,
     asset->{
@@ -35,7 +34,6 @@ export const BLOG_DETAIL_QUERY = `
       url
     }
   },
-
   body[]{
     text,
     paragraphGroup{
@@ -49,12 +47,9 @@ export const BLOG_DETAIL_QUERY = `
       list,
       listDescription
     }
-  },
-
- 
+  }
 }
 `;
-
 
 export const BLOG_SEO_QUERY = `
 *[_type == "blog" && slug.current == $slug][0]{

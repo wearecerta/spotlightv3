@@ -1,3 +1,5 @@
+import { client } from "@/sanity/lib/client";
+import { BLOG_DETAIL_QUERY } from "@/sanity/queries/blogQuery";
 import Image from "next/image";
 
 interface BlogDetailPageProps {
@@ -15,39 +17,7 @@ const socialMediaIcons = [
 
 export default async function BlogDetail({ params }: BlogDetailPageProps) {
   const { slug } = await params;
-
-  // TODO: Fetch blog data from Sanity based on id
-  // For now, using placeholder data matching the design
-  const blogData = {
-    title: "BRANDING BEYOND LOGOS: BUILDING LASTING CONNECTIONS",
-    author: "Admin",
-    date: "August 10, 2025",
-    tags: ["STORYTELLING", "BRANDING"],
-    heroImage: "/Blog/BlogCard-1.jpg",
-    content: {
-      paragraphs: [
-        "A strong brand isn't just about colors or logos—it's about the emotions, values, and stories that shape how people feel about your business. Discover how to build a brand that inspires trust and creates meaningful, lasting relationships with your audience.",
-        "When most people hear the word brand, they often think of a logo, a color palette, or maybe a catchy slogan. But branding goes far deeper than design. The world's most successful brands don't just stand out visually—they connect emotionally. They build trust, loyalty, and lasting relationships that go far beyond what's on the surface.",
-        "A logo may catch someone's eye, but it's the feeling behind your brand that keeps them coming back. Think of brands like Apple or Nike—their visuals are iconic, but what truly resonates is the experience they create: innovation, aspiration, belonging. To build this emotional bond, businesses must ask: What do we want people to feel when they engage with us?",
-      ],
-      headings: ["BRANDING IS ABOUT EMOTION, NOT DECORATION"],
-      additionalSections: [
-        {
-          heading: "VALUES SPEAK LOUDER THAN WORDS",
-          paragraphs: [
-            "Today's customers are conscious and value-driven. They don't just buy products; they support brands that align with their beliefs. Whether it's sustainability, empowerment, or community impact, your values should shine through every interaction. When values are consistent, customers feel a sense of trust and authenticity. And trust is the foundation of brand loyalty.",
-          ],
-        },
-        {
-          heading: "STORYTELLING MAKES IT MEMORABLE",
-          paragraphs: [
-            "Humans are wired to remember stories—not slogans. A brand story weaves together your mission, history, and vision in a way that feels relatable and inspiring. It gives customers a reason to care, not just a reason to buy.",
-            "Ask yourself: What journey led us here? Who do we serve, and why does it matter? That's the story your audience wants to hear.",
-          ],
-        },
-      ],
-    },
-  };
+  const blogData = await client.fetch(BLOG_DETAIL_QUERY, { slug });
 
   return (
     <main
@@ -102,7 +72,7 @@ export default async function BlogDetail({ params }: BlogDetailPageProps) {
               margin: 0,
             }}
           >
-            By {blogData.author} · {blogData.date}
+            By {blogData?.author} · {blogData?.publishedDate}
           </p>
 
           {/* Categories/Tags */}
@@ -114,7 +84,7 @@ export default async function BlogDetail({ params }: BlogDetailPageProps) {
               gap: "var(--space-md, 24px)",
             }}
           >
-            {blogData.tags.map((tag, index) => (
+            {blogData?.categories?.map((tag: any, index: number) => (
               <div
                 key={tag}
                 style={{
@@ -137,7 +107,7 @@ export default async function BlogDetail({ params }: BlogDetailPageProps) {
                 >
                   {tag}
                 </span>
-                {index < blogData.tags.length - 1 && (
+                {index < blogData.categories.length - 1 && (
                   <span className="w-3 h-3 rounded-full bg-[#B6B7C3]" />
                 )}
               </div>
@@ -146,8 +116,8 @@ export default async function BlogDetail({ params }: BlogDetailPageProps) {
         </div>
         <div className="relative md:p-52 w-full md:w-fit aspect-video">
           <Image
-            src={blogData.heroImage}
-            alt={`${blogData.title} image`}
+            src={blogData.mainImage.asset.url}
+            alt={blogData.mainImage.alt || `${blogData.title} image`}
             fill
             className="object-cover rounded-2xl md:rounded-4xl"
             priority
@@ -213,7 +183,6 @@ export default async function BlogDetail({ params }: BlogDetailPageProps) {
             ))}
           </div>{" "}
         </div>
-
         {/* Right Column - Blog Content */}
         <div
           style={{
@@ -225,104 +194,32 @@ export default async function BlogDetail({ params }: BlogDetailPageProps) {
             gap: "var(--space-lg, 32px)",
           }}
         >
-          {/* First Paragraph */}
-          <p
-            style={{
-              fontFamily: "var(--font-secondary, 'Outfit')",
-              fontSize: "16px",
-              fontStyle: "normal",
-              fontWeight: "400",
-              lineHeight: "150%",
-              textAlign: "left",
-              color: "#0C0C0E",
-              margin: 0,
-            }}
-          >
-            {blogData.content.paragraphs[0]}
-          </p>
+          {blogData?.body?.map((block: any, index: number) => {
+            // Create a container for each block
+            return (
+              <div key={index} style={{ width: "100%" }}>
+                {/* Render heading if text exists */}
+                {block?.text && (
+                  <h3
+                    style={{
+                      fontFamily: "var(--font-primary, 'Bebas Neue')",
+                      fontSize: "var(--h3-size, 48px)",
+                      fontStyle: "normal",
+                      fontWeight: "400",
+                      lineHeight: "100%",
+                      textTransform: "uppercase",
+                      color: "#4F4F4F",
+                      marginTop: index > 0 ? "var(--space-xl, 48px)" : "0",
+                      marginBottom: "var(--space-md, 24px)",
+                    }}
+                  >
+                    {block.text}
+                  </h3>
+                )}
 
-          {/* Second Paragraph */}
-          <p
-            style={{
-              fontFamily: "var(--font-secondary, 'Outfit')",
-              fontSize: "16px",
-              fontStyle: "normal",
-              fontWeight: "400",
-              lineHeight: "150%",
-              textAlign: "left",
-              color: "#0C0C0E",
-              margin: 0,
-            }}
-          >
-            {blogData.content.paragraphs[1]}
-          </p>
-
-          {/* Section Heading */}
-          <h3
-            style={{
-              fontFamily: "var(--font-primary, 'Bebas Neue')",
-              fontSize: "var(--h3-size)",
-              fontStyle: "normal",
-              fontWeight: "400",
-              lineHeight: "100%",
-              textTransform: "uppercase",
-              color: "#4F4F4F",
-              marginTop: "var(--space-xl, 48px)",
-            }}
-          >
-            {blogData.content.headings[0]}
-          </h3>
-
-          {/* Third Paragraph */}
-          <p
-            style={{
-              fontFamily: "var(--font-secondary, 'Outfit')",
-              fontSize: "16px",
-              fontStyle: "normal",
-              fontWeight: "400",
-              lineHeight: "150%",
-              textAlign: "left",
-              color: "#0C0C0E",
-              margin: 0,
-            }}
-          >
-            {blogData.content.paragraphs[2]}
-          </p>
-
-          {/* Additional Content Sections */}
-          {blogData.content.additionalSections.map(
-            (
-              section: { heading: string; paragraphs: string[] },
-              index: number
-            ) => (
-              <div
-                key={index}
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "var(--space-lg, 32px)",
-                }}
-              >
-                {/* Section Heading */}
-                <h2
-                  style={{
-                    fontFamily: "var(--font-primary, 'Bebas Neue')",
-                    fontSize: "var(--h3-size)",
-                    fontStyle: "normal",
-                    fontWeight: "400",
-                    lineHeight: "100%",
-                    textTransform: "uppercase",
-                    textAlign: "left",
-                    color: "#4F4F4F",
-                    marginTop: "var(--space-xl, 48px)",
-                  }}
-                >
-                  {section.heading}
-                </h2>
-
-                {/* Section Paragraphs */}
-                {section.paragraphs.map(
-                  (paragraph: string, paraIndex: number) => (
+                {/* Render paragraphs if paragraphGroup exists */}
+                {block?.paragraphGroup?.contentArray?.map(
+                  (para: string, paraIndex: number) => (
                     <p
                       key={paraIndex}
                       style={{
@@ -333,17 +230,61 @@ export default async function BlogDetail({ params }: BlogDetailPageProps) {
                         lineHeight: "150%",
                         textAlign: "left",
                         color: "#0C0C0E",
-                        margin: 0,
+                        marginBottom: "16px",
                       }}
                     >
-                      {paragraph}
+                      {para}
                     </p>
                   )
                 )}
+
+                {/* Render ordered lists if they exist */}
+                {block?.orderedList?.length > 0 && (
+                  <ol
+                    className="list-decimal pl-6 space-y-3"
+                    style={{
+                      marginBottom: "24px",
+                      fontFamily: "var(--font-secondary, 'Outfit')",
+                    }}
+                  >
+                    {block.orderedList.map((item: any, itemIndex: number) => (
+                      <li key={itemIndex} style={{ marginBottom: "8px" }}>
+                        <span style={{ fontWeight: "500" }}>{item.list}</span>
+                        {item.listDescription && (
+                          <p style={{ margin: "4px 0 0 0",color: "#0C0C0E" }}>
+                            {item.listDescription}
+                          </p>
+                        )}
+                      </li>
+                    ))}
+                  </ol>
+                )}
+
+                {/* Render unordered lists if they exist */}
+                {block?.unorderedList?.length > 0 && (
+                  <ul
+                    className="list-disc pl-6 space-y-3"
+                    style={{
+                      marginBottom: "24px",
+                      fontFamily: "var(--font-secondary, 'Outfit')",
+                    }}
+                  >
+                    {block.unorderedList.map((item: any, itemIndex: number) => (
+                      <li key={itemIndex} style={{ marginBottom: "8px" }}>
+                        <span style={{ fontWeight: "500" }}>{item.list}</span>
+                        {item.listDescription && (
+                          <p style={{ margin: "4px 0 0 0", color: "#0C0C0E" }}>
+                            {item.listDescription}
+                          </p>
+                        )}
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </div>
-            )
-          )}
-        </div>
+            );
+          })}
+        </div>{" "}
       </section>
     </main>
   );
