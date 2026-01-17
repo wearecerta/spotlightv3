@@ -2,27 +2,31 @@ import { client } from "@/sanity/lib/client";
 import { BLOG_DETAIL_QUERY, BLOG_SEO_QUERY } from "@/sanity/queries/blogQuery";
 import Image from "next/image";
 
+import { Metadata } from "next";
+import BlogSocialMediaShare from "@/components/ui/BlogSocialMediaShare";
 
-
-import { Metadata } from 'next';
-
-export async function generateMetadata({ params }: BlogDetailPageProps): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: BlogDetailPageProps): Promise<Metadata> {
   const { slug } = await params;
   const blogData = await client.fetch(BLOG_SEO_QUERY, { slug });
-  
+
   if (!blogData) {
     return {
-      title: 'Blog Post Not Found',
+      title: "Blog Post Not Found",
     };
   }
 
   return {
-    title: blogData?.onPageSeo?.pageTitle || blogData?.title || "Spotlight | Ethiopia",
+    title:
+      blogData?.onPageSeo?.pageTitle ||
+      blogData?.title ||
+      "Spotlight | Ethiopia",
     description: blogData?.excerpt,
     openGraph: {
       title: blogData?.title,
       description: blogData?.onPageSeo?.metaDescription || blogData?.excerpt,
-      images: [blogData?.mainImage?.asset?.url || ''],
+      images: [blogData?.mainImage?.asset?.url || ""],
     },
   };
 }
@@ -32,13 +36,6 @@ interface BlogDetailPageProps {
     slug: string;
   }>;
 }
-
-const socialMediaIcons = [
-  "/Icons/facebook.svg",
-  "/Icons/linkedin.svg",
-  "/Icons/instagram.svg",
-  "/Icons/twitter.svg",
-];
 
 export default async function BlogDetail({ params }: BlogDetailPageProps) {
   const { slug } = await params;
@@ -163,51 +160,11 @@ export default async function BlogDetail({ params }: BlogDetailPageProps) {
         }}
         className="max-w-[1440px] mx-auto flex flex-col-reverse md:flex-row gap-(--space-xl) md:gap-(--section-margin-x)"
       >
-        {/* Left Sidebar - Social Sharing */}
-        <div
-          style={{
-            gap: "var(--space-lg, 32px)",
-            flex: "0 0 auto",
-            minWidth: "80px",
-          }}
-          className="flex flex-col  items-center md:self-start md:sticky md:top-6"
-        >
-          {/* Share Button */}
-          <button
-            style={{
-              padding: "var(--space-xxs) var(--space-sm)",
-              border: "1px solid #0C0C0E",
-              borderRadius: "50px",
-              fontFamily: "var(--font-secondary, 'Outfit')",
-              fontSize: "var(--body-medium-size, 16px)",
-              fontWeight: "400",
-              color: "#0C0C0E",
-              cursor: "pointer",
-              textTransform: "uppercase",
-              whiteSpace: "nowrap",
-            }}
-          >
-            Share
-          </button>
-          {/* Social Icons */}
-          <div
-            style={{
-              gap: "var(--space-xs)",
-              alignItems: "center",
-            }}
-            className="flex md:flex-col flex-row"
-          >
-            {socialMediaIcons.map((icon, index) => (
-              <Image
-                src={icon}
-                alt="social media icon"
-                width={32}
-                height={32}
-                key={index}
-              />
-            ))}
-          </div>{" "}
-        </div>
+        {/* left side social media share button */}
+        <BlogSocialMediaShare
+          title={blogData.title}
+          excerpt={blogData.excerpt}
+        />
         {/* Right Column - Blog Content */}
         <div
           style={{
@@ -276,7 +233,7 @@ export default async function BlogDetail({ params }: BlogDetailPageProps) {
                       <li key={itemIndex} style={{ marginBottom: "8px" }}>
                         <span style={{ fontWeight: "500" }}>{item.list}</span>
                         {item.listDescription && (
-                          <p style={{ margin: "4px 0 0 0",color: "#0C0C0E" }}>
+                          <p style={{ margin: "4px 0 0 0", color: "#0C0C0E" }}>
                             {item.listDescription}
                           </p>
                         )}
