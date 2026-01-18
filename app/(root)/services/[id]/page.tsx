@@ -302,12 +302,12 @@ export default async function ServiceDetailPage({ params }: Props) {
                       style={{
                         fontFamily: "var(--font-primary)",
                         fontWeight: "400",
-                        fontSize: "var(--h2-size)",
                         lineHeight: "100%",
                         letterSpacing: 0,
                         textTransform: "uppercase",
                         color: "var(--spotlight-50)",
                       }}
+                      className="text-(length:--h2-size) md:text-[92px]"
                     >
                       <span style={{ color: "var(--spotlight-300)" }}>
                         {firstTwo}{" "}
