@@ -21,6 +21,7 @@ export default function Awards() {
       award: "Story telling mastery award",
       imageSrc: "/Home/award3.png",
     },
+    
   ];
 
   return (

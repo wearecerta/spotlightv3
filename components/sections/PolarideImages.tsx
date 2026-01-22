@@ -130,14 +130,14 @@ const QUOTES: QuoteConfig[] = [
 
 
 const POLAROIDS = [
-  { src: "/Culture/cultures/c7.jpg", label: "Creative", rotate: "9deg" },
-  { src: "/Culture/cultures/c8.jpg", label: "Playful", rotate: "-6deg" },
-  { src: "/Culture/cultures/c9.jpg", label: "Vibrant", rotate: "8deg" },
-  { src: "/Culture/cultures/c10.jpg", label: "Bold", rotate: "-8deg" },
-  { src: "/Culture/cultures/c11.jpg", label: "Creative", rotate: "9deg" },
-  { src: "/Culture/cultures/c12.jpg", label: "Playful", rotate: "-8deg" },
-  { src: "/Culture/cultures/c1.jpg", label: "Vibrant", rotate: "6deg" },
-  { src: "/Culture/cultures/c14.jpg", label: "Bold", rotate: "-8deg" },
+  { src: "/Culture/cultures/c7.webp", label: "Creative", rotate: "9deg" },
+  { src: "/Culture/cultures/c8.webp", label: "Playful", rotate: "-6deg" },
+  { src: "/Culture/cultures/c9.webp", label: "Vibrant", rotate: "8deg" },
+  { src: "/Culture/cultures/c10.webp", label: "Bold", rotate: "-8deg" },
+  { src: "/Culture/cultures/c11.webp", label: "Creative", rotate: "9deg" },
+  { src: "/Culture/cultures/c12.webp", label: "Playful", rotate: "-8deg" },
+  { src: "/Culture/cultures/c14.webp", label: "Vibrant", rotate: "6deg" },
+  { src: "/Culture/cultures/c1.webp", label: "Bold", rotate: "-8deg" },
 ];
 
 export default function PolaroidImages() {

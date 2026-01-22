@@ -10,12 +10,12 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function Culture() {
   const images = [
-    "/Culture/cultures/c1.jpg",
-    "/Culture/cultures/c2.jpg",
-    "/Culture/cultures/c3.jpg",
-    "/Culture/cultures/c4.jpg",
-    "/Culture/cultures/c5.jpg",
-    "/Culture/cultures/c6.jpg",
+    "/Culture/cultures/c1.webp",
+    "/Culture/cultures/c2.webp",
+    "/Culture/cultures/c3.webp",
+    "/Culture/cultures/c4.webp",
+    "/Culture/cultures/c5.webp",
+    "/Culture/cultures/c6.webp",
     
     ];
 

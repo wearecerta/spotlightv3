@@ -31,7 +31,6 @@ export default async function WorkDetail({ params }: Props) {
   const slug = param.id;
 
   const workData = await client.fetch(CASE_STUDIES_DETAIL, { slug });
-  console.log(workData?.heroImage?.asset?.url);
 
   if (!workData) {
     return (
