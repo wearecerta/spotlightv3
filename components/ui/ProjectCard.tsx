@@ -167,6 +167,7 @@ export default function ProjectCard({
             allowFullScreen
             style={{ border: "none" }}
             title={title}
+            loading="lazy"
           />
         )}
 
