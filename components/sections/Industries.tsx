@@ -26,7 +26,6 @@ const Industries = () => {
 
     fetchClients();
   }, []);
-  console.log(industriesList);
 
   // const industriesList = [
   //   {

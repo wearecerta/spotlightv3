@@ -29,9 +29,20 @@ function getYouTubeVideoId(url: string): string | null {
   return match ? match[1] : null;
 }
 
-// Helper function to get YouTube embed URL with autoplay
 function getYouTubeEmbedUrl(videoId: string): string {
-  return `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&modestbranding=1&rel=0&showinfo=0`;
+  return `https://www.youtube.com/embed/${videoId}?` +
+    `autoplay=1` +
+    `&mute=1` +
+    `&loop=1` +
+    `&playlist=${videoId}` +
+    `&controls=0` +
+    `&modestbranding=1` +
+    `&rel=0` +
+    `&iv_load_policy=3` +
+    `&fs=0` +
+    `&disablekb=1` +
+    `&playsinline=1` +
+    `&vq=hd1080`;
 }
 
 export default function ProjectCard({
@@ -65,7 +76,7 @@ export default function ProjectCard({
     if (mediaType === "youtube") {
       const timer = setTimeout(() => {
         setIsIframeLoaded(true);
-      }, 2000);
+      }, 3000);
       return () => clearTimeout(timer);
     }
   }, [mediaType]);
