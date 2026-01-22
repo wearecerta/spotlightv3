@@ -11,20 +11,19 @@ export default function Hero({ videoAsset, title, subtitle }: HeroProps) {
 
   return (
     <section className="relative w-full h-screen -mt-20 md:-mt-26 lg:-mt-26 overflow-hidden z-0 bg-(--spotlight-950)">
-      {!videoUrl && (
+     
         <img
           src="/Home/tumbnail.webp"
           alt="Hero background"
           fetchPriority="high"
           className="absolute top-0 left-0 w-full h-full object-cover"
         />
-      )}
+   
 
       {videoUrl && (
         <video
           className="absolute top-0 left-0 w-full h-full object-cover"
           src={videoUrl}
-          poster="/Home/tumbnail.webp"
           preload="auto"
           autoPlay
           muted
