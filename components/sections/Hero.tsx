@@ -16,7 +16,7 @@ export default function Hero({ videoAsset, title, subtitle }: HeroProps) {
           className="absolute top-0 left-0 w-full h-full object-cover"
           src={videoUrl}
           autoPlay
-          poster="/Home/hero-templete.jpg"
+          poster="/Home/tumbnail.webp"
           muted
           loop
           playsInline
