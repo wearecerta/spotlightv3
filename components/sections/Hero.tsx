@@ -1,4 +1,6 @@
+"use client"
 import { getVideoUrl } from "@/sanity/lib/videoUrl";
+import { useEffect, useState } from "react";
 
 interface HeroProps {
   videoAsset?: any;
@@ -28,6 +30,14 @@ function getYouTubeEmbedUrl(videoId: string): string {
 export default function Hero({ videoAsset, title, subtitle }: HeroProps) {
   // const videoUrl = videoAsset ? getVideoUrl(videoAsset) : null;
   const youtubeVideoId = "ZUL8AK9GzRA";
+    const [tumbnailLoaded, setTumbnailLoaded] = useState(false);
+   useEffect(() => {
+        const timer = setTimeout(() => {
+          setTumbnailLoaded(true);
+        }, 2000);
+        return () => clearTimeout(timer);
+      
+    }, [tumbnailLoaded]);
 
   return (
     <section className="relative w-full h-screen -mt-20 md:-mt-26 lg:-mt-26 overflow-hidden z-0 bg-(--spotlight-950)">
@@ -52,7 +62,7 @@ export default function Hero({ videoAsset, title, subtitle }: HeroProps) {
         />
       )} */}
 
-     <iframe
+    { tumbnailLoaded&& <iframe
     src={getYouTubeEmbedUrl(youtubeVideoId)}
     title="Hero background video"
     allow="autoplay; encrypted-media"
@@ -66,7 +76,7 @@ export default function Hero({ videoAsset, title, subtitle }: HeroProps) {
       -translate-x-1/2 -translate-y-1/2
     "
     style={{ border: "none" }}
-  />
+  />}
 
       {/* Centered content */}
       <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4">
