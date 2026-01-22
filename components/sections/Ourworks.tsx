@@ -7,7 +7,7 @@ import { client } from "@/sanity/lib/client";
 
 export default async function Ourworks() {
   const data = await client.fetch(CASE_STUDIES);
-  const works = data?.slice(0, 5);
+  const works = data?.slice(0, 5)??[];
 
   return (
     <section className="w-full bg-(--spotlight-950) min-h-screen py-(--space-xxl) px-(--section-margin-x) md:px-(--space-xxl) lg:py-(--space-xxl) lg:px-(--section-margin-x)">
@@ -54,7 +54,7 @@ export default async function Ourworks() {
               tags={work?.service.map((s: any) => s.title)}
               videoSrc={work?.heroVideo}
               imageSrc={work?.heroImage?.asset?.url}
-              href={"works/" + work?.slug.current}
+              href={"/works/" + work?.slug.current}
               dark
             />
           ))}

@@ -30,7 +30,8 @@ function getYouTubeVideoId(url: string): string | null {
 }
 
 function getYouTubeEmbedUrl(videoId: string): string {
-  return `https://www.youtube.com/embed/${videoId}?` +
+  return (
+    `https://www.youtube.com/embed/${videoId}?` +
     `autoplay=1` +
     `&mute=1` +
     `&loop=1` +
@@ -42,7 +43,8 @@ function getYouTubeEmbedUrl(videoId: string): string {
     `&fs=0` +
     `&disablekb=1` +
     `&playsinline=1` +
-    `&vq=hd1080`;
+    `&vq=hd1080`
+  );
 }
 
 export default function ProjectCard({
@@ -188,20 +190,18 @@ export default function ProjectCard({
                 alt={title}
                 className="w-full h-full object-cover cursor-pointer"
                 onClick={() => setIsIframeLoaded(true)}
-                loading="lazy"
               />
             )}
-            {isIframeLoaded && (
-              <iframe
-                src={getYouTubeEmbedUrl(youtubeVideoId)}
-                className="absolute inset-0 w-full h-full"
-                allow="autoplay; encrypted-media"
-                allowFullScreen
-                style={{ border: "none" }}
-                title={title}
-                loading="lazy"
-              />
-            )}
+            <iframe
+              src={getYouTubeEmbedUrl(youtubeVideoId)}
+              className={`absolute inset-0 w-full h-full     ${isIframeLoaded ? "opacity-100" : "opacity-0"}
+          `}
+              allow="autoplay; encrypted-media"
+              allowFullScreen
+              style={{ border: "none" }}
+              title={title}
+              loading="lazy"
+            />
           </div>
         )}
 

@@ -165,3 +165,8 @@ body {
 
 
 
+/* to stop the glitch when scroll */
+
+iframe {
+  pointer-events: none;
+}
