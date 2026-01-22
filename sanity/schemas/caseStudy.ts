@@ -44,7 +44,19 @@ export const caseStudy = defineType({
       type: "string",
       title: "Hero section video url",
     }),
-
+    defineField({
+      name: "heroImage",
+      type: "image",
+      title: "Hero section Image",
+      description: "Upload Image if there is no youtube Url",
+      fields: [
+        defineField({
+          name: "alt",
+          title: "Alternative Text (Alt)",
+          type: "string",
+        }),
+      ],
+    }),
     defineField({
       name: "service",
       type: "array",

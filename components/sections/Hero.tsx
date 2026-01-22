@@ -1,5 +1,4 @@
-"use client"
-import { getVideoUrl } from "@/sanity/lib/videoUrl";
+"use client";
 import { useEffect, useState } from "react";
 
 interface HeroProps {
@@ -8,10 +7,10 @@ interface HeroProps {
   subtitle?: string;
 }
 
-
 // Helper function to get YouTube embed URL with autoplay
 function getYouTubeEmbedUrl(videoId: string): string {
-  return `https://www.youtube.com/embed/${videoId}?` +
+  return (
+    `https://www.youtube.com/embed/${videoId}?` +
     `autoplay=1` +
     `&mute=1` +
     `&loop=1` +
@@ -23,32 +22,32 @@ function getYouTubeEmbedUrl(videoId: string): string {
     `&fs=0` +
     `&disablekb=1` +
     `&playsinline=1` +
-    `&vq=hd1080`;
+    `&vq=hd1080`
+  );
 }
-
 
 export default function Hero({ videoAsset, title, subtitle }: HeroProps) {
   // const videoUrl = videoAsset ? getVideoUrl(videoAsset) : null;
   const youtubeVideoId = "ZUL8AK9GzRA";
-    const [tumbnailLoaded, setTumbnailLoaded] = useState(false);
-   useEffect(() => {
-        const timer = setTimeout(() => {
-          setTumbnailLoaded(true);
-        }, 2000);
-        return () => clearTimeout(timer);
-      
-    }, [tumbnailLoaded]);
+  const [tumbnailLoaded, setTumbnailLoaded] = useState(false);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setTumbnailLoaded(true);
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <section className="relative w-full h-screen -mt-20 md:-mt-26 lg:-mt-26 overflow-hidden z-0 bg-(--spotlight-950)">
-     
+      {!tumbnailLoaded && (
         <img
           src="/Home/tumbnail.webp"
           alt="Hero background"
           fetchPriority="high"
           className="absolute top-0 left-0 w-full h-full object-cover"
         />
-   
+      )}
 
       {/* {videoUrl && (
         <video
@@ -62,21 +61,23 @@ export default function Hero({ videoAsset, title, subtitle }: HeroProps) {
         />
       )} */}
 
-    { tumbnailLoaded&& <iframe
-    src={getYouTubeEmbedUrl(youtubeVideoId)}
-    title="Hero background video"
-    allow="autoplay; encrypted-media"
-    loading="eager"
-    referrerPolicy="strict-origin-when-cross-origin"
-    className="
-      absolute
-      top-1/2 left-1/2
-      min-w-[100vw] min-h-[100vh]
-      w-[177.77vh] h-[56.25vw]
-      -translate-x-1/2 -translate-y-1/2
-    "
-    style={{ border: "none" }}
-  />}
+      <iframe
+        src={getYouTubeEmbedUrl(youtubeVideoId)}
+        title="Hero background video"
+        allow="autoplay; encrypted-media"
+        loading="eager"
+        referrerPolicy="strict-origin-when-cross-origin"
+        className={`
+    absolute
+    top-1/2 left-1/2
+    min-w-[100vw] min-h-[100vh]
+    w-[177.77vh] h-[56.25vw]
+    -translate-x-1/2 -translate-y-1/2
+    transition-opacity duration-500
+    ${tumbnailLoaded ? "opacity-100" : "opacity-0"}
+  `}
+        style={{ border: "none" }}
+      />
 
       {/* Centered content */}
       <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4">

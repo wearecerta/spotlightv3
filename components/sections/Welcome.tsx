@@ -70,7 +70,7 @@ export default function Welcome() {
 
         {/* RIGHT IMAGE */}
         <Image
-          src="/Home/welcome-image.png"
+          src="/Home/welcom.webp"
           alt="Welcome Image"
           width={600}
           height={600}

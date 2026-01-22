@@ -39,7 +39,8 @@ export default async function Ourworks() {
           title={works[0]?.title}
           tags={works[0]?.service.map((s: any) => s.title)}
           videoSrc={works[0]?.heroVideo}
-          href={"works/" + works[0]?.slug.current}
+          imageSrc={works[0]?.heroImage?.asset?.url}
+          href={"works/" + works[0]?.slug?.current}
           dark
         />
 
@@ -52,6 +53,7 @@ export default async function Ourworks() {
               title={work?.title}
               tags={work?.service.map((s: any) => s.title)}
               videoSrc={work?.heroVideo}
+              imageSrc={work?.heroImage?.asset?.url}
               href={"works/" + work?.slug.current}
               dark
             />

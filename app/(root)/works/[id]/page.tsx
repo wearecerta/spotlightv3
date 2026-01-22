@@ -6,14 +6,14 @@ import { client } from "@/sanity/lib/client";
 //check if URL is a YouTube link
 function isYouTubeUrl(url: string): boolean {
   return /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/.test(
-    url
+    url,
   );
 }
 
 //  extract YouTube video ID
 function getYouTubeVideoId(url: string): string | null {
   const match = url.match(
-    /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/
+    /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/,
   );
   return match ? match[1] : null;
 }
@@ -31,7 +31,7 @@ export default async function WorkDetail({ params }: Props) {
   const slug = param.id;
 
   const workData = await client.fetch(CASE_STUDIES_DETAIL, { slug });
-
+  console.log(workData?.heroImage?.asset?.url);
 
   if (!workData) {
     return (
@@ -55,30 +55,48 @@ export default async function WorkDetail({ params }: Props) {
       }}
       className="px-6 md:px-16"
     >
-      {/* Hero Section with Video */}
       <section
-        style={{
-          position: "relative",
-          overflow: "hidden",
-        }}
-        className="max-w-[1440px] mx-auto  pt-48px md:pt-16 lg:h-screen"
+        style={{ position: "relative", overflow: "hidden" }}
+        className="max-w-[1440px] mx-auto pt-48px md:pt-16 lg:h-screen"
       >
-        {/* Video Background */}
-        {youtubeVideoId && (
-          <div>
+        <div
+          style={{
+            position: "relative",
+            width: "100%",
+            aspectRatio: "16 / 9",
+            overflow: "hidden",
+            background: "#000",
+          }}
+        >
+          {youtubeVideoId ? (
             <iframe
               src={getYouTubeEmbedUrl(youtubeVideoId)}
-              style={{
-                border: "none",
-                aspectRatio: "16/9",
-                pointerEvents: "none",
-              }}
+              title={workData?.title}
               allow="autoplay; encrypted-media"
               allowFullScreen
-              title={workData?.title}
+              style={{
+                position: "absolute",
+                inset: 0,
+                width: "100%",
+                height: "100%",
+                border: "none",
+                pointerEvents: "none",
+              }}
             />
-          </div>
-        )}
+          ) : (
+            <img
+              src={workData?.heroImage?.asset?.url}
+              alt={workData?.heroImage?.alt || workData?.title}
+              style={{
+                position: "absolute",
+                inset: 0,
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+              }}
+            />
+          )}
+        </div>
       </section>
 
       {/* Project Details Section */}
@@ -404,7 +422,9 @@ export default async function WorkDetail({ params }: Props) {
           {/* LEFT IMAGE */}
           <div className="relative w-full h-[500px] lg:h-auto">
             <Image
-              src={workData?.impactsImage?.asset?.url || "https://placehold.co/400"}
+              src={
+                workData?.impactsImage?.asset?.url || "https://placehold.co/400"
+              }
               alt="Campaign promotional poster"
               fill
               className="object-cover"
@@ -460,25 +480,27 @@ export default async function WorkDetail({ params }: Props) {
 
               {/* high lights */}
               <div>
-                {(workData?.keyHighlights || []).map((impact: any, index: number) => (
-                  <div
-                    key={index}
-                    className="p-(--space-lg) border-b border-b-[#B6B7C3] "
-                  >
-                    <p
-                      style={{
-                        fontFamily: "var(--font-secondary)",
-                        fontWeight: "400",
-                        fontSize: "20px",
-                        lineHeight: "150%",
-                        letterSpacing: 0,
-                        color: "#4A4A5A",
-                      }}
+                {(workData?.keyHighlights || []).map(
+                  (impact: any, index: number) => (
+                    <div
+                      key={index}
+                      className="p-(--space-lg) border-b border-b-[#B6B7C3] "
                     >
-                      {impact}
-                    </p>
-                  </div>
-                ))}
+                      <p
+                        style={{
+                          fontFamily: "var(--font-secondary)",
+                          fontWeight: "400",
+                          fontSize: "20px",
+                          lineHeight: "150%",
+                          letterSpacing: 0,
+                          color: "#4A4A5A",
+                        }}
+                      >
+                        {impact}
+                      </p>
+                    </div>
+                  ),
+                )}
 
                 {/* <div className="p-(--space-lg) border-b border-b-[#B6B7C3] ">
                   <p
@@ -547,36 +569,38 @@ export default async function WorkDetail({ params }: Props) {
           </h4>
 
           {/* Stats */}
-          {(workData?.projectAchievements || [])?.map((item: any, index: number) => (
-            <div key={index} className="flex flex-col">
-              <span
-                style={{
-                  fontFamily: "var(--font-primary)",
-                  fontWeight: "400",
-                  fontSize: "var(--h2-size)",
-                  lineHeight: "100%",
-                  letterSpacing: 0,
-                  color: "var(--spotlight-300)",
-                  textTransform: "uppercase",
-                }}
-              >
-                {item.value}
-              </span>
-              <span
-                style={{
-                  fontFamily: "var(--font-secondary)",
-                  fontWeight: "400",
-                  fontSize: "20px",
-                  lineHeight: "150%",
-                  letterSpacing: 0,
-                  color: "var(--spotlight-700)",
-                  textTransform: "uppercase",
-                }}
-              >
-                {item.label}
-              </span>
-            </div>
-          ))}
+          {(workData?.projectAchievements || [])?.map(
+            (item: any, index: number) => (
+              <div key={index} className="flex flex-col">
+                <span
+                  style={{
+                    fontFamily: "var(--font-primary)",
+                    fontWeight: "400",
+                    fontSize: "var(--h2-size)",
+                    lineHeight: "100%",
+                    letterSpacing: 0,
+                    color: "var(--spotlight-300)",
+                    textTransform: "uppercase",
+                  }}
+                >
+                  {item.value}
+                </span>
+                <span
+                  style={{
+                    fontFamily: "var(--font-secondary)",
+                    fontWeight: "400",
+                    fontSize: "20px",
+                    lineHeight: "150%",
+                    letterSpacing: 0,
+                    color: "var(--spotlight-700)",
+                    textTransform: "uppercase",
+                  }}
+                >
+                  {item.label}
+                </span>
+              </div>
+            ),
+          )}
         </div>
       </section>
     </main>

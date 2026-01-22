@@ -2,17 +2,25 @@ export const CASE_STUDIES = `
 *[_type == "caseStudy"]
 | order(_updatedAt desc){
   _id,
-  heroVideo,
+  title,
   slug,
+  heroVideo,
+  heroImage{
+    alt,
+    asset->{
+      _id,
+      url
+    }
+  },
   service[]->{
     title
   },
-  title,
   client->{
     clientName
   }
 }
 `;
+
 
 
 
@@ -24,6 +32,13 @@ export const CASE_STUDIES_DETAIL = `
   campaign,
   overview,
   heroVideo,
+  heroImage{
+   alt,
+    asset->{
+      _id,
+      url
+    }
+  },
   duration,
 
   service[]->{

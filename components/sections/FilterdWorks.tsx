@@ -66,6 +66,7 @@ export default function FilteredWorks({ works }: FilteredWorksProps) {
               tags={work?.service.map((s: any) => s.title)}
               videoSrc={work?.heroVideo}
               href={"works/" + work?.slug.current}
+              imageSrc={work?.heroImage?.asset?.url}
             />
           </div>
         ))}
