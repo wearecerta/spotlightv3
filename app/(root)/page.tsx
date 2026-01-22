@@ -15,7 +15,9 @@ export default async function Home() {
   return (
 
     <div>
-      <Hero videoAsset={data?.heroVideo}/>
+      <Hero 
+      // videoAsset={data?.heroVideo}
+      />
       <Welcome />
       <Ourworks />
       <OurServices />
