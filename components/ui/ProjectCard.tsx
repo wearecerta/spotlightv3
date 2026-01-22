@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 interface ProjectCardProps {
   title: string;
@@ -17,14 +17,14 @@ interface ProjectCardProps {
 // Helper function to check if URL is a YouTube link
 function isYouTubeUrl(url: string): boolean {
   return /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/.test(
-    url
+    url,
   );
 }
 
 // Helper function to extract YouTube video ID
 function getYouTubeVideoId(url: string): string | null {
   const match = url.match(
-    /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/
+    /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/,
   );
   return match ? match[1] : null;
 }
@@ -60,6 +60,16 @@ export default function ProjectCard({
     return null;
   }, [videoSrc]);
 
+  const [isIframeLoaded, setIsIframeLoaded] = useState(false);
+  useEffect(() => {
+    if (mediaType === "youtube") {
+      const timer = setTimeout(() => {
+        setIsIframeLoaded(true);
+      }, 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [mediaType]);
+
   return (
     <Link
       href={href}
@@ -69,7 +79,7 @@ export default function ProjectCard({
         ${className}
       `}
       style={{
-        background:dark? "#2C2C34":"white",
+        background: dark ? "#2C2C34" : "white",
         border: "1px solid rgba(255, 255, 255, 0.1)",
       }}
     >
@@ -80,10 +90,9 @@ export default function ProjectCard({
             className="tracking-wide"
             style={{
               fontFamily: "var(--font-primary)",
-              color: dark?"#FFFFFF" : "#0C0C0E",
+              color: dark ? "#FFFFFF" : "#0C0C0E",
               fontSize: "var(--h4-size)",
               lineHeight: "var(--h4-line)",
-              
             }}
           >
             {title}
@@ -93,18 +102,21 @@ export default function ProjectCard({
             className="flex flex-wrap gap-y-0 gap-2 "
             style={{
               fontFamily: "var(--font-secondary)",
-              color: dark?"#FFFFFF" : "#0C0C0E",
+              color: dark ? "#FFFFFF" : "#0C0C0E",
               fontSize: "var(--body-medium-size)",
               opacity: 0.8,
             }}
           >
             {tags?.map((tag, index) => (
-              <span key={index} className="flex uppercase text-[12px] items-center gap-2">
+              <span
+                key={index}
+                className="flex uppercase text-[12px] items-center gap-2"
+              >
                 {tag}
                 {index < tags.length + 1 && (
                   <span>
                     <Image
-                      src={dark?"/Icons/dot.svg":"/Icons/black-dot.svg"}
+                      src={dark ? "/Icons/dot.svg" : "/Icons/black-dot.svg"}
                       alt="Separator"
                       width={8}
                       height={8}
@@ -116,10 +128,9 @@ export default function ProjectCard({
           </div>
         </div>
 
-
         {/* Arrow (SVG, no dependencies) */}
         <Image
-          src={dark?"/Icons/arrow.svg":"/Icons/dark-arrow.svg"}
+          src={dark ? "/Icons/arrow.svg" : "/Icons/dark-arrow.svg"}
           alt="Arrow"
           width={20}
           height={20}
@@ -158,17 +169,29 @@ export default function ProjectCard({
             }}
           />
         )}
-
         {mediaType === "youtube" && youtubeVideoId && (
-          <iframe
-            src={getYouTubeEmbedUrl(youtubeVideoId)}
-            className="absolute inset-0 w-full h-full"
-            allow="autoplay; encrypted-media"
-            allowFullScreen
-            style={{ border: "none" }}
-            title={title}
-            loading="lazy"
-          />
+          <div className="w-full h-full relative">
+            {!isIframeLoaded && (
+              <img
+                src={`https://img.youtube.com/vi/${youtubeVideoId}/maxresdefault.jpg`}
+                alt={title}
+                className="w-full h-full object-cover cursor-pointer"
+                onClick={() => setIsIframeLoaded(true)}
+                loading="lazy"
+              />
+            )}
+            {isIframeLoaded && (
+              <iframe
+                src={getYouTubeEmbedUrl(youtubeVideoId)}
+                className="absolute inset-0 w-full h-full"
+                allow="autoplay; encrypted-media"
+                allowFullScreen
+                style={{ border: "none" }}
+                title={title}
+                loading="lazy"
+              />
+            )}
+          </div>
         )}
 
         {mediaType === "none" && (
