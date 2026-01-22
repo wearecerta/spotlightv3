@@ -125,6 +125,7 @@ const Industries = () => {
             flex: "1 0 0",
           }}
         >
+          
           {/* Title */}
           <h2
             style={{
