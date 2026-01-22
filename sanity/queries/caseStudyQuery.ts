@@ -1,17 +1,19 @@
 export const CASE_STUDIES = `
-*[_type == "caseStudy"]{
+*[_type == "caseStudy"]
+| order(_updatedAt desc){
   _id,
   heroVideo,
   slug,
-    service[]->{
-    title,
+  service[]->{
+    title
   },
   title,
   client->{
     clientName
-    }
   }
+}
 `;
+
 
 
 export const CASE_STUDIES_DETAIL = `
