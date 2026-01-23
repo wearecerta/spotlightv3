@@ -225,7 +225,7 @@ const Industries = () => {
                           (client: any, clientIndex: number) => (
                             <Image
                               key={client?._id || clientIndex}
-                              src={client?.logo?.asset?.url}
+                              src={client?.logo?.asset?.url ||  "https://placehold.co/400"}
                               alt={
                                 client?.logo?.alt ||
                                 `${industry?.industryName} logo`

@@ -11,8 +11,8 @@ interface ServicesCardProps {
   imageSrc2: string;
   href: string;
   className?: string;
-  alt1?:string
-  alt2?:string
+  alt1?: string;
+  alt2?: string;
 }
 
 export default function ServicesCard({
@@ -27,7 +27,7 @@ export default function ServicesCard({
   className = "",
 }: ServicesCardProps) {
   return (
-    <div className={`relative ${className}`} >
+    <div className={`relative ${className}`}>
       {/* Sticky Content Section */}
       <div
         style={{
@@ -79,30 +79,29 @@ export default function ServicesCard({
           >
             {/* Left: Title */}
             <div className="flex justify-between ">
-            <h2
-              style={{
-                color: "#0C0C0E",
-                fontFamily: 'var(--font-primary, "Bebas Neue")',
-                fontStyle: "normal",
-                fontWeight: "400",
-                lineHeight: "100%",
-                textTransform: "uppercase",
-                flex: "0 0 auto",
-                maxWidth: "400px",
-              }}
-              className="text-[#0C0C0E] text-[32px] md:text-[56px]"
-            >
-              {title}
-            </h2>
+              <h2
+                style={{
+                  color: "#0C0C0E",
+                  fontFamily: 'var(--font-primary, "Bebas Neue")',
+                  fontStyle: "normal",
+                  fontWeight: "400",
+                  lineHeight: "100%",
+                  textTransform: "uppercase",
+                  flex: "0 0 auto",
+                  maxWidth: "400px",
+                }}
+                className="text-[#0C0C0E] text-[32px] md:text-[56px]"
+              >
+                {title}
+              </h2>
 
-            <Image
-              src="/Icons/dark-arrow.svg"
-              alt="Arrow Icon"
-              width={24}
-              height={24}
-              className="transition-transform md:hidden h-6 w-6"
-            />
-
+              <Image
+                src="/Icons/dark-arrow.svg"
+                alt="Arrow Icon"
+                width={24}
+                height={24}
+                className="transition-transform md:hidden h-6 w-6"
+              />
             </div>
 
             {/* Right: Description */}
@@ -123,9 +122,7 @@ export default function ServicesCard({
           </div>
 
           {/* Services List */}
-          <div
-            className="md:flex flex-wrap items-center hidden gap-(--space-sm)"
-          >
+          <div className="md:flex flex-wrap items-center hidden gap-(--space-sm)">
             {services?.map((service, index) => (
               <div
                 key={index}
@@ -180,9 +177,8 @@ export default function ServicesCard({
           <div
             style={{
               position: "relative",
-              width: "100%",
-              height: "100%",
               overflow: "hidden",
+              aspectRatio: "1/1",
             }}
           >
             <Image
@@ -198,14 +194,13 @@ export default function ServicesCard({
           <div
             style={{
               position: "relative",
-              width: "100%",
-              height: "100%",
+              aspectRatio: "1/1",
               overflow: "hidden",
             }}
           >
             <Image
               src={imageSrc2}
-              alt={alt2 ||`${title} - Image 2`}
+              alt={alt2 || `${title} - Image 2`}
               fill
               className="object-cover transition-transform duration-500 group-hover:scale-105"
               sizes="50vw"

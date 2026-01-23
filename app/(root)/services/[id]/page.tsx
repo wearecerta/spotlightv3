@@ -1,6 +1,9 @@
 import OurAgency from "@/components/sections/OurAgency";
 import Image from "next/image";
-import { SERVICE_BY_SLUG_QUERY, SERVICE_SEO_QUERY } from "@/sanity/queries/serviceQuery";
+import {
+  SERVICE_BY_SLUG_QUERY,
+  SERVICE_SEO_QUERY,
+} from "@/sanity/queries/serviceQuery";
 import { client } from "@/sanity/lib/client";
 
 interface Props {
@@ -103,7 +106,11 @@ export default async function ServiceDetailPage({ params }: Props) {
           {heroImage && (
             <div
               className="bg-(--spotlight-200)"
-              style={{ position: "relative", width: "100%", height: 420 }}
+              style={{
+                position: "relative",
+                width: "100%",
+               aspectRatio: "16 / 9",
+              }}
             >
               <Image
                 src={heroImage.asset.url}
@@ -177,14 +184,15 @@ export default async function ServiceDetailPage({ params }: Props) {
                 {introductionSection.images.map((img: any, i: number) => (
                   <div
                     key={i}
-                    style={{ position: "relative", height: 360 }}
-                    className="md:flex-1"
+                    style={{ position: "relative" }}
+                    className="relative md:flex-1 aspect-square overflow-hidden"
                   >
                     <Image
                       src={img.asset?.url ?? "/placeholder.png"}
                       alt={img.alt ?? `Service image ${i + 1}`}
                       fill
                       style={{ objectFit: "cover" }}
+                      className="aspect-square"
                     />
                   </div>
                 ))}

@@ -154,7 +154,7 @@ export default function ProjectCard({
 
       {/* MEDIA SECTION — auto expands to fit height you give */}
       <div
-        className="relative w-full aspect-video overflow-hidden rounded-b-2xl"
+        className="relative md:h-full aspect-video overflow-hidden rounded-b-2xl"
         style={{ background: "#1A1A20" }}
       >
         {mediaType === "image" && imageSrc && (
@@ -183,7 +183,7 @@ export default function ProjectCard({
           />
         )}
         {mediaType === "youtube" && youtubeVideoId && (
-          <div className="w-full h-full relative">
+          <div className="w-full h-full  relative">
             {!isIframeLoaded && (
               <img
                 src={`https://img.youtube.com/vi/${youtubeVideoId}/maxresdefault.jpg`}
@@ -200,7 +200,7 @@ export default function ProjectCard({
               allowFullScreen
               style={{ border: "none" }}
               title={title}
-              loading="lazy"
+              loading="lazy"              
             />
           </div>
         )}

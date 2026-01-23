@@ -116,10 +116,10 @@ export default async function WorkDetail({ params }: Props) {
           }}
         >
           {/* Title */}
-          <h1
+          <h2
             style={{
               fontFamily: "var(--font-primary, 'Bebas Neue')",
-              fontSize: "var(--h2-size, 148px)",
+              // fontSize: "var(--h2-size, 148px)",
               fontStyle: "normal",
               fontWeight: "400",
               lineHeight: "100%",
@@ -129,15 +129,16 @@ export default async function WorkDetail({ params }: Props) {
               color: "#4A4A5A",
               margin: 0,
             }}
+            className="md:text-[92px] text-[64px]"
           >
             {workData?.title}
-          </h1>
+          </h2>
 
           {/* Tagline */}
           <p
             style={{
               fontFamily: "var(--font-secondary, 'Outfit')",
-              fontSize: "var(--accent-medium-size)",
+              fontSize: "24px",
               fontStyle: "normal",
               fontWeight: "400",
               lineHeight: "150%",
@@ -310,6 +311,7 @@ export default async function WorkDetail({ params }: Props) {
                   lineHeight: "150%",
                   letterSpacing: "0%",
                   color: "#4A4A5A",
+                  textAlign: "right",
                 }}
               >
                 {(workData.service || [])

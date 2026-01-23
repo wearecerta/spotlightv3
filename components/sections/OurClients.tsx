@@ -66,7 +66,7 @@ export default function OurClients() {
       </h2>
 
       {/* Clients Grid */}
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[var(--space-xs)] w-full max-w-[1440px]">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-[var(--space-xs)] w-full max-w-[1440px]">
         {clients.map((client: any) => (
           <div
             key={client._id}

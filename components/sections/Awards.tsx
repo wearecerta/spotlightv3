@@ -5,25 +5,43 @@ export default function Awards() {
   const awards = [
     {
       id: 1,
-      organization: "SAFARICOM",
-      award: "Excellence in Design",
-      imageSrc: "/Home/award1.png",
+      organization: "Edelman African Network",
+      award: "Excellence In Design Award, Safaricom",
+      imageSrc: "/Home/award-1.webp",
     },
     {
       id: 2,
-      organization: "AFRICAN MARKETING CONFEDERATION",
-      award: "Most Effective Campaign of the year",
-      imageSrc: "/Home/award2.png",
+      organization: "African Marketing Confederation",
+      award: "Most Effective Campaign of the Year 2025, Safaricom",
+      imageSrc: "/Home/award-5.webp",
     },
     {
       id: 3,
-      organization: "ABBOTT LABORATORIES",
-      award: "Story telling mastery award",
-      imageSrc: "/Home/award3.png",
+      organization: "Edelman African Network",
+      award: "Storytelling Mastery Award Abbot Laboratories",
+      imageSrc: "/Home/award-2.webp",
     },
-    
+    {
+      id: 4,
+      organization: "SafEdelman African Networksaricom",
+      award: "Best Campaign of the Year 2024, Safaricom",
+      imageSrc: "/Home/award-3.webp",
+    },
+    {
+      id: 5,
+      organization: "African Marketing Confederation",
+      award: "Not for profit/public sector of the year, Min of Health & Blood Bank ETH",
+      imageSrc: "/Home/awards-4.webp",
+    },
+    {
+      id: 6,
+      organization: "Edelman African Network",
+      award:"Outstanding Collaboration Award, Safaricom",
+      imageSrc: "/Home/award-6.webp",
+    },
   ];
-
+  const firstRow = awards.slice(0, 3);
+  const secondRow = awards.slice(3, 6);
   return (
     <section
       className="flex w-full overflow-hidden "
@@ -84,6 +102,8 @@ export default function Awards() {
       </div>
 
       {/* Awards Container on Desktop  */}
+
+      {/* first row */}
       <div
         className="w-full  hidden md:flex justify-center items-center max-w-[1440px] mx-auto"
         style={{
@@ -91,7 +111,7 @@ export default function Awards() {
           alignSelf: "stretch",
         }}
       >
-        {awards.map((award, index) => {
+        {firstRow.map((award, index) => {
           // Left and Right cards
           if (index === 0 || index === 2) {
             return (
@@ -151,6 +171,65 @@ export default function Awards() {
         })}
       </div>
 
+      {/* second row */}
+      <div
+        className="w-full  hidden md:flex justify-center items-center max-w-[1440px] mx-auto"
+        style={{
+          gap: "var(--space-lg, 32px)",
+          alignSelf: "stretch",
+        }}
+      >
+        {secondRow.map((award, index) => {
+          // Left and Right cards
+          if (index === 0 || index === 2) {
+            return (
+              <div
+                key={award.id}
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  alignItems: "flex-start",
+                  gap: "16px",
+                  flex: "1 0 0",
+                  alignSelf: "stretch",
+                }}
+                className="-mt-96"
+              >
+                <AwardsCard
+                  organization={award.organization}
+                  award={award.award}
+                  imageSrc={award.imageSrc}
+                  className="w-full"
+                />
+              </div>
+            );
+          }
+
+          // Middle card
+          return (
+            <div
+              key={award.id}
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center",
+                gap: "var(--space-xxl, 64px)",
+                flex: "1 0 0",
+              }}
+            >
+              {/* Middle Award Card */}
+              <AwardsCard
+                organization={award.organization}
+                award={award.award}
+                imageSrc={award.imageSrc}
+                className="w-full"
+              />
+            </div>
+          );
+        })}
+      </div>
       {/* Awards container on mobile */}
       <div
         className="w-full flex flex-col md:hidden justify-center items-center max-w-[1440px] mx-auto"
