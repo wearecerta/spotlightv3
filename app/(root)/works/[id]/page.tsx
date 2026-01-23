@@ -30,7 +30,7 @@ export default async function WorkDetail({ params }: Props) {
   const param = await params;
   const slug = param.id;
 
-  const workData = await client.fetch(CASE_STUDIES_DETAIL, { slug });
+  const workData = await client.fetch(CASE_STUDIES_DETAIL, { slug }, { next: { revalidate: 60 } });
 
   if (!workData) {
     return (

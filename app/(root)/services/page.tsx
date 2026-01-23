@@ -3,7 +3,7 @@ import { client } from "@/sanity/lib/client";
 import { SERVICES_QUERY } from "@/sanity/queries/serviceQuery";
 
 export default async function Service() {
-  const services = await client.fetch(SERVICES_QUERY) || [];
+  const services = await client.fetch(SERVICES_QUERY, {}, { next: { revalidate: 60 } }) || [];
   return (
     <main
       style={{

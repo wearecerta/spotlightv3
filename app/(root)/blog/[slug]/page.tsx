@@ -9,7 +9,7 @@ export async function generateMetadata({
   params,
 }: BlogDetailPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const blogData = await client.fetch(BLOG_SEO_QUERY, { slug });
+  const blogData = await client.fetch(BLOG_SEO_QUERY, { slug }, { next: { revalidate: 60 } });
 
   if (!blogData) {
     return {
@@ -39,7 +39,7 @@ interface BlogDetailPageProps {
 
 export default async function BlogDetail({ params }: BlogDetailPageProps) {
   const { slug } = await params;
-  const blogData = await client.fetch(BLOG_DETAIL_QUERY, { slug });
+  const blogData = await client.fetch(BLOG_DETAIL_QUERY, { slug }, { next: { revalidate: 60 } });
 
   return (
     <main

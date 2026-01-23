@@ -6,7 +6,7 @@ import { CASE_STUDIES } from "@/sanity/queries/caseStudyQuery";
 import { client } from "@/sanity/lib/client";
 
 export default async function Ourworks() {
-  const data = await client.fetch(CASE_STUDIES);
+  const data = await client.fetch(CASE_STUDIES, {}, { next: { revalidate: 60 } });
   const works = data?.slice(0, 5)??[];
 
   return (

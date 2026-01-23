@@ -3,7 +3,7 @@ import { TeamMemberCard } from "../ui/TeamMemberCard";
 import { LEADERSHIP_TEAM_QUERY } from "@/sanity/queries/AboutUsQuery";
 import { urlFor } from "@/sanity/lib/image";
 export default async function Leadership() {
-   const Teams = await client.fetch(LEADERSHIP_TEAM_QUERY);
+   const Teams = await client.fetch(LEADERSHIP_TEAM_QUERY, {}, { next: { revalidate: 60 } });
 
   if (!Teams) return null;
  

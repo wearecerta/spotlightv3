@@ -7,7 +7,7 @@ import { TEAMS_QUERY } from "@/sanity/queries/AboutUsQuery";
 import { urlFor } from "@/sanity/lib/image";
 
 export default async function About() {
-  const teams = (await client.fetch(TEAMS_QUERY)) || [];
+  const teams = await client.fetch(TEAMS_QUERY, {}, { next: { revalidate: 60 } })|| [];
 
   return (
     <main

@@ -5,7 +5,7 @@ import { client } from "@/sanity/lib/client";
 import FilteredWorks from "@/components/sections/FilterdWorks";
 
 export default async function Work() {
-  const works = await client.fetch(CASE_STUDIES);
+  const works = await client.fetch(CASE_STUDIES, {}, { next: { revalidate: 60 } }) || [];
 
   return (
     <main className="min-h-screen bg-[#F7F7F8] mx-auto">

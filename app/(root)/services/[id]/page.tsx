@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: Props) {
 
   const serviceDetail: any = await client.fetch(SERVICE_SEO_QUERY, {
     slug,
-  });
+  }, { next: { revalidate: 60 } });
 
   const seo = serviceDetail?.serviceDetail?.onPageSeo;
 
@@ -37,7 +37,7 @@ export default async function ServiceDetailPage({ params }: Props) {
   const slug = param.id;
   let serviceDetail: any = null;
   try {
-    serviceDetail = await client.fetch(SERVICE_BY_SLUG_QUERY, { slug });
+    serviceDetail = await client.fetch(SERVICE_BY_SLUG_QUERY, { slug }, { next: { revalidate: 60 } });
   } catch (err) {
     console.error("Error fetching service:", err);
     serviceDetail = null;

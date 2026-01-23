@@ -3,7 +3,7 @@ import { client } from "@/sanity/lib/client";
 import { BLOG_LIST_QUERY } from "@/sanity/queries/blogQuery";
 
 export default async function Blog() {
-  const blog = await client.fetch(BLOG_LIST_QUERY);
+  const blog = await client.fetch(BLOG_LIST_QUERY , {}, { next: { revalidate: 60 } }) || [];
 
   return (
     <main

@@ -5,7 +5,7 @@ import Image from "next/image";
 
 export default async function OurAgency() {
 
-    const agencies= await client.fetch(AGENCIES_QUERY)||[]
+    const agencies= await client.fetch(AGENCIES_QUERY, {}, { next: { revalidate: 60 } })||[]
   
   // const agencies = [
   //   { id: 1, name: "Urban", logo: "/Home/urban.svg" },
