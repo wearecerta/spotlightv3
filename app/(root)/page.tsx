@@ -11,7 +11,6 @@ import OurClients from "@/components/sections/OurClients";
 import OurAgency from "@/components/sections/OurAgency";
 
 export default async function Home() {
-  const data = await client.fetch(homePageQuery)
   return (
 
     <div>

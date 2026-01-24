@@ -171,7 +171,7 @@ export default function ServicesCard({
           //   width: "100vw",
           //   height: "600px",
           // }}
-          className="grid grid-cols-1 md:grid-cols-2 gap-0  w-full h-[600px]"
+          className="grid grid-cols-1 md:grid-cols-2 gap-0  w-full "
         >
           {/* Image 1 */}
           <div
@@ -186,7 +186,7 @@ export default function ServicesCard({
               alt={alt1 || `${title} - Image 1`}
               fill
               className="object-cover transition-transform duration-500 group-hover:scale-105"
-              sizes="50vw"
+              
             />
           </div>
 
@@ -203,7 +203,6 @@ export default function ServicesCard({
               alt={alt2 || `${title} - Image 2`}
               fill
               className="object-cover transition-transform duration-500 group-hover:scale-105"
-              sizes="50vw"
             />
           </div>
         </div>
