@@ -3,10 +3,13 @@ import { TeamMemberCard } from "../ui/TeamMemberCard";
 import { LEADERSHIP_TEAM_QUERY } from "@/sanity/queries/AboutUsQuery";
 import { urlFor } from "@/sanity/lib/image";
 export default async function Leadership() {
-   const Teams = await client.fetch(LEADERSHIP_TEAM_QUERY, {}, { next: { revalidate: 60 } });
+  const Teams = await client.fetch(
+    LEADERSHIP_TEAM_QUERY,
+    {},
+    { next: { revalidate: 60 } },
+  );
 
   if (!Teams) return null;
- 
 
   return (
     <section
@@ -42,13 +45,31 @@ export default async function Leadership() {
 
       {/* Team Grid - 3 rows, 5 columns */}
       <div className="grid grid-cols-3 md:grid-cols-5 gap-(--space-lg) w-full max-w-[1400px]">
-        {Teams.teamMembers.map((member:any, index:number) => (
+        {Teams.teamMembers.map((member: any, index: number) => (
           <TeamMemberCard
             key={index}
             name={member?.name || ""}
             position={member?.position || ""}
-            imageSrc={member?.mainImage?.asset?.url || ""}
-            imageHoverSrc={member?.secondaryImage?.asset?.url || ""}
+            imageSrc={
+              member?.mainImage
+                ? urlFor(member.mainImage)
+                    .width(400)
+                    .height(600)
+                    .quality(80)
+                    .format("webp")
+                    .url()
+                : ""
+            }
+            imageHoverSrc={
+              member?.secondaryImage
+                ? urlFor(member.secondaryImage)
+                    .width(400)
+                    .height(600)
+                    .quality(80)
+                    .format("webp")
+                    .url()
+                : ""
+            }
           />
         )) || []}
       </div>

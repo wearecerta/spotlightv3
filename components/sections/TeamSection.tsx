@@ -10,13 +10,10 @@ interface TeamSectionProps {
     hoverSrc?: string;
     alt: string;
     position: string;
-    name: string
+    name: string;
   }>;
 }
 
-
-
-// Individual Photo Card Component with Hover Effect (same as Leadership)
 function TeamPhotoCard({
   imageSrc,
   imageHoverSrc,
@@ -32,90 +29,64 @@ function TeamPhotoCard({
   name: string;
   position: string;
 }) {
-
   const [isHovered, setIsHovered] = useState(false);
   const [hoverImageLoaded, setHoverImageLoaded] = useState(false);
-
-
 
   return (
     <div
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      style={{
-        position: "relative",
-        width: "100%",
-        aspectRatio: "3/4",
-        overflow: "hidden",
-        cursor: imageHoverSrc ? "pointer" : "default",
-      }}
+      className="relative w-full aspect-[3/4] overflow-hidden"
+      style={{ cursor: imageHoverSrc ? "pointer" : "default" }}
     >
       {/* Default Image */}
       <div
+        className="absolute inset-0 transition-all duration-300 ease-out"
         style={{
-          position: "absolute",
-          inset: 0,
           opacity: isHovered && imageHoverSrc ? 0 : 1,
           transform:
             isHovered && imageHoverSrc ? "translateX(-100%)" : "translateX(0)",
-          transition: "opacity 0.3s ease, transform 0.3s ease",
         }}
       >
-        <img
+        <Image
           src={imageSrc}
           alt={alt}
-          className="object-cover"
+          fill
+          priority={priority}
           sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 20vw"
-          style={{
-            filter: "grayscale(100%)",
-            transition: "filter 0.3s ease",
-          }}
+          className="object-cover grayscale transition-all duration-300"
         />
-        {/* Gradient Overlay for Default Image */}
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            background:
-              "linear-gradient(180deg, rgba(12, 12, 14, 0) 0%, var(--color-Spotlight-Color-Spotlight-Black, #0C0C0E) 100%)",
-            pointerEvents: "none",
-          }}
-        />
+
+        {/* Gradient */}
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#0C0C0E]" />
       </div>
 
-      {/* Hover Image - Only load when hovered */}
+      {/* Hover Image – loaded only when hovered */}
       {imageHoverSrc && (isHovered || hoverImageLoaded) && (
         <div
+          className="absolute inset-0 transition-all duration-300 ease-out"
           style={{
-            position: "absolute",
-            inset: 0,
             opacity: isHovered ? 1 : 0,
             transform: isHovered ? "translateX(0)" : "translateX(100%)",
-            transition: "opacity 0.3s ease, transform 0.3s ease",
           }}
         >
-          <img
+          <Image
             src={imageHoverSrc}
             alt={`${alt} - Hover`}
-            className="object-cover"
+            fill
             sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 20vw"
+            className="object-cover"
+            priority={priority}
             onLoad={() => setHoverImageLoaded(true)}
           />
-          {/* Gradient Overlay for Hover Image */}
-          <div
-            style={{
-              position: "absolute",
-              inset: 0,
-              background:
-                "linear-gradient(180deg, rgba(12, 12, 14, 0) 0%, var(--color-Spotlight-Color-Spotlight-Black, #0C0C0E) 100%)",
-              pointerEvents: "none",
-            }}
-          />
+
+          {/* Gradient */}
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#0C0C0E]" />
         </div>
       )}
 
-        {/* Name and Position Overlay - Shows on Hover */}
-      <div
+      {/* Name & Position */}
+     <div
         style={{
           position: 'absolute',
           bottom: 0,
@@ -167,7 +138,6 @@ export default function TeamSection({
   titleSvgSrc,
   groupPhoto,
   individualPhotos,
-  
 }: TeamSectionProps) {
   return (
     <section
@@ -177,7 +147,7 @@ export default function TeamSection({
         //   "var(--section-margin-y, 120px) var(--section-margin-y, 120px)",
         flexDirection: "column",
         alignItems: "center",
-        justifyContent:"center",
+        justifyContent: "center",
         gap: "var(--space-xxl, 64px)",
         alignSelf: "stretch",
         background: "var(--spotlight-950, #0C0C0E)",
@@ -196,7 +166,6 @@ export default function TeamSection({
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          
         }}
       >
         {/* Title SVG */}
@@ -231,7 +200,6 @@ export default function TeamSection({
           <img
             src={groupPhoto}
             alt={`Group Photo`}
-            
             className="object-cover"
             sizes="(max-width: 1400px) 100vw, 1400px"
           />
@@ -248,25 +216,20 @@ export default function TeamSection({
         </div>
       </div>
 
-
-      
-
       {/* Individual Photos Grid */}
       {individualPhotos?.length > 0 && (
         <div
-className={`
+          className={`
     grid place-items-center grid-cols-3 justify-center gap-4
     ${
       individualPhotos.length >= 5
         ? "md:grid-cols-5"
         : individualPhotos.length === 4
-        ? "md:grid-cols-4"
-        : "md:grid-cols-3"
+          ? "md:grid-cols-4"
+          : "md:grid-cols-3"
     }
   `}
           style={{
-  
-    
             // display: "grid",
             // gridTemplateColumns: `repeat(auto-fit, minmax(150px, 1fr))`,
             // gap: "var(--space-lg, 32px)",
@@ -276,15 +239,14 @@ className={`
         >
           {individualPhotos.map((photo, index) => (
             <TeamPhotoCard
-  key={index}
-  imageSrc={photo.src}
-  imageHoverSrc={photo.hoverSrc}
-  alt={photo.alt}
-  priority={index < 3}
-  name={photo.name}
-  position={photo.position}
-/>
-
+              key={index}
+              imageSrc={photo.src}
+              imageHoverSrc={photo.hoverSrc}
+              alt={photo.alt}
+              priority={index < 3}
+              name={photo.name}
+              position={photo.position}
+            />
           ))}
         </div>
       )}

@@ -40,12 +40,15 @@ export function TeamMemberCard({
           transition: "opacity 0.3s ease, transform 0.3s ease",
         }}
       >
-        <img
+        <Image
           src={imageSrc}
           alt={name}
-          className="object-cover"
+          fill
           sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 20vw"
+          className="object-cover"
+          priority
         />
+
         {/* Gradient Overlay for Default Image */}
         <div
           style={{
@@ -69,13 +72,15 @@ export function TeamMemberCard({
             transition: "opacity 0.3s ease, transform 0.3s ease",
           }}
         >
-          <img
+          <Image
             src={imageHoverSrc}
             alt={`${name} - ${position}`}
-            className="object-cover"
+            fill
             sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 20vw"
+            className="object-cover"
             onLoad={() => setHoverImageLoaded(true)}
           />
+
           {/* Gradient Overlay for Hover Image */}
           <div
             style={{
@@ -134,5 +139,6 @@ export function TeamMemberCard({
           {position}
         </p>
       </div>
-    </div>  );
+    </div>
+  );
 }

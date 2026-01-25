@@ -4,9 +4,11 @@ import TeamSection from "@/components/sections/TeamSection";
 import TextRevealEffect from "@/components/sections/Text-Reveal-Effect";
 import { client } from "@/sanity/lib/client";
 import { TEAMS_QUERY } from "@/sanity/queries/AboutUsQuery";
+import { urlFor } from "@/sanity/lib/image";
 
 export default async function About() {
-  const teams = await client.fetch(TEAMS_QUERY, {}, { next: { revalidate: 60 } })|| [];
+  const teams =
+    (await client.fetch(TEAMS_QUERY, {}, { next: { revalidate: 60 } })) || [];
 
   return (
     <main
@@ -230,8 +232,23 @@ export default async function About() {
           titleSvgSrc={team.titleSvg.asset.url}
           groupPhoto={team.teamsGroupImage.asset.url}
           individualPhotos={team.teamMembers.map((member: any) => ({
-            src: member?.mainImage?.asset?.url || "",
-            hoverSrc: member?.secondaryImage?.asset?.url || "",
+            src: member?.mainImage
+              ? urlFor(member.mainImage)
+                  .width(400)
+                  .height(600)
+                  .quality(80)
+                  .format("webp")
+                  .url()
+              : "",
+            hoverSrc: member?.secondaryImage
+              ? urlFor(member.secondaryImage)
+                  .width(400)
+                  .height(600)
+                  .quality(80)
+                  .format("webp")
+                  .url()
+              : "",
+
             alt: member?.name || "",
             name: member?.name || "",
             position: member?.position || "",
