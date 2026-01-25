@@ -165,6 +165,7 @@ export default function ProjectCard({
             fill
             className="object-cover"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            quality={80}
           />
         )}
 
@@ -184,25 +185,27 @@ export default function ProjectCard({
           />
         )}
         {mediaType === "youtube" && youtubeVideoId && (
-          <div className="w-full h-full  relative">
-            {!isIframeLoaded && (
-              <img
-                src={`https://img.youtube.com/vi/${youtubeVideoId}/maxresdefault.jpg`}
+          <div className="w-full h-full relative">
+            {!isIframeLoaded ? (
+              <Image
+                src={`https://img.youtube.com/vi/${youtubeVideoId}/hqdefault.jpg`}
                 alt={title}
+                width={634}
+                height={356}
                 className="w-full h-full object-cover cursor-pointer"
                 onClick={() => setIsIframeLoaded(true)}
               />
+            ) : (
+              <iframe
+                src={getYouTubeEmbedUrl(youtubeVideoId)}
+                className="absolute inset-0 w-full h-full"
+                allow="autoplay; encrypted-media"
+                allowFullScreen
+                style={{ border: "none" }}
+                title={title}
+                loading="lazy"
+              />
             )}
-            <iframe
-              src={getYouTubeEmbedUrl(youtubeVideoId)}
-              className={`absolute inset-0 w-full h-full     ${isIframeLoaded ? "opacity-100" : "opacity-0"}
-          `}
-              allow="autoplay; encrypted-media"
-              allowFullScreen
-              style={{ border: "none" }}
-              title={title}
-              loading="lazy"              
-            />
           </div>
         )}
 
