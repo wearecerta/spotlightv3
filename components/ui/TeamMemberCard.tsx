@@ -74,7 +74,6 @@ export function TeamMemberCard({
             alt={`${name} - ${position}`}
             className="object-cover"
             sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 20vw"
-            loading="lazy"
             onLoad={() => setHoverImageLoaded(true)}
           />
           {/* Gradient Overlay for Hover Image */}

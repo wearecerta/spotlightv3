@@ -3,7 +3,9 @@ import { client } from "@/sanity/lib/client";
 import { SERVICES_QUERY } from "@/sanity/queries/serviceQuery";
 
 export default async function Service() {
-  const services = await client.fetch(SERVICES_QUERY, {}, { next: { revalidate: 60 } }) || [];
+  const services =
+    (await client.fetch(SERVICES_QUERY, {}, { next: { revalidate: 60 } })) ||
+    [];
   return (
     <main
       style={{
@@ -66,7 +68,7 @@ export default async function Service() {
           }}
         >
           <iframe
-            src="https://www.youtube.com/embed/3tr8ydUIH9M?autoplay=1&mute=1&loop=1&playlist=3tr8ydUIH9M&controls=0&modestbranding=1&rel=0&showinfo=0"
+            src="https://www.youtube.com/embed/F3GetToXalk?autoplay=1&mute=1&loop=1&playlist=F3GetToXalk&controls=0&modestbranding=1&rel=0&showinfo=0"
             className="absolute inset-0 w-full h-full"
             allow="autoplay; encrypted-media"
             allowFullScreen
@@ -86,7 +88,7 @@ export default async function Service() {
           }}
         >
           <iframe
-            src="https://www.youtube.com/embed/m3EE-AoMtQc?autoplay=1&mute=1&loop=1&playlist=m3EE-AoMtQc&controls=0&modestbranding=1&rel=0&showinfo=0"
+            src="https://www.youtube.com/embed/AgzBUr90f2w?autoplay=1&mute=1&loop=1&playlist=AgzBUr90f2w&controls=0&modestbranding=1&rel=0&showinfo=0"
             className="absolute inset-0 w-full h-full"
             allow="autoplay; encrypted-media"
             allowFullScreen
@@ -106,7 +108,7 @@ export default async function Service() {
           }}
         >
           <iframe
-            src="https://www.youtube.com/embed/04wFmHXiC8k?autoplay=1&mute=1&loop=1&playlist=04wFmHXiC8k&controls=0&modestbranding=1&rel=0&showinfo=0"
+            src="https://www.youtube.com/embed/dVc7QGh_Q-E?autoplay=1&mute=1&loop=1&playlist=dVc7QGh_Q-E&controls=0&modestbranding=1&rel=0&showinfo=0"
             className="absolute inset-0 w-full h-full"
             allow="autoplay; encrypted-media"
             allowFullScreen
@@ -120,15 +122,15 @@ export default async function Service() {
       <div className="flex flex-col">
         {services?.map((service: any) => (
           <ServicesCard
-            key={service._id}
-            title={service.title}
-            description={service.description}
-            services={service.subServices}
-            imageSrc1={service.images?.[0]?.asset?.url}
-            alt1={service.images?.[0]?.alt}
-            imageSrc2={service.images?.[1]?.asset?.url}
-            alt2={service.images?.[1]?.alt}
-            href={`/services/${service.slug?.current}`||"#"}
+            key={service?._id}
+            title={service?.title || ""}
+            description={service?.description || ""}
+            services={service?.subServices || []}
+            imageSrc1={service?.images?.[0]?.asset?.url || ""}
+            alt1={service.images?.[0]?.alt || ""}
+            imageSrc2={service?.images?.[1]?.asset?.url || ""}
+            alt2={service.images?.[1]?.alt || ""}
+            href={`/services/${service?.slug?.current}` || "#"}
           />
         ))}
       </div>

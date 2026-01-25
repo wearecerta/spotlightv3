@@ -66,7 +66,6 @@ function TeamPhotoCard({
           alt={alt}
           className="object-cover"
           sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 20vw"
-          loading={priority ? undefined : "lazy"}
           style={{
             filter: "grayscale(100%)",
             transition: "filter 0.3s ease",
@@ -100,7 +99,6 @@ function TeamPhotoCard({
             alt={`${alt} - Hover`}
             className="object-cover"
             sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 20vw"
-            loading="lazy"
             onLoad={() => setHoverImageLoaded(true)}
           />
           {/* Gradient Overlay for Hover Image */}

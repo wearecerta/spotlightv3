@@ -29,8 +29,29 @@ export const services = defineType({
 
     defineField({
       name: "subServices",
+      title: "Sub Services",
       type: "array",
-      of: [{ type: "string" }],
+      of: [
+        {
+          type: "object",
+          fields: [
+            {
+              name: "title",
+              title: "Sub Service",
+              type: "string",
+            },
+            {
+              name: "slug",
+              title: "Article Slug",
+              type: "slug",
+              options: {
+                source: "title",
+                maxLength: 96,
+              },
+            },
+          ],
+        },
+      ],
     }),
 
     defineField({
@@ -64,7 +85,7 @@ export const services = defineType({
           type: "string",
           title: "Hero Title",
         }),
-         defineField({
+        defineField({
           name: "onPageSeo",
           type: "onPageSeo",
         }),
@@ -121,8 +142,6 @@ export const services = defineType({
           name: "frequentlyAskedQuestions",
           type: "frequentlyAskedQuestions",
         }),
-
-       
       ],
     }),
   ],

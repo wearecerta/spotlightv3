@@ -106,6 +106,7 @@ export default function ProjectCard({
               color: dark ? "#FFFFFF" : "#0C0C0E",
               fontSize: "var(--h4-size)",
               lineHeight: "var(--h4-line)",
+              lineClamp: 2,
             }}
           >
             {title}
@@ -154,7 +155,7 @@ export default function ProjectCard({
 
       {/* MEDIA SECTION — auto expands to fit height you give */}
       <div
-        className="relative md:h-full aspect-video overflow-hidden rounded-b-2xl"
+        className="relative aspect-video overflow-hidden rounded-b-2xl"
         style={{ background: "#1A1A20" }}
       >
         {mediaType === "image" && imageSrc && (

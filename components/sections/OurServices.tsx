@@ -5,8 +5,9 @@ import Link from "next/link";
 import { SERVICES_QUERY } from "@/sanity/queries/serviceQuery";
 import { client } from "@/sanity/lib/client";
 export default async function OurServices() {
-
-  const services= await client.fetch(SERVICES_QUERY, {}, { next: { revalidate: 60 } }) || [];
+  const services =
+    (await client.fetch(SERVICES_QUERY, {}, { next: { revalidate: 60 } })) ||
+    [];
 
   // const services = [
   //   {
@@ -171,12 +172,11 @@ export default async function OurServices() {
             // padding: "var(--section-margin-y) var(--section-margin-x)",
             pointerEvents: "auto",
           }}
-          
         >
           {/* Service Cards Grid - Zig-zag layout */}
           <div className="w-full">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 auto-rows-max">
-              {services?.map((service:any, index:number) => {
+              {services?.map((service: any, index: number) => {
                 // Zig-zag pattern: odd indices (0, 2, 4, 6) go left, even indices (1, 3, 5, 7) go right
                 const isLeft = index % 2 === 0;
                 const gridRow = index + 1; // Row number (1-based for CSS Grid)
@@ -193,8 +193,8 @@ export default async function OurServices() {
                       number={(index + 1).toString().padStart(2, "0")}
                       title={service?.title}
                       description={service?.description}
-                      services={service?.subServices}
-                      href={"/services/"+service?.slug?.current}
+                      services={service?.subServices?.map((s:any) => s.title)}
+                      href={"/services/" + service?.slug?.current}
                       className="w-full"
                     />
                   </div>

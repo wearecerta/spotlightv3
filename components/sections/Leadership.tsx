@@ -47,8 +47,8 @@ export default async function Leadership() {
             key={index}
             name={member?.name || ""}
             position={member?.position || ""}
-            imageSrc={member?.mainImage ?urlFor(member?.mainImage)?.format('webp').url() :""}
-            imageHoverSrc={member?.mainImage ?urlFor(member?.secondaryImage)?.format('webp').url():"" }
+            imageSrc={member?.mainImage?.asset?.url || ""}
+            imageHoverSrc={member?.secondaryImage?.asset?.url || ""}
           />
         )) || []}
       </div>

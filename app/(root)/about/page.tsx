@@ -4,7 +4,6 @@ import TeamSection from "@/components/sections/TeamSection";
 import TextRevealEffect from "@/components/sections/Text-Reveal-Effect";
 import { client } from "@/sanity/lib/client";
 import { TEAMS_QUERY } from "@/sanity/queries/AboutUsQuery";
-import { urlFor } from "@/sanity/lib/image";
 
 export default async function About() {
   const teams = await client.fetch(TEAMS_QUERY, {}, { next: { revalidate: 60 } })|| [];
@@ -231,8 +230,8 @@ export default async function About() {
           titleSvgSrc={team.titleSvg.asset.url}
           groupPhoto={team.teamsGroupImage.asset.url}
           individualPhotos={team.teamMembers.map((member: any) => ({
-            src: urlFor(member?.mainImage).format("webp").url(),
-            hoverSrc: urlFor(member?.secondaryImage).format("webp").url(),
+            src: member?.mainImage?.asset?.url || "",
+            hoverSrc: member?.secondaryImage?.asset?.url || "",
             alt: member?.name || "",
             name: member?.name || "",
             position: member?.position || "",

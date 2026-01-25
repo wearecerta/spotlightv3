@@ -21,9 +21,9 @@ export default function OurServicesCard({
   className = "",
 }: OurServicesCardProps) {
   // Split services into two columns
-  const midPoint = Math.ceil(services.length / 2);
-  const leftColumn = services.slice(0, midPoint);
-  const rightColumn = services.slice(midPoint);
+  const midPoint = Math.ceil(services?.length / 2);
+  const leftColumn = services?.slice(0, midPoint);
+  const rightColumn = services?.slice(midPoint);
 
   return (
     <Link
@@ -107,7 +107,7 @@ export default function OurServicesCard({
         <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
           {/* Left Column */}
           <div className="space-y-0  pr-0 md:pr-6">
-            {leftColumn.map((service, index) => (
+            {leftColumn?.map((service, index) => (
               <div key={index}>
                 <div
                   className="py-3 md:text-center border-b border-[var(--spotlight-800)] "
@@ -126,7 +126,7 @@ export default function OurServicesCard({
 
           {/* Right Column */}
           <div className="space-y-0 md:pl-6">
-            {rightColumn.map((service, index) => (
+            {rightColumn?.map((service, index) => (
               <div key={index}>
                 <div
                   className="py-3 md:text-center border-b border-[var(--spotlight-800)] "

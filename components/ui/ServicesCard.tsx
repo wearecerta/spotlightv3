@@ -6,7 +6,12 @@ import Image from "next/image";
 interface ServicesCardProps {
   title: string;
   description: string;
-  services: string[];
+  services: {
+    title: string;
+    slug: {
+      current: string;
+    };
+  }[];
   imageSrc1: string;
   imageSrc2: string;
   href: string;
@@ -43,13 +48,13 @@ export default function ServicesCard({
         }}
         className="p-(--space-sm) md:px-(--space-xxl) md:py-6"
       >
-        <Link
-          href={href}
-          className="block w-full group "
+        <div
+          className="block w-full group"
           style={{ maxWidth: "1200px", margin: "0 auto" }}
         >
           {/* Arrow Icon - Top Right */}
-          <div
+          <Link
+            href={href}
             style={{
               display: "flex",
               justifyContent: "flex-end",
@@ -64,10 +69,11 @@ export default function ServicesCard({
               height={24}
               className="transition-transform hidden md:block h-6 w-6"
             />
-          </div>
+          </Link>
 
           {/* Title and Description */}
-          <div
+          <Link
+            href={href}
             // style={{
             //   display: "flex",
             //   alignItems: "flex-start",
@@ -119,20 +125,25 @@ export default function ServicesCard({
             >
               {description}
             </p>
-          </div>
+          </Link>
 
           {/* Services List */}
           <div className="md:flex flex-wrap items-center hidden gap-(--space-sm)">
             {services?.map((service, index) => (
               <div
-                key={index}
+                key={service?.slug?.current || index}
                 style={{
                   display: "flex",
                   alignItems: "center",
                   gap: "var(--space-sm, 16px)",
                 }}
               >
-                <span
+                <Link
+                  href={
+                    service?.slug?.current
+                      ? `/blog/${service?.slug?.current}`
+                      : "#"
+                  }
                   style={{
                     color: "#4A4A5A",
                     fontFamily: "var(--font-secondary, Outfit)",
@@ -143,8 +154,8 @@ export default function ServicesCard({
                     textTransform: "uppercase",
                   }}
                 >
-                  {service}
-                </span>
+                  {service.title}
+                </Link>
                 {index < services.length - 1 && (
                   <span
                     style={{
@@ -158,7 +169,7 @@ export default function ServicesCard({
               </div>
             ))}
           </div>
-        </Link>
+        </div>
       </div>
 
       {/* Two Images Side by Side - No Gap (Scrolls Normally) */}
@@ -186,7 +197,6 @@ export default function ServicesCard({
               alt={alt1 || `${title} - Image 1`}
               fill
               className="object-cover transition-transform duration-500 group-hover:scale-105"
-              
             />
           </div>
 

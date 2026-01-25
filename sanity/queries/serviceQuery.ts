@@ -114,28 +114,34 @@ export const SERVICES_QUERY = `
       url
     }
   },
-  subServices
+  subServices[]{
+    title,
+    slug
+  }
 }
 `
+
 export const SERVICE_BY_SLUG_QUERY = `
 *[_type == "services" && slug.current == $slug][0]{
   _id,
   title,
   description,
   slug,
-  subServices,
-  
- 
+
+  subServices[]{
+    title,
+    slug
+  },
 
   serviceDetail{
-   heroTitle,
-  heroImage{
-    alt,
-    asset->{
-      _id,
-      url
-    }
-  },
+    heroTitle,
+    heroImage{
+      alt,
+      asset->{
+        _id,
+        url
+      }
+    },
 
     introductionSection{
       title,
@@ -213,13 +219,13 @@ export const SERVICE_BY_SLUG_QUERY = `
         question,
         answer
       }
-    },
-
-  },
-
-  
+    }
+  }
 }
 `
+
+
+
 export const SERVICE_SEO_QUERY = `
 *[_type == "services" && slug.current == $slug][0]{
   serviceDetail {
