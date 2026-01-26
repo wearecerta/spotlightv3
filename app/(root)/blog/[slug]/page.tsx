@@ -40,6 +40,9 @@ interface BlogDetailPageProps {
 export default async function BlogDetail({ params }: BlogDetailPageProps) {
   const { slug } = await params;
   const blogData = await client.fetch(BLOG_DETAIL_QUERY, { slug }, { next: { revalidate: 60 } });
+  if (!blogData) {
+    return <div className="h-screen flex items-center justify-center">Blog post not found</div>;
+  }
 
   return (
     <main
@@ -78,7 +81,7 @@ export default async function BlogDetail({ params }: BlogDetailPageProps) {
               maxWidth: "1200px",
             }}
           >
-            {blogData.title}
+            {blogData?.title || ""}
           </h3>
 
           {/* Author and Date */}
@@ -94,7 +97,7 @@ export default async function BlogDetail({ params }: BlogDetailPageProps) {
               margin: 0,
             }}
           >
-            By {blogData?.author} · {blogData?.publishedDate}
+            By {blogData?.author} · {blogData?.publishedDate || ""}
           </p>
 
           {/* Categories/Tags */}
@@ -127,7 +130,7 @@ export default async function BlogDetail({ params }: BlogDetailPageProps) {
                     color: "#4A4A5A",
                   }}
                 >
-                  {tag}
+                  {tag || ""}
                 </span>
                 {index < blogData.categories.length - 1 && (
                   <span className="w-3 h-3 rounded-full bg-[#B6B7C3]" />
@@ -138,8 +141,8 @@ export default async function BlogDetail({ params }: BlogDetailPageProps) {
         </div>
         <div className="relative md:p-52 w-full md:w-fit aspect-video">
           <Image
-            src={blogData.mainImage.asset.url}
-            alt={blogData.mainImage.alt || `${blogData.title} image`}
+            src={blogData?.mainImage?.asset?.url}
+            alt={blogData?.mainImage?.alt || `${blogData?.title} image`}
             fill
             className="object-cover rounded-2xl md:rounded-4xl"
             priority
@@ -162,8 +165,8 @@ export default async function BlogDetail({ params }: BlogDetailPageProps) {
       >
         {/* left side social media share button */}
         <BlogSocialMediaShare
-          title={blogData.title}
-          excerpt={blogData.excerpt}
+          title={blogData?.title || ""}
+          excerpt={blogData?.excerpt || ""}
         />
         {/* Right Column - Blog Content */}
         <div
@@ -195,7 +198,7 @@ export default async function BlogDetail({ params }: BlogDetailPageProps) {
                       marginBottom: "var(--space-md, 24px)",
                     }}
                   >
-                    {block.text}
+                    {block.text || ""}
                   </h3>
                 )}
 
@@ -215,7 +218,7 @@ export default async function BlogDetail({ params }: BlogDetailPageProps) {
                         marginBottom: "16px",
                       }}
                     >
-                      {para}
+                      {para || ""}
                     </p>
                   )
                 )}
@@ -229,12 +232,12 @@ export default async function BlogDetail({ params }: BlogDetailPageProps) {
                       fontFamily: "var(--font-secondary, 'Outfit')",
                     }}
                   >
-                    {block.orderedList.map((item: any, itemIndex: number) => (
+                    {block?.orderedList?.map((item: any, itemIndex: number) => (
                       <li key={itemIndex} style={{ marginBottom: "8px" }}>
                         <span style={{ fontWeight: "500" }}>{item.list}</span>
                         {item.listDescription && (
                           <p style={{ margin: "4px 0 0 0", color: "#0C0C0E" }}>
-                            {item.listDescription}
+                            {item?.listDescription}
                           </p>
                         )}
                       </li>
@@ -251,12 +254,12 @@ export default async function BlogDetail({ params }: BlogDetailPageProps) {
                       fontFamily: "var(--font-secondary, 'Outfit')",
                     }}
                   >
-                    {block.unorderedList.map((item: any, itemIndex: number) => (
+                    {block?.unorderedList?.map((item: any, itemIndex: number) => (
                       <li key={itemIndex} style={{ marginBottom: "8px" }}>
                         <span style={{ fontWeight: "500" }}>{item.list}</span>
                         {item.listDescription && (
                           <p style={{ margin: "4px 0 0 0", color: "#0C0C0E" }}>
-                            {item.listDescription}
+                            {item?.listDescription}
                           </p>
                         )}
                       </li>
