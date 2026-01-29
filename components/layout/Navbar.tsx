@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
+import MobileNavbar from "../ui/MobileNavBar";
 
 const navItems = [
   { label: "SERVICES", href: "/services" },
@@ -36,21 +37,21 @@ export default function Navbar() {
     : "border-gray-300";
 
   return (
-    <header className="w-full z-10">
+    <header className={`w-full z-50 ${open ? "bg-(--spotlight-950)" : ""} `}>
       {" "}
-      {/* Removed faulty gradient class for transparent bg; add back if needed */}
       <div className="w-full mx-auto py-4 px-6 md:px-16 lg:px-20 flex items-center justify-between">
         {" "}
         {/* Applied Figma styles: width:1440px, padding:16px 80px (py-4 px-20), flex, justify-between, items-center */}
         {/* Logo */}
         <Link href="/" className="flex items-center">
-          {open || !isWhiteVersion ? (
+          {/* mobile logos */}
+          {!open && !isWhiteVersion ? (
             <Image
               src="/Home/spotlight-logo-black.svg"
               alt="Spotlight Logo"
               width={150}
               height={42}
-              className="w-24 h-6 md:w-36 md:h-10"
+              className="w-24 h-6 md:w-36 md:h-10 md:hidden "
             />
           ) : (
             <Image
@@ -58,7 +59,25 @@ export default function Navbar() {
               alt="Spotlight Logo"
               width={150}
               height={42}
-              className="w-24 h-6 md:w-36 md:h-10"
+              className="w-24 h-6 md:w-36 md:h-10 md:hidden"
+            />
+          )}
+
+          {!isWhiteVersion ? (
+            <Image
+              src="/Home/spotlight-logo-black.svg"
+              alt="Spotlight Logo"
+              width={150}
+              height={42}
+              className="w-24 h-6 md:w-36 md:h-10 hidden md:block "
+            />
+          ) : (
+            <Image
+              src="/Home/spotlight-logo-white.svg"
+              alt="Spotlight Logo"
+              width={150}
+              height={42}
+              className="w-24 h-6 md:w-36 md:h-10 hidden md:block"
             />
           )}
         </Link>
@@ -93,6 +112,8 @@ export default function Navbar() {
             CONTACT
           </Link>
 
+          {/* mobile logo */}
+
           {/* Mobile menu button */}
           <button
             className={`md:hidden ml-4 inline-flex items-center justify-center p-2 rounded-md transition-colors duration-200 ${
@@ -107,7 +128,7 @@ export default function Navbar() {
               <svg
                 className="w-9 h-6"
                 fill="none"
-                stroke="currentColor"
+                stroke="white"
                 viewBox="0 0 24 24"
               >
                 <path
@@ -136,33 +157,7 @@ export default function Navbar() {
       </div>
       {/* Mobile dropdown */}
       {open && (
-        <div
-          className={`md:hidden border-t ${mobileBorderColor} ${mobileBgColor}`}
-        >
-          <div className="px-6 py-6 space-y-4">
-            {navItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={`block text-sm font-medium uppercase tracking-wide transition-colors duration-200 py-2 ${mobileTextColor}`}
-                onClick={() => setOpen(false)}
-              >
-                {item.label}
-              </Link>
-            ))}
-            <Link
-              href="/contact"
-              className="block mt-4 px-6 py-3 rounded-md text-sm font-semibold uppercase tracking-wide text-center transition-colors duration-200"
-              style={{
-                backgroundColor: buttonBgColor,
-                color: buttonTextColor,
-              }}
-              onClick={() => setOpen(false)}
-            >
-              CONTACT
-            </Link>
-          </div>
-        </div>
+       <MobileNavbar pathname={pathname} setOpen={setOpen}/>
       )}
     </header>
   );
