@@ -37,30 +37,32 @@ const MobileNavbar: React.FC<MobileNavbarProps> = ({ pathname, setOpen }) => {
   ];
 
   useEffect(() => {
-    // Animate navbar items on mount
-    gsap.fromTo(
-      menuRef.current,
-      {
-        yPercent: -100,
-      },
-      {
-        yPercent: 0,
-      },
-    );
-    gsap.fromTo(
-      itemsRef.current,
-      { y: -50, opacity: 0 },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 0.6,
-        stagger: {
-          each: 0.05,
-          from: "start",
-        },
-        ease: "power3.out",
-      },
-    );
+   const tl = gsap.timeline();
+
+tl.fromTo(
+  menuRef.current,
+  { yPercent: -100 },
+  {
+    yPercent: 0,
+    duration: 0.5,
+    ease: "power3.out",
+  }
+)
+.fromTo(
+  itemsRef.current,
+  { y: -50, opacity: 0 },
+  {
+    y: 0,
+    opacity: 1,
+    duration: 0.6,
+    stagger: {
+      each: 0.05,
+      from: "start",
+    },
+    ease: "power3.out",
+  }
+);
+
   }, []);
 
   return (
