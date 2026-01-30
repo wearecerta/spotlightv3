@@ -35,6 +35,14 @@ export default function Hero({ videoId = "ZUL8AK9GzRA" }: HeroProps) {
 
   return (
     <section className="relative w-full h-screen -mt-20 md:-mt-26 lg:-mt-26 overflow-hidden z-0 bg-(--spotlight-950)">
+
+
+      {/* gradient overlay */}
+{/* gradient overlay */}
+{/* bottom gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0C0C0E] to-[#0C0C0E00]/1 z-10" />
+
+
       {/* Thumbnail */}
       {!videoLoaded && (
         <Image

@@ -34,7 +34,7 @@ export async function POST(req: Request) {
             Email: email,
             Name: name,
           },
-          Subject: "New Contact Form Message",
+          Subject: `New Contact Form Message From  ${name} |  ${email}`,
           TextPart: `
 Name: ${name}
 Email: ${email}

@@ -120,7 +120,7 @@ function TeamPhotoCard({
           style={{
             color: '#FFF',
             fontFamily: 'var(--font-secondary, Outfit)',
-            fontSize: 'clamp(14px, 1.5vw, 18px)',
+            fontSize: 'clamp(8px, 1.2vw, 18px)',
             fontStyle: 'normal',
             fontWeight: '300',
             lineHeight: '150%',
