@@ -1,12 +1,13 @@
 "use client";
 
-import Image from "next/image";
 import { useState } from "react";
+import ReCAPTCHA from "react-google-recaptcha";
 
 export default function ContactInput() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -30,7 +31,7 @@ export default function ContactInput() {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, message }),
+        body: JSON.stringify({ name, email, message, captchaToken }),
       });
 
       if (!res.ok) throw new Error("Failed to send message");
@@ -39,6 +40,7 @@ export default function ContactInput() {
       setName("");
       setEmail("");
       setMessage("");
+      setCaptchaToken(null);
     } catch (err: any) {
       setError(err.message || "Something went wrong");
     } finally {
@@ -88,12 +90,18 @@ export default function ContactInput() {
           onChange={(e) => setMessage(e.target.value)}
         />
       </div>
+      <div className="mt-4">
+        <ReCAPTCHA
+          sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
+          onChange={(token) => setCaptchaToken(token)}
+        />
+      </div>
 
       {/* Send Button */}
       <button
         onClick={handleSubmit}
         disabled={loading}
-        className="mt-10 self-end flex items-center gap-(--space-xxs) bg-(--spotlight-50) px-(--space-sm) py-(--space-xxs) text-lg font-medium text-(--spotlight-950) hover:bg-(--spotlight-100) transition disabled:opacity-50"
+        className="mt-4 self-end flex items-center gap-(--space-xxs) bg-(--spotlight-50) px-(--space-sm) py-(--space-xxs) text-lg font-medium text-(--spotlight-950) hover:bg-(--spotlight-100) transition disabled:opacity-50"
       >
         <svg
           width="8"
