@@ -7,7 +7,7 @@ export default function ContactInput() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
-  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
+  const [captchaToken, setCaptchaToken] = useState(null);
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -19,6 +19,8 @@ export default function ContactInput() {
     if (!name.trim()) return setError("Name is required");
     if (!email.trim()) return setError("Email is required");
     if (!message.trim()) return setError("Message is required");
+    if (!captchaToken) return setError("Please verify you are not a robot");
+
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
@@ -41,7 +43,7 @@ export default function ContactInput() {
       setEmail("");
       setMessage("");
       setCaptchaToken(null);
-    } catch (err: any) {
+    } catch (err) {
       setError(err.message || "Something went wrong");
     } finally {
       setLoading(false);
@@ -92,7 +94,7 @@ export default function ContactInput() {
       </div>
       <div className="mt-4">
         <ReCAPTCHA
-          sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
+          sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
           onChange={(token) => setCaptchaToken(token)}
         />
       </div>
