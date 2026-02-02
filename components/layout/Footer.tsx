@@ -10,7 +10,7 @@ export default function Footer() {
     {
       id: 1,
       name: "facebook",
-      socialLink:"https://web.facebook.com/spotlight.et",
+      socialLink: "https://web.facebook.com/spotlight.et",
       link: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -29,7 +29,8 @@ export default function Footer() {
     {
       id: 2,
       name: "linkedIn",
-      socialLink:"https://www.linkedin.com/company/22323347/admin/page-posts/published/",
+      socialLink:
+        "https://www.linkedin.com/company/22323347/admin/page-posts/published/",
       link: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -48,7 +49,8 @@ export default function Footer() {
     {
       id: 3,
       name: "Insta",
-      socialLink:"https://www.instagram.com/spotlightethiopia?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==",
+      socialLink:
+        "https://www.instagram.com/spotlightethiopia?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==",
       link: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -67,7 +69,7 @@ export default function Footer() {
     {
       id: 4,
       name: "X",
-      socialLink:"https://x.com/spotlight_et",
+      socialLink: "https://x.com/spotlight_et",
       link: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -86,7 +88,7 @@ export default function Footer() {
     {
       id: 5,
       name: "tikok",
-      socialLink:"https://www.tiktok.com/@spotlightethiopia",
+      socialLink: "https://www.tiktok.com/@spotlightethiopia",
       link: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -106,23 +108,22 @@ export default function Footer() {
     {
       id: 6,
       name: "youtube",
-      socialLink:"https://www.youtube.com/@spotlightethiopia7534",
+      socialLink: "https://www.youtube.com/@spotlightethiopia7534",
       link: (
         <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="48"
-          height="48"
-          viewBox="0 0 48 48"
+          width="24"
+          height="17"
+          viewBox="0 0 24 17"
           fill="none"
+          xmlns="http://www.w3.org/2000/svg"
         >
+          {/* YouTube background */}
           <path
-            d="M32.3259 32.1798H16.1448C13.9797 32.1798 12.2354 30.265 12.2354 27.9098V20.2699C12.2354 17.9052 13.9885 16 16.1448 16H32.3259C34.491 16 36.2353 17.9148 36.2353 20.2699V27.9098C36.2441 30.2746 34.491 32.1798 32.3259 32.1798Z"
-            fill="#F7F7F8"
+            d="M23.5 2.7C23.2 1.7 22.4 0.9 21.4 0.6C19.6 0 12 0 12 0C12 0 4.4 0 2.6 0.6C1.6 0.9 0.8 1.7 0.5 2.7C0 4.6 0 8.5 0 8.5C0 8.5 0 12.4 0.5 14.3C0.8 15.3 1.6 16.1 2.6 16.4C4.4 17 12 17 12 17C12 17 19.6 17 21.4 16.4C22.4 16.1 23.2 15.3 23.5 14.3C24 12.4 24 8.5 24 8.5C24 8.5 24 4.6 23.5 2.7Z"
+            fill="white"
           />
-          <path
-            d="M28.4818 23.9704L21.6748 20.0452V27.8957L28.4818 23.9704Z"
-            fill="#0C0C0E"
-          />
+          {/* Play icon */}
+          <path d="M9.5 12.2L15.8 8.5L9.5 4.8V12.2Z" fill="black" />
         </svg>
       ),
     },
@@ -137,7 +138,7 @@ export default function Footer() {
   return (
     <footer
       id="contact"
-      className="relative flex w-full h-screen aspect-36/23 items-start bg-(--spotlight-950) text-(--spotlight-200) overflow-hidden"
+      className="relative flex w-full md:h-screen  items-start bg-(--spotlight-950) text-(--spotlight-200) overflow-hidden"
     >
       <div className="flex flex-col lg:flex-row gap-8 lg:gap-24 items-start justify-between relative z-10 w-full max-w-7xl mx-auto px-(--section-margin-x) md:px-(--space-xxl) lg:px-(--section-margin-x) py-(--space-xxl)">
         {/* LEFT SIDE */}
@@ -158,9 +159,26 @@ export default function Footer() {
             <br />
             CONNECT!
           </h2>
+          {/* Social icons */}
+          <div className="mt-6 flex flex-row gap-3 lg:gap-4  lg:justify-start">
+            {socialIcons.map(({ id, link, socialLink }) => (
+              <Link
+                href={socialLink}
+                key={id}
+                className="flex-none w-8 h-8 lg:w-10 lg:h-10 rounded-full border border-(--spotlight-700) flex items-center justify-center"
+              >
+                {React.cloneElement(link, {
+                  width: 20,
+                  height: 20,
+                  className: "lg:w-6 lg:h-6",
+                })}
+              </Link>
+            ))}
+          </div>
 
           <p className="mt-(--space-sm) text-sm text-(--spotlight-300) font-secondary lg:text-left">
-            Spotlight Communications and Marketing LTD 2024
+            Spotlight Communications and Marketing LTD{" "}
+            {new Date().getFullYear()}
           </p>
         </div>
 
@@ -194,7 +212,10 @@ export default function Footer() {
                     />
                   </svg>
                 </span>
-                <div className="text-sm text-(--spotlight-50) flex-1">
+                <div
+                  style={{ fontFamily: "var(--font-secondary)" }}
+                  className="text-[18px]  text-(--spotlight-50) flex-1"
+                >
                   info@spotlightplc.com
                 </div>
               </li>
@@ -218,7 +239,10 @@ export default function Footer() {
                     />
                   </svg>
                 </span>
-                <div className="text-sm text-(--spotlight-50) flex-1">
+                <div
+                  style={{ fontFamily: "var(--font-secondary)" }}
+                  className="text-[18px] text-(--spotlight-50) flex-1"
+                >
                   +251 91 398 6445
                 </div>
               </li>
@@ -252,28 +276,14 @@ export default function Footer() {
                     />
                   </svg>
                 </span>
-                <div className="text-sm text-(--spotlight-50) flex-1">
+                <div
+                  style={{ fontFamily: "var(--font-secondary)" }}
+                  className="text-[18px] text-(--spotlight-50) flex-1"
+                >
                   Bole; DH Geda Tower 7th Floor; Office Suite 705
                 </div>
               </li>
             </ul>
-
-            {/* Social icons */}
-            <div className="mt-6 flex flex-row gap-3 lg:gap-4  lg:justify-start">
-              {socialIcons.map(({ id, link ,socialLink}) => (
-                <Link
-                href={socialLink}
-                  key={id}
-                  className="flex-none w-8 h-8 lg:w-10 lg:h-10 rounded-full border border-(--spotlight-700) flex items-center justify-center"
-                >
-                  {React.cloneElement(link, {
-                    width: 20,
-                    height: 20,
-                    className: "lg:w-6 lg:h-6",
-                  })}
-                </Link>
-              ))}
-            </div>
 
             {/* Input */}
             <ContactInput />

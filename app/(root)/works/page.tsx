@@ -10,7 +10,7 @@ export default async function Work() {
   return (
     <main className="min-h-screen bg-[#F7F7F8] mx-auto">
       {/* ================= HERO ================= */}
-      <section className="min-h-screen flex flex-col justify-center items-center px-6 md:px-[64px] lg:px-(--section-margin-x) gap-12 max-w-[1440px] mx-auto">
+      {/* <section className="min-h-screen flex flex-col justify-center items-center px-6 md:px-[64px] lg:px-(--section-margin-x) gap-12 max-w-[1440px] mx-auto">
         <h1
           className="text-center uppercase leading-none"
           style={{
@@ -24,10 +24,10 @@ export default async function Work() {
           <span className="text-[#0C0C0E]">OUT </span>
           <span className="text-[#B6B7C3]">SIMPLE</span>
         </h1>
-      </section>
+      </section> */}
 
       {/* ================= WORKS ================= */}
-      <section className="px-6 md:px-[64px] lg:px-[120px] pb-24 flex flex-col gap-12 max-w-[1440px] mx-auto">
+      <section className="px-6 md:px-[64px] pt-(--section-margin-y) lg:px-[120px] pb-24 flex flex-col gap-12 max-w-[1440px] mx-auto">
         {/* Heading */}
         <h2
           className="uppercase leading-none"

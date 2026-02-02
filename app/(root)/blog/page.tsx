@@ -14,11 +14,10 @@ export default async function Blog() {
       }}
     >
       {/* Hero Section */}
-      <section
+      {/* <section
         style={{
           display: "flex",
           minHeight: "100vh",
-          // padding: 'var(--section-margin-y, 120px) var(--section-margin-x, 120px)',
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
@@ -28,7 +27,6 @@ export default async function Blog() {
         }}
         className="max-w-[1440px] mx-auto px-(--section-margin-x) md:px-(--space-xxl) lg:px-(--section-margin-x) py-(--section-margin-y)"
       >
-        {/* Hero Heading */}
         <h1
           className="text-center uppercase leading-none"
           style={{
@@ -42,7 +40,7 @@ export default async function Blog() {
           <span style={{ color: "#0C0C0E" }}>THERE'S </span>
           <span style={{ color: "#B6B7C3" }}>A STORY</span>
         </h1>
-      </section>
+      </section> */}
 
       {/* Blogs Section */}
       <section

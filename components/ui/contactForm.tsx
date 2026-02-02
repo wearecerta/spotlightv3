@@ -3,210 +3,112 @@
 import Image from "next/image";
 import { useState } from "react";
 
-type Step = "name" | "email" | "phone" | "message" | "done";
-
 export default function ContactInput() {
-  const [step, setStep] = useState<Step>("name");
-
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
   const [message, setMessage] = useState("");
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-
-  function handleNext() {
-    setError("");
-
-    if (step === "name" && !name.trim()) {
-      setError("Name is required");
-      return;
-    }
-
-    if (step === "email") {
-      if (!email.trim()) {
-        setError("Email is required");
-        return;
-      }
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(email)) {
-        setError("Please enter a valid email address");
-        return;
-      }
-    }
-
-    if (step === "message" && !message.trim()) {
-      setError("Message is required");
-      return;
-    }
-
-    switch (step) {
-      case "name":
-        setStep("email");
-        break;
-      case "email":
-        setStep("phone");
-        break;
-      case "phone":
-        setStep("message");
-        break;
-      case "message":
-        handleSubmit();
-        break;
-    }
-  }
-
-  function handleBack() {
-    switch (step) {
-      case "email":
-        setStep("name");
-        break;
-      case "phone":
-        setStep("email");
-        break;
-      case "message":
-        setStep("phone");
-        break;
-    }
-  }
+  const [success, setSuccess] = useState(false);
 
   async function handleSubmit() {
+    setError("");
+
+    if (!name.trim()) return setError("Name is required");
+    if (!email.trim()) return setError("Email is required");
+    if (!message.trim()) return setError("Message is required");
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return setError("Please enter a valid email");
+    }
+
     try {
       setLoading(true);
-      setError("");
 
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name,
-          email,
-          phoneNumber: phone,
-          message,
-        }),
+        body: JSON.stringify({ name, email, message }),
       });
 
-      const data = await res.json();
+      if (!res.ok) throw new Error("Failed to send message");
 
-      if (!res.ok) {
-        throw new Error(data.error || "Failed to submit");
-      }
-
-      setStep("done");
+      setSuccess(true);
+      setName("");
+      setEmail("");
+      setMessage("");
     } catch (err: any) {
-      setError(err.message || "Something went wrong. Please try again.");
+      setError(err.message || "Something went wrong");
     } finally {
       setLoading(false);
     }
   }
 
-  function renderInput() {
-    const commonClasses =
-      "flex-1 bg-transparent border-b border-(--spotlight-700) placeholder-(--spotlight-500) text-(--spotlight-50) py-2 px-1 focus:outline-none";
+  const inputClass =
+    "w-full bg-transparent border-b border-(--spotlight-700) py-3 text-(--spotlight-50) placeholder-(--spotlight-500) focus:outline-none";
 
-    switch (step) {
-      case "name":
-        return (
-          <input
-            type="text"
-            placeholder="Insert Your Name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            onKeyDown={(e) => e.key === "Enter" && handleNext()}
-            className={commonClasses}
-          />
-        );
-
-      case "email":
-        return (
-          <input
-            type="email"
-            placeholder="Insert Your Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            onKeyDown={(e) => e.key === "Enter" && handleNext()}
-            className={commonClasses}
-          />
-        );
-
-      case "phone":
-        return (
-          <input
-            type="tel"
-            placeholder="Phone Number"
-            value={phone}
-            onChange={(e) => setPhone(e.target.value)}
-            onKeyDown={(e) => e.key === "Enter" && handleNext()}
-            className={commonClasses}
-          />
-        );
-
-      case "message":
-        return (
-          <textarea
-            placeholder="Write Your Message"
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-            onKeyDown={(e) => {
-              if (e.key === "Enter" && e.ctrlKey) handleNext();
-            }}
-            rows={3}
-            className={`${commonClasses} resize-none`}
-          />
-        );
-
-      default:
-        return null;
-    }
-  }
-
-  if (step === "done") {
+  if (success) {
     return (
-      <div className="mt-6 p-4">
-        <p className="text-(--spotlight-50) text-lg">
-          Thank you! We'll get back to you shortly.
-        </p>
-      </div>
+      <p className="mt-6 text-(--spotlight-50)">
+        Thank you! We’ll get back to you shortly.
+      </p>
     );
   }
 
   return (
-    <div className="mt-6">
-      <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-5">
-        <div className="flex-1">
-          {renderInput()}
+    <div className="mt-8 flex flex-col max-w-3xl">
+      {/* Name + Email */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:gap-8">
+        <input
+          type="text"
+          placeholder="Name"
+          className={inputClass}
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
 
-          <div className="flex gap-2 mt-2 text-sm text-(--spotlight-400)">
-            {step !== "name" && (
-              <button
-                onClick={handleBack}
-                className="hover:text-(--spotlight-50)"
-                disabled={loading}
-              >
-                ← Back
-              </button>
-            )}
-          </div>
-        </div>
-
-        <button
-          onClick={handleNext}
-          disabled={loading}
-          className="bg-(--spotlight-50) flex items-center justify-center text-(--spotlight-950) gap-2 px-8 py-4 text-xl font-medium shadow-sm sm:w-auto disabled:opacity-50 hover:bg-(--spotlight-100) transition-colors"
-        >
-          <Image src="/Icons/black-dot.svg" alt="dot" width={14} height={14} />
-          <span>
-            {loading
-              ? "SENDING..."
-              : step === "message"
-              ? "SEND"
-              : "NEXT"}
-          </span>
-        </button>
+        <input
+          type="email"
+          placeholder="Email"
+          className={inputClass}
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
       </div>
 
-      {error && <p className="mt-2 text-red-400 text-sm">{error}</p>}
+      {/* Message */}
+      <div className="">
+        <textarea
+          placeholder="Message"
+          rows={2}
+          className={`${inputClass} resize-none`}
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+        />
+      </div>
+
+      {/* Send Button */}
+      <button
+        onClick={handleSubmit}
+        disabled={loading}
+        className="mt-10 self-end flex items-center gap-(--space-xxs) bg-(--spotlight-50) px-(--space-sm) py-(--space-xxs) text-lg font-medium text-(--spotlight-950) hover:bg-(--spotlight-100) transition disabled:opacity-50"
+      >
+        <svg
+          width="8"
+          height="8"
+          viewBox="0 0 8 8"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <circle cx="4" cy="4" r="4" fill="#0C0C0E" />
+        </svg>
+
+        {loading ? "SENDING" : "SEND"}
+      </button>
+
+      {error && <p className="mt-3 text-sm text-red-400">{error}</p>}
     </div>
   );
 }

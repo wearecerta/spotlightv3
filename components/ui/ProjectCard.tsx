@@ -100,11 +100,11 @@ export default function ProjectCard({
       <div className="flex items-start  justify-between p-6 md:p-8">
         <div className="flex flex-col gap-2">
           <h2
-            className="tracking-wide"
+            className="tracking-wide text-[20px] md:text-[28px] md:line-clamp-1"
             style={{
               fontFamily: "var(--font-primary)",
               color: dark ? "#FFFFFF" : "#0C0C0E",
-              fontSize: "var(--h4-size)",
+              // fontSize: "var(--h4-size)",
               lineHeight: "var(--h4-line)",
               lineClamp: 2,
             }}
@@ -121,7 +121,7 @@ export default function ProjectCard({
               opacity: 0.8,
             }}
           >
-            {tags?.map((tag, index) => (
+            {tags?.slice(0,3).map((tag, index) => (
               <span
                 key={index}
                 className="flex uppercase text-[12px] items-center gap-2"
