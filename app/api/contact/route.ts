@@ -10,14 +10,14 @@ export async function POST(req: Request) {
   try {
     const { name, email, phoneNumber, message, captchaToken } =
       await req.json();
+
     if (!captchaToken) {
       return NextResponse.json(
         { error: "Captcha token missing" },
-        { status: 400 },
+        { status: 400 }
       );
     }
 
-    // Verify with Google
     const captchaRes = await fetch(
       "https://www.google.com/recaptcha/api/siteverify",
       {
@@ -26,22 +26,28 @@ export async function POST(req: Request) {
           "Content-Type": "application/x-www-form-urlencoded",
         },
         body: `secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${captchaToken}`,
-      },
+      }
     );
 
     const captchaData = await captchaRes.json();
 
-    if (!captchaData.success) {
+    // ✅ v3 validation (IMPORTANT)
+    if (
+      !captchaData.success ||
+      captchaData.score < 0.5 || 
+      captchaData.action !== "contact_form"
+    ) {
+      console.warn("reCAPTCHA failed:", captchaData);
       return NextResponse.json(
         { error: "Captcha verification failed" },
-        { status: 400 },
+        { status: 400 }
       );
     }
 
     if (!name || !email || !message) {
       return NextResponse.json(
         { error: "Missing required fields" },
-        { status: 400 },
+        { status: 400 }
       );
     }
 
@@ -62,7 +68,7 @@ export async function POST(req: Request) {
             Email: email,
             Name: name,
           },
-          Subject: `New Contact Form Message From  ${name} }`,
+          Subject: `New Contact Form Message From ${name}`,
           TextPart: `
 Name: ${name}
 Email: ${email}
@@ -88,7 +94,7 @@ ${message}
     console.error("Mailjet error:", error);
     return NextResponse.json(
       { error: "Failed to send message" },
-      { status: 500 },
+      { status: 500 }
     );
   }
 }

@@ -11,7 +11,7 @@ export default function Awards() {
     },
     {
       id: 2,
-      organization: "African Marketing Confederation",
+      organization: "Africa Marketing Confederation",
       award: "Most Effective Campaign of the Year 2025, Safaricom",
       imageSrc: "/Home/award-5.webp",
     },
@@ -23,13 +23,13 @@ export default function Awards() {
     },
     {
       id: 4,
-      organization: "SafEdelman African Networksaricom",
+      organization: "Edelman African Network",
       award: "Best Campaign of the Year 2024, Safaricom",
       imageSrc: "/Home/award-3.webp",
     },
     {
       id: 5,
-      organization: "African Marketing Confederation",
+      organization: "Africa Marketing Confederation",
       award: "Not for profit/public sector of the year, Min of Health & Blood Bank ETH",
       imageSrc: "/Home/awards-4.webp",
     },

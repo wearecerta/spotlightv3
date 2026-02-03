@@ -44,7 +44,8 @@ export default function ContactInput() {
         }),
       });
 
-      if (!res.ok) throw new Error("Failed to send message");
+      if (!res.ok) throw new Error("Failed to send message" );
+      console.log(res)
 
       setSuccess(true);
       setName("");

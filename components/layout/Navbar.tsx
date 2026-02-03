@@ -30,7 +30,6 @@ export default function Navbar() {
       try {
         const data = await client.fetch(SERVICES_QUERY);
         setServices(data);
-        console.log(data);
       } catch (error) {
         console.log("Error fetching services");
       }
