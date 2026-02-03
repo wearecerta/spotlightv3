@@ -6,6 +6,7 @@ import Image from "next/image";
 import MobileNavbar from "../ui/MobileNavBar";
 import { client } from "@/sanity/lib/client";
 import { SERVICES_QUERY } from "@/sanity/queries/serviceQuery";
+import ServicesDropdown from "../ui/ServiceDropDown";
 
 const navItems = [
   // { label: "SERVICES", href: "/services" },
@@ -60,7 +61,9 @@ export default function Navbar() {
 
   return (
     <>
-      <header className={`w-full z-50 ${serviceDropOpen&&isWhiteVersion?"bg-(--spotlight-950)":""} ${open ? "bg-(--spotlight-950)" : ""} `}>
+      <header
+        className={`w-full z-50 ${serviceDropOpen && isWhiteVersion ? "bg-(--spotlight-950)" : ""} ${open ? "bg-(--spotlight-950)" : ""} `}
+      >
         {" "}
         <div className="w-full mx-auto py-4 px-6 md:px-16 lg:px-20 flex items-center justify-between">
           {" "}
@@ -108,7 +111,7 @@ export default function Navbar() {
           <nav className="hidden md:flex items-center gap-2">
             <div
               style={{ color: textColor }}
-              className={`hover:border-b ${pathname == "/services" ? "border-b" : ""} outline-none transition-all flex gap-3 justify-center items-center duration-75 ease-in-out  px-4 py-2 h-[54px]`}
+              className={`hover:border-b ${pathname == "/services"|| serviceDropOpen ? "border-b" : ""} outline-none transition-all flex gap-3 justify-center items-center duration-75 ease-in-out  px-4 py-2 h-[54px]`}
             >
               <Link
                 href={"/services"}
@@ -124,6 +127,7 @@ export default function Navbar() {
 
               <svg
                 onClick={() => setServiceDropOpen((prev) => !prev)}
+                onMouseEnter={()=>setServiceDropOpen(true)}
                 width="18"
                 height="18"
                 viewBox="0 0 18 18"
@@ -234,37 +238,15 @@ export default function Navbar() {
       </header>
 
       {serviceDropOpen && (
-        <div className="fixed top-20 bg-black/40 inset-0 z-[9999]">
-          {" "}
-          <div
-            onMouseEnter={() => setServiceDropOpen(true)}
-            onMouseLeave={() => setServiceDropOpen(false)}
-            style={{ backgroundColor: dropDownBg }}
-            className="absolute  py-(--space-xl) flex flex-col items-center  left-0 w-full h-52 "
-          >
-            <div className="flex flex-col  gap-(--space-xxl)">
-              {/* first 3 col */}
-              <div className="grid grid-cols-4 gap-[var(--space-xxl)]">
-                {services.map((service: any) => (
-                  <Link
-                    onClick={() => setServiceDropOpen(false)}
-                    key={service.slug.current}
-                    href={`/services/${service.slug.current}`}
-                    style={{
-                      fontFamily: "var(--font-primary)",
-                      color: pathname.includes(service.slug.current)
-                        ? ActiveServiceColor
-                        : serviceColor,
-                    }}
-                    className="text-[20px] leading-[120%] uppercase"
-                  >
-                    {service.title}
-                  </Link>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
+        <ServicesDropdown
+          open={serviceDropOpen}
+          services={services}
+          pathname={pathname}
+          dropDownBg={dropDownBg}
+          serviceColor={serviceColor}
+          ActiveServiceColor={ActiveServiceColor}
+          onClose={() => setServiceDropOpen(false)}
+        />
       )}
     </>
   );
