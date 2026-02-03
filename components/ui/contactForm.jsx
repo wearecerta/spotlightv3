@@ -23,14 +23,13 @@ export default function ContactInput() {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) return setError("Please enter a valid email");
 
-    if (!window.grecaptcha) return setError("reCAPTCHA not loaded, try again later");
 
     try {
       setLoading(true);
 
       // get reCAPTCHA v3 token
       const captchaToken = await window.grecaptcha.execute(
-        process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!,
+        process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY,
         { action: "contact_form" }
       );
 
@@ -51,7 +50,7 @@ export default function ContactInput() {
       setName("");
       setEmail("");
       setMessage("");
-    } catch (err: any) {
+    } catch (err) {
       setError(err.message || "Something went wrong");
     } finally {
       setLoading(false);
