@@ -5,16 +5,15 @@ import {
   Outfit,
   Bebas_Neue,
   Shadows_Into_Light,
-  Plus_Jakarta_Sans
+  Plus_Jakarta_Sans,
 } from "next/font/google";
 import "./globals.css";
-
+import Script from "next/script";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
-  subsets: ['latin'], 
-  variable: '--font-plus-jakarta-sans', 
+  subsets: ["latin"],
+  variable: "--font-plus-jakarta-sans",
 });
-
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -43,11 +42,16 @@ const shadowsIntoLight = Shadows_Into_Light({
   subsets: ["latin"],
 });
 
-
 export const metadata: Metadata = {
   title: "Spotlight | Best Advertising Agency in Addis Ababa, Ethiopia",
-  description: "Best Advertising agency in Addis Ababa, Ethiopia. We specialize in creative advertising, brand design, marketing, production, event management, etc",
-  keywords:['Best Advertising Agency in Addis Ababa'," Best Marketing Agency in Addis Ababa", "Best Marketing Agency in Ethiopia", "Best Advertising Agency in Ethiopia"]
+  description:
+    "Best Advertising agency in Addis Ababa, Ethiopia. We specialize in creative advertising, brand design, marketing, production, event management, etc",
+  keywords: [
+    "Best Advertising Agency in Addis Ababa",
+    " Best Marketing Agency in Addis Ababa",
+    "Best Marketing Agency in Ethiopia",
+    "Best Advertising Agency in Ethiopia",
+  ],
 };
 
 export default function RootLayout({
@@ -57,6 +61,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <Script
+        src={`https://www.google.com/recaptcha/api.js?render=${process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}`}
+        strategy="afterInteractive"
+      />
       <body
         className={`
           ${geistSans.variable}

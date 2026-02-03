@@ -1,17 +1,17 @@
 "use client";
 
 import { useState } from "react";
-import ReCAPTCHA from "react-google-recaptcha";
 
 export default function ContactInput() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
-  const [captchaToken, setCaptchaToken] = useState(null);
-
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
+
+  const inputClass =
+    "w-full bg-transparent py-3 focus:outline-none placeholder-[var(--spotlight-500)] text-[var(--spotlight-50)] border-b border-[var(--spotlight-700)]";
 
   async function handleSubmit() {
     setError("");
@@ -19,21 +19,30 @@ export default function ContactInput() {
     if (!name.trim()) return setError("Name is required");
     if (!email.trim()) return setError("Email is required");
     if (!message.trim()) return setError("Message is required");
-    if (!captchaToken) return setError("Please verify you are not a robot");
-
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      return setError("Please enter a valid email");
-    }
+    if (!emailRegex.test(email)) return setError("Please enter a valid email");
+
+    if (!window.grecaptcha) return setError("reCAPTCHA not loaded, try again later");
 
     try {
       setLoading(true);
 
+      // get reCAPTCHA v3 token
+      const captchaToken = await window.grecaptcha.execute(
+        process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!,
+        { action: "contact_form" }
+      );
+
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, message, captchaToken }),
+        body: JSON.stringify({
+          name: name.trim(),
+          email: email.trim(),
+          message: message.trim(),
+          captchaToken,
+        }),
       });
 
       if (!res.ok) throw new Error("Failed to send message");
@@ -42,20 +51,16 @@ export default function ContactInput() {
       setName("");
       setEmail("");
       setMessage("");
-      setCaptchaToken(null);
-    } catch (err) {
+    } catch (err: any) {
       setError(err.message || "Something went wrong");
     } finally {
       setLoading(false);
     }
   }
 
-  const inputClass =
-    "w-full bg-transparent border-b border-(--spotlight-700) py-3 text-(--spotlight-50) placeholder-(--spotlight-500) focus:outline-none";
-
   if (success) {
     return (
-      <p className="mt-6 text-(--spotlight-50)">
+      <p className="mt-6 text-[var(--spotlight-50)]">
         Thank you! We’ll get back to you shortly.
       </p>
     );
@@ -72,7 +77,6 @@ export default function ContactInput() {
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
-
         <input
           type="email"
           placeholder="Email"
@@ -83,19 +87,13 @@ export default function ContactInput() {
       </div>
 
       {/* Message */}
-      <div className="">
+      <div className="mt-4">
         <textarea
           placeholder="Message"
-          rows={2}
+          rows={4}
           className={`${inputClass} resize-none`}
           value={message}
           onChange={(e) => setMessage(e.target.value)}
-        />
-      </div>
-      <div className="mt-4">
-        <ReCAPTCHA
-          sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
-          onChange={(token) => setCaptchaToken(token)}
         />
       </div>
 
@@ -103,7 +101,7 @@ export default function ContactInput() {
       <button
         onClick={handleSubmit}
         disabled={loading}
-        className="mt-4 self-end flex items-center gap-(--space-xxs) bg-(--spotlight-50) px-(--space-sm) py-(--space-xxs) text-lg font-medium text-(--spotlight-950) hover:bg-(--spotlight-100) transition disabled:opacity-50"
+        className="mt-4 self-end flex items-center gap-[var(--space-xxs)] bg-[var(--spotlight-50)] px-[var(--space-sm)] py-[var(--space-xxs)] text-lg font-medium text-[var(--spotlight-950)] hover:bg-[var(--spotlight-100)] transition disabled:opacity-50"
       >
         <svg
           width="8"
@@ -114,7 +112,6 @@ export default function ContactInput() {
         >
           <circle cx="4" cy="4" r="4" fill="#0C0C0E" />
         </svg>
-
         {loading ? "SENDING" : "SEND"}
       </button>
 
