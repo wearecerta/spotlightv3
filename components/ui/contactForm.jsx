@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import ReCAPTCHA from "react-google-recaptcha";
 
 export default function ContactInput() {
   const [name, setName] = useState("");
@@ -9,6 +10,7 @@ export default function ContactInput() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
+  const [captchaToken, setCaptchaToken] = useState(null);
 
   const inputClass =
     "w-full bg-transparent py-3 focus:outline-none placeholder-[var(--spotlight-500)] text-[var(--spotlight-50)] border-b border-[var(--spotlight-700)]";
@@ -22,16 +24,12 @@ export default function ContactInput() {
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) return setError("Please enter a valid email");
-
+    if (!captchaToken) {
+      return setError("Please verify you are not a robot");
+    }
 
     try {
       setLoading(true);
-
-      // get reCAPTCHA v3 token
-      const captchaToken = await window.grecaptcha.execute(
-        process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY,
-        { action: "contact_form" }
-      );
 
       const res = await fetch("/api/contact", {
         method: "POST",
@@ -44,13 +42,13 @@ export default function ContactInput() {
         }),
       });
 
-      if (!res.ok) throw new Error("Failed to send message" );
-      console.log(res)
+      if (!res.ok) throw new Error("Failed to send message");
 
       setSuccess(true);
       setName("");
       setEmail("");
       setMessage("");
+      setCaptchaToken(null);
     } catch (err) {
       setError(err.message || "Something went wrong");
     } finally {
@@ -90,10 +88,19 @@ export default function ContactInput() {
       <div className="mt-4">
         <textarea
           placeholder="Message"
-          rows={4}
+          rows={2}
           className={`${inputClass} resize-none`}
           value={message}
           onChange={(e) => setMessage(e.target.value)}
+        />
+      </div>
+
+      {/* ✅ reCAPTCHA checkbox */}
+      <div className="mt-4">
+        <ReCAPTCHA
+          sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
+          onChange={(token) => setCaptchaToken(token)}
+          theme="dark" 
         />
       </div>
 

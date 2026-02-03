@@ -31,13 +31,7 @@ export async function POST(req: Request) {
 
     const captchaData = await captchaRes.json();
 
-    // ✅ v3 validation (IMPORTANT)
-    if (
-      !captchaData.success ||
-      captchaData.score < 0.5 || 
-      captchaData.action !== "contact_form"
-    ) {
-      console.warn("reCAPTCHA failed:", captchaData);
+      if (!captchaData.success) {
       return NextResponse.json(
         { error: "Captcha verification failed" },
         { status: 400 }
