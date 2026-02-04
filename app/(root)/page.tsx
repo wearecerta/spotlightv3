@@ -9,6 +9,14 @@ import Awards from "@/components/sections/Awards";
 import Industries from "@/components/sections/Industries";
 import OurClients from "@/components/sections/OurClients";
 import OurAgency from "@/components/sections/OurAgency";
+import { Metadata } from "next";
+
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: "https://www.spotlightplc.com/",
+  },
+};
 
 export default async function Home() {
   return (

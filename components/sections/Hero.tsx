@@ -73,7 +73,7 @@ export default function Hero({ videoId = "ZUL8AK9GzRA" }: HeroProps) {
 
       {/* Centered content */}
       <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4">
-        <h1
+        <h2
           className="text-white font-medium leading-(--h1-line) text-[5.75rem] md:text-[12rem]"
           style={{
             fontFamily: "var(--font-primary)",
@@ -82,7 +82,7 @@ export default function Hero({ videoId = "ZUL8AK9GzRA" }: HeroProps) {
           }}
         >
           SHINE BRIGHT
-        </h1>
+        </h2>
       </div>
     </section>
   );

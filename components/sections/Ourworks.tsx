@@ -12,7 +12,7 @@ export default async function Ourworks() {
   return (
     <section className="w-full bg-(--spotlight-950) min-h-screen py-(--space-xxl) px-(--section-margin-x) md:px-(--space-xxl) lg:py-(--space-xxl) lg:px-(--section-margin-x)">
       {/* Title */}
-      <h1
+      <h2
         className="text-center mb-[var(--space-xxl)]"
         style={{
           fontSize: "clamp(3.5rem, 10vw, var(--h2-size))",
@@ -29,7 +29,7 @@ export default async function Ourworks() {
         }}
       >
         OUR WORKS
-      </h1>
+      </h2>
 
       {/* Project Cards Grid */}
       <div className="w-full max-w-7xl mx-auto space-y-6">

@@ -20,7 +20,7 @@ export default function Welcome() {
 
       {/* TOP TITLE */}
       <div className="text-center flex flex-col gap-5">
-        <h1
+        <h2
           className="uppercase"
           style={{
             fontSize: "var(--h2-size)",
@@ -30,9 +30,9 @@ export default function Welcome() {
           }}
         >
           Welcome to Spotlight!
-        </h1>
+        </h2>
 
-        <p
+        <h1
           className="font-secondary"
           style={{
             fontWeight: 300,
@@ -49,7 +49,7 @@ export default function Welcome() {
           </span>
           <br />
           in Addis Ababa, Ethiopia
-        </p>
+        </h1>
       </div>
 
       {/* CONTENT WRAPPER */}

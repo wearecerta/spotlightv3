@@ -62,7 +62,7 @@ export default function Awards() {
         style={{ gap: "var(--space-small, 20px)" }}
       >
         {/* Title */}
-        <h1
+        <h2
           className="text-center"
           style={{
             fontSize: "clamp(4rem, 12vw, var(--h2-size))",
@@ -79,7 +79,7 @@ export default function Awards() {
           }}
         >
           AWARDS
-        </h1>
+        </h2>
 
         {/* Quote/Description */}
         <p
