@@ -1,16 +1,13 @@
-import { NextResponse } from 'next/server';
 
-export async function GET() {
-  const baseUrl = 'https://spotlightplc.com';
-  const content = `User-agent: *
-Disallow:
+export default function robots() {
+  const baseUrl =
+    process.env.NEXT_PUBLIC_SITE_URL || 'https://spotlightplc.com';
 
-Sitemap: ${baseUrl}/sitemap.xml
-`;
-
-  return new NextResponse(content, {
-    headers: {
-      'Content-Type': 'text/plain',
+  return {
+    rules: {
+      userAgent: '*',
+      allow: '/',
     },
-  });
+    sitemap: `${baseUrl}/sitemap.xml`,
+  };
 }
