@@ -1,4 +1,4 @@
-import { client } from "./sanity/lib/client"
+const { client } = require('./lib/sanity')
 
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
