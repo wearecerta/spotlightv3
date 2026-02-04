@@ -68,7 +68,7 @@ export default function Hero({ videoId = "ZUL8AK9GzRA" }: HeroProps) {
           w-[177.77vh] h-[56.25vw] transition-opacity duration-700 ${
             videoLoaded ? "opacity-100" : "opacity-0"
           }`}
-        style={{ border: "none" }}
+        style={{ border: "none", pointerEvents:"none" }}
       />
 
       {/* Centered content */}

@@ -36,6 +36,7 @@ export default function ServicesDropdown({
     }
   };
 
+  // Initialize GSAP timeline
   useEffect(() => {
     if (!panelRef.current) return;
 
@@ -65,6 +66,7 @@ export default function ServicesDropdown({
       );
   }, []);
 
+  // Play/reverse animation on open state
   useEffect(() => {
     if (!tl.current) return;
 
@@ -74,6 +76,28 @@ export default function ServicesDropdown({
       tl.current.reverse();
     }
   }, [open]);
+
+  useEffect(() => {
+  if (!open) return;
+
+  const handleClickOutside = (e: MouseEvent) => {
+    if (panelRef.current && !panelRef.current.contains(e.target as Node)) {
+      onClose();
+    }
+  };
+
+  const handleScroll = () => {
+    onClose();
+  };
+
+  document.addEventListener("mousedown", handleClickOutside);
+  window.addEventListener("scroll", handleScroll, true);
+
+  return () => {
+    document.removeEventListener("mousedown", handleClickOutside);
+    window.removeEventListener("scroll", handleScroll, true);
+  };
+}, [open, onClose]);
 
 
   return (
@@ -85,7 +109,6 @@ export default function ServicesDropdown({
         ref={panelRef}
         style={{ backgroundColor: dropDownBg }}
         className="absolute left-0 w-full h-52 py-(--space-xl) flex justify-center"
-        onMouseEnter={() => {}}
       >
         <div className="grid grid-cols-4 gap-[var(--space-xxl)]">
           {services.map((service) => (

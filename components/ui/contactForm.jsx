@@ -95,7 +95,7 @@ export default function ContactInput() {
         />
       </div>
 
-      {/* ✅ reCAPTCHA checkbox */}
+      {/*  reCAPTCHA checkbox */}
       <div className="mt-4">
         <ReCAPTCHA
           sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
@@ -104,7 +104,6 @@ export default function ContactInput() {
         />
       </div>
 
-      {/* Send Button */}
       <button
         onClick={handleSubmit}
         disabled={loading}

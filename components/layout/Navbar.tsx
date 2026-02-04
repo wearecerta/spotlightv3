@@ -106,11 +106,13 @@ export default function Navbar() {
               />
             )}
           </Link>
-          {/* Navlinks (center, uppercase, even spacing) */}
+          {/* Navlinks */}
           <nav className="hidden md:flex items-center gap-2">
             <div
+              // onClick={() => setServiceDropOpen((prev) => !prev)}
+              onMouseEnter={() => setServiceDropOpen(true)}
               style={{ color: textColor }}
-              className={`hover:border-b ${pathname == "/services"|| serviceDropOpen ? "border-b" : ""} outline-none transition-all flex gap-3 justify-center items-center duration-75 ease-in-out  px-4 py-2 h-[54px]`}
+              className={`hover:border-b ${pathname == "/services" || serviceDropOpen ? "border-b" : ""} outline-none transition-all flex gap-3 justify-center items-center duration-75 ease-in-out  px-4 py-2 h-[54px]`}
             >
               <Link
                 href={"/services"}
@@ -125,8 +127,6 @@ export default function Navbar() {
               </Link>
 
               <svg
-                onClick={() => setServiceDropOpen((prev) => !prev)}
-                onMouseEnter={()=>setServiceDropOpen(true)}
                 width="18"
                 height="18"
                 viewBox="0 0 18 18"

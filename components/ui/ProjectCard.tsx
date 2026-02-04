@@ -185,7 +185,7 @@ export default function ProjectCard({
           />
         )}
         {mediaType === "youtube" && youtubeVideoId && (
-          <div className="w-full h-full relative">
+          <div className="projects-card w-full h-full relative">
             {!isIframeLoaded ? (
               <Image
                 src={`https://img.youtube.com/vi/${youtubeVideoId}/hqdefault.jpg`}
@@ -201,7 +201,7 @@ export default function ProjectCard({
                 className="absolute inset-0 w-full h-full"
                 allow="autoplay; encrypted-media"
                 allowFullScreen
-                style={{ border: "none" }}
+                style={{ border: "none" ,pointerEvents:"none"}}
                 title={title}
                 loading="lazy"
               />

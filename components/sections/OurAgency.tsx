@@ -2,6 +2,7 @@
 import { client } from "@/sanity/lib/client";
 import { AGENCIES_QUERY } from "@/sanity/queries/homePage";
 import Image from "next/image";
+import Link from "next/link";
 
 export default async function OurAgency() {
 
@@ -74,7 +75,8 @@ export default async function OurAgency() {
         className="grid md:grid-cols-5 grid-cols-2 w-full max-w-[1440px]"
       >
         {agencies.reverse()?.map((agency:any) => (
-          <div
+          <Link
+          href={agency.websiteLink || "#"}
             key={agency?._id}
             style={{
               display: "flex",
@@ -106,7 +108,7 @@ export default async function OurAgency() {
                 sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 20vw"
               />
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </section>

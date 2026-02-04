@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import Mailjet from "node-mailjet";
 
+export const runtime = "nodejs"; 
+
 const mailjet = new Mailjet({
   apiKey: process.env.MAILJET_API_KEY!,
   apiSecret: process.env.MAILJET_SECRET_KEY!,
@@ -8,41 +10,43 @@ const mailjet = new Mailjet({
 
 export async function POST(req: Request) {
   try {
-    const { name, email, phoneNumber, message, captchaToken } =
-      await req.json();
+    const { name, email, phoneNumber, message, captchaToken } = await req.json();
 
     if (!captchaToken) {
-      return NextResponse.json(
-        { error: "Captcha token missing" },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: "Captcha token missing" }, { status: 400 });
     }
 
-    const captchaRes = await fetch(
-      "https://www.google.com/recaptcha/api/siteverify",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-        body: `secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${captchaToken}`,
-      }
-    );
+    const params = new URLSearchParams();
+    params.append("secret", process.env.RECAPTCHA_SECRET_KEY!);
+    params.append("response", captchaToken);
 
-    const captchaData = await captchaRes.json();
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 5000); 
 
-      if (!captchaData.success) {
-      return NextResponse.json(
-        { error: "Captcha verification failed" },
-        { status: 400 }
+    let captchaData;
+    try {
+      const captchaRes = await fetch(
+        "https://www.google.com/recaptcha/api/siteverify",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: params.toString(),
+          signal: controller.signal,
+        }
       );
+      captchaData = await captchaRes.json();
+    } catch (err) {
+      return NextResponse.json({ error: "Failed to verify captcha" }, { status: 500 });
+    } finally {
+      clearTimeout(timeout);
+    }
+
+    if (!captchaData.success) {
+      return NextResponse.json({ error: "Captcha verification failed" }, { status: 400 });
     }
 
     if (!name || !email || !message) {
-      return NextResponse.json(
-        { error: "Missing required fields" },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
     }
 
     await mailjet.post("send", { version: "v3.1" }).request({
@@ -86,9 +90,6 @@ ${message}
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error("Mailjet error:", error);
-    return NextResponse.json(
-      { error: "Failed to send message" },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: "Failed to send message" }, { status: 500 });
   }
 }

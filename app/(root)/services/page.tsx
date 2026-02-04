@@ -72,7 +72,7 @@ export default async function Service() {
             className="absolute inset-0 w-full h-full"
             allow="autoplay; encrypted-media"
             allowFullScreen
-            style={{ border: "none" }}
+            style={{ border: "none" ,pointerEvents:"none"}}
             title="Video 1"
           />
         </div>
@@ -92,7 +92,7 @@ export default async function Service() {
             className="absolute inset-0 w-full h-full"
             allow="autoplay; encrypted-media"
             allowFullScreen
-            style={{ border: "none" }}
+            style={{ border: "none",pointerEvents:"none" }}
             title="Video 2"
           />
         </div>
@@ -112,7 +112,7 @@ export default async function Service() {
             className="absolute inset-0 w-full h-full"
             allow="autoplay; encrypted-media"
             allowFullScreen
-            style={{ border: "none" }}
+            style={{ border: "none", pointerEvents:"none" }}
             title="Video 3"
           />
         </div>

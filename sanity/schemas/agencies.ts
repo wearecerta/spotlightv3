@@ -10,6 +10,11 @@ export const agencies = defineType({
       type: "string",
       title: "Agency Name",
     }),
+     defineField({
+      name: "websiteLink",
+      type: "string",
+      title: "Website Link",
+    }),
     defineField({
       name: "agencyLogo",
       type: "image",
