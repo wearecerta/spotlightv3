@@ -16,6 +16,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://www.spotlightplc.com/",
   },
+    openGraph: {
+      images: "/Home/tumbnail.webp",
+    },
 };
 
 export default async function Home() {

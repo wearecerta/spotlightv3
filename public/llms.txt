@@ -1,0 +1,12 @@
+# llms.txt
+site: https://spotlightplc.com
+owner: Spotlight Communications PLC
+contact: info@spotlightplc.com
+language: en
+
+allow:
+  - /
+
+disallow:
+  - /api/
+ 

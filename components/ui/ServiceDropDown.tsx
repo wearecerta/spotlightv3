@@ -50,7 +50,7 @@ export default function ServicesDropdown({
           yPercent: 0,
           duration: 0.5,
           ease: "power3.out",
-        }
+        },
       )
       .fromTo(
         itemsRef.current,
@@ -62,7 +62,7 @@ export default function ServicesDropdown({
           stagger: 0.05,
           ease: "power3.out",
         },
-        "-=0.2"
+        "-=0.2",
       );
   }, []);
 
@@ -78,48 +78,46 @@ export default function ServicesDropdown({
   }, [open]);
 
   useEffect(() => {
-  if (!open) return;
+    if (!open) return;
 
-  const handleClickOutside = (e: MouseEvent) => {
-    if (panelRef.current && !panelRef.current.contains(e.target as Node)) {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (panelRef.current && !panelRef.current.contains(e.target as Node)) {
+        onClose();
+      }
+    };
+
+    const handleScroll = () => {
       onClose();
-    }
-  };
+    };
 
-  const handleScroll = () => {
-    onClose();
-  };
+    document.addEventListener("mousedown", handleClickOutside);
+    window.addEventListener("scroll", handleScroll, true);
 
-  document.addEventListener("mousedown", handleClickOutside);
-  window.addEventListener("scroll", handleScroll, true);
-
-  return () => {
-    document.removeEventListener("mousedown", handleClickOutside);
-    window.removeEventListener("scroll", handleScroll, true);
-  };
-}, [open, onClose]);
-
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      window.removeEventListener("scroll", handleScroll, true);
+    };
+  }, [open, onClose]);
 
   return (
-    <div
-      ref={overlayRef}
-      className="fixed inset-0 top-20 bg-black/40 z-[9999]"
-    >
+    <div ref={overlayRef} className="fixed inset-0 top-20 bg-black/40 z-[9999]">
       <div
         ref={panelRef}
         style={{ backgroundColor: dropDownBg }}
         className="absolute left-0 w-full h-52 py-(--space-xl) flex justify-center"
       >
         <div className="grid grid-cols-4 gap-[var(--space-xxl)]">
-          {services.map((service) => (
+          {services.map((service,index) => (
             <Link
               ref={addToRefs}
-              key={service.slug.current}
-              href={`/services/${service.slug.current}`}
+              key={service?.slug?.current || index}
+              href={
+                service?.slug?.current ? `/services/${service?.slug?.current}` : "/"
+              }
               onClick={onClose}
               style={{
                 fontFamily: "var(--font-primary)",
-                color: pathname.includes(service.slug.current)
+                color: pathname.includes(service?.slug?.current)
                   ? ActiveServiceColor
                   : serviceColor,
               }}

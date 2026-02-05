@@ -130,7 +130,7 @@ export default async function Service() {
             alt1={service.images?.[0]?.alt || ""}
             imageSrc2={service?.images?.[1]?.asset?.url || ""}
             alt2={service.images?.[1]?.alt || ""}
-            href={`/services/${service?.slug?.current}` || "#"}
+            href={service?.slug?.current?`/services/${service?.slug?.current}` : "/"}
           />
         ))}
       </div>

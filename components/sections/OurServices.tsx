@@ -194,7 +194,7 @@ export default async function OurServices() {
                       title={service?.title}
                       description={service?.description}
                       services={service?.subServices?.map((s:any) => s.title)}
-                      href={"/services/" + service?.slug?.current}
+                      href={service?.slug?.current?"/services/" + service?.slug?.current: "/"}
                       className="w-full"
                     />
                   </div>
