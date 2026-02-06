@@ -28,7 +28,6 @@ export default function ServicesDropdown({
   const itemsRef = useRef<HTMLAnchorElement[]>([]);
   const tl = useRef<gsap.core.Timeline | null>(null);
   const [activeService, setActiveService] = useState<string | null>(null);
-  console.log(services);
 
   itemsRef.current = [];
 
@@ -146,6 +145,7 @@ export default function ServicesDropdown({
                       height="18"
                       viewBox="0 0 18 18"
                       fill="none"
+                      className="-rotate-90"
                       xmlns="http://www.w3.org/2000/svg"
                     >
                       <path
