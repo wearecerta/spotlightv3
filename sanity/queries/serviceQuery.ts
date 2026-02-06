@@ -101,8 +101,15 @@ const SERVICE_QUERY = `*[_type == "services" && slug.current == "digital-marketi
   _updatedAt
 }`;
 
+
 export const SERVICES_QUERY = `
-*[_type == "services"]{
+*[
+  _type == "services" &&
+  !(slug.current in [
+    "seo-services-in-addis-ababa",
+    "social-media-services-in-ethiopia"
+  ])
+]{
   _id,
   title,
   description,
@@ -120,6 +127,7 @@ export const SERVICES_QUERY = `
   }
 }
 `
+
 
 export const SERVICE_BY_SLUG_QUERY = `
 *[_type == "services" && slug.current == $slug][0]{
