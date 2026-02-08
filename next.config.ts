@@ -11,7 +11,7 @@ const nextConfig: NextConfig = {
     
       {
         source: '/seo-services-in-addis-ababa',
-        destination: '/blog/seo-services-in-addis-ababa',
+        destination: '/services/seo-services-in-addis-ababa',
         permanent: true,
       },
       {
@@ -61,7 +61,7 @@ const nextConfig: NextConfig = {
       },
       {
         source: '/social-media-services-in-ethiopia',
-        destination: '/blog/social-media-services-in-ethiopia',
+        destination: '/services/social-media-services-in-ethiopia',
         permanent: true,
       },
       {
