@@ -100,25 +100,29 @@ export default function ContactInput() {
         <ReCAPTCHA
           sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
           onChange={(token) => setCaptchaToken(token)}
-          theme="dark" 
+          theme="dark"
         />
       </div>
 
       <button
         onClick={handleSubmit}
         disabled={loading}
-        className="mt-4 self-end flex items-center gap-[var(--space-xxs)] bg-[var(--spotlight-50)] px-[var(--space-sm)] py-[var(--space-xxs)] text-lg font-medium text-[var(--spotlight-950)] hover:bg-[var(--spotlight-100)] transition disabled:opacity-50"
+        className="mt-4 relative overflow-hidden  group self-end flex items-center gap-[var(--space-xxs)]  px-[var(--space-sm)] py-[var(--space-xxs)] text-lg font-medium  bg-[var(--spotlight-950)] hover:border border-(--spotlight-50) transition disabled:opacity-50"
       >
+        <span className="absolute  top-0 left-[-15%] w-[130%] h-full bg-[var(--spotlight-50)] skew-x-[30deg] transition-transform duration-400 ease-[cubic-bezier(0.3,1,0.8,1)] group-hover:translate-x-full"></span>
         <svg
           width="8"
           height="8"
           viewBox="0 0 8 8"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
+          className="z-10 fill-current text-(--spotlight-950) group-hover:text-(--spotlight-50)"
         >
-          <circle cx="4" cy="4" r="4" fill="#0C0C0E" />
+          <circle cx="4" cy="4" r="4" />
         </svg>
-        {loading ? "SENDING" : "SEND"}
+        <span className="z-10 text-[var(--spotlight-950)] group-hover:text-[var(--spotlight-50)]">
+          {loading ? "SENDING" : "SEND"}
+        </span>
       </button>
 
       {error && <p className="mt-3 text-sm text-red-400">{error}</p>}
