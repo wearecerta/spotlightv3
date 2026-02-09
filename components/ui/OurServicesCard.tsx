@@ -28,6 +28,7 @@ export default function OurServicesCard({
   return (
     <Link
       href={href}
+      scroll
       className={`
         block rounded-3xl p-px
         transition-all duration-300 border border-(--spotlight-700)   

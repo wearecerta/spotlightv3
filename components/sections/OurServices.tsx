@@ -155,13 +155,11 @@ export default async function OurServices() {
         />
       </div>
 
-      <div className="h-screen" />
 
       {/* Scrollable Content Container - Scrolls over the red background */}
       <div
         className="relative z-10"
         style={{
-          marginTop: "-100vh",
           backgroundColor: "transparent",
           pointerEvents: "none",
         }}
@@ -204,7 +202,7 @@ export default async function OurServices() {
           </div>
 
           {/* Explore More Button */}
-          <Link href={"/services"}>
+          <Link href={"/services"} scroll>
             <Buttons>explore more</Buttons>
           </Link>
         </div>

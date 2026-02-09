@@ -78,7 +78,7 @@ export default function Welcome() {
         />
       </div>
       {/* BUTTON */}
-      <Link href={"/about"}>
+      <Link href={"/about"} scroll>
         <Buttons>ABOUT US</Buttons>
       </Link>
 

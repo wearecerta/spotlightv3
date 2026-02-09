@@ -85,6 +85,7 @@ export default function ProjectCard({
 
   return (
     <Link
+    scroll
       href={href}
       className={`
         block rounded-2xl overflow-hidden

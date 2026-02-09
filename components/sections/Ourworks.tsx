@@ -61,7 +61,7 @@ export default async function Ourworks() {
         </div>
       </div>
 
-      <Link href={"/works"}>
+      <Link href={"/works"} scroll>
         <Buttons>explore now</Buttons>
       </Link>
     </section>

@@ -54,6 +54,7 @@ export default function ServicesCard({
         >
           {/* Arrow Icon - Top Right */}
           <Link
+            scroll
             href={href}
             style={{
               display: "flex",
@@ -73,6 +74,7 @@ export default function ServicesCard({
 
           {/* Title and Description */}
           <Link
+          scroll
             href={href}
             // style={{
             //   display: "flex",
@@ -139,6 +141,7 @@ export default function ServicesCard({
                 }}
               >
                 <Link
+                scroll
                   href={
                     service?.slug?.current
                       ? `/blog/${service?.slug?.current}`
@@ -173,7 +176,7 @@ export default function ServicesCard({
       </div>
 
       {/* Two Images Side by Side - No Gap (Scrolls Normally) */}
-      <Link href={href} className="block group">
+      <Link scroll href={href} className="block group">
         <div
           // style={{
           //   display: "grid",
