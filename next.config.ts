@@ -9,11 +9,7 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
     
-      {
-        source: '/seo-services-in-addis-ababa',
-        destination: '/services/seo-services-in-addis-ababa',
-        permanent: true,
-      },
+    
       {
         source: '/risk-and-crisis-management-in-ethiopia',
         destination: '/blog/risk-and-crisis-management-in-ethiopia',
@@ -59,11 +55,7 @@ const nextConfig: NextConfig = {
         destination: '/blog/promotional-marketing-ethiopia',
         permanent: true,
       },
-      {
-        source: '/social-media-services-in-ethiopia',
-        destination: '/services/social-media-services-in-ethiopia',
-        permanent: true,
-      },
+     
       {
         source: '/brand-identity-in-ethiopia',
         destination: '/blog/brand-identity-in-ethiopia',

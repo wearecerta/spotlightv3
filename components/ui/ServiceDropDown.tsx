@@ -159,7 +159,7 @@ export default function ServicesDropdown({
                 {isDigitalMarketing &&
                   activeService === "digital-marketing" && (
                     <div
-                      className="absolute top-0 left-25 mt-4
+                      className="absolute -top-2 left-25 mt-4
                         place-items-center  rounded-xl 
                        grid gap-4 min-w-[140px] z-50"
                     >
@@ -180,7 +180,7 @@ export default function ServicesDropdown({
                         return (
                           <Link
                             key={sub.slug.current}
-                            href={`/services/${sub.slug.current}`}
+                            href={`/${sub.slug.current}`}
                             onClick={onClose}
                             className="text-[20px] uppercase tracking-wide
                  transition-colors hover:text-[var(--accent-color)]"
