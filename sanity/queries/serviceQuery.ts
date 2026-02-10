@@ -101,7 +101,6 @@ const SERVICE_QUERY = `*[_type == "services" && slug.current == "digital-marketi
   _updatedAt
 }`;
 
-
 export const SERVICES_QUERY = `
 *[
   _type == "services" &&
@@ -126,11 +125,13 @@ export const SERVICES_QUERY = `
     slug
   }
 }
-`
-
+`;
 
 export const SERVICE_BY_SLUG_QUERY = `
-*[_type == "services" && slug.current == $slug][0]{
+*[_type == "services" && slug.current == $slug &&   !(slug.current in [
+    "seo-services-in-addis-ababa",
+    "social-media-services-in-ethiopia"
+  ])][0]{
   _id,
   title,
   description,
@@ -230,12 +231,134 @@ export const SERVICE_BY_SLUG_QUERY = `
     }
   }
 }
-`
-
-
+`;
 
 export const SERVICE_SEO_QUERY = `
-*[_type == "services" && slug.current == $slug][0]{
+*[_type == "services" && slug.current == $slug &&  !(slug.current in [
+    "seo-services-in-addis-ababa",
+    "social-media-services-in-ethiopia"
+  ])][0]{
+  serviceDetail {
+    onPageSeo {
+      pageTitle,
+      metaDescription,
+      targetKeyWords
+    }
+  }
+}
+`;
+
+export const SERVICE_BY_SLUG_QUERY_SUB_SERVICES = `
+*[_type == "services" && slug.current == $slug &&  (slug.current in [
+    "seo-services-in-addis-ababa",
+    "social-media-services-in-ethiopia"
+  ])][0]{
+  _id,
+  title,
+  description,
+  slug,
+
+  subServices[]{
+    title,
+    slug
+  },
+
+  serviceDetail{
+    heroTitle,
+    heroImage{
+      alt,
+      asset->{
+        _id,
+        url
+      }
+    },
+
+    introductionSection{
+      title,
+      description,
+      images[]{
+        alt,
+        asset->{
+          _id,
+          url
+        }
+      }
+    },
+
+    coreServiceSection{
+      title,
+      description,
+      services[]{
+        title,
+        description
+      }
+    },
+
+    industriesSection{
+      title,
+      description,
+      subTitle,
+      subDescription,
+      industries[]{
+        industry,
+        industryDescription
+      }
+    },
+
+    whyChooseUsSectionOne{
+      title,
+      description,
+      services[]{
+        title,
+        description,
+        icon{
+          asset->{
+            _id,
+            url
+          }
+        }
+      }
+    },
+
+    whyChooseUsSectionTwo{
+      title,
+      description,
+      subTitle,
+      subDescription,
+      features[]{
+        title,
+        description
+      }
+    },
+
+    cta{
+      title,
+      slogan,
+      ctaText
+    },
+
+    additionalInformation{
+      blocks[]{
+        title,
+        paragraphs[]
+      }
+    },
+
+    frequentlyAskedQuestions{
+      items[]{
+        question,
+        answer
+      }
+    }
+  }
+}
+`;
+
+export const SERVICE_SEO_QUERY_SUB_SERVICE = `
+*[_type == "services" && slug.current == $slug &&   (slug.current in [
+    "seo-services-in-addis-ababa",
+    "social-media-services-in-ethiopia"
+  ])][0]{
   serviceDetail {
     onPageSeo {
       pageTitle,

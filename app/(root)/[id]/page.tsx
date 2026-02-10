@@ -1,10 +1,11 @@
 import OurAgency from "@/components/sections/OurAgency";
 import Image from "next/image";
 import {
-  SERVICE_BY_SLUG_QUERY,
-  SERVICE_SEO_QUERY,
+  SERVICE_BY_SLUG_QUERY_SUB_SERVICES,
+  SERVICE_SEO_QUERY_SUB_SERVICE,
 } from "@/sanity/queries/serviceQuery";
 import { client } from "@/sanity/lib/client";
+import { notFound } from "next/navigation";
 
 interface Props {
   params: { id: string };
@@ -15,7 +16,7 @@ export async function generateMetadata({ params }: Props) {
 
   const slug = param.id;
 
-  const serviceDetail: any = await client.fetch(SERVICE_SEO_QUERY, {
+  const serviceDetail: any = await client.fetch(SERVICE_SEO_QUERY_SUB_SERVICE, {
     slug,
   }, { next: { revalidate: 60 } });
 
@@ -37,13 +38,13 @@ export default async function ServiceDetailPage({ params }: Props) {
   const slug = param.id;
   let serviceDetail: any = null;
   try {
-    serviceDetail = await client.fetch(SERVICE_BY_SLUG_QUERY, { slug }, { next: { revalidate: 60 } });
+    serviceDetail = await client.fetch(SERVICE_BY_SLUG_QUERY_SUB_SERVICES, { slug }, { next: { revalidate: 60 } });
   } catch (err) {
     console.error("Error fetching service:", err);
     serviceDetail = null;
   }
 
-  if (!serviceDetail) return null;
+  if (!serviceDetail) return notFound();
 
   const {
     heroTitle,

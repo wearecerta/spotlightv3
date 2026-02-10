@@ -5,6 +5,7 @@ import {
   SERVICE_SEO_QUERY,
 } from "@/sanity/queries/serviceQuery";
 import { client } from "@/sanity/lib/client";
+import { notFound } from "next/navigation";
 
 interface Props {
   params: { id: string };
@@ -43,7 +44,7 @@ export default async function ServiceDetailPage({ params }: Props) {
     serviceDetail = null;
   }
 
-  if (!serviceDetail) return null;
+  if (!serviceDetail) return notFound();
 
   const {
     heroTitle,
