@@ -19,6 +19,22 @@ export const AGENCIES_QUERY = `
 }
 `
 
+export const AWARDS_QUERY = `
+*[_type == "awards"]
+| order(_createdAt asc)[0..5]
+{_id,
+  organization,
+  award,
+  image{
+    asset->{
+      _id,
+      url
+    }
+  },
+}
+`
+
+
 
 
 

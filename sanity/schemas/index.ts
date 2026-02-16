@@ -19,6 +19,7 @@ import { blog } from "./blog";
 import { Team, TeamMembers } from "./teams";
 import { agencies } from "./agencies";
 import { contactForm } from "./contact";
+import { awards } from "./awards";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -31,7 +32,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     Team,
     TeamMembers,
     agencies,
-    contactForm,
+    awards,
     // this is for the service detail page sections 
     IntroductionSection,
     WhyChooseUsSection1,
