@@ -1,6 +1,7 @@
 export const CASE_STUDIES = `
 *[_type == "caseStudy"]
-| order(_updatedAt desc){
+| order(coalesce(order, 999) asc)
+{
   _id,
   title,
   slug,
@@ -20,7 +21,6 @@ export const CASE_STUDIES = `
   }
 }
 `;
-
 
 
 

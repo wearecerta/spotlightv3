@@ -17,6 +17,13 @@ export const caseStudy = defineType({
       title: "Title",
     }),
 
+        {
+  name: "order",
+  title: "Display Order ",
+  type: "number",
+  description: "Use 1 for highest priority",
+},
+
     defineField({
       name: "slug",
       type: "slug",
