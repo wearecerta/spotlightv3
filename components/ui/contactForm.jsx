@@ -6,6 +6,7 @@ import ReCAPTCHA from "react-google-recaptcha";
 export default function ContactInput() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -38,6 +39,7 @@ export default function ContactInput() {
           name: name.trim(),
           email: email.trim(),
           message: message.trim(),
+          phone: phone.trim(),
           captchaToken,
         }),
       });
@@ -48,6 +50,7 @@ export default function ContactInput() {
       setName("");
       setEmail("");
       setMessage("");
+      setPhone("");
       setCaptchaToken(null);
     } catch (err) {
       setError(err.message || "Something went wrong");
@@ -83,6 +86,15 @@ export default function ContactInput() {
           onChange={(e) => setEmail(e.target.value)}
         />
       </div>
+
+
+  <input
+          type="phone"
+          placeholder="Phone"
+          className={inputClass}
+          value={phone}
+          onChange={(e) => setPhone(e.target.value)}
+        />
 
       {/* Message */}
       <div className="mt-4">

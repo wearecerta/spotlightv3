@@ -10,7 +10,7 @@ const mailjet = new Mailjet({
 
 export async function POST(req: Request) {
   try {
-    const { name, email, phoneNumber, message, captchaToken } = await req.json();
+    const { name, email, phone, message, captchaToken } = await req.json();
 
     if (!captchaToken) {
       return NextResponse.json({ error: "Captcha token missing" }, { status: 400 });
@@ -70,7 +70,7 @@ export async function POST(req: Request) {
           TextPart: `
 Name: ${name}
 Email: ${email}
-Phone: ${phoneNumber || "N/A"}
+Phone: ${phone || "N/A"}
 
 Message:
 ${message}
@@ -79,7 +79,7 @@ ${message}
             <h3>New Contact Form Submission</h3>
             <p><strong>Name:</strong> ${name}</p>
             <p><strong>Email:</strong> ${email}</p>
-            <p><strong>Phone:</strong> ${phoneNumber || "N/A"}</p>
+            <p><strong>Phone:</strong> ${phone || "N/A"}</p>
             <p><strong>Message:</strong></p>
             <p>${message}</p>
           `,
